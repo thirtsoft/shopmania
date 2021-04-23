@@ -1,1 +1,31 @@
-<p>list-scategory works!</p>
+<div class="container">
+  <div style="padding-left: 20px; padding-top: 10px;">
+    <button type="button"
+      (click)="onCreateScayegorie()"
+      class="btn btn-success btn-lg"
+    >
+      <i class="fa fa-plus" aria-hidden="true"></i> Create
+    </button>&nbsp;
+  </div>
+  <table class="table table-striped table-bordered table-sm row-border hover">
+    <thead>
+      <tr>
+        <th>ID</th><th>Code</th><th>Designation</th><th>Categorie</th><th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let scategorie of scategories; let i=index;">
+        <td>{{scategorie?.idScategory}}</td>
+        <td>{{scategorie?.code}}</td>
+        <td>{{scategorie?.libelle}}</td>
+        <td>{{scategorie?.categorie.designation}}</td>
+        <td>
+          <button class="btn btn-info btn-sm" (click)="addEditScategorie(i)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>&nbsp;
+          <button class="btn btn-danger btn-sm" (click)="onDeleteScategorie(scategorie.idScategory)"><i class="fa fa-trash-o"></i>  </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>

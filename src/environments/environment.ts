@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8080/shop-mania/v1'
+  apiBaseUrl: 'http://localhost:8081/shop-mania/v1'
 };
 
 /*

@@ -1,3 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { CategoryService } from './../../services/category.service';
+import { Category } from './../../model/category';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCategoryComponent implements OnInit {
 
-  constructor() { }
+
+  public editCategory: Category = new Category();
+  public deleteCategory: Category;
+
+  constructor(private categoryService: CategoryService,
+              private router: Router){}
 
   ngOnInit(): void {
+
+  }
+
+  public onAddCategory() {
+    this.categoryService.addCategory(this.editCategory).subscribe(
+      (response: Category) => {
+       console.log("Add Categry successfully");
+        this.router.navigate(['/categories']);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  addEditCategorie() {
+
   }
 
 }

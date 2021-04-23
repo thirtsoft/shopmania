@@ -1,3 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Fournisseur } from './../../model/fournisseur';
+import { FournisseurService } from './../../services/fournisseur.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListFournisseurComponent implements OnInit {
 
-  constructor() { }
+  public fournisseurs: Fournisseur[];
+  public deleteFournisseur: Fournisseur;
+
+  constructor(private fournisseurService: FournisseurService,
+              private router: Router){}
 
   ngOnInit(): void {
+    this.getFournisseurs();
   }
+
+  public getFournisseurs(): void {
+    this.fournisseurService.getFournisseurs().subscribe(
+      (response: Fournisseur[]) => {
+        this.fournisseurs = response;
+        console.log(this.fournisseurs);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onCreateFournisseur() {
+    this.router.navigate(['/newFournisseur']);
+  }
+
+  addEditFournisseur(i) {
+
+  }
+  public onDeleteForunisseur(fourId: number): void {
+    this.fournisseurService.deleteFournisseur(fourId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getFournisseurs();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
 
 }
