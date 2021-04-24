@@ -1,3 +1,5 @@
+import { AddArticleComponent } from './admin/add-article/add-article.component';
+import { ListArticleComponent } from './admin/list-article/list-article.component';
 import { ListNotificationComponent } from './admin/list-notification/list-notification.component';
 import { ListLigneCommandeComponent } from './admin/list-ligne-commande/list-ligne-commande.component';
 import { ListAddressLivraisonComponent } from './admin/list-address-livraison/list-address-livraison.component';
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'newCategorie', component: AddCategoryComponent },
   { path: 'scategories', component: ListScategoryComponent },
   { path: 'newScategorie', component: AddScategoryComponent },
+  { path: 'articles', component: ListArticleComponent },
+  { path: 'newArticle', component: AddArticleComponent },
   { path: 'fournisseurs', component: ListFournisseurComponent },
   { path: 'newFournisseur', component: AddFournisseurComponent },
   { path: 'clients', component: ListClientComponent },
