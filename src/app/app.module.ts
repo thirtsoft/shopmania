@@ -21,6 +21,7 @@ import { AddCategoryComponent } from './admin/add-category/add-category.componen
 import { AddScategoryComponent } from './admin/add-scategory/add-scategory.component';
 import { AddFournisseurComponent } from './admin/add-fournisseur/add-fournisseur.component';
 import { AddUtilisateurComponent } from './admin/add-utilisateur/add-utilisateur.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AddUtilisateurComponent } from './admin/add-utilisateur/add-utilisateur
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
