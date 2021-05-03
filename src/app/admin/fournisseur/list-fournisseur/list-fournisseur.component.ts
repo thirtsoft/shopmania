@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Fournisseur } from './../../model/fournisseur';
-import { FournisseurService } from './../../services/fournisseur.service';
+import { Fournisseur } from './../../../model/fournisseur';
+import { FournisseurService } from './../../../services/fournisseur.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

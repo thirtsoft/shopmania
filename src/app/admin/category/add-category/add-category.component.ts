@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { CategoryService } from './../../services/category.service';
-import { Category } from './../../model/category';
+import { CategoryService } from './../../../services/category.service';
+import { Category } from './../../../model/category';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

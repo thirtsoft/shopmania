@@ -1,37 +1,16 @@
-import { AddArticleComponent } from './admin/add-article/add-article.component';
-import { ListArticleComponent } from './admin/list-article/list-article.component';
-import { ListNotificationComponent } from './admin/list-notification/list-notification.component';
-import { ListLigneCommandeComponent } from './admin/list-ligne-commande/list-ligne-commande.component';
-import { ListAddressLivraisonComponent } from './admin/list-address-livraison/list-address-livraison.component';
-import { ListAddressClientComponent } from './admin/list-address-client/list-address-client.component';
-import { ListCommandeComponent } from './admin/list-commande/list-commande.component';
-import { ListClientComponent } from './admin/list-client/list-client.component';
-import { ListCategoryComponent } from './admin/list-category/list-category.component';
-import { AddFournisseurComponent } from './admin/add-fournisseur/add-fournisseur.component';
-import { ListFournisseurComponent } from './admin/list-fournisseur/list-fournisseur.component';
-import { AddScategoryComponent } from './admin/add-scategory/add-scategory.component';
-import { ListScategoryComponent } from './admin/list-scategory/list-scategory.component';
-import { AddCategoryComponent } from './admin/add-category/add-category.component';
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BACKEND_ROUTES } from './routes/admin-layout-routes';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { DEFAULT_ROUTES } from './routes/defaut-layout-routes';
+import { DefautLayoutComponent } from './layouts/defaut-layout/defaut-layout.component';
 
 
 const routes: Routes = [
-  { path: 'categories', component: ListCategoryComponent },
-  { path: 'newCategorie', component: AddCategoryComponent },
-  { path: 'scategories', component: ListScategoryComponent },
-  { path: 'newScategorie', component: AddScategoryComponent },
-  { path: 'articles', component: ListArticleComponent },
-  { path: 'newArticle', component: AddArticleComponent },
-  { path: 'fournisseurs', component: ListFournisseurComponent },
-  { path: 'newFournisseur', component: AddFournisseurComponent },
-  { path: 'clients', component: ListClientComponent },
-  { path: 'commandes', component: ListCommandeComponent },
-  { path: 'lignecommandes', component: ListLigneCommandeComponent },
-  { path: 'addresses', component: ListAddressClientComponent },
-  { path: 'livraisons', component: ListAddressLivraisonComponent },
-  { path: 'notifications', component: ListNotificationComponent },
+  { path: '', component: DefautLayoutComponent, children: DEFAULT_ROUTES },
+  { path: 'backend', component: AdminLayoutComponent, children: BACKEND_ROUTES },
+  { path: '**', redirectTo: '404'}
+
 ];
 
 @NgModule({

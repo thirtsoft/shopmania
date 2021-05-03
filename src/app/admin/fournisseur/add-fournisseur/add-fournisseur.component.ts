@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ArticleService } from './../../services/article.service';
-import { FournisseurService } from './../../services/fournisseur.service';
-import { Article } from './../../model/article';
-import { Fournisseur } from './../../model/fournisseur';
+import { ArticleService } from './../../../services/article.service';
+import { FournisseurService } from './../../../services/fournisseur.service';
+import { Article } from './../../../model/article';
+import { Fournisseur } from './../../../model/fournisseur';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

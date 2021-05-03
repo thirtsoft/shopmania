@@ -1,5 +1,5 @@
-import { Category } from './../../model/category';
-import { CategoryService } from './../../services/category.service';
+import { Category } from './../../../model/category';
+import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';

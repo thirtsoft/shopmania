@@ -1,10 +1,10 @@
-import { SScategoryService } from '../../services/scategory.service';
-import { Scategory } from '../../model/scategory';
-import { Category } from '../../model/category';
+import { SScategoryService } from '../../../services/scategory.service';
+import { Scategory } from '../../../model/scategory';
+import { Category } from '../../../model/category';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ArticleService } from '../../services/article.service';
-import { Article } from '../../model/article';
+import { ArticleService } from '../../../services/article.service';
+import { Article } from '../../../model/article';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
