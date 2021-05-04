@@ -1,8 +1,8 @@
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Category } from './../../../model/category';
 import { CategoryService } from './../../../services/category.service';
-import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-category',
@@ -52,5 +52,4 @@ export class ListCategoryComponent implements OnInit {
       }
     );
   }
-
 }

@@ -1,4 +1,7 @@
-import { ListNotificationComponent } from './list-notification/list-notification.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
 import { ListArticleComponent } from './article/list-article/list-article.component';
 import { AddCategoryComponent } from './category/add-category/add-category.component';
 import { ListScategoryComponent } from './scategory/list-scategory/list-scategory.component';
@@ -14,8 +17,6 @@ import { ListCommandeComponent } from './list-commande/list-commande.component';
 import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
@@ -81,7 +82,7 @@ const routes: Routes = [
   },
   {
     path: 'notifications',
-    component: ListNotificationComponent
+    component: ListNoteArticleComponent
   }
 ];
 

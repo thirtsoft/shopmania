@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { CustomerRoutingModule } from './customer-routing.module';
 
 import { HomeComponent } from './home/home.component';
@@ -37,10 +35,8 @@ import { ListNotificationComponent } from './list-notification/list-notification
   imports: [
     CommonModule,
     CustomerRoutingModule,
-    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
   ]
 })
 export class CustomerModule { }

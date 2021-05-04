@@ -1,5 +1,5 @@
 import { AddNotificationComponent } from './add-notification/add-notification.component';
-import { ListNotificationComponent } from './../admin/list-notification/list-notification.component';
+import { ListNotificationComponent } from './list-notification/list-notification.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ResumeComponent } from './resume/resume.component';
 import { PaymentComponent } from './payment/payment.component';

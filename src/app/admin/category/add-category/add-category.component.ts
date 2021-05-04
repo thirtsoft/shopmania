@@ -1,8 +1,8 @@
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CategoryService } from './../../../services/category.service';
 import { Category } from './../../../model/category';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-category',
@@ -10,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-category.component.scss']
 })
 export class AddCategoryComponent implements OnInit {
-
 
   public editCategory: Category = new Category();
   public deleteCategory: Category;
@@ -37,5 +36,6 @@ export class AddCategoryComponent implements OnInit {
   addEditCategorie() {
 
   }
+
 
 }
