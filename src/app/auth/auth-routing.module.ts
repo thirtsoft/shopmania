@@ -8,7 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'register',
+    path: 'signup',
     component: RegisterComponent
   },
   {

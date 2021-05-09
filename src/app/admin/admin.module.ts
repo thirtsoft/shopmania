@@ -17,10 +17,11 @@ import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utili
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { ListLigneCommandeComponent } from './list-ligne-commande/list-ligne-commande.component';
 import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 @NgModule({
-  declarations: [ListAddressLivraisonComponent, ListAddressClientComponent, ListArticleComponent, AddArticleComponent, ListCategoryComponent, AddCategoryComponent, AddScategoryComponent, ListScategoryComponent, ListFournisseurComponent, AddFournisseurComponent, AddUtilisateurComponent, ListUtilisateurComponent, ListLigneCommandeComponent, ListNoteArticleComponent],
+  declarations: [ListAddressLivraisonComponent, ListAddressClientComponent, ListArticleComponent, AddArticleComponent, ListCategoryComponent, AddCategoryComponent, AddScategoryComponent, ListScategoryComponent, ListFournisseurComponent, AddFournisseurComponent, AddUtilisateurComponent, ListUtilisateurComponent, ListLigneCommandeComponent, ListNoteArticleComponent, AccueilComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

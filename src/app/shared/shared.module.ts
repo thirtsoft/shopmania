@@ -10,6 +10,16 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 import { MatdialogComponent } from './matdialog/matdialog.component';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [
@@ -21,9 +31,26 @@ import { MatdialogComponent } from './matdialog/matdialog.component';
     BackendFooterComponent,
     MatdialogComponent,
   ],
+  exports: [
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
+    BackendHeaderComponent,
+    BackendSidebarComponent,
+    BackendFooterComponent,
+    MatdialogComponent,
+  ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatExpansionModule,
   ]
 })
 export class SharedModule { }

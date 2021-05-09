@@ -1,3 +1,5 @@
+import { AccueilComponent } from './accueil/accueil.component';
+import { Commande } from './../model/commande';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -20,6 +22,10 @@ import { ListCategoryComponent } from './category/list-category/list-category.co
 
 
 const routes: Routes = [
+  {
+    path: '',
+    component: AccueilComponent
+  },
   {
     path: 'categories',
     component: ListCategoryComponent

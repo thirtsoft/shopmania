@@ -5,13 +5,23 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
-import { SharedModule } from './shared/shared.module';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { DefautLayoutComponent } from './layouts/defaut-layout/defaut-layout.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
 
+import { SharedModule } from './shared/shared.module';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { DefautLayoutComponent } from './layouts/defaut-layout/defaut-layout.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +38,16 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    MatDialogModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

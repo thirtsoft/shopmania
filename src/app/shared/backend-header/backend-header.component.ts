@@ -12,4 +12,8 @@ export class BackendHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout() {
+    
+  }
+
 }
