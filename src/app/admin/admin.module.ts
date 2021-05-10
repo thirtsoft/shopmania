@@ -18,6 +18,7 @@ import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-ut
 import { ListLigneCommandeComponent } from './list-ligne-commande/list-ligne-commande.component';
 import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AccueilComponent } from './accueil/accueil.component';
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class AdminModule { }
