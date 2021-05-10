@@ -22,10 +22,12 @@ import { ListCategoryComponent } from './category/list-category/list-category.co
 
 
 const routes: Routes = [
+/*
   {
     path: '',
     component: AccueilComponent
   },
+  */
   {
     path: 'categories',
     component: ListCategoryComponent
@@ -43,7 +45,7 @@ const routes: Routes = [
     component: AddScategoryComponent
   },
   {
-    path: 'produits',
+    path: 'articles',
     component: ListArticleComponent
   },
   {

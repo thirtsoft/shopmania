@@ -1,8 +1,13 @@
-<!-- <app-backend-header></app-backend-header>
-<app-backend-sidebar></app-backend-sidebar> -->
+<div id="wrapper">
+    <app-backend-sidebar></app-backend-sidebar>
 
-<div class="backend-wrap">
-    <router-outlet></router-outlet>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <app-backend-header></app-backend-header>
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <app-backend-footer></app-backend-footer>
+    </div>
 </div>
-<!-- <app-backend-footer></app-backend-footer>
- -->

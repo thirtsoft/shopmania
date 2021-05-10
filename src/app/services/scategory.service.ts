@@ -9,7 +9,9 @@ import { environment } from './../../environments/environment';
 })
 export class SScategoryService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+//  private apiServerUrl = environment.apiBaseUrl;
+
+  private apiServerUrl = "http://localhost:8081/shop-mania/v1/";
 
   constructor(private http: HttpClient) {
   }
