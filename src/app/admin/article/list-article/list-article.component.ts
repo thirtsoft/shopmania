@@ -1,8 +1,12 @@
+import { SScategoryService } from './../../../services/scategory.service';
+import { AddArticleComponent } from './../add-article/add-article.component';
+import { Scategory } from './../../../model/scategory';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ArticleService } from '../../../services/article.service';
 import { Article } from '../../../model/article';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-article',
@@ -11,14 +15,22 @@ import { Article } from '../../../model/article';
 })
 export class ListArticleComponent implements OnInit {
 
-  public articles: Article[];
-  public editArticle: Article;
-  public deleteArticle: Article;
+  articles: Article[];
+  editArticle: Article;
+  deleteArticle: Article;
+
+  listDataScategories: Scategory[];
+  id : number;
+  p : number=1;
+  searchText;
 
   constructor(private articleService: ArticleService,
+              private scategorieService: SScategoryService,
+              private dialog:MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
+    this.getScategories();
     this.getArticles();
   }
 
@@ -32,6 +44,37 @@ export class ListArticleComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  public getScategories(): void {
+    this.scategorieService.getScategories().subscribe(
+      (response: Scategory[]) => {
+        this.listDataScategories = response;
+        console.log(this.listDataScategories);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  onAddArticle() {
+    this.openNoteDialog(null);
+  }
+  openNoteDialog(data?: any){
+    const dialogRef = this.dialog.open(AddArticleComponent, {
+      disableClose: true,
+      autoFocus : true ,
+      width : "50%",
+      data: data
+    } );
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result && data == null){
+        this.articles.push(result);
+      }
+      // this.refreshData();
+    });
   }
 
   public onCreateArticle() {

@@ -2,7 +2,7 @@ import { Statuscommande } from './statuscommande';
 import { Client } from './client';
 
 export class Commande {
-  idCommande: number;
+  id: number;
   reference: string;
   numeroCommande: string;
   total: number;

@@ -1,7 +1,7 @@
 import { Category } from './category';
 
 export class Scategory {
-  idScategory: number;
+  id: number;
   code: string;
   libelle: string;
 

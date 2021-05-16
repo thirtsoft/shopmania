@@ -1,8 +1,10 @@
+import { AddCategoryComponent } from './../add-category/add-category.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Category } from './../../../model/category';
 import { CategoryService } from './../../../services/category.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-category',
@@ -11,11 +13,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ListCategoryComponent implements OnInit {
 
-  public categories: Category[];
-  public editCategory: Category;
-  public deleteCategory: Category;
+  categories: Category[];
+  deleteCategory: Category;
+  categorie : Category = new Category();
+  id : number;
+  p : number=1;
+  searchText;
 
   constructor(private categoryService: CategoryService,
+              private dialog:MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
@@ -26,6 +32,7 @@ export class ListCategoryComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       (response: Category[]) => {
         this.categories = response;
+     //   console.log(this.categories[0].idCategory);
         console.log(this.categories);
       },
       (error: HttpErrorResponse) => {
@@ -36,6 +43,26 @@ export class ListCategoryComponent implements OnInit {
 
   public onCreateCategory() {
     this.router.navigate(['/newCategorie']);
+  }
+
+  onAddCategorie() {
+    this.openNoteDialog(null);
+  }
+
+  openNoteDialog(data?: any){
+    const dialogRef = this.dialog.open(AddCategoryComponent, {
+      disableClose: true,
+      autoFocus : true ,
+      width : "50%",
+      data: data
+    } );
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result && data == null){
+        this.categories.push(result);
+      }
+      // this.refreshData();
+    });
   }
 
   addEditCategorie(i) {

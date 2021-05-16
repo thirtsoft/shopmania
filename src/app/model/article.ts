@@ -1,7 +1,7 @@
 import { Scategory } from './scategory';
 
 export class Article {
-  idArticle: number;
+  id: number;
   reference: string;
   designation: string;
   quantity: number;

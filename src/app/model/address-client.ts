@@ -1,7 +1,7 @@
 import { Client } from './client';
 
 export class AddressClient {
-  idAddressClient: number;
+  id: number;
   reference: string;
   quartier: string;
   phone: string;

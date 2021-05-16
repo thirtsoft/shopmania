@@ -1,38 +1,41 @@
 <div class="container">
-  <div style="padding-left: 20px; padding-top: 10px;">
-    <button type="button"
-      (click)="onCreateFournisseur()"
-      class="btn btn-success btn-lg"
-    >
+    <div style="padding-left: 20px; padding-top: 10px;">
+        <button type="button" (click)="onCreateFournisseur()" class="btn btn-success btn-lg">
       <i class="fa fa-plus" aria-hidden="true"></i> Create
     </button>&nbsp;
-  </div>
-  <table class="table table-striped table-bordered table-sm row-border hover">
-    <thead>
-      <tr>
-        <th>Reference</th><th>Designation</th><th>Categorie</th><th>Price</th><th>Quantity</th>
-        <th>Promo</th><th>Selected</th><th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr  *ngFor="let four of fournisseurs; let i=index;">
-        <td>{{four?.reference}}</td>
-        <td>{{four?.firstName}}</td>
-        <td>{{four?.lastName}}</td>
-        <td>{{four?.email}}</td>
-        <td>{{four?.telephoneFournisseur}}</td>
-        <td>{{four?.address}}</td>
-        <td>{{four?.city}}</td>
-        <td>{{four?.country}}</td>
-        <td>{{four?.article.designation}}</td>
+    </div>
+    <table class="table table-striped table-bordered table-sm row-border hover">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Designation</th>
+                <th>Categorie</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Promo</th>
+                <th>Selected</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let four of fournisseurs; let i=index;">
+                <td>{{four?.reference}}</td>
+                <td>{{four?.firstName}}</td>
+                <td>{{four?.lastName}}</td>
+                <td>{{four?.email}}</td>
+                <td>{{four?.telephoneFournisseur}}</td>
+                <td>{{four?.address}}</td>
+                <td>{{four?.city}}</td>
+                <td>{{four?.country}}</td>
+                <td>{{four?.article.designation}}</td>
 
-        <td>
-          <button class="btn btn-info btn-sm" (click)="addEditFournisseur(i)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>&nbsp;
-          <button class="btn btn-danger btn-sm" (click)="onDeleteForunisseur(four.idFournisseur)"><i class="fa fa-trash-o"></i>  </button>
-        </td>
-      </tr>
-    </tbody>
+                <td>
+                    <button class="btn btn-info btn-sm" (click)="addEditFournisseur(i)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>&nbsp;
+                    <button class="btn btn-danger btn-sm" (click)="onDeleteForunisseur(four.id)"><i class="fa fa-trash-o"></i>  </button>
+                </td>
+            </tr>
+        </tbody>
 
-  </table>
+    </table>
 
 </div>

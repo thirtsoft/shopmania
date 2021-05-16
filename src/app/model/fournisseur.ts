@@ -1,7 +1,7 @@
 import { Article } from './article';
 
 export class Fournisseur {
-  idFournisseur: number;
+  id: number;
   reference: string;
   firstName: string;
   lastName: string;

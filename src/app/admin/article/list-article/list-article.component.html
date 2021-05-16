@@ -1,37 +1,97 @@
-<div class="container">
-  <div style="padding-left: 20px; padding-top: 10px;">
-    <button type="button"
-      (click)="onCreateArticle()"
-      class="btn btn-success btn-lg"
-    >
+<h3><i class="fa fa-angle-right"></i> List of articles</h3>
+<div>
+
+    <div class="row">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddArticle()">Add scategorie</button>
+
+    </div>
+
+    <table class="table table-striped">
+
+        <thead class="thead-inverse">
+            <tr>
+                <th>Photo</th>
+                <th>Reference</th>
+                <th>Designation</th>
+                <th>Categorie</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Promo</th>
+                <th>Selected</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let art of articles | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{art?.photo}}</td>
+                <td>{{art?.reference}}</td>
+                <td>{{art?.designation}}</td>
+                <td>{{art?.scategorie?.libelle}}</td>
+                <td>{{art?.price}}</td>
+                <td>{{art?.quantity}}</td>
+                <td>{{art?.promo}}</td>
+                <td>{{art?.selected}}</td>
+
+                <td>
+                    <div class="container ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditArticle(art) ">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteArticle(art)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="pagination ">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div style="padding-left: 20px; padding-top: 10px;">
+        <button type="button" (click)="onCreateArticle()" class="btn btn-success btn-lg">
       <i class="fa fa-plus" aria-hidden="true"></i> Create
     </button>&nbsp;
-  </div>
-  <table class="table table-striped table-bordered table-sm row-border hover">
-    <thead>
-      <tr>
-        <th>Photo</th><th>Reference</th><th>Designation</th><th>Categorie</th><th>Price</th><th>Quantity</th>
-        <th>Promo</th><th>Selected</th><th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr  *ngFor="let art of articles; let i=index;">
-        <td>{{art?.photo}}</td>
-        <td>{{art?.reference}}</td>
-        <td>{{art?.designation}}</td>
-        <td>{{art?.scategorie.libelle}}</td>
-        <td>{{art?.price}}</td>
-        <td>{{art?.currentPrice}}</td>
-        <td>{{art?.quantity}}</td>
-        <td>{{art?.promo}}</td>
-        <td>{{art?.selected}}</td>
-        <td>
-          <button class="btn btn-info btn-sm" (click)="addEditArticle(i)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>&nbsp;
-          <button class="btn btn-danger btn-sm" (click)="onDeleteArticle(art.idArticle)"><i class="fa fa-trash-o"></i>  </button>
-        </td>
-      </tr>
-    </tbody>
+    </div>
+    <table class="table table-striped table-bordered table-sm row-border hover">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Reference</th>
+                <th>Designation</th>
+                <th>Categorie</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Promo</th>
+                <th>Selected</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let art of articles; let i=index;">
+                <td>{{art?.photo}}</td>
+                <td>{{art?.reference}}</td>
+                <td>{{art?.designation}}</td>
+                <td>{{art?.scategorie?.libelle}}</td>
+                <td>{{art?.price}}</td>
+                <td>{{art?.currentPrice}}</td>
+                <td>{{art?.quantity}}</td>
+                <td>{{art?.promo}}</td>
+                <td>{{art?.selected}}</td>
+                <td>
+                    <button class="btn btn-info btn-sm" (click)="addEditArticle(i)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>&nbsp;
+                    <button class="btn btn-danger btn-sm" (click)="onDeleteArticle(art.id)"><i class="fa fa-trash-o"></i>  </button>
+                </td>
+            </tr>
+        </tbody>
 
-  </table>
+    </table>
 
-</div>
+</div> -->

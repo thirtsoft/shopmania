@@ -1,34 +1,57 @@
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <h1>Nouveau Versement</h1>
-    <form #addCategoryForm="ngForm" name="form" (ngSubmit)="onAddCategory()">
-     <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editCategory.idCategory"> -->
+<form class="form-horizontal style-form">
+    <div class="container">
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 col-md-6 control-label">Code</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" [(ngModel)]="editCategory.code" name="code" id="code" placeholder="code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 col-md-6 control-label">Designation</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" [(ngModel)]="editCategory.designation" name="designation" id="designation" placeholder="designation">
+            </div>
+        </div>
+    </div>
 
-      <div class="form-group col-sm-6">
-        <label>Code </label>
-        <input type="text" class="form-control" [(ngModel)]="editCategory.code"
-          name="code" id="code" #code="ngModel" required>
-        <span class="text-danger"
-          *ngIf="(code.touched || addCategoryForm.submitted) && code.errors?.required">
+</form>
+
+<div class="click">
+    <button _ngcontent-roy-c3="" class="btn my-2 my-sm-0" type="submit" (click)="onAddCategory()">Save</button>
+    <!-- <button _ngcontent-roy-c3="" class="btn  my-2 my-sm-0" type="submit" (click)="onClose()">Cancel</button> -->
+    <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
+
+</div>
+
+
+<!-- <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>Nouveau categorie</h1>
+        <form #addCategoryForm="ngForm" name="form" (ngSubmit)="onAddCategory()">
+            <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editCategory.idCategory"> -->
+<!--
+<div class="form-group col-sm-6">
+    <label>Code </label>
+    <input type="text" class="form-control" [(ngModel)]="editCategory.code" name="code" id="code" #code="ngModel" required>
+    <span class="text-danger" *ngIf="(code.touched || addCategoryForm.submitted) && code.errors?.required">
             Code est obligatoire
         </span>
-      </div>
+</div>
 
-      <div class="form-group col-sm-6">
-        <label>Designation</label>
-        <input type="text" class="form-control" [(ngModel)]="editCategory.designation"
-          name="designation" id="designation" #designation="ngModel" required>
-        <span class="text-danger"
-          *ngIf="(designation.touched || addCategoryForm.submitted) && designation.errors?.required">
+<div class="form-group col-sm-6">
+    <label>Designation</label>
+    <input type="text" class="form-control" [(ngModel)]="editCategory.designation" name="designation" id="designation" #designation="ngModel" required>
+    <span class="text-danger" *ngIf="(designation.touched || addCategoryForm.submitted) && designation.errors?.required">
           Désignation est obligatoire
         </span>
-      </div>
-
-      <div class="form-group">
-        <button type="submit" class="btn btn-success"><i class="fa fa-database"></i> Submit</button>&nbsp;
-        <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
-      </div>
-
-    </form>
- </div>
 </div>
+
+<div class="form-group">
+    <button type="submit" class="btn btn-success"><i class="fa fa-database"></i> Submit</button>&nbsp;
+    <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
+</div>
+
+</form>
+</div>
+</div>
+-->

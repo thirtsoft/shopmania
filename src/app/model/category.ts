@@ -1,7 +1,6 @@
 export class Category {
-
-  idCategory: number;
+  id: number;
   code: string;
   designation: string;
-  
+
 }
