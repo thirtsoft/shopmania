@@ -1,3 +1,11 @@
+import { DetailProductComponent } from './detail-product/detail-product.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { FaqComponent } from './faq/faq.component';
+import { ShopComponent } from './shop/shop.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
 import { AddNotificationComponent } from './add-notification/add-notification.component';
 import { ListNotificationComponent } from './list-notification/list-notification.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -10,8 +18,6 @@ import { HomeComponent } from './home/home.component';
 import { BillingAddressComponent } from './billing-address/billing-address.component';
 import { ListCustomersOrdersComponent } from './list-customers-orders/list-customers-orders.component';
 import { AddOrdersComponent } from './add-orders/add-orders.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
@@ -36,6 +42,14 @@ const routes: Routes = [
     component: ShippingAddressComponent
   },
   {
+    path: 'shop',
+    component: ShopComponent
+  },
+  {
+    path: 'single-product',
+    component: DetailProductComponent
+  },
+  {
     path: 'cart',
     component: CartComponent
   },
@@ -44,7 +58,7 @@ const routes: Routes = [
     component: CheckoutComponent
   },
   {
-    path: 'payments',
+    path: 'payment',
     component: PaymentComponent
   },
   {
@@ -58,6 +72,18 @@ const routes: Routes = [
   {
     path: 'addNotification',
     component: AddNotificationComponent
+  },
+  {
+    path: 'about-us',
+    component: AboutComponent
+  },
+  {
+    path: 'contact-us',
+    component: ContactComponent
+  },
+  {
+    path: 'faq',
+    component: FaqComponent
   },
   {
     path: '404',

@@ -26,8 +26,8 @@
                     <!-- Top Left -->
                     <div class="top-left">
                         <ul class="list-main">
-                            <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
-                            <li><i class="ti-email"></i> support@shophub.com</li>
+                            <li><i class="ti-headphone-alt"></i> +221 77 147 75 28</li>
+                            <li><i class="ti-email"></i> support@shopmania.com</li>
                         </ul>
                     </div>
                     <!--/ End Top Left -->
@@ -54,7 +54,7 @@
                 <div class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="assets/customer/images/logo.png" alt="logo"></a>
+                        <a href="/"><img src="assets/customer/images/logo.png" alt="logo"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
@@ -82,20 +82,11 @@
                                 </span>
                             </a>
                             <ul class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
-                                <li class="active"><a href="#" role="menuitem" tabindex="-1">Home</a></li>
+                                <li class="active"><a href="/" role="menuitem" tabindex="-1">Home</a></li>
                                 <li><a href="#" role="menuitem" tabindex="-1">Product</a></li>
                                 <li><a href="#" role="menuitem" tabindex="-1">Service</a></li>
-                                <li class="slicknav_collapsed slicknav_parent">
-                                    <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
-                                        <a href="#" tabindex="-1">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
-                                        <span class="slicknav_arrow">►</span>
-                                    </a>
-                                    <ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                                        <li><a href="shop-grid.html" role="menuitem" tabindex="-1">Shop Grid</a></li>
-                                        <li><a href="cart.html" role="menuitem" tabindex="-1">Cart</a></li>
-                                        <li><a href="checkout.html" role="menuitem" tabindex="-1">Checkout</a></li>
-                                    </ul>
-                                </li>
+                                <li><a routerLink="/shop" role="menuitem" tabindex="-1">Shop</a></li>
+
                                 <li><a href="#" role="menuitem" tabindex="-1">Pages</a></li>
                                 <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="#" tabindex="-1">Blog<i class="ti-angle-down"></i></a>
                                     <span class="slicknav_arrow">►</span></a>
@@ -131,7 +122,7 @@
                             <a href="#" class="single-icon"><i class="ti-heart" aria-hidden="true"></i></a>
                             <div class="shopping-item">
                                 <div class="bottom">
-                                    <a href="checkout.html" class="btn animate">Wishes</a>
+                                    <a routerLink="/listNotifications" class="btn animate">Wishes</a>
                                 </div>
                                 <div class="bottom">
                                     <a href="checkout.html" class="btn animate">Wishe</a>
@@ -142,16 +133,16 @@
                             <a href="#" class="single-icon"><i class="ti-user" aria-hidden="true"></i></a>
                             <div class="shopping-item">
                                 <div class="bottom">
-                                    <a href="checkout.html" class="btn animate">Signup</a>
+                                    <a routerLink="/auth/signin" class="btn animate">SignIn</a>
                                 </div>
                                 <div class="bottom">
-                                    <a href="checkout.html" class="btn animate">SignIn</a>
+                                    <a routerLink="/auth/signup" class="btn animate">Signup</a>
                                 </div>
                                 <div class="bottom">
-                                    <a href="checkout.html" class="btn animate">Profils</a>
+                                    <a routerLink="/auth/profil" class="btn animate">Profils</a>
                                 </div>
                                 <div class="bottom">
-                                    <a href="checkout.html" class="btn animate">Orders</a>
+                                    <a routerLink="/orders" class="btn animate">Orders</a>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +153,7 @@
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
                                     <span>2 Items</span>
-                                    <a href="#">View Cart</a>
+                                    <a routerLink="/cart">View Cart</a>
                                 </div>
                                 <ul class="shopping-list">
                                     <li>
@@ -183,7 +174,7 @@
                                         <span>Total</span>
                                         <span class="total-amount">$134.00</span>
                                     </div>
-                                    <a href="checkout.html" class="btn animate">Checkout</a>
+                                    <a routerLink="/checkout" class="btn animate">Checkout</a>
                                 </div>
                             </div>
                             <!--/ End Shopping Item -->
@@ -273,23 +264,32 @@
                                 <div class="navbar-collapse">
                                     <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a href="#">Home</a></li>
-                                            <li><a href="#">Product</a></li>
+                                            <li class="active"><a href="/">Home</a></li>
+                                            <li>
+                                                <a routerLink="/single-product">Product</a>
+                                            </li>
+                                            <!--  <li><a href="#">Product</a></li> -->
                                             <li><a href="#">Service</a></li>
-                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
+                                            <li>
+                                                <a routerLink="/shop">Shop</a>
+                                            </li>
+
+                                            <!-- <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
                                                 <ul class="dropdown">
                                                     <li><a href="shop-grid.html">Shop Grid</a></li>
                                                     <li><a href="cart.html">Cart</a></li>
                                                     <li><a href="checkout.html">Checkout</a></li>
                                                 </ul>
-                                            </li>
-                                            <li><a href="#">Pages</a></li>
-                                            <li><a href="#">Blog<i class="ti-angle-down"></i></a>
+                                            </li> -->
+                                            <!--  <li><a href="#">Pages</a></li> -->
+                                            <li><a href="#">Aide<i class="ti-angle-down"></i></a>
                                                 <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
+                                                    <li><a routerLink="/about-us">About Us</a></li>
+                                                    <li><a routerLink="/contact-us">Contact Us</a></li>
+                                                    <li><a routerLink="/faq">Faq</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact Us</a></li>
+
                                         </ul>
                                     </div>
                                 </div>

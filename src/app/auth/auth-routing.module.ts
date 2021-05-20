@@ -1,3 +1,5 @@
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 import { SuccessRegisterComponent } from './success-register/success-register.component';
 import { ProfilComponent } from './profil/profil.component';
 import { LoginComponent } from './login/login.component';
@@ -9,15 +11,15 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'signup',
-    component: RegisterComponent
+    component: SignupComponent
   },
   {
     path: 'success-register',
     component: SuccessRegisterComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'signin',
+    component: SigninComponent
   },
   {
     path: 'profil',

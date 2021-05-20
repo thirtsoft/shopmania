@@ -7,6 +7,8 @@ import { ProfilComponent } from './profil/profil.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SuccessRegisterComponent } from './success-register/success-register.component';
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { SuccessRegisterComponent } from './success-register/success-register.co
     SuccessRegisterComponent,
     LoginComponent,
     ProfilComponent,
+    SignupComponent,
+    SigninComponent,
   ],
   imports: [
     CommonModule,

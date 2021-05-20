@@ -15,6 +15,12 @@ import { BillingAddressComponent } from './billing-address/billing-address.compo
 import { PaymentComponent } from './payment/payment.component';
 import { AddNotificationComponent } from './add-notification/add-notification.component';
 import { ListNotificationComponent } from './list-notification/list-notification.component';
+import { ShopComponent } from './shop/shop.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { FaqComponent } from './faq/faq.component';
+import { DetailArticleComponent } from './detail-article/detail-article.component';
+import { DetailProductComponent } from './detail-product/detail-product.component';
 
 
 @NgModule({
@@ -30,7 +36,13 @@ import { ListNotificationComponent } from './list-notification/list-notification
     BillingAddressComponent,
     PaymentComponent,
     AddNotificationComponent,
-    ListNotificationComponent
+    ListNotificationComponent,
+    ShopComponent,
+    AboutComponent,
+    ContactComponent,
+    FaqComponent,
+    DetailArticleComponent,
+    DetailProductComponent
   ],
   imports: [
     CommonModule,
