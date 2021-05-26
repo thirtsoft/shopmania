@@ -61,14 +61,6 @@ const routes: Routes = [
     component: AddFournisseurComponent
   },
   {
-    path: 'utilisateurs',
-    component: ListUtilisateurComponent
-  },
-  {
-    path: 'newUtilisateur',
-    component: AddUtilisateurComponent
-  },
-  {
     path: 'clients',
     component: ListClientComponent
   },
@@ -91,7 +83,15 @@ const routes: Routes = [
   {
     path: 'notifications',
     component: ListNoteArticleComponent
-  }
+  },
+  {
+    path: 'utilisateurs',
+    component: ListUtilisateurComponent
+  },
+  {
+    path: 'newUtilisateur',
+    component: AddUtilisateurComponent
+  },
 ];
 
 
