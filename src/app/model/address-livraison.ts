@@ -1,4 +1,4 @@
-import { Commande } from './commande';
+import { Commande, CommandeDto } from './commande';
 
 export class AddressLivraison {
   id: number;
@@ -9,6 +9,19 @@ export class AddressLivraison {
   rue: string;
   country: string;
 
-  commandeDto: Commande;
+  commande: Commande;
+
+}
+
+export class AddressLivraisonDto {
+  id: number;
+  reference: string;
+  quartier: string;
+  phone: string;
+  city: string;
+  rue: string;
+  country: string;
+
+  commandeDto: CommandeDto;
 
 }

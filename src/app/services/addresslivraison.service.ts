@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { AddressLivraison } from './../model/address-livraison';
+import { AddressLivraison, AddressLivraisonDto } from './../model/address-livraison';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -33,5 +33,28 @@ export class AddresslivraisonService {
   public deleteAddressLivraison(addressLivraisonId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/addresslivraisons/delete/${addressLivraisonId}`);
   }
+
+  /******************** AddressLivraisonDTOs ****************/
+
+  public getAddressLivraisonDtos(): Observable<AddressLivraisonDto[]> {
+    return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/all`);
+  }
+
+  public getAddressLivraisonDtoById(addressLivraisonId: number): Observable<AddressLivraisonDto> {
+    return this.http.get<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/${addressLivraisonId}`);
+  }
+
+  public addAddressLivraisonDto(addressLivraisonDTO: AddressLivraisonDto): Observable<AddressLivraisonDto> {
+    return this.http.post<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraisonDTO);
+  }
+
+  public updateAddressLivraisonDto(addressLivraisonDTO: AddressLivraisonDto): Observable<AddressLivraisonDto> {
+    return this.http.put<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraisonDTO);
+  }
+
+  public deleteAddressLivraisonDto(addressLivraisonId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/addresslivraisons/delete/${addressLivraisonId}`);
+  }
+
 
 }

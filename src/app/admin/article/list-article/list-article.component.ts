@@ -1,3 +1,4 @@
+import { ArticleDto } from './../../../model/article';
 import { SScategoryService } from './../../../services/scategory.service';
 import { AddArticleComponent } from './../add-article/add-article.component';
 import { Scategory } from './../../../model/scategory';
@@ -16,6 +17,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class ListArticleComponent implements OnInit {
 
   articles: Article[];
+  articleDTOList: ArticleDto[];
+
   editArticle: Article;
   deleteArticle: Article;
 
@@ -32,6 +35,7 @@ export class ListArticleComponent implements OnInit {
   ngOnInit(): void {
     this.getScategories();
     this.getArticles();
+    this.getArticleDTOs();
   }
 
   public getArticles(): void {
@@ -39,6 +43,18 @@ export class ListArticleComponent implements OnInit {
       (response: Article[]) => {
         this.articles = response;
         console.log(this.articles);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public getArticleDTOs(): void {
+    this.articleService.getArticleDTOs().subscribe(
+      (response: ArticleDto[]) => {
+        this.articleDTOList = response;
+        console.log(this.articleDTOList);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

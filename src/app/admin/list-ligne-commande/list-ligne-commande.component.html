@@ -1,1 +1,52 @@
-<p>list-ligne-commande works!</p>
+<h3><i class="fa fa-angle-right"></i> List of ligneCommandes</h3>
+<div>
+
+    <div class="row">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+<!-- 
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onCreateFournisseur()">Add fournisseur</button>
+ -->
+    </div>
+
+    <table class="table table-striped">
+
+        <thead class="thead-inverse">
+            <tr>
+                <th>Numero</th>
+                <th>Commande</th>
+                <th>Article</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ligneCommandeDTO of ligneCommandeDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{ligneCommandeDTO?.numero}}</td>
+                <td>{{ligneCommandeDTO?.commandeDto.numeroCommande}}</td>
+                <td>{{ligneCommandeDTO?.articleDto.designation}}</td>
+                <td>{{ligneCommandeDTO?.price}}</td>
+                <td>{{ligneCommandeDTO?.quantity}}</td>
+                <td>({{ligneCommandeDTO?.price}})*({{ligneCommandeDTO?.quantity}})</td>                
+                <td>
+                    <div class="container ">
+                      <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
+                          <mat-icon>edit</mat-icon>
+                        </button> -->
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteligneCommande(ligneCommandeDTO)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="pagination ">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+</div>
+
+

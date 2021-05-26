@@ -1,4 +1,4 @@
-import { Scategory } from './../model/scategory';
+import { Scategory, ScategoryDto } from './../model/scategory';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -35,5 +35,28 @@ export class SScategoryService {
   public deleteScategory(scategoryId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${scategoryId}`);
   }
+
+  /********************* ScategoryDTO ******************/
+
+  public getScategoryDtos(): Observable<ScategoryDto[]> {
+    return this.http.get<ScategoryDto[]>(`${this.apiServerUrl}/scategories/all`);
+  }
+
+  public getScategoryDtoById(scategoryId: number): Observable<ScategoryDto> {
+    return this.http.get<ScategoryDto>(`${this.apiServerUrl}/scategories/${scategoryId}`);
+  }
+
+  public addScategoryDto(scategoryDTO: ScategoryDto): Observable<ScategoryDto> {
+    return this.http.post<ScategoryDto>(`${this.apiServerUrl}/scategories/create`, scategoryDTO);
+  }
+
+  public updateScategoryDto(scategoryDTO: ScategoryDto): Observable<ScategoryDto> {
+    return this.http.put<ScategoryDto>(`${this.apiServerUrl}/scategories/create`, scategoryDTO);
+  }
+
+  public deleteScategoryDto(scategoryId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${scategoryId}`);
+  }
+
 
 }

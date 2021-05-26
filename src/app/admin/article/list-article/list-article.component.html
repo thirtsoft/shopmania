@@ -24,22 +24,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let art of articles | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{art?.photo}}</td>
-                <td>{{art?.reference}}</td>
-                <td>{{art?.designation}}</td>
-                <td>{{art?.scategorie?.libelle}}</td>
-                <td>{{art?.price}}</td>
-                <td>{{art?.quantity}}</td>
-                <td>{{art?.promo}}</td>
-                <td>{{art?.selected}}</td>
+            <tr *ngFor="let articleDTO of articleDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{articleDTO?.photo}}</td>
+                <td>{{articleDTO?.reference}}</td>
+                <td>{{articleDTO?.designation}}</td>
+                <td>{{articleDTO?.scategoryDto?.libelle}}</td>
+                <td>{{articleDTO?.price}}</td>
+                <td>{{articleDTO?.quantity}}</td>
+                <td>{{articleDTO?.promo}}</td>
+                <td>{{articleDTO?.selected}}</td>
 
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditArticle(art) ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditArticle(articleDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteArticle(art)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteArticle(articleDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

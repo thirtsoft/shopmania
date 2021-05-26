@@ -1,4 +1,4 @@
-import { Client } from './../model/client';
+import { Client, ClientDto } from './../model/client';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
@@ -31,6 +31,28 @@ export class ClientService {
   }
 
   public deleteClient(clientId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/clients/delete/${clientId}`);
+  }
+
+  /************************ ClientDTO *******************/
+  
+  public getClientDTOs(): Observable<ClientDto[]> {
+    return this.http.get<ClientDto[]>(`${this.apiServerUrl}/clients/all`);
+  }
+
+  public getClientDtoById(clientId: number): Observable<ClientDto> {
+    return this.http.get<ClientDto>(`${this.apiServerUrl}/clients/${clientId}`);
+  }
+
+  public addClientDto(clientDTO: ClientDto): Observable<ClientDto> {
+    return this.http.post<ClientDto>(`${this.apiServerUrl}/clients/create`, client);
+  }
+
+  public updateClientDto(clientDTO: ClientDto): Observable<ClientDto> {
+    return this.http.put<ClientDto>(`${this.apiServerUrl}/clients/create`, clientDTO);
+  }
+
+  public deleteClientDto(clientId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/clients/delete/${clientId}`);
   }
 

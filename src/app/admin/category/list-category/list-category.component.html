@@ -19,17 +19,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor=" let categorie of categories | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{categorie?.id}}</td>
-                <td>{{categorie?.code}}</td>
-                <td>{{categorie?.designation}}</td>
+            <tr *ngFor=" let categoryDTO of categoryList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{categoryDTO?.id}}</td>
+                <td>{{categoryDTO?.code}}</td>
+                <td>{{categoryDTO?.designation}}</td>
 
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditCategorie(categorie) ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditCategorie(categoryDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteCategory(categorie)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteCategory(categoryDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

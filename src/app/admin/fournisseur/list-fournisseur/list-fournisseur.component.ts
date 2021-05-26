@@ -11,14 +11,22 @@ import { FournisseurService } from './../../../services/fournisseur.service';
 })
 export class ListFournisseurComponent implements OnInit {
 
-  public fournisseurs: Fournisseur[];
-  public deleteFournisseur: Fournisseur;
+  fournisseurs: Fournisseur[];
+  fournisseurDTOList: FournisseurDto[];
+  deleteFournisseur: Fournisseur;
+
+  id : number;
+  p : number=1;
+  searchText;
+
+  fournisseurDTO : FournisseurDto = new FournisseurDto();
 
   constructor(private fournisseurService: FournisseurService,
               private router: Router){}
 
   ngOnInit(): void {
     this.getFournisseurs();
+    this.getFournisseurDTOs();
   }
 
   public getFournisseurs(): void {
@@ -26,6 +34,18 @@ export class ListFournisseurComponent implements OnInit {
       (response: Fournisseur[]) => {
         this.fournisseurs = response;
         console.log(this.fournisseurs);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public getFournisseurDTOs(): void {
+    this.fournisseurService.getFournisseurDTOs().subscribe(
+      (response: FournisseurDTO[]) => {
+        this.fournisseurDTOList = response;
+        console.log(this.fournisseurDTOList);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

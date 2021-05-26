@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AddressClient } from './../model/address-client';
+import { AddressClient, AddressClientDto } from './../model/address-client';
 import { Observable } from 'rxjs';
 
 import { environment } from './../../environments/environment';
@@ -34,5 +34,28 @@ export class AddressAddressClientService {
   public deleteAddressClient(addressClientId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/addresseclients/delete/${addressClientId}`);
   }
+
+  /****************************** AddressClientDTO ******************/
+  
+  public getAddressClientDtos(): Observable<AddressClientDto[]> {
+    return this.http.get<AddressClientDto[]>(`${this.apiServerUrl}/addresseclients/all`);
+  }
+
+  public getAddressClientDtoById(addressClientId: number): Observable<AddressClientDto> {
+    return this.http.get<AddressClientDto>(`${this.apiServerUrl}/addresseclients/${addressClientId}`);
+  }
+
+  public addAddressClientDto(addressClientDTO: AddressClientDto): Observable<AddressClientDto> {
+    return this.http.post<AddressClientDto>(`${this.apiServerUrl}/addresseclients/create`, addressClientDTO);
+  }
+
+  public updateAddressClientDto(addressClientDTO: AddressClientDto): Observable<AddressClientDto> {
+    return this.http.put<AddressClientDto>(`${this.apiServerUrl}/addresseclients/create`, addressClientDTO);
+  }
+
+  public deleteAddressClientDto(addressClientId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/addresseclients/delete/${addressClientId}`);
+  }
+
 
 }

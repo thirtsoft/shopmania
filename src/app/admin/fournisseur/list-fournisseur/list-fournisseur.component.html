@@ -1,11 +1,16 @@
-<div class="container">
-    <div style="padding-left: 20px; padding-top: 10px;">
-        <button type="button" (click)="onCreateFournisseur()" class="btn btn-success btn-lg">
-      <i class="fa fa-plus" aria-hidden="true"></i> Create
-    </button>&nbsp;
+<h3><i class="fa fa-angle-right"></i> List of fournisseurs</h3>
+<div>
+
+    <div class="row">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onCreateFournisseur()">Add fournisseur</button>
+
     </div>
-    <table class="table table-striped table-bordered table-sm row-border hover">
-        <thead>
+
+    <table class="table table-striped">
+
+        <thead class="thead-inverse">
             <tr>
                 <th>Reference</th>
                 <th>Designation</th>
@@ -18,24 +23,35 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let four of fournisseurs; let i=index;">
-                <td>{{four?.reference}}</td>
-                <td>{{four?.firstName}}</td>
-                <td>{{four?.lastName}}</td>
-                <td>{{four?.email}}</td>
-                <td>{{four?.telephoneFournisseur}}</td>
-                <td>{{four?.address}}</td>
-                <td>{{four?.city}}</td>
-                <td>{{four?.country}}</td>
-                <td>{{four?.article.designation}}</td>
+            <tr *ngFor="let fourDTO of fournisseurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                 <td>{{fourDTO?.reference}}</td>
+                <td>{{fourDTO?.firstName}}</td>
+                <td>{{fourDTO?.lastName}}</td>
+                <td>{{fourDTO?.email}}</td>
+                <td>{{fourDTO?.telephoneFournisseur}}</td>
+                <td>{{fourDTO?.address}}</td>
+                <td>{{fourDTO?.city}}</td>
+                <td>{{fourDTO?.country}}</td>
+                <td>{{fourDTO?.articleDto.designation}}</td>
 
                 <td>
-                    <button class="btn btn-info btn-sm" (click)="addEditFournisseur(i)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>&nbsp;
-                    <button class="btn btn-danger btn-sm" (click)="onDeleteForunisseur(four.id)"><i class="fa fa-trash-o"></i>  </button>
+                    <div class="container ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteForunisseur(categoryDTO)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </div>
                 </td>
+
             </tr>
         </tbody>
 
     </table>
-
+    <div class="pagination ">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
 </div>
+
+

@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment';
 
-import { Category } from './../model/category';
+import { Category, CategoryDto } from './../model/category';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -36,6 +36,33 @@ export class CategoryService {
   }
 
   public deleteCategory(categoryId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${categoryId}`);
+  }
+
+
+  /***************************** CategoryDTO    *************/
+
+  public getCategorieDTOs(): Observable<CategoryDto[]> {
+    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/all`);
+  }
+
+  public getCategoryDtoById(categoryId: number): Observable<CategoryDto> {
+    return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/${categoryId}`);
+  }
+
+  public getCategoryDtoByDesignation(designation: string): Observable<CategoryDto> {
+    return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/${designation}`);
+  }
+
+  public addCategoryDto(categoryDTO: CategoryDto): Observable<CategoryDto> {
+    return this.http.post<CategoryDto>(`${this.apiServerUrl}/categories/create`, categoryDTO);
+  }
+
+  public updateCategoryDto(categoryDTO: CategoryDto): Observable<CategoryDto> {
+    return this.http.put<CategoryDto>(`${this.apiServerUrl}/categories/create`, categoryDTO);
+  }
+
+  public deleteCategoryDto(categoryId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${categoryId}`);
   }
 

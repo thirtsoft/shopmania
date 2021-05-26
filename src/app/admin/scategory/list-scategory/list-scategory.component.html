@@ -20,18 +20,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let scategorie of scategories | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{scategorie?.id}}</td>
-                <td>{{scategorie?.code}}</td>
-                <td>{{scategorie?.libelle}}</td>
-                <td>{{scategorie?.categorie?.designation}}</td>
+            <tr *ngFor="let scategoryDTO of scategoryList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                <td>{{scategoryDTO?.id}}</td>
+                <td>{{scategoryDTO?.code}}</td>
+                <td>{{scategoryDTO?.libelle}}</td>
+                <td>{{scategoryDTO?.categoryDto?.designation}}</td>
 
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditScategorie(scategorie) ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditScategorie(scategoryDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteScategorie(scategorie)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteScategorie(scategoryDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>

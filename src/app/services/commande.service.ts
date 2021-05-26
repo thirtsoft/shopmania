@@ -1,4 +1,4 @@
-import { Commande } from './../model/commande';
+import { Commande, CommandeDto } from './../model/commande';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
@@ -31,6 +31,28 @@ export class CommandeService {
   }
 
   public deleteCommande(commandeId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/commandes/delete/${commandeId}`);
+  }
+
+  /***********************  CommandeDTO ***********/
+
+  public getCommandeDtos(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/all`);
+  }
+
+  public getCommandeDtoById(commandeId: number): Observable<CommandeDto> {
+    return this.http.get<Commande>(`${this.apiServerUrl}/commandes/${commandeId}`);
+  }
+
+  public addCommandeDto(commandeDTO: CommandeDto): Observable<CommandeDto> {
+    return this.http.post<CommandeDto>(`${this.apiServerUrl}/commandes/create`, commandeDTO);
+  }
+
+  public updateCommandeDto(commandeDTO: CommandeDto): Observable<CommandeDto> {
+    return this.http.put<CommandeDto>(`${this.apiServerUrl}/commandes/create`, commandeDTO);
+  }
+
+  public deleteCommandeDto(commandeId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/commandes/delete/${commandeId}`);
   }
 

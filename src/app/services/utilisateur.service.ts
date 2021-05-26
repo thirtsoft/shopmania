@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Utilisateur } from './../model/utilisateur';
+import { Utilisateur, UtilisateurDto } from './../model/utilisateur';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UtilisateurService {
+  
   private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
@@ -32,5 +33,28 @@ export class UtilisateurService {
   public deleteUtilisateur(utilisateurId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${utilisateurId}`);
   }
+
+  /*********************** UtilisateurDTO ********************/
+
+  public getUtilisateurDtos(): Observable<UtilisateurDto[]> {
+    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/all`);
+  }
+
+  public getUtilisateurDtoById(utilisateurId: number): Observable<UtilisateurDto> {
+    return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/${utilisateurId}`);
+  }
+
+  public addUtilisateurDto(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.post<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
+  }
+
+  public updateUtilisateurDto(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
+  }
+
+  public deleteUtilisateurDto(utilisateurId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${utilisateurId}`);
+  }
+
 
 }

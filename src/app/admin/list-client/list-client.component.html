@@ -1,1 +1,51 @@
-<p>list-client works!</p>
+<h3><i class="fa fa-angle-right"></i> List of clients</h3>
+<div>
+
+    <div class="row">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+<!-- 
+        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onCreateFournisseur()">Add fournisseur</button>
+ -->
+    </div>
+
+    <table class="table table-striped">
+
+        <thead class="thead-inverse">
+            <tr>
+                <th>Reference</th>
+                 <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let clientDTO of clientDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                 <td>{{clientDTO?.reference}}</td>
+                <td>{{clientDTO?.firstName}}</td>
+                <td>{{clientDTO?.lastName}}</td>
+                <td>{{clientDTO?.email}}</td>
+                <td>{{clientDTO?.phoneClient}}</td>
+                
+                <td>
+                    <div class="container ">
+                      <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
+                          <mat-icon>edit</mat-icon>
+                        </button> -->
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteClient(clientDTO)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="pagination ">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+</div>
+
+

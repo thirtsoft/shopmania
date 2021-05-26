@@ -1,5 +1,5 @@
-import { Utilisateur } from './utilisateur';
-import { Article } from './article';
+import { Utilisateur, UtilisateurDto } from './utilisateur';
+import { Article, ArticleDto } from './article';
 
 export class Notification {
   id: number;
@@ -7,8 +7,21 @@ export class Notification {
   nbreEtoile: string;
   observation: string;
 
-  articleDto: Article;
+  article: Article;
 
   utilisateur: Utilisateur;
+
+}
+
+export class NotificationDto {
+  id: number;
+  reference: string;
+  nbreEtoile: string;
+  observation: string;
+
+  articleDto: ArticleDto;
+
+  utilisateurDto: UtilisateurDto;
+
 
 }

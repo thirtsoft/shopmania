@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SScategoryService } from './../../../services/scategory.service';
-import { Scategory } from './../../../model/scategory';
+import { Scategory, ScategoryDto } from './../../../model/scategory';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -19,10 +19,11 @@ export class ListScategoryComponent implements OnInit {
   public editScategory: Scategory;
   public deleteScategory: Scategory;
 
-  listDataCategories: Category[];
   id : number;
   p : number=1;
   searchText;
+
+  scategoryList: ScategoryDto[];
 
 
   constructor(private scategorieService: SScategoryService,
@@ -31,21 +32,8 @@ export class ListScategoryComponent implements OnInit {
               private router: Router){}
 
   ngOnInit(): void {
-    this.getlistCategories();
     this.getScategories();
-  }
-
-  public getlistCategories(): void {
-    this.categoryService.getCategories().subscribe(
-      (response: Category[]) => {
-        this.listDataCategories = response;
-     //   console.log(this.categories[0].idCategory);
-        console.log(this.listDataCategories);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+    this.getScategoryDTOs();
   }
 
   public getScategories(): void {
@@ -53,6 +41,18 @@ export class ListScategoryComponent implements OnInit {
       (response: Scategory[]) => {
         this.scategories = response;
         console.log(this.scategories);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public getScategoryDTOs(): void {
+    this.scategorieService.getScategoryDtos().subscribe(
+      (response: ScategoryDto[]) => {
+        this.scategoryList = response;
+        console.log(this.scategoryList);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

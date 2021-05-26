@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ClientDto } from './../../../model/client';
+import { ClientService } from './../../../services/client.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-client',
@@ -7,9 +12,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListClientComponent implements OnInit {
 
-  constructor() { }
+  clientDTOList: ClientDto[];
+  deleteClientDTO: ClientDto;
+
+  id : number;
+  p : number=1;
+  searchText;
+
+  constructor(private clientService: ClientService,
+              private router: Router){}
 
   ngOnInit(): void {
+    this.getClientDtos();
   }
+
+  public getClientDtos(): void {
+    this.clientService.getClientDTOs().subscribe(
+      (response: ClientDto[]) => {
+        this.clientDTOList = response;
+        console.log(this.clientDTOList);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onDeleteClient(clientId: number): void {
+    this.clientService.deleteClientDto(clientId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getClientDtos();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
 
 }

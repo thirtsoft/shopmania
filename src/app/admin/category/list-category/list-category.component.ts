@@ -1,7 +1,7 @@
 import { AddCategoryComponent } from './../add-category/add-category.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Category } from './../../../model/category';
+import { Category, CategoryDto } from './../../../model/category';
 import { CategoryService } from './../../../services/category.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,12 +20,16 @@ export class ListCategoryComponent implements OnInit {
   p : number=1;
   searchText;
 
+  categoryList: CategoryDto[];
+  categoryDTO : CategoryDto = new CategoryDto();
+
   constructor(private categoryService: CategoryService,
               private dialog:MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
     this.getCategories();
+    this.getCategoryDTOs();
   }
 
   public getCategories(): void {
@@ -34,6 +38,18 @@ export class ListCategoryComponent implements OnInit {
         this.categories = response;
      //   console.log(this.categories[0].idCategory);
         console.log(this.categories);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public getCategoryDTOs(): void {
+    this.categoryService.getCategorieDTOs().subscribe(
+      (response: CategoryDto[]) => {
+        this.categoryList = response;
+        console.log(this.categoryList);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

@@ -1,4 +1,4 @@
-import { Fournisseur } from './../model/fournisseur';
+import { Fournisseur, FournisseurDto } from './../model/fournisseur';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -33,5 +33,28 @@ export class FournisseurService {
   public deleteFournisseur(fournisseurId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/fournisseurs/delete/${fournisseurId}`);
   }
+
+  /**************** FournisseurDTO  *******/
+
+  public getFournisseurDTOs(): Observable<FournisseurDto[]> {
+    return this.http.get<FournisseurDto[]>(`${this.apiServerUrl}/fournisseurs/all`);
+  }
+
+  public getFournisseurDtoById(fournisseurId: number): Observable<FournisseurDto> {
+    return this.http.get<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/${fournisseurId}`);
+  }
+
+  public addFournisseurDto(fournisseurDTO: FournisseurDto): Observable<FournisseurDto> {
+    return this.http.post<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/create`, fournisseurDTO);
+  }
+
+  public updateFournisseurDto(fournisseurDTO: FournisseurDto): Observable<FournisseurDto> {
+    return this.http.put<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/create`, fournisseur);
+  }
+
+  public deleteFournisseurDto(fournisseurId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/fournisseurs/delete/${fournisseurId}`);
+  }
+
 
 }
