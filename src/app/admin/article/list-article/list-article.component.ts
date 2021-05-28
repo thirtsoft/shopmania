@@ -1,13 +1,18 @@
-import { ArticleDto } from './../../../model/article';
-import { SScategoryService } from './../../../services/scategory.service';
-import { AddArticleComponent } from './../add-article/add-article.component';
-import { Scategory } from './../../../model/scategory';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
+import { DialogService } from './../../../services/dialog.service';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+
+import { SScategoryService } from './../../../services/scategory.service';
+import { Scategory } from './../../../model/scategory';
+import { AddArticleComponent } from './../add-article/add-article.component';
 import { ArticleService } from '../../../services/article.service';
-import { Article } from '../../../model/article';
-import { MatDialog } from '@angular/material/dialog';
+import { Article, ArticleDto } from '../../../model/article';
+
+
 
 @Component({
   selector: 'app-list-article',
@@ -16,33 +21,23 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListArticleComponent implements OnInit {
 
-  articles: Article[];
   articleDTOList: ArticleDto[];
+  editArticle: ArticleDto;
+  deleteArticle: ArticleDto;
 
-  editArticle: Article;
-  deleteArticle: Article;
   id : number;
   p : number=1;
   searchText;
 
   constructor(private articleService: ArticleService,
               private dialog: MatDialog,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService
+  ){}
 
   ngOnInit(): void {
     this.getListArticleDTOs();
-  }
-
-  public getArticles(): void {
-    this.articleService.getArticles().subscribe(
-      (response: Article[]) => {
-        this.articles = response;
-        console.log(this.articles);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
   }
 
   public getListArticleDTOs(): void {
@@ -76,24 +71,25 @@ export class ListArticleComponent implements OnInit {
     });
   }
 
-  public onCreateArticle() {
-    this.router.navigate(['/newArticle']);
-  }
-
   addEditArticle(i) {
 
   }
-  public onDeleteArticle(articleId: number): void {
-    this.articleService.deleteArticleDto(articleId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getListArticleDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+
+   public onDeleteArticle(article: ArticleDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.articleService.deleteArticleDto(article.id).subscribe(data => {
+          this.toastr.warning('Article supprimé avec succès!');
+          this.articleDTOList = this.articleDTOList.filter(u => u !== article);
+          this.getListArticleDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
-
 
 }

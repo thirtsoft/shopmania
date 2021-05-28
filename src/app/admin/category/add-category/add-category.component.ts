@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CategoryService } from './../../../services/category.service';
 import { Category, CategoryDto } from './../../../model/category';
+import { ToastrService } from 'ngx-toastr';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-add-category',
@@ -16,7 +19,11 @@ export class AddCategoryComponent implements OnInit {
   deleteCategory: Category;
 
   constructor(private categoryService: CategoryService,
-              private router: Router){}
+              private router: Router,
+              private toastr: ToastrService,
+              @Inject(MAT_DIALOG_DATA)  public data,
+              public dialogRef:MatDialogRef<AddCategoryComponent>
+  ){}
 
   ngOnInit(): void {
 
@@ -25,7 +32,8 @@ export class AddCategoryComponent implements OnInit {
   public onAddCategory() {
     this.categoryService.addCategoryDto(this.addEditCategoryData).subscribe(
       (response: CategoryDto) => {
-       console.log("Add Categry successfully");
+        this.dialogRef.close();
+        this.toastr.success("Category Ajouté avec Succès");
         this.router.navigate(['/backend/admin/categories']);
       },
       (error: HttpErrorResponse) => {

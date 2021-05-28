@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { LigneCommandeDto } from '../../model/ligne-commande';
 import { LigneLigneCommandeService } from '../../services/lignecommande.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { DialogService } from '../../services/dialog.service';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-list-ligne-commande',
@@ -20,7 +23,11 @@ export class ListLigneCommandeComponent implements OnInit {
   searchText;
 
   constructor(private lcomService: LigneLigneCommandeService,
-              private router: Router){}
+              private router: Router,
+              private dialog: MatDialog,
+              public toastr: ToastrService,
+              private dialogService: DialogService
+  ){}
 
   ngOnInit(): void {
     this.getLigneCommandeDtos();
@@ -38,15 +45,20 @@ export class ListLigneCommandeComponent implements OnInit {
     );
   }
 
-  public onDeleteligneCommande(lcomId: number): void {
-    this.lcomService.deleteLigneCommandeDto(lcomId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getLigneCommandeDtos();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+  public onDeleteligneCommande(lcom: LigneCommandeDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.lcomService.deleteLigneCommandeDto(lcom.id).subscribe(data => {
+          this.toastr.warning('LigneCommande supprimé avec succès!');
+          this.ligneCommandeDTOList = this.ligneCommandeDTOList.filter(u => u !== lcom);
+          this.getLigneCommandeDtos();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
 

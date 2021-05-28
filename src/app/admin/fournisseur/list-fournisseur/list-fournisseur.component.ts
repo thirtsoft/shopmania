@@ -1,10 +1,15 @@
-import { AddFournisseurComponent } from './../add-fournisseur/add-fournisseur.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AddFournisseurComponent } from './../add-fournisseur/add-fournisseur.component';
+
 import { Fournisseur, FournisseurDto } from './../../../model/fournisseur';
 import { FournisseurService } from './../../../services/fournisseur.service';
-import { MatDialog } from '@angular/material/dialog';
+
+import { ToastrService } from 'ngx-toastr';
+import { DialogService } from './../../../services/dialog.service';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-list-fournisseur',
@@ -13,7 +18,6 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListFournisseurComponent implements OnInit {
 
-  fournisseurs: Fournisseur[];
   fournisseurDTOList: FournisseurDto[];
   deleteFournisseur: Fournisseur;
 
@@ -25,22 +29,13 @@ export class ListFournisseurComponent implements OnInit {
 
   constructor(private fournisseurService: FournisseurService,
               private dialog: MatDialog,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService
+  ){}
 
   ngOnInit(): void {
     this.getListFournisseurDTOs();
-  }
-
-  public getFournisseurs(): void {
-    this.fournisseurService.getFournisseurs().subscribe(
-      (response: Fournisseur[]) => {
-        this.fournisseurs = response;
-        console.log(this.fournisseurs);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
   }
 
   public getListFournisseurDTOs(): void {
@@ -55,10 +50,6 @@ export class ListFournisseurComponent implements OnInit {
     );
   }
 
-/*   public onCreateFournisseur() {
-    this.router.navigate(['/newFournisseur']);
-  }
- */
   onCreateFournisseur() {
     this.openNoteDialog(null);
   }
@@ -83,15 +74,21 @@ export class ListFournisseurComponent implements OnInit {
   addEditFournisseur(i) {
 
   }
-  public onDeleteForunisseur(fourId: number): void {
-    this.fournisseurService.deleteFournisseurDto(fourId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getListFournisseurDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+
+  public onDeleteForunisseur(four: FournisseurDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.fournisseurService.deleteFournisseurDto(four.id).subscribe(data => {
+          this.toastr.warning('Fournisseur supprimé avec succès!');
+          this.fournisseurDTOList = this.fournisseurDTOList.filter(u => u !== four);
+          this.getListFournisseurDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
 

@@ -1,11 +1,14 @@
-import { AddScategoryComponent } from './../add-scategory/add-scategory.component';
-import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SScategoryService } from './../../../services/scategory.service';
 import { Scategory, ScategoryDto } from './../../../model/scategory';
-import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { DialogService } from './../../../services/dialog.service';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { AddScategoryComponent } from './../add-scategory/add-scategory.component';
+import { FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-list-scategory',
@@ -14,37 +17,26 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ListScategoryComponent implements OnInit {
 
-  public scategories: Scategory[];
-  public editScategory: Scategory;
-  public deleteScategory: Scategory;
+  scategoryListDTO: ScategoryDto[];
+  addEditscategoryDTO: ScategoryDto;
+  deletescategoryDTO: ScategoryDto;
 
   id : number;
   p : number=1;
   searchText;
 
-  scategoryListDTO: ScategoryDto[];
-
-
   constructor(private scategorieService: SScategoryService,
               private dialog: MatDialog,
-              private router: Router){}
+              private router: Router,
+              public toastr: ToastrService,
+              private dialogService: DialogService,
+              private fb: FormBuilder
+  ){}
 
   ngOnInit(): void {
     this.getScategoryDTOs();
   }
-
-  public getScategories(): void {
-    this.scategorieService.getScategories().subscribe(
-      (response: Scategory[]) => {
-        this.scategories = response;
-        console.log(this.scategories);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
+  
   public getScategoryDTOs(): void {
     this.scategorieService.getScategoryDtos().subscribe(
       (response: ScategoryDto[]) => {
@@ -71,29 +63,49 @@ export class ListScategoryComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
-        this.scategories.push(result);
+        this.scategoryListDTO.push(result);
       }
       // this.refreshData();
     });
   }
 
-  public onCreateScayegorie() {
-    this.router.navigate(['/newScategorie']);
+  addEditScategorie(item: ScategoryDto) {
+ /*    this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    const dialog = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.dialog.open(AddScategoryComponent, dialogConfig); */
   }
 
-  addEditScategorie(i) {
-
+  onDeleteScategorie(scatetgory: ScategoryDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.scategorieService.deleteScategoryDto(scatetgory.id).subscribe(data => {
+          this.toastr.warning('Scategory supprimé avec succès!');
+//          this.scategoryListDTO = this.scategoryListDTO.filter(u => u !== scatetgory);
+          this.getScategoryDTOs();
+        });
+      }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+    );
   }
-  public onDeleteScategorie(scategorieId: number): void {
-    this.scategorieService.deleteScategory(scategorieId).subscribe(
+
+ /*  public onDeleteScategorie(scategorieId: number): void {
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    this.scategorieService.deleteScategoryDto(scategorieId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getScategories();
+        this.getScategoryDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
-  }
+  } */
 
 }

@@ -1,10 +1,13 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { CategoryService } from './../../../services/category.service';
 import { SScategoryService } from './../../../services/scategory.service';
 import { CategoryDto } from './../../../model/category';
 import { ScategoryDto } from './../../../model/scategory';
-import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-add-scategory',
@@ -14,12 +17,15 @@ import { Component, OnInit } from '@angular/core';
 export class AddScategoryComponent implements OnInit {
 
   addEditScategoryDTO: ScategoryDto = new ScategoryDto();
-  deleteArticleDTO: ScategoryDto;
   categoryListDTO: CategoryDto[];
 
   constructor(private scatService: SScategoryService,
               private catService: CategoryService,
-              private router: Router){}
+              private toastr: ToastrService,
+              private router: Router,
+              @Inject(MAT_DIALOG_DATA)  public data,
+              public dialogRef:MatDialogRef<AddScategoryComponent>,
+  ){}
 
   ngOnInit(): void {
     this.getListCategoryDTOs();
@@ -39,7 +45,8 @@ export class AddScategoryComponent implements OnInit {
   public onAddScategory() {
     this.scatService.addScategoryDto(this.addEditScategoryDTO).subscribe(
       (response: ScategoryDto) => {
-       console.log("Add Scategory successfully");
+        this.dialogRef.close();
+        this.toastr.success("Scategory Ajouté avec Succès");
         this.router.navigate(['/backend/admin/scategories']);
       },
       (error: HttpErrorResponse) => {

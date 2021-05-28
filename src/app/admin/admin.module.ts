@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
@@ -19,6 +19,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination' ;
 
+import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared.module';
 
 /*
@@ -71,6 +72,7 @@ import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-ut
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    ToastrModule.forRoot(),
     FlexLayoutModule,
     MatDialogModule,
     MatIconModule,
@@ -90,6 +92,9 @@ import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-ut
     NgbModalModule,
     ModalModule,
 */
-  ]
+  ],
+  providers: [
+    DatePipe,
+  ],
 })
 export class AdminModule { }

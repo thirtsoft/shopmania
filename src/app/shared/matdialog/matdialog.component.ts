@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-matdialog',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatdialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data,
+  public dialogRef: MatDialogRef<MatdialogComponent>)
+{ }
 
-  ngOnInit(): void {
-  }
+ngOnInit() {
+}
+
+closeDialog() {
+  this.dialogRef.close(false);
+}
 
 }

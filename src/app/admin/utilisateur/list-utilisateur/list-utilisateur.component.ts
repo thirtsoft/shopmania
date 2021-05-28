@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { UtilisateurDto } from './../../../model/utilisateur';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UtilisateurService } from './../../../services/utilisateur.service';
+import { ToastrService } from 'ngx-toastr';
+import { DialogService } from './../../../services/dialog.service';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+
 
 import { AddUtilisateurComponent } from './../add-utilisateur/add-utilisateur.component';
 
@@ -23,8 +26,11 @@ export class ListUtilisateurComponent implements OnInit {
   searchText;
 
   constructor(private userService: UtilisateurService,
-              private dialog:MatDialog,
-              private router: Router){}
+              private router: Router,
+               private dialog: MatDialog,
+              public toastr: ToastrService,
+              private dialogService: DialogService,
+              ){}
 
   ngOnInit(): void {
     this.getUtilisateurDTOs();
@@ -63,15 +69,20 @@ export class ListUtilisateurComponent implements OnInit {
     });
   }
 
-  public onDeleteUtilisateur(userId: number): void {
-    this.userService.deleteUtilisateurDto(userId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getUtilisateurDTOs();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+  public onDeleteUtilisateur(user: UtilisateurDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.userService.deleteUtilisateurDto(user.id).subscribe(data => {
+          this.toastr.warning('Utilisateur supprimé avec succès!');
+          this.utilisateurDTOList = this.utilisateurDTOList.filter(u => u !== user);
+          this.getUtilisateurDTOs();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
 

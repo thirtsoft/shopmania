@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { AddressClientDto } from '../../model/address-client';
 import { AddressAddressClientService } from '../../services/addressclient.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { DialogService } from '../../services/dialog.service';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-list-address-client',
@@ -20,7 +23,11 @@ export class ListAddressClientComponent implements OnInit {
   searchText;
 
   constructor(private addClientService: AddressAddressClientService,
-              private router: Router){}
+              private router: Router,
+               private dialog: MatDialog,
+              public toastr: ToastrService,
+              private dialogService: DialogService
+  ){}
 
   ngOnInit(): void {
     this.getAddressClientDtos();
@@ -38,17 +45,21 @@ export class ListAddressClientComponent implements OnInit {
     );
   }
 
-  public onDeleteAddressClient(addClientId: number): void {
-    this.addClientService.deleteAddressClientDto(addClientId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getAddressClientDtos();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+   public onDeleteAddressClient(addClient: AddressClientDto): void{
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
+    .afterClosed().subscribe((response: any) =>{
+      if(response){
+        this.addClientService.deleteAddressClientDto(addClient.id).subscribe(data => {
+          this.toastr.warning('AddressClient supprimé avec succès!');
+          this.addressClientDTOList = this.addressClientDTOList.filter(u => u !== addClient);
+          this.getAddressClientDtos();
+        });
       }
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
     );
   }
-
 
 }
