@@ -22,16 +22,14 @@ export class ListScategoryComponent implements OnInit {
   p : number=1;
   searchText;
 
-  scategoryList: ScategoryDto[];
+  scategoryListDTO: ScategoryDto[];
 
 
   constructor(private scategorieService: SScategoryService,
-              private categoryService: CategoryService,
-              private dialog:MatDialog,
+              private dialog: MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
-    this.getScategories();
     this.getScategoryDTOs();
   }
 
@@ -50,8 +48,8 @@ export class ListScategoryComponent implements OnInit {
   public getScategoryDTOs(): void {
     this.scategorieService.getScategoryDtos().subscribe(
       (response: ScategoryDto[]) => {
-        this.scategoryList = response;
-        console.log(this.scategoryList);
+        this.scategoryListDTO = response;
+        console.log(this.scategoryListDTO);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

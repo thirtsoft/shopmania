@@ -23,10 +23,10 @@ export class ListClientComponent implements OnInit {
               private router: Router){}
 
   ngOnInit(): void {
-    this.getClientDtos();
+    this.getListClientDtos();
   }
 
-  public getClientDtos(): void {
+  public getListClientDtos(): void {
     this.clientService.getClientDTOs().subscribe(
       (response: ClientDto[]) => {
         this.clientDTOList = response;
@@ -42,7 +42,7 @@ export class ListClientComponent implements OnInit {
     this.clientService.deleteClientDto(clientId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getClientDtos();
+        this.getListClientDtos();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

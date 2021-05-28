@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CategoryService } from './../../../services/category.service';
-import { Category } from './../../../model/category';
+import { Category, CategoryDto } from './../../../model/category';
 
 @Component({
   selector: 'app-add-category',
@@ -11,8 +11,9 @@ import { Category } from './../../../model/category';
 })
 export class AddCategoryComponent implements OnInit {
 
-  public editCategory: Category = new Category();
-  public deleteCategory: Category;
+  editCategory: Category = new Category();
+  addEditCategoryData: CategoryDto = new CategoryDto();
+  deleteCategory: Category;
 
   constructor(private categoryService: CategoryService,
               private router: Router){}
@@ -22,10 +23,10 @@ export class AddCategoryComponent implements OnInit {
   }
 
   public onAddCategory() {
-    this.categoryService.addCategory(this.editCategory).subscribe(
-      (response: Category) => {
+    this.categoryService.addCategoryDto(this.addEditCategoryData).subscribe(
+      (response: CategoryDto) => {
        console.log("Add Categry successfully");
-        this.router.navigate(['/categories']);
+        this.router.navigate(['/backend/admin/categories']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

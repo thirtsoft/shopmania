@@ -1,3 +1,5 @@
+import { ScategoryDto } from './../../../model/scategory';
+import { ArticleDto } from './../../../model/article';
 import { Component, OnInit } from '@angular/core';
 import { SScategoryService } from '../../../services/scategory.service';
 import { Scategory } from '../../../model/scategory';
@@ -13,23 +15,23 @@ import { Article } from '../../../model/article';
 })
 export class AddArticleComponent implements OnInit {
 
-  public editArticle: Article = new Article();
-  public deleteArticle: Article;
-  listScategorie: Scategory[];
+  addEditArticleDTO: ArticleDto = new ArticleDto();
+  deleteArticleDTO: ArticleDto;
+  scategoryListDTO: ScategoryDto[];
 
   constructor(private articleService: ArticleService,
               private scategorieService: SScategoryService,
               private router: Router){}
 
   ngOnInit(): void {
-    this.getListScategories();
+    this.getListScategoryDTOs();
 
   }
 
-  getListScategories() {
-    this.scategorieService.getScategories().subscribe(
-      (response: Scategory[]) => {
-        this.listScategorie = response;
+  getListScategoryDTOs() {
+    this.scategorieService.getScategoryDtos().subscribe(
+      (response: ScategoryDto[]) => {
+        this.scategoryListDTO = response;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }
@@ -37,10 +39,10 @@ export class AddArticleComponent implements OnInit {
   }
 
   public onAddArticle() {
-    this.articleService.addArticle(this.editArticle).subscribe(
-      (response: Article) => {
+    this.articleService.addArticleDto(this.addEditArticleDTO).subscribe(
+      (response: ArticleDto) => {
        console.log("Add Article successfully");
-        this.router.navigate(['/articles']);
+        this.router.navigate(['/backend/admin/articles']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

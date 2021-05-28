@@ -21,21 +21,16 @@ export class ListArticleComponent implements OnInit {
 
   editArticle: Article;
   deleteArticle: Article;
-
-  listDataScategories: Scategory[];
   id : number;
   p : number=1;
   searchText;
 
   constructor(private articleService: ArticleService,
-              private scategorieService: SScategoryService,
-              private dialog:MatDialog,
+              private dialog: MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
-    this.getScategories();
-    this.getArticles();
-    this.getArticleDTOs();
+    this.getListArticleDTOs();
   }
 
   public getArticles(): void {
@@ -50,23 +45,11 @@ export class ListArticleComponent implements OnInit {
     );
   }
 
-  public getArticleDTOs(): void {
+  public getListArticleDTOs(): void {
     this.articleService.getArticleDTOs().subscribe(
       (response: ArticleDto[]) => {
         this.articleDTOList = response;
         console.log(this.articleDTOList);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  public getScategories(): void {
-    this.scategorieService.getScategories().subscribe(
-      (response: Scategory[]) => {
-        this.listDataScategories = response;
-        console.log(this.listDataScategories);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -87,7 +70,7 @@ export class ListArticleComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
-        this.articles.push(result);
+        this.articleDTOList.push(result);
       }
       // this.refreshData();
     });
@@ -101,10 +84,10 @@ export class ListArticleComponent implements OnInit {
 
   }
   public onDeleteArticle(articleId: number): void {
-    this.articleService.deleteArticle(articleId).subscribe(
+    this.articleService.deleteArticleDto(articleId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getArticles();
+        this.getListArticleDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

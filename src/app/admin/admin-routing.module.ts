@@ -1,5 +1,3 @@
-import { AccueilComponent } from './accueil/accueil.component';
-import { Commande } from './../model/commande';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

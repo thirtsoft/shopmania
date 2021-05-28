@@ -3,8 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ArticleService } from './../../../services/article.service';
 import { FournisseurService } from './../../../services/fournisseur.service';
-import { Article } from './../../../model/article';
-import { Fournisseur } from './../../../model/fournisseur';
+import { Article, ArticleDto } from './../../../model/article';
+import { Fournisseur, FournisseurDto } from './../../../model/fournisseur';
 
 @Component({
   selector: 'app-add-fournisseur',
@@ -13,23 +13,23 @@ import { Fournisseur } from './../../../model/fournisseur';
 })
 export class AddFournisseurComponent implements OnInit {
 
-  public formDataFournisseur: Fournisseur = new Fournisseur();
-  public deleteFournisseur: Fournisseur;
-  listArticleData: Article[];
+  formDataFournisseurDTO: FournisseurDto = new FournisseurDto();
+  deleteFournisseurDTO: FournisseurDto;
+  ListArticleDTO: ArticleDto[];
 
   constructor(private fournisseurService: FournisseurService,
               private articleService: ArticleService,
               private router: Router){}
 
   ngOnInit(): void {
-    this.getListArticles();
+    this.getListArticleDTOs();
 
   }
 
-  getListArticles() {
-    this.articleService.getArticles().subscribe(
-      (response: Article[]) => {
-        this.listArticleData = response;
+  getListArticleDTOs() {
+    this.articleService.getArticleDTOs().subscribe(
+      (response: ArticleDto[]) => {
+        this.ListArticleDTO = response;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }
@@ -37,10 +37,10 @@ export class AddFournisseurComponent implements OnInit {
   }
 
   public onAddFournisseur() {
-    this.fournisseurService.addFournisseur(this.formDataFournisseur).subscribe(
-      (response: Fournisseur) => {
+    this.fournisseurService.addFournisseurDto(this.formDataFournisseurDTO).subscribe(
+      (response: FournisseurDto) => {
        console.log("Add Fournisseur successfully");
-        this.router.navigate(['/fournisseurs']);
+        this.router.navigate(['/backend/admin/fournisseurs']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

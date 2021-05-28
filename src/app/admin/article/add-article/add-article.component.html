@@ -1,13 +1,13 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1>Nouveau Article</h1>
-            <form #addArticleForm="ngForm" name="form" (ngSubmit)="onAddArticle()">
-                <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editArticle.idCategory"> -->
 
+    <h1>Nouveau Article</h1>
+    <form #addArticleForm="ngForm" name="form" (ngSubmit)="onAddArticle()">
+        <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editArticle.idCategory"> -->
+        <div class="row">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label>Reference </label>
-                    <input type="text" class="form-control" [(ngModel)]="editArticle.reference" name="reference" id="reference" #reference="ngModel" required />
+                    <input type="text" class="form-control" [(ngModel)]="addEditArticleDTO.reference" name="reference" id="reference" #reference="ngModel" required />
                     <span class="text-danger" *ngIf="(reference.touched || addArticleForm.submitted) && reference.errors?.required">
             Reference est obligatoire
           </span>
@@ -15,7 +15,7 @@
 
                 <div class="form-group">
                     <label>Designation</label>
-                    <input type="text" class="form-control" [(ngModel)]="editArticle.designation" name="designation" id="designation" #designation="ngModel" required>
+                    <input type="text" class="form-control" [(ngModel)]="addEditArticleDTO.designation" name="designation" id="designation" #designation="ngModel" required>
                     <span class="text-danger" *ngIf="(designation.touched || addArticleForm.submitted) && designation.errors?.required">
               Désignation est obligatoire
           </span>
@@ -24,24 +24,31 @@
                 <div class="form-group">
                     <label>Categorie</label>
                     <div class="form-group">
-                        <select name="scategorie" [(ngModel)]="editArticle.scategorie" class="form-control">
-              <option *ngFor="let scat of listScategorie"
-                [ngValue]="scat.id == editArticle.scategorie?.id ? editArticle.scategorie : scat">{{scat.libelle}}</option>
+                        <select name="scategorie" [(ngModel)]="addEditArticleDTO.scategoryDto" class="form-control">
+              <option *ngFor="let scat of scategoryListDTO"
+                [ngValue]="scat.id == addEditArticleDTO.scategoryDto?.id ? addEditArticleDTO.scategoryDto : scat">{{scat.libelle}}</option>
             </select>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Price </label>
-                    <input type="text" class="form-control" [(ngModel)]="editArticle.price" name="price" id="price" #price="ngModel" required>
+                    <input type="text" class="form-control" [(ngModel)]="addEditArticleDTO.price" name="price" id="price" #price="ngModel" required>
                     <span class="text-danger" *ngIf="(price.touched || addArticleForm.submitted) && price.errors?.required">
               Price est obligatoire
           </span>
                 </div>
 
+            </div>
+
+
+
+
+
+            <div class="col-md-6">
                 <div class="form-group">
                     <label>CurrentPrice</label>
-                    <input type="text" class="form-control" [(ngModel)]="editArticle.currentPrice" name="currentPrice" id="currentPrice" #currentPrice="ngModel" required>
+                    <input type="text" class="form-control" [(ngModel)]="addEditArticleDTO.currentPrice" name="currentPrice" id="currentPrice" #currentPrice="ngModel" required>
                     <span class="text-danger" *ngIf="(currentPrice.touched || addArticleForm.submitted) && currentPrice.errors?.required">
               Désignation est obligatoire
           </span>
@@ -49,7 +56,7 @@
 
                 <div class="form-group">
                     <label>Quantity </label>
-                    <input type="text" class="form-control" [(ngModel)]="editArticle.quantity" name="quantity" id="quantity" #quantity="ngModel" required>
+                    <input type="text" class="form-control" [(ngModel)]="addEditArticleDTO.quantity" name="quantity" id="quantity" #quantity="ngModel" required>
                     <span class="text-danger" *ngIf="(quantity.touched || addArticleForm.submitted) && quantity.errors?.required">
               Quantity est obligatoire
           </span>
@@ -57,7 +64,7 @@
 
                 <div class="form-group">
                     <label>Promo</label>
-                    <input type="text" class="form-control" [(ngModel)]="editArticle.promo" name="promo" id="promo" #promo="ngModel" required>
+                    <input type="text" class="form-control" [(ngModel)]="addEditArticleDTO.promo" name="promo" id="promo" #promo="ngModel" required>
                     <span class="text-danger" *ngIf="(promo.touched || addArticleForm.submitted) && promo.errors?.required">
             Promo est obligatoire
           </span>
@@ -65,27 +72,32 @@
 
                 <div class="form-group">
                     <label>Selected</label>
-                    <input type="text" class="form-control" [(ngModel)]="editArticle.selected" name="selected" id="selected" #selected="ngModel" required>
+                    <input type="text" class="form-control" [(ngModel)]="addEditArticleDTO.selected" name="selected" id="selected" #selected="ngModel" required>
                     <span class="text-danger" *ngIf="(selected.touched || addArticleForm.submitted) && selected.errors?.required">
               Selected est obligatoire
           </span>
                 </div>
 
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea type="text" class="form-control" name="description" id="description" [(ngModel)]="editArticle.description" cols="30" rows="10" #description="ngModel" required>
-          </textarea>
-                    <span class="text-danger" *ngIf="(description.touched || addArticleForm.submitted) && description.errors?.required">
-              Description est obligatoire
-          </span>
-                </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-database"></i> Submit</button>&nbsp;
-                    <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
-                </div>
 
-            </form>
+            </div>
+            <!--   <div class="form-group">
+                <label>Description</label>
+                <textarea type="text" class="form-control" cols="5" rows="3" name="description" id="description" [(ngModel)]="addEditArticleDTO.description" cols="30" rows="10" #description="ngModel" required>
+    </textarea>
+                <span class="text-danger" *ngIf="(description.touched || addArticleForm.submitted) && description.errors?.required">
+        Description est obligatoire
+    </span>
+            </div> -->
+
         </div>
-    </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success"><i class="fa fa-database"></i> Submit</button>&nbsp;
+            <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
+        </div>
+
+    </form>
+
+
 </div>

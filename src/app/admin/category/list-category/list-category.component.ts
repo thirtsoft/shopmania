@@ -20,36 +20,22 @@ export class ListCategoryComponent implements OnInit {
   p : number=1;
   searchText;
 
-  categoryList: CategoryDto[];
+  categoryListDTO: CategoryDto[];
   categoryDTO : CategoryDto = new CategoryDto();
 
   constructor(private categoryService: CategoryService,
-              private dialog:MatDialog,
+              private dialog: MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
-    this.getCategories();
-    this.getCategoryDTOs();
+    this.getListCategoryDTOs();
   }
 
-  public getCategories(): void {
-    this.categoryService.getCategories().subscribe(
-      (response: Category[]) => {
-        this.categories = response;
-     //   console.log(this.categories[0].idCategory);
-        console.log(this.categories);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  public getCategoryDTOs(): void {
+  public getListCategoryDTOs(): void {
     this.categoryService.getCategorieDTOs().subscribe(
       (response: CategoryDto[]) => {
-        this.categoryList = response;
-        console.log(this.categoryList);
+        this.categoryListDTO = response;
+        console.log(this.categoryListDTO);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -75,7 +61,7 @@ export class ListCategoryComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
-        this.categories.push(result);
+        this.categoryListDTO.push(result);
       }
       // this.refreshData();
     });
@@ -85,10 +71,10 @@ export class ListCategoryComponent implements OnInit {
 
   }
   public onDeleteCategory(categoryId: number): void {
-    this.categoryService.deleteCategory(categoryId).subscribe(
+    this.categoryService.deleteCategoryDto(categoryId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getCategories();
+        this.getListCategoryDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

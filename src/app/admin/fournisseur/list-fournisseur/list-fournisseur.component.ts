@@ -28,8 +28,7 @@ export class ListFournisseurComponent implements OnInit {
               private router: Router){}
 
   ngOnInit(): void {
-    this.getFournisseurs();
-    this.getFournisseurDTOs();
+    this.getListFournisseurDTOs();
   }
 
   public getFournisseurs(): void {
@@ -44,7 +43,7 @@ export class ListFournisseurComponent implements OnInit {
     );
   }
 
-  public getFournisseurDTOs(): void {
+  public getListFournisseurDTOs(): void {
     this.fournisseurService.getFournisseurDTOs().subscribe(
       (response: FournisseurDto[]) => {
         this.fournisseurDTOList = response;
@@ -85,10 +84,10 @@ export class ListFournisseurComponent implements OnInit {
 
   }
   public onDeleteForunisseur(fourId: number): void {
-    this.fournisseurService.deleteFournisseur(fourId).subscribe(
+    this.fournisseurService.deleteFournisseurDto(fourId).subscribe(
       (response: void) => {
         console.log(response);
-        this.getFournisseurs();
+        this.getListFournisseurDTOs();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

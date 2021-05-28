@@ -12,28 +12,29 @@
 
         <thead class="thead-inverse">
             <tr>
-                <th>Reference</th>
-                <th>Designation</th>
-                <th>Categorie</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Promo</th>
-                <th>Selected</th>
+                <!-- <th>Reference</th> -->
+                <th>Article</th>
+                <th>Fournisseur</th>
+                <!-- <th>Nom</th> -->
+                <th>Addresse</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Country</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let fourDTO of fournisseurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{fourDTO?.reference}}</td>
-                <td>{{fourDTO?.firstName}}</td>
-                <td>{{fourDTO?.lastName}}</td>
-                <td>{{fourDTO?.email}}</td>
-                <td>{{fourDTO?.telephoneFournisseur}}</td>
+                <!--  <td>{{fourDTO?.reference}}</td> -->
+                <td>{{fourDTO?.articleDto.designation}}</td>
+                <td>{{fourDTO?.firstName}} {{fourDTO?.lastName}}</td>
+                <!-- <td>{{fourDTO?.lastName}}</td> -->
                 <td>{{fourDTO?.address}}</td>
+                <td>{{fourDTO?.telephoneFournisseur}}</td>
+                <td>{{fourDTO?.email}}</td>
                 <td>{{fourDTO?.city}}</td>
                 <td>{{fourDTO?.country}}</td>
-                <td>{{fourDTO?.articleDto.designation}}</td>
-
                 <td>
                     <div class="container ">
                         <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(fourDTO) ">
