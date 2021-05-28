@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UtilisateurDto } from './../../../model/utilisateur';
-import { NotificationService } from './../../../services/notification.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
+import { UtilisateurDto } from './../../../model/utilisateur';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UtilisateurService } from './../../../services/utilisateur.service';
+
 import { AddUtilisateurComponent } from './../add-utilisateur/add-utilisateur.component';
 
 @Component({
@@ -13,7 +14,7 @@ import { AddUtilisateurComponent } from './../add-utilisateur/add-utilisateur.co
 })
 export class ListUtilisateurComponent implements OnInit {
 
-  
+
   utilisateurDTOList: UtilisateurDto[];
   deleteUtilisateurDTO: UtilisateurDto;
 
@@ -22,6 +23,7 @@ export class ListUtilisateurComponent implements OnInit {
   searchText;
 
   constructor(private userService: UtilisateurService,
+              private dialog:MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
@@ -40,7 +42,7 @@ export class ListUtilisateurComponent implements OnInit {
     );
   }
 
- 
+
   onAddUtilisateur() {
     this.openNoteDialog(null);
   }

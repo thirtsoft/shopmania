@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AddressLivraisonDto } from './../../../model/address-livraison';
-import { AddresslivraisonService } from './../../../services/addresslivraison.service';
+import { AddressLivraisonDto } from '../../model/address-livraison';
+import { AddresslivraisonService } from '../../services/addresslivraison.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 

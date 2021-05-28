@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LigneCommandeDto } from './../../../model/ligne-commande';
-import { LigneLigneCommandeService } from './../../../services/lignecommande.service';
+import { LigneCommandeDto } from '../../model/ligne-commande';
+import { LigneLigneCommandeService } from '../../services/lignecommande.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 

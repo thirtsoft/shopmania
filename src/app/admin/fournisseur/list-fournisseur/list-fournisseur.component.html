@@ -24,7 +24,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let fourDTO of fournisseurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                 <td>{{fourDTO?.reference}}</td>
+                <td>{{fourDTO?.reference}}</td>
                 <td>{{fourDTO?.firstName}}</td>
                 <td>{{fourDTO?.lastName}}</td>
                 <td>{{fourDTO?.email}}</td>
@@ -36,10 +36,10 @@
 
                 <td>
                     <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
+                        <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(fourDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteForunisseur(categoryDTO)">
+                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteForunisseur(fourDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                     </div>
@@ -53,5 +53,3 @@
         <pagination-controls (pageChange)="p=$event"></pagination-controls>
     </div>
 </div>
-
-

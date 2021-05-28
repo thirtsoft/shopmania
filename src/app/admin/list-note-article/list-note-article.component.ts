@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationDto } from './../../../model/notification';
-import { NotificationService } from './../../../services/notification.service';
+import { NotificationDto } from '../../model/notification';
+import { NotificationService } from '../../services/notification.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -27,7 +27,7 @@ export class ListNoteArticleComponent implements OnInit {
   }
 
   public getNotificationDtos(): void {
-    this.noteService.getLigneCommandeDtos().subscribe(
+    this.noteService.getNotificationDtos().subscribe(
       (response: NotificationDto[]) => {
         this.notificationDTOList = response;
         console.log(this.notificationDTOList);

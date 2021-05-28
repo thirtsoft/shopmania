@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClientDto } from './../../../model/client';
-import { ClientService } from './../../../services/client.service';
+import { ClientDto } from '../../model/client';
+import { ClientService } from '../../services/client.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 

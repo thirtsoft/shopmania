@@ -1,5 +1,4 @@
 import { AddScategoryComponent } from './../add-scategory/add-scategory.component';
-import { Category } from './../../../model/category';
 import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';

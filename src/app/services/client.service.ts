@@ -35,7 +35,7 @@ export class ClientService {
   }
 
   /************************ ClientDTO *******************/
-  
+
   public getClientDTOs(): Observable<ClientDto[]> {
     return this.http.get<ClientDto[]>(`${this.apiServerUrl}/clients/all`);
   }
@@ -45,7 +45,7 @@ export class ClientService {
   }
 
   public addClientDto(clientDTO: ClientDto): Observable<ClientDto> {
-    return this.http.post<ClientDto>(`${this.apiServerUrl}/clients/create`, client);
+    return this.http.post<ClientDto>(`${this.apiServerUrl}/clients/create`, clientDTO);
   }
 
   public updateClientDto(clientDTO: ClientDto): Observable<ClientDto> {

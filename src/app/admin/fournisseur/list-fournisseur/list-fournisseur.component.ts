@@ -1,8 +1,10 @@
+import { AddFournisseurComponent } from './../add-fournisseur/add-fournisseur.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Fournisseur } from './../../../model/fournisseur';
+import { Fournisseur, FournisseurDto } from './../../../model/fournisseur';
 import { FournisseurService } from './../../../services/fournisseur.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-fournisseur',
@@ -22,6 +24,7 @@ export class ListFournisseurComponent implements OnInit {
   fournisseurDTO : FournisseurDto = new FournisseurDto();
 
   constructor(private fournisseurService: FournisseurService,
+              private dialog: MatDialog,
               private router: Router){}
 
   ngOnInit(): void {
@@ -43,7 +46,7 @@ export class ListFournisseurComponent implements OnInit {
 
   public getFournisseurDTOs(): void {
     this.fournisseurService.getFournisseurDTOs().subscribe(
-      (response: FournisseurDTO[]) => {
+      (response: FournisseurDto[]) => {
         this.fournisseurDTOList = response;
         console.log(this.fournisseurDTOList);
       },
@@ -53,9 +56,30 @@ export class ListFournisseurComponent implements OnInit {
     );
   }
 
-  public onCreateFournisseur() {
+/*   public onCreateFournisseur() {
     this.router.navigate(['/newFournisseur']);
   }
+ */
+  onCreateFournisseur() {
+    this.openNoteDialog(null);
+  }
+
+  openNoteDialog(data?: any){
+    const dialogRef = this.dialog.open(AddFournisseurComponent, {
+      disableClose: true,
+      autoFocus : true ,
+      width : "50%",
+      data: data
+    } );
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result && data == null){
+        this.fournisseurDTOList.push(result);
+      }
+      // this.refreshData();
+    });
+  }
+
 
   addEditFournisseur(i) {
 

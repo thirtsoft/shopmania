@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommandeDto } from './../../../model/commande';
-import { CommandeService } from './../../../services/commande.service';
+import { CommandeDto } from '../../model/commande';
+import { CommandeService } from '../../services/commande.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 

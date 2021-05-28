@@ -49,7 +49,7 @@ export class FournisseurService {
   }
 
   public updateFournisseurDto(fournisseurDTO: FournisseurDto): Observable<FournisseurDto> {
-    return this.http.put<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/create`, fournisseur);
+    return this.http.put<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/create`, fournisseurDTO);
   }
 
   public deleteFournisseurDto(fournisseurId: number): Observable<void> {

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { AddressClientDto } from './../../../model/address-client';
-import { AddressAddressClientService } from './../../../services/addressclient.service';
+import { AddressClientDto } from '../../model/address-client';
+import { AddressAddressClientService } from '../../services/addressclient.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 

@@ -1,10 +1,10 @@
-import { AddCategoryComponent } from './../add-category/add-category.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Category, CategoryDto } from './../../../model/category';
 import { CategoryService } from './../../../services/category.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
+import { AddCategoryComponent } from './../add-category/add-category.component';
 
 @Component({
   selector: 'app-list-category',

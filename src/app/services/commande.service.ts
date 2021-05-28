@@ -41,7 +41,7 @@ export class CommandeService {
   }
 
   public getCommandeDtoById(commandeId: number): Observable<CommandeDto> {
-    return this.http.get<Commande>(`${this.apiServerUrl}/commandes/${commandeId}`);
+    return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/${commandeId}`);
   }
 
   public addCommandeDto(commandeDTO: CommandeDto): Observable<CommandeDto> {
