@@ -18,6 +18,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination' ;
+
+import { SharedModule } from '../shared/shared.module';
+
 /*
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -32,12 +35,14 @@ import { AddScategoryComponent } from './scategory/add-scategory/add-scategory.c
 import { ListScategoryComponent } from './scategory/list-scategory/list-scategory.component';
 import { ListFournisseurComponent } from './fournisseur/list-fournisseur/list-fournisseur.component';
 import { AddFournisseurComponent } from './fournisseur/add-fournisseur/add-fournisseur.component';
-import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utilisateur.component';
-import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
+import { ListClientComponent } from './list-client/list-client.component';
+import { ListCommandeComponent } from './list-commande/list-commande.component';
 import { ListLigneCommandeComponent } from './list-ligne-commande/list-ligne-commande.component';
 import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { SharedModule } from '../shared/shared.module';
+import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utilisateur.component';
+import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
+
 
 
 @NgModule({
@@ -52,11 +57,13 @@ import { SharedModule } from '../shared/shared.module';
     ListScategoryComponent,
     ListFournisseurComponent,
     AddFournisseurComponent,
-    AddUtilisateurComponent,
-    ListUtilisateurComponent,
+    ListClientComponent,
+    ListCommandeComponent,
     ListLigneCommandeComponent,
     ListNoteArticleComponent,
-    AccueilComponent
+    AccueilComponent,
+    AddUtilisateurComponent,
+    ListUtilisateurComponent,
   ],
   imports: [
     CommonModule,
