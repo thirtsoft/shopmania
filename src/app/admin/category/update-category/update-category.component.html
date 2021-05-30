@@ -1,0 +1,31 @@
+<form class="form-horizontal style-form" #addCategoryForm="ngForm" (ngSubmit)="onEditCategory()">
+    <input type="hidden" name="id" #id="ngModel" [(ngModel)]="currentCategoryDTO.id">
+    <div class="container">
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 col-md-6 control-label">Code</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" [(ngModel)]="currentCategoryDTO.code" name="code" id="code" placeholder="code" #code="ngModel" required>
+                <span class="text-danger" *ngIf="(code.touched || addCategoryForm.submitted) && code.errors?.required">
+            Code est obligatoire
+        </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-sm-2 col-md-6 control-label">Designation</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" [(ngModel)]="currentCategoryDTO.designation" name="designation" id="designation" #designation="ngModel" placeholder="designation">
+                <span class="text-danger" *ngIf="(designation.touched || addCategoryForm.submitted) && designation.errors?.required">
+                Designation est obligatoire
+          </span>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<div class="click">
+    <button _ngcontent-roy-c3="" class="btn btn-success my-2 my-sm-0" type="submit">Save</button>
+    <!-- <button _ngcontent-roy-c3="" class="btn  my-2 my-sm-0" type="submit" (click)="onClose()">Cancel</button> -->
+    <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
+
+</div>

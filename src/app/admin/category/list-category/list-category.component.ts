@@ -1,5 +1,6 @@
+import { UpdateCategoryComponent } from './../update-category/update-category.component';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Category, CategoryDto } from './../../../model/category';
 import { CategoryService } from './../../../services/category.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -29,7 +30,9 @@ export class ListCategoryComponent implements OnInit {
               private dialog: MatDialog,
               private router: Router,
               public toastr: ToastrService,
-              private dialogService: DialogService
+              private dialogService: DialogService,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef:MatDialogRef<AddCategoryComponent>,
   ){}
 
   ngOnInit(): void {
@@ -59,7 +62,6 @@ export class ListCategoryComponent implements OnInit {
       width : "50%",
       data: data
     } );
-
     dialogRef.afterClosed().subscribe(result => {
       if(result && data == null){
         this.categoryListDTO.push(result);
@@ -68,10 +70,18 @@ export class ListCategoryComponent implements OnInit {
     });
   }
 
-  addEditCategorie(i) {
-  }
+  addEditCategory(catId?: number) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    dialogConfig.data = {
+      catId
+    };
+    this.dialog.open(AddCategoryComponent, dialogConfig);
 
-   public onDeleteCategory(cat: CategoryDto): void{
+  }
+  public onDeleteCategory(cat: CategoryDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -88,5 +98,5 @@ export class ListCategoryComponent implements OnInit {
     );
   }
 
- 
+
 }

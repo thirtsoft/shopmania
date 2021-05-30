@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UtilisateurService {
-  
+
   private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
@@ -48,8 +48,8 @@ export class UtilisateurService {
     return this.http.post<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
   }
 
-  public updateUtilisateurDto(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
-    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
+  public updateUtilisateurDto(utilisateurId: number, utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${utilisateurId}`, utilisateurDTO);
   }
 
   public deleteUtilisateurDto(utilisateurId: number): Observable<void> {

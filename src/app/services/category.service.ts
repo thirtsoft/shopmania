@@ -58,8 +58,8 @@ export class CategoryService {
     return this.http.post<CategoryDto>(`${this.apiServerUrl}/categories/create`, categoryDTO);
   }
 
-  public updateCategoryDto(categoryDTO: CategoryDto): Observable<CategoryDto> {
-    return this.http.put<CategoryDto>(`${this.apiServerUrl}/categories/create`, categoryDTO);
+  public updateCategoryDto(categoryId: number, categoryDTO: CategoryDto): Observable<CategoryDto> {
+    return this.http.put<CategoryDto>(`${this.apiServerUrl}/categories/update/${categoryId}`, categoryDTO);
   }
 
   public deleteCategoryDto(categoryId: number): Observable<void> {

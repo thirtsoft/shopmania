@@ -56,8 +56,8 @@ export class ArticleService {
     return this.http.post<ArticleDto>(`${this.apiServerUrl}/articles/create`, articleDTO);
   }
 
-  public updateArticleDto(articleDTO: ArticleDto): Observable<ArticleDto> {
-    return this.http.put<ArticleDto>(`${this.apiServerUrl}/articles/create`, articleDTO);
+  public updateArticleDto(articleId: number, articleDTO: ArticleDto): Observable<ArticleDto> {
+    return this.http.put<ArticleDto>(`${this.apiServerUrl}/articles/update/${articleId}`, articleDTO);
   }
 
   public deleteArticleDto(articleId: number): Observable<void> {

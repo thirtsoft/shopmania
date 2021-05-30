@@ -1,3 +1,8 @@
+import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
+import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
+import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
+import { UpdateScategoryComponent } from './scategory/update-scategory/update-scategory.component';
+import { UpdateCategoryComponent } from './category/update-category/update-category.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -27,16 +32,34 @@ const routes: Routes = [
   },
   */
   {
+   path: 'categories',
+   children: [
+     { path: '', component: ListCategoryComponent},
+     {
+        path:'categorie',
+        component:AddCategoryComponent
+    },
+    ]
+  },
+  /* {
     path: 'categories',
     component: ListCategoryComponent
-  },
+  }, */
+ /*  {
+    path:'categories/:id',
+    component:UpdateCategoryComponent
+  }, */
   {
-    path: 'newCategorie',
+    path: 'categorie',
     component: AddCategoryComponent
   },
   {
     path: 'scategories',
     component: ListScategoryComponent
+  },
+  {
+    path:'scategorie/:id',
+    component:UpdateScategoryComponent
   },
   {
     path: 'newScategorie',
@@ -51,12 +74,20 @@ const routes: Routes = [
     component: AddArticleComponent
   },
   {
+    path:'article/:id',
+    component:UpdateArtileComponent
+  },
+  {
     path: 'fournisseurs',
     component: ListFournisseurComponent
   },
   {
     path: 'newFournisseur',
     component: AddFournisseurComponent
+  },
+  {
+    path:'fournisseur/:id',
+    component:UpdateFournisseurComponent
   },
   {
     path: 'clients',
@@ -89,6 +120,10 @@ const routes: Routes = [
   {
     path: 'newUtilisateur',
     component: AddUtilisateurComponent
+  },
+  {
+    path:'utilisateur/:id',
+    component:UpdateUtilisateurComponent
   },
 ];
 

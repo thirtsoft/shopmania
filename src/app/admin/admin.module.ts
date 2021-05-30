@@ -43,6 +43,11 @@ import { ListNoteArticleComponent } from './list-note-article/list-note-article.
 import { AccueilComponent } from './accueil/accueil.component';
 import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utilisateur.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
+import { UpdateCategoryComponent } from './category/update-category/update-category.component';
+import { UpdateScategoryComponent } from './scategory/update-scategory/update-scategory.component';
+import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
+import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
+import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
 
 
 
@@ -65,6 +70,11 @@ import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-ut
     AccueilComponent,
     AddUtilisateurComponent,
     ListUtilisateurComponent,
+    UpdateCategoryComponent,
+    UpdateScategoryComponent,
+    UpdateArtileComponent,
+    UpdateFournisseurComponent,
+    UpdateUtilisateurComponent,
   ],
   imports: [
     CommonModule,
