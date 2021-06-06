@@ -1,0 +1,15 @@
+<div class="category">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3" *ngFor="let cat of categories; let i = index">
+                <div class="category-item ch-400">
+                    <!--   <img src="{{imgPath}}{{cat.cImage}}" /> -->
+                    <img src="assets/customer/img/{{cat.cImage}}" alt="Product Image">
+                    <a class="category-name" href="">
+                        <p>{{cat.cDesc}}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

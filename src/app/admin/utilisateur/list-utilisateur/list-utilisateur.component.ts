@@ -68,8 +68,9 @@ export class ListUtilisateurComponent implements OnInit {
       // this.refreshData();
     });
   }
+  onDeleteUtilisateur(item) {}
 
-  public onDeleteUtilisateur(user: UtilisateurDto): void{
+ /*  public onDeleteUtilisateur(user: UtilisateurDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -84,6 +85,6 @@ export class ListUtilisateurComponent implements OnInit {
       alert(error.message);
     }
     );
-  }
+  } */
 
 }

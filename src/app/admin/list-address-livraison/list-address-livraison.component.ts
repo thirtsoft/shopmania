@@ -44,8 +44,9 @@ export class ListAddressLivraisonComponent implements OnInit {
       }
     );
   }
+  onDeleteAddressLivraison(item) {}
 
-  public onDeleteAddressLivraison(livraison: AddressLivraisonDto): void{
+/*   public onDeleteAddressLivraison(livraison: AddressLivraisonDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -60,7 +61,7 @@ export class ListAddressLivraisonComponent implements OnInit {
       alert(error.message);
     }
     );
-  }
+  } */
 
 
 }

@@ -1,56 +1,69 @@
-<h3><i class="fa fa-angle-right"></i> List of fournisseurs</h3>
-<div>
+<div id="wrapper">
+    <app-backend-sidebar></app-backend-sidebar>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <app-backend-header></app-backend-header>
+            <div class="container-fluid">
 
-    <div class="row">
-        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+                <h3><i class="fa fa-angle-right"></i> List of fournisseurs</h3>
+                <div>
 
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onCreateFournisseur()">Add fournisseur</button>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-    </div>
+                        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onCreateFournisseur()">Add fournisseur</button>
 
-    <table class="table table-striped">
+                    </div>
 
-        <thead class="thead-inverse">
-            <tr>
-                <!-- <th>Reference</th> -->
-                <th>Article</th>
-                <th>Fournisseur</th>
-                <!-- <th>Nom</th> -->
-                <th>Addresse</th>
-                <th>Telephone</th>
-                <th>Email</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let fourDTO of fournisseurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <!--  <td>{{fourDTO?.reference}}</td> -->
-                <td>{{fourDTO?.articleDto.designation}}</td>
-                <td>{{fourDTO?.firstName}} {{fourDTO?.lastName}}</td>
-                <!-- <td>{{fourDTO?.lastName}}</td> -->
-                <td>{{fourDTO?.address}}</td>
-                <td>{{fourDTO?.telephoneFournisseur}}</td>
-                <td>{{fourDTO?.email}}</td>
-                <td>{{fourDTO?.city}}</td>
-                <td>{{fourDTO?.country}}</td>
-                <td>
-                    <div class="container ">
-                        <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(fourDTO) ">
+                    <table class="table table-striped">
+
+                        <thead class="thead-inverse">
+                            <tr>
+                                <!-- <th>Reference</th> -->
+                                <th>Article</th>
+                                <th>Fournisseur</th>
+                                <!-- <th>Nom</th> -->
+                                <th>Addresse</th>
+                                <th>Telephone</th>
+                                <th>Email</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let fourDTO of fournisseurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                                <!--  <td>{{fourDTO?.reference}}</td> -->
+                                <td>{{fourDTO?.articleDto.designation}}</td>
+                                <td>{{fourDTO?.firstName}} {{fourDTO?.lastName}}</td>
+                                <!-- <td>{{fourDTO?.lastName}}</td> -->
+                                <td>{{fourDTO?.address}}</td>
+                                <td>{{fourDTO?.telephoneFournisseur}}</td>
+                                <td>{{fourDTO?.email}}</td>
+                                <td>{{fourDTO?.city}}</td>
+                                <td>{{fourDTO?.country}}</td>
+                                <td>
+                                    <div class="container ">
+                                        <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(fourDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteForunisseur(fourDTO)">
+                                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteForunisseur(fourDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="pagination ">
+                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
                     </div>
-                </td>
+                </div>
+            </div>
 
-            </tr>
-        </tbody>
 
-    </table>
-    <div class="pagination ">
-        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div>
+        <app-backend-footer></app-backend-footer>
     </div>
-</div>

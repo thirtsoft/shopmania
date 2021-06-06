@@ -72,10 +72,11 @@ export class ListFournisseurComponent implements OnInit {
 
 
   addEditFournisseur(i) {
-
   }
 
-  public onDeleteForunisseur(four: FournisseurDto): void{
+  onDeleteForunisseur(item) {}
+
+ /*  public onDeleteForunisseur(four: FournisseurDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -90,7 +91,7 @@ export class ListFournisseurComponent implements OnInit {
       alert(error.message);
     }
     );
-  }
+  } */
 
 
 }

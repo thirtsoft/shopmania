@@ -1,55 +1,66 @@
-<h3><i class="fa fa-angle-right"></i> List of utilisateurs</h3>
-<div>
+<div id="wrapper">
+    <app-backend-sidebar></app-backend-sidebar>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <app-backend-header></app-backend-header>
+            <div class="container-fluid">
 
-    <div class="row">
-        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-  
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddUtilisateur()">Add utilisateur</button>
+                <h3><i class="fa fa-angle-right"></i> List of utilisateurs</h3>
+                <div>
 
-    </div>
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-    <table class="table table-striped">
+                        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddUtilisateur()">Add utilisateur</button>
 
-        <thead class="thead-inverse">
-            <tr>
-                <th>Photo</th>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Mobile</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Active</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let userDTO of utilisateurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                <td>{{userDTO?.photo}}</td>
-                <td>{{userDTO?.name}}</td>
-                <td>{{userDTO?.username}}</td>
-                <td>{{userDTO?.mobile}}</td>
-                <td>{{userDTO?.email}}</td>
-                <td>{{userDTO?.address}}</td>
-                <td>{{userDTO?.activated}}</td>
-                
-                <td>
-                    <div class="container ">
-                      <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
+                    </div>
+
+                    <table class="table table-striped">
+
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Photo</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Active</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let userDTO of utilisateurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                                <td>{{userDTO?.photo}}</td>
+                                <td>{{userDTO?.name}}</td>
+                                <td>{{userDTO?.username}}</td>
+                                <td>{{userDTO?.mobile}}</td>
+                                <td>{{userDTO?.email}}</td>
+                                <td>{{userDTO?.address}}</td>
+                                <td>{{userDTO?.activated}}</td>
+
+                                <td>
+                                    <div class="container ">
+                                        <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button> -->
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteUtilisateur(userDTO)">
+                                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteUtilisateur(userDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="pagination ">
+                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
                     </div>
-                </td>
+                </div>
+            </div>
 
-            </tr>
-        </tbody>
 
-    </table>
-    <div class="pagination ">
-        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div>
+        <app-backend-footer></app-backend-footer>
     </div>
-</div>
-
-

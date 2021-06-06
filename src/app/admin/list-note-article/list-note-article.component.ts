@@ -44,8 +44,9 @@ export class ListNoteArticleComponent implements OnInit {
       }
     );
   }
+  onDeleteNotification(item) {}
 
-  public onDeleteNotification(note: NotificationDto): void{
+ /*  public onDeleteNotification(note: NotificationDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -61,5 +62,5 @@ export class ListNoteArticleComponent implements OnInit {
     }
     );
   }
-
+ */
 }

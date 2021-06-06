@@ -1,0 +1,68 @@
+[{
+        "Id": 1,
+        "cName": "category-1",
+        "cSlug": "category-1",
+        "pStatus": "bon",
+        "cFeatured": "catcat",
+        "cDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "cImage": "category-1.jpg",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": 2,
+        "cName": "category-2",
+        "cSlug": "category-2",
+        "pStatus": "bon2",
+        "cFeatured": "cat2cat",
+        "cDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "cImage": "category-2.jpg",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": 3,
+        "cName": "category-3",
+        "cSlug": "category-3",
+        "pStatus": "bon3",
+        "cFeatured": "cat3cat",
+        "cDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "cImage": "category-3.jpg",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": 4,
+        "cName": "category-4",
+        "cSlug": "category-4",
+        "pStatus": "bon4",
+        "cFeatured": "cat4cat",
+        "cDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "cImage": "category-4.jpg",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": 5,
+        "cName": "category-5",
+        "cSlug": "category-5",
+        "pStatus": "bon5",
+        "cFeatured": "cat5cat",
+        "cDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "cImage": "category-5.jpg",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": 6,
+        "cName": "category-6",
+        "cSlug": "category-6",
+        "pStatus": "bon6",
+        "cFeatured": "cat6cat",
+        "cDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "cImage": "category-6.jpg",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    }
+
+]

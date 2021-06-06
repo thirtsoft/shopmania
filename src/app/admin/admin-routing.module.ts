@@ -1,3 +1,6 @@
+import { TopLeftComponent } from './top-left/top-left.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminComponent } from './admin/admin.component';
 import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
 import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
 import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
@@ -22,29 +25,28 @@ import { ListCommandeComponent } from './list-commande/list-commande.component';
 import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-/*
+
+  { path: '',   redirectTo: 'dashborad', pathMatch: 'full' }, // redirect to
+
+
   {
-    path: '',
-    component: AccueilComponent
+    path: 'dashborad',
+    component: DashboardComponent
   },
-  */
+
   {
-   path: 'categories',
-   children: [
-     { path: '', component: ListCategoryComponent},
-     {
-        path:'categorie',
-        component:AddCategoryComponent
-    },
-    ]
+    path: 'login',
+    component: LoginComponent
   },
-  /* {
+
+  {
     path: 'categories',
     component: ListCategoryComponent
-  }, */
+  },
  /*  {
     path:'categories/:id',
     component:UpdateCategoryComponent

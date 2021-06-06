@@ -1,54 +1,65 @@
-<h3><i class="fa fa-angle-right"></i> List of addressLivraisons</h3>
-<div>
+<div id="wrapper">
+    <app-backend-sidebar></app-backend-sidebar>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <app-backend-header></app-backend-header>
+            <div class="container-fluid">
 
-    <div class="row">
-        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-<!-- 
+                <h3><i class="fa fa-angle-right"></i> List of addressLivraisons</h3>
+                <div>
+
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
+                        <!--
         <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onCreateFournisseur()">Add fournisseur</button>
  -->
-    </div>
+                    </div>
 
-    <table class="table table-striped">
+                    <table class="table table-striped">
 
-        <thead class="thead-inverse">
-            <tr>
-                <th>Reference</th>
-                 <th>Commande</th>
-                <th>Quartier</th>
-                <th>Phone</th>
-                <th>City</th>
-                <th>Rue</th>
-                <th>Country</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let addLivraisonDTO of addressLivraisonDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                 <td>{{addLivraisonDTO?.reference}}</td>
-                <td>{{addLivraisonDTO?.commandeDto.numeroCommande}}</td>
-                <td>{{addLivraisonDTO?.phone}}</td>
-                <td>{{addLivraisonDTO?.city}}</td>
-                <td>{{addLivraisonDTO?.rue}}</td>
-                <td>{{addLivraisonDTO?.country}}</td>
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Reference</th>
+                                <th>Commande</th>
+                                <th>Quartier</th>
+                                <th>Phone</th>
+                                <th>City</th>
+                                <th>Rue</th>
+                                <th>Country</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let addLivraisonDTO of addressLivraisonDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                                <td>{{addLivraisonDTO?.reference}}</td>
+                                <td>{{addLivraisonDTO?.commandeDto.numeroCommande}}</td>
+                                <td>{{addLivraisonDTO?.phone}}</td>
+                                <td>{{addLivraisonDTO?.city}}</td>
+                                <td>{{addLivraisonDTO?.rue}}</td>
+                                <td>{{addLivraisonDTO?.country}}</td>
 
-                <td>
-                    <div class="container ">
-                      <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
+                                <td>
+                                    <div class="container ">
+                                        <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button> -->
-                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteAddressLivraison(addLivraisonDTO)">
+                                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteAddressLivraison(addLivraisonDTO)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="pagination ">
+                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
                     </div>
-                </td>
+                </div>
+            </div>
 
-            </tr>
-        </tbody>
 
-    </table>
-    <div class="pagination ">
-        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div>
+        <app-backend-footer></app-backend-footer>
     </div>
-</div>
-
-

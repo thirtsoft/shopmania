@@ -1,0 +1,50 @@
+[{
+        "id": 1,
+        "bName": "banner-1",
+        "bSlug": "banner-1",
+        "bTitle": "banner-banner",
+        "bLink": "www.banner.com",
+        "bStatus": "doing",
+        "bDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "bImage": "product-1.jpg",
+        "createdAt": "29/05/2021",
+        "updatedAt": "30/05/2021"
+    },
+    {
+        "id": 2,
+        "bName": "banner-2",
+        "bSlug": "banner-2",
+        "bTitle": "banner2-banner2",
+        "bLink": "www.banner2.com",
+        "bStatus": "NoDoing",
+        "bDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "bImage": "product-2.jpg",
+        "createdAt": "09/04/2021",
+        "updatedAt": "15/04/2021"
+    },
+    {
+        "id": 3,
+        "bName": "banner-3",
+        "bSlug": "banner-3",
+        "bTitle": "banner-banner3",
+        "bLink": "www.banner3.com",
+        "bStatus": "doing3",
+        "bDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "bImage": "product-3.jpg",
+        "createdAt": "29/05/2021",
+        "updatedAt": "30/05/2021"
+    },
+    {
+        "id": 4,
+        "bName": "banner-4",
+        "bSlug": "banner-4",
+        "bTitle": "banner-banner4",
+        "bLink": "www.banner4.com",
+        "bStatus": "doing4",
+        "bDesc": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque tempore, nam distinctio ad illum nostrum provident eveniet nesciunt at aspernatur tenetur blanditiis officiis rerum sint pariatur officia ullam fugiat dolore.",
+        "bImage": "product-4.jpg",
+        "createdAt": "29/05/2021",
+        "updatedAt": "30/05/2021"
+    }
+
+]

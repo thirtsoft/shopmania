@@ -19,8 +19,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination' ;
 
-import { ToastrModule } from 'ngx-toastr';
-import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../shared/material.module';
 
 /*
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -40,7 +39,7 @@ import { ListClientComponent } from './list-client/list-client.component';
 import { ListCommandeComponent } from './list-commande/list-commande.component';
 import { ListLigneCommandeComponent } from './list-ligne-commande/list-ligne-commande.component';
 import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
-import { AccueilComponent } from './accueil/accueil.component';
+
 import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utilisateur.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { UpdateCategoryComponent } from './category/update-category/update-category.component';
@@ -48,6 +47,15 @@ import { UpdateScategoryComponent } from './scategory/update-scategory/update-sc
 import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
 import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
 import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
+import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
+import { AdminComponent } from './admin/admin.component';
+import { BackendHeaderComponent } from './backend-header/backend-header.component';
+import { BackendSidebarComponent } from './backend-sidebar/backend-sidebar.component';
+import { BackendFooterComponent } from './backend-footer/backend-footer.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { TopLeftComponent } from './top-left/top-left.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -67,7 +75,6 @@ import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/upd
     ListCommandeComponent,
     ListLigneCommandeComponent,
     ListNoteArticleComponent,
-    AccueilComponent,
     AddUtilisateurComponent,
     ListUtilisateurComponent,
     UpdateCategoryComponent,
@@ -75,14 +82,24 @@ import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/upd
     UpdateArtileComponent,
     UpdateFournisseurComponent,
     UpdateUtilisateurComponent,
+    PageNotfoundComponent,
+    AdminComponent,
+    BackendHeaderComponent,
+    BackendSidebarComponent,
+    BackendFooterComponent,
+    SignInComponent,
+    TopLeftComponent,
+    DashboardComponent,
+    LoginComponent,
+    
+    
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
-    ToastrModule.forRoot(),
+    MaterialModule,
     FlexLayoutModule,
     MatDialogModule,
     MatIconModule,

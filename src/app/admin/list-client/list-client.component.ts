@@ -46,7 +46,9 @@ export class ListClientComponent implements OnInit {
     );
   }
 
-   public onDeleteClient(client: ClientDto): void{
+  onDeleteClient(item) {}
+
+  /*  public onDeleteClient(client: ClientDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -62,5 +64,5 @@ export class ListClientComponent implements OnInit {
     }
     );
   }
-
+ */
 }

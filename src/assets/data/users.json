@@ -1,0 +1,46 @@
+[{
+        "Id": "user1",
+        "firstname": "user-1",
+        "lastname": "user-1",
+        "status": "admin",
+        "email": "admin@gmail.com",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": "user2",
+        "firstname": "user-2",
+        "lastname": "user-2",
+        "status": "user",
+        "email": "user@gmail.com",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": "user3",
+        "firstname": "user-3",
+        "lastname": "user-3",
+        "status": "manager",
+        "email": "manager@gmail.com",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": "user4",
+        "firstname": "user-4",
+        "lastname": "user-4",
+        "status": "marketer",
+        "email": "marketer@gmail.com",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    },
+    {
+        "Id": "user5",
+        "firstname": "user-5",
+        "lastname": "user-5",
+        "status": "seller",
+        "email": "seller@gmail.com",
+        "createdAt": "12/04/2021",
+        "updatedAt": "12/04/2021"
+    }
+]

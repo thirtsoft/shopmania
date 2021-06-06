@@ -44,8 +44,9 @@ export class ListAddressClientComponent implements OnInit {
       }
     );
   }
+  onDeleteAddressClient(item) {}
 
-   public onDeleteAddressClient(addClient: AddressClientDto): void{
+ /*   public onDeleteAddressClient(addClient: AddressClientDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -60,6 +61,6 @@ export class ListAddressClientComponent implements OnInit {
       alert(error.message);
     }
     );
-  }
+  } */
 
 }

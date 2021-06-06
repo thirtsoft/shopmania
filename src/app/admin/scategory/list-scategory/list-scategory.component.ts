@@ -36,7 +36,7 @@ export class ListScategoryComponent implements OnInit {
   ngOnInit(): void {
     this.getScategoryDTOs();
   }
-  
+
   public getScategoryDTOs(): void {
     this.scategorieService.getScategoryDtos().subscribe(
       (response: ScategoryDto[]) => {
@@ -77,14 +77,15 @@ export class ListScategoryComponent implements OnInit {
     dialogConfig.width="50%";
     this.dialog.open(AddScategoryComponent, dialogConfig); */
   }
+  onDeleteScategorie(item) {}
 
-  onDeleteScategorie(scatetgory: ScategoryDto): void{
+ /*  onDeleteScategorie(scatetgory: ScategoryDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
         this.scategorieService.deleteScategoryDto(scatetgory.id).subscribe(data => {
           this.toastr.warning('Scategory supprimé avec succès!');
-//          this.scategoryListDTO = this.scategoryListDTO.filter(u => u !== scatetgory);
+          this.scategoryListDTO = this.scategoryListDTO.filter(u => u !== scatetgory);
           this.getScategoryDTOs();
         });
       }
@@ -94,7 +95,7 @@ export class ListScategoryComponent implements OnInit {
     }
     );
   }
-
+ */
  /*  public onDeleteScategorie(scategorieId: number): void {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     this.scategorieService.deleteScategoryDto(scategorieId).subscribe(

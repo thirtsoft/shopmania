@@ -81,7 +81,10 @@ export class ListCategoryComponent implements OnInit {
     this.dialog.open(AddCategoryComponent, dialogConfig);
 
   }
-  public onDeleteCategory(cat: CategoryDto): void{
+  
+  
+  onDeleteCategory(item) {}
+ /*  public onDeleteCategory(cat: CategoryDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -97,6 +100,6 @@ export class ListCategoryComponent implements OnInit {
     }
     );
   }
-
+ */
 
 }

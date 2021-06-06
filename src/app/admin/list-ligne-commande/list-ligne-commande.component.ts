@@ -45,7 +45,9 @@ export class ListLigneCommandeComponent implements OnInit {
     );
   }
 
-  public onDeleteligneCommande(lcom: LigneCommandeDto): void{
+  onDeleteligneCommande(item) {}
+
+ /*  public onDeleteligneCommande(lcom: LigneCommandeDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -61,6 +63,6 @@ export class ListLigneCommandeComponent implements OnInit {
     }
     );
   }
-
+ */
 
 }

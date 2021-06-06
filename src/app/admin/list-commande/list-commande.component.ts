@@ -46,7 +46,9 @@ export class ListCommandeComponent implements OnInit {
     );
   }
 
-  public onDeleteCommande(com: CommandeDto): void{
+  onDeleteCommande(item) {}
+
+ /*  public onDeleteCommande(com: CommandeDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -61,6 +63,6 @@ export class ListCommandeComponent implements OnInit {
       alert(error.message);
     }
     );
-  }
+  } */
 
 }

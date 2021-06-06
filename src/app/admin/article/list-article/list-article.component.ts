@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { ToastrService } from 'ngx-toastr';
+
 import { DialogService } from './../../../services/dialog.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 
@@ -32,8 +32,7 @@ export class ListArticleComponent implements OnInit {
   constructor(private articleService: ArticleService,
               private dialog: MatDialog,
               private router: Router,
-              public toastr: ToastrService,
-              private dialogService: DialogService
+
   ){}
 
   ngOnInit(): void {
@@ -74,8 +73,9 @@ export class ListArticleComponent implements OnInit {
   addEditArticle(i) {
 
   }
+  onDeleteArticle(item) {}
 
-   public onDeleteArticle(article: ArticleDto): void{
+ /*   public onDeleteArticle(article: ArticleDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
@@ -91,5 +91,5 @@ export class ListArticleComponent implements OnInit {
     }
     );
   }
-
+ */
 }
