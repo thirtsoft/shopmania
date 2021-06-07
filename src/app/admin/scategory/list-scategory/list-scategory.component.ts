@@ -1,3 +1,5 @@
+import { DialogComponent } from './../../../shared/dialog/dialog.component';
+import { DialogConfirmComponent } from './../../../shared/dialog-confirm/dialog-confirm.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -49,6 +51,46 @@ export class ListScategoryComponent implements OnInit {
     );
   }
 
+  openDialog(_html) {
+    let dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        html: _html,
+      }
+    });
+    setTimeout(() => {
+      dialogRef.close();
+    }, 2000);
+  }
+
+  confirmDialog(id) {
+    let dialogRef = this.dialog.open(DialogConfirmComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.onDeleteScategory(id);
+      }
+    })
+  }
+
+  public onDeleteScategory(id: number): void{
+    console.log('delete');
+    console.log('id--', id);
+    const res = this.scategorieService.deleteScategoryDto(id);
+    if(res) {
+      let _html=`
+              <div class="c-green">
+                <div class="material-icons">task_alt</div>
+                <h1>Scategory Delete Success!</h1>
+              </div>`;
+      this.openDialog(_html);
+      this.ngOnInit();
+    } else {
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+
+    }
+  }
+/*
   onAddScategorie() {
     this.openNoteDialog(null);
   }
@@ -65,19 +107,13 @@ export class ListScategoryComponent implements OnInit {
       if(result && data == null){
         this.scategoryListDTO.push(result);
       }
-      // this.refreshData();
     });
   }
 
   addEditScategorie(item: ScategoryDto) {
- /*    this.crudApi.dataForm = this.fb.group(Object.assign({},item));
-    const dialog = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
-    this.dialog.open(AddScategoryComponent, dialogConfig); */
   }
-  onDeleteScategorie(item) {}
+  */
+ // onDeleteScategorie(item) {}
 
  /*  onDeleteScategorie(scatetgory: ScategoryDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
@@ -108,5 +144,6 @@ export class ListScategoryComponent implements OnInit {
       }
     );
   } */
+
 
 }

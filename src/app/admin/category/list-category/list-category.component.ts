@@ -1,3 +1,5 @@
+import { DialogComponent } from './../../../shared/dialog/dialog.component';
+import { DialogConfirmComponent } from './../../../shared/dialog-confirm/dialog-confirm.component';
 import { UpdateCategoryComponent } from './../update-category/update-category.component';
 import { Router } from '@angular/router';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -51,6 +53,46 @@ export class ListCategoryComponent implements OnInit {
     );
   }
 
+  openDialog(_html) {
+    let dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        html: _html,
+      }
+    });
+    setTimeout(() => {
+      dialogRef.close();
+    }, 2000);
+  }
+
+  confirmDialog(id) {
+    let dialogRef = this.dialog.open(DialogConfirmComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.onDeleteCategory(id);
+      }
+    })
+  }
+
+  public onDeleteCategory(id: number): void{
+    console.log('delete');
+    console.log('id--', id);
+    const res = this.categoryService.deleteCategoryDto(id);
+    if(res) {
+      let _html=`
+              <div class="c-green">
+                <div class="material-icons">task_alt</div>
+                <h1>Category Delete Success!</h1>
+              </div>`;
+      this.openDialog(_html);
+      this.ngOnInit();
+    } else {
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+
+    }
+  }
+
   onAddCategorie() {
     this.openNoteDialog(null);
   }
@@ -70,20 +112,9 @@ export class ListCategoryComponent implements OnInit {
     });
   }
 
-  addEditCategory(catId?: number) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
-    dialogConfig.data = {
-      catId
-    };
-    this.dialog.open(AddCategoryComponent, dialogConfig);
 
-  }
-  
-  
-  onDeleteCategory(item) {}
+
+
  /*  public onDeleteCategory(cat: CategoryDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{

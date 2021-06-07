@@ -10,25 +10,29 @@
                 <div class="navbar-nav mr-auto">
                     <a routerLink="/home" routerLinkActive="active" class="nav-item nav-link">Home</a>
                     <a routerLink="/products" routerLinkActive="active" class="nav-item nav-link ">Products</a>
-                    <a routerLink="/product-detail" routerLinkActive="active" class="nav-item nav-link ">Product Detail</a>
-                    <a routerLink="/cart" routerLinkActive="active" class="nav-item nav-link ">Cart</a>
+                    <a routerLink="/product-detail" routerLinkActive="active" class="nav-item nav-link">Product Detail</a>
+                    <a routerLink="/cart" routerLinkActive="active" class="nav-item nav-link">Cart</a>
                     <a routerLink="/checkout" routerLinkActive="active" class="nav-item nav-link ">Checkout</a>
-                    <a routerLink="/my-account" routerLinkActive="active" class="nav-item nav-link ">My Account</a>
-                    <div class="nav-item dropdown ">
-                        <a href="# " class="nav-link dropdown-toggle " data-toggle="dropdown ">More Pages</a>
-                        <div class="dropdown-menu ">
-                            <a href="wishlist.html " class="dropdown-item ">Wishlist</a>
-                            <a href="login.html " class="dropdown-item ">Login & Register</a>
-                            <a href="contact.html " class="dropdown-item ">Contact Us</a>
+                    <a routerLink="/my-account" routerLinkActive="active" class="nav-item nav-link">My Account</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                        <div class="dropdown-menu">
+                            <a routerLink="/wishlist" class="dropdown-item">Wishlist</a>
+                            <a routerLink="/register" class="dropdown-item">Login & Register</a>
+                            <a routerLink="/about" class="dropdown-item">About</a>
+                            <a routerLink="/contactus" class="dropdown-item">Contact Us</a>
+                            <a routerLink="/faq" class="dropdown-item">FAQs</a>
                         </div>
                     </div>
                 </div>
-                <div class="navbar-nav ml-auto ">
-                    <div class="nav-item dropdown ">
-                        <a href="# " class="nav-link dropdown-toggle " data-toggle="dropdown ">User Account</a>
-                        <div class="dropdown-menu ">
-                            <a href="# " class="dropdown-item ">Login</a>
-                            <a href="# " class="dropdown-item ">Register</a>
+                <div class="navbar-nav ml-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                        <div class="dropdown-menu">
+                            <a routerLink="/login" class="dropdown-item cursor-pointer">Login</a>
+                            <a routerLink="/register" class="dropdown-item cursor-pointer">Register</a>
+                            <a routerLink="/my-account" class="dropdown-item cursor-pointer">My Account</a>
+                            <a (click)="logout()" class="dropdown-item cursor-pointer">LogOut</a>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,8 @@
                     <div class="row">
                         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-                        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddUtilisateur()">Add utilisateur</button>
+                        <!-- <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddUtilisateur()">Add utilisateur</button> -->
+                        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" routerLink="/admin/utilisateur">Add utilisateur</button>
 
                     </div>
 
@@ -44,7 +45,7 @@
                                         <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
                           <mat-icon>edit</mat-icon>
                         </button> -->
-                                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteUtilisateur(userDTO)">
+                                        <button mat-raised-button class="action-button btn-danger" (click)="confirmDialog(userDTO.id)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                                     </div>
@@ -60,7 +61,7 @@
                 </div>
             </div>
 
-
+            <app-backend-footer></app-backend-footer>
         </div>
-        <app-backend-footer></app-backend-footer>
+
     </div>

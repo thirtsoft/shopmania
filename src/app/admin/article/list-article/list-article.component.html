@@ -17,7 +17,8 @@
                 <div class="row">
                     <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-                    <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddArticle()">Add article</button>
+                    <!-- <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddArticle()">Add article</button> -->
+                    <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" routerLink="/admin/article">Add article</button>
 
                 </div>
 
@@ -49,10 +50,11 @@
 
                             <td>
                                 <div class="container ">
-                                    <button mat-raised-button class="action-button btn-primary" (click)="addEditArticle(articleDTO) ">
+                                    <!-- <button mat-raised-button class="action-button btn-primary" (click)="addEditArticle(articleDTO) "></button> -->
+                                    <button mat-raised-button class="action-button btn-primary" routerLink="/admin/article/:id">
                           <mat-icon>edit</mat-icon>
                         </button>
-                                    <button mat-raised-button class="action-button btn-danger" (click)="onDeleteArticle(articleDTO)">
+                                    <button mat-raised-button class="action-button btn-danger" (click)="confirmDialog(articleDTO.id)">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                                 </div>
@@ -68,7 +70,7 @@
             </div>
         </div>
 
-
+        <app-backend-footer></app-backend-footer>
     </div>
-    <app-backend-footer></app-backend-footer>
+
 </div>

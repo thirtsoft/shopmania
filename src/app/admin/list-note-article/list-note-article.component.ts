@@ -1,3 +1,5 @@
+import { DialogComponent } from './../../shared/dialog/dialog.component';
+import { DialogConfirmComponent } from './../../shared/dialog-confirm/dialog-confirm.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationDto } from '../../model/notification';
@@ -44,7 +46,48 @@ export class ListNoteArticleComponent implements OnInit {
       }
     );
   }
-  onDeleteNotification(item) {}
+
+  openDialog(_html) {
+    let dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        html: _html,
+      }
+    });
+    setTimeout(() => {
+      dialogRef.close();
+    }, 2000);
+  }
+
+  confirmDialog(id) {
+    let dialogRef = this.dialog.open(DialogConfirmComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.onDeleteNotification(id);
+      }
+    })
+  }
+
+  public onDeleteNotification(id: number): void{
+    console.log('delete');
+    console.log('id--', id);
+    const res = this.noteService.deleteNotificationDto(id);
+    if(res) {
+      let _html=`
+              <div class="c-green">
+                <div class="material-icons">task_alt</div>
+                <h1>Scategory Delete Success!</h1>
+              </div>`;
+      this.openDialog(_html);
+      this.ngOnInit();
+    } else {
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+
+    }
+  }
+
+//  onDeleteNotification(item) {}
 
  /*  public onDeleteNotification(note: NotificationDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')

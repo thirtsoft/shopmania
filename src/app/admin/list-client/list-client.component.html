@@ -4,59 +4,67 @@
         <div id="content">
             <app-backend-header></app-backend-header>
             <div class="container-fluid">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1>
+                        <i class="fa fa-angle-right"></i> List of clients
+                    </h1>
 
-                <h3><i class="fa fa-angle-right"></i> List of clients</h3>
-                <div>
+                </div>
+                <!--  <h3>
+                  <i class="fa fa-angle-right"></i> List of articles</h3>
+              <div> -->
 
-                    <div class="row">
-                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-                        <!--
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onCreateFournisseur()">Add fournisseur</button>
- -->
-                    </div>
+                <div class="row">
+                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
 
-                    <table class="table table-striped">
+                    <!-- <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddArticle()">Add article</button> -->
+                    <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" routerLink="/admin/article">Add article</button>
 
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Reference</th>
-                                <th>FirstName</th>
-                                <th>LastName</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let clientDTO of clientDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                                <td>{{clientDTO?.reference}}</td>
-                                <td>{{clientDTO?.firstName}}</td>
-                                <td>{{clientDTO?.lastName}}</td>
-                                <td>{{clientDTO?.email}}</td>
-                                <td>{{clientDTO?.phoneClient}}</td>
+                </div>
 
-                                <td>
-                                    <div class="container ">
-                                        <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
-                          <mat-icon>edit</mat-icon>
-                        </button> -->
-                                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteClient(clientDTO)">
-                          <mat-icon>delete_outline</mat-icon>
-                        </button>
-                                    </div>
-                                </td>
+                <table class="table table-striped">
 
-                            </tr>
-                        </tbody>
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Reference</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let clientDTO of clientDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                            <td>{{clientDTO?.reference}}</td>
+                            <td>{{clientDTO?.firstName}}</td>
+                            <td>{{clientDTO?.lastName}}</td>
+                            <td>{{clientDTO?.email}}</td>
+                            <td>{{clientDTO?.phoneClient}}</td>
 
-                    </table>
-                    <div class="pagination ">
-                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                    </div>
+                            <td>
+                                <div class="container ">
+                                    <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
+                  <mat-icon>edit</mat-icon>
+                </button> -->
+                                    <!-- <button mat-raised-button class="action-button btn-danger" (click)="onDeleteClient(clientDTO)"> -->
+                                    <button mat-raised-button class="action-button btn-danger" (click)="confirmDialog(clientDTO.id)">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+                <div class="pagination ">
+                    <pagination-controls (pageChange)="p=$event"></pagination-controls>
                 </div>
             </div>
-
-
         </div>
+
         <app-backend-footer></app-backend-footer>
     </div>
+
+</div>

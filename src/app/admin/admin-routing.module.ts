@@ -47,10 +47,10 @@ const routes: Routes = [
     path: 'categories',
     component: ListCategoryComponent
   },
- /*  {
-    path:'categories/:id',
-    component:UpdateCategoryComponent
-  }, */
+   {
+    path:'categorie/:id',
+    component:AddCategoryComponent
+  },
   {
     path: 'categorie',
     component: AddCategoryComponent
@@ -61,10 +61,10 @@ const routes: Routes = [
   },
   {
     path:'scategorie/:id',
-    component:UpdateScategoryComponent
+    component:AddScategoryComponent
   },
   {
-    path: 'newScategorie',
+    path: 'scategorie',
     component: AddScategoryComponent
   },
   {
@@ -72,24 +72,24 @@ const routes: Routes = [
     component: ListArticleComponent
   },
   {
-    path: 'newArticle',
+    path: 'article',
     component: AddArticleComponent
   },
   {
     path:'article/:id',
-    component:UpdateArtileComponent
+    component:AddArticleComponent
   },
   {
     path: 'fournisseurs',
     component: ListFournisseurComponent
   },
   {
-    path: 'newFournisseur',
+    path: 'fournisseur',
     component: AddFournisseurComponent
   },
   {
     path:'fournisseur/:id',
-    component:UpdateFournisseurComponent
+    component:AddFournisseurComponent
   },
   {
     path: 'clients',
@@ -120,12 +120,12 @@ const routes: Routes = [
     component: ListUtilisateurComponent
   },
   {
-    path: 'newUtilisateur',
+    path: 'utilisateur',
     component: AddUtilisateurComponent
   },
   {
     path:'utilisateur/:id',
-    component:UpdateUtilisateurComponent
+    component:AddUtilisateurComponent
   },
 ];
 

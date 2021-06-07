@@ -1,3 +1,4 @@
+import { RegisterComponent } from './body/register/register.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'wishlist', component: WishListComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'contactus', component: ContactComponent},
   { path: 'about', component: AboutComponent },
   { path: 'faq', component: FaqComponent },
