@@ -50,7 +50,7 @@
                             <td>{{fourDTO?.country}}</td>
                             <td>
                                 <div class="container ">
-                                    <button mat-raised-button class="action-button btn-primary " routerLink="/admin/fournisseur/:id">
+                                    <button mat-raised-button class="action-button btn-primary" [routerLink]="['/admin/fournisseur', fourDTO.id]">
                   <mat-icon>edit</mat-icon>
                 </button>
                                     <!-- <button mat-raised-button class="action-button btn-danger " (click)="onDeleteForunisseur(fourDTO) "> -->

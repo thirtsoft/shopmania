@@ -1,46 +1,51 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1>Nouveau Article</h1>
-            <form #addScategoryForm="ngForm" name="form" (ngSubmit)="onAddScategory()">
-                <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editArticle.idCategory"> -->
+<div id="wrapper">
+    <app-backend-sidebar></app-backend-sidebar>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <app-backend-header></app-backend-header>
+            <div class="container-fluid">
+                <h1>Nouveau Article</h1>
+                <!--  <form #addArticleForm="ngForm" name="form" (ngSubmit)="onAddArticle()"> -->
+                <form #addScategoryForm="ngForm" name="form">
+                    <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editArticle.idCategory"> -->
 
-                <div class="form-group">
-                    <label>Code </label>
-                    <input type="text" class="form-control" [(ngModel)]="addEditScategoryDTO.code" name="code" id="reference" #code="ngModel" required />
-                    <span class="text-danger" *ngIf="(code.touched || addScategoryForm.submitted) && code.errors?.required">
-          Code est obligatoire
-        </span>
-                </div>
-
-                <div class="form-group">
-                    <label>Libelle</label>
-                    <input type="text" class="form-control" [(ngModel)]="addEditScategoryDTO.libelle" name="libelle" id="libelle" #libelle="ngModel" required>
-                    <span class="text-danger" *ngIf="(libelle.touched || addScategoryForm.submitted) && libelle.errors?.required">
-            Libelle est obligatoire
-        </span>
-                </div>
-
-                <div class="form-group">
-                    <label>Categorie</label>
                     <div class="form-group">
-                        <select name="scategorie" [(ngModel)]="addEditScategoryDTO.categoryDto" class="form-control">
-            <option *ngFor="let cat of categoryListDTO"
-              [ngValue]="cat.id == addEditScategoryDTO.categoryDto?.id ? addEditScategoryDTO.categoryDto : cat">{{cat.designation}}</option>
-          </select>
+                        <label>Code </label>
+                        <input type="text" class="form-control" [(ngModel)]="addEditScategoryDTO.code" name="code" id="reference" #code="ngModel" required />
+                        <span class="text-danger" *ngIf="(code.touched || addScategoryForm.submitted) && code.errors?.required">
+              Code est obligatoire
+            </span>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa fa-database"></i> Submit
-                    </button>&nbsp;
-                    <button type="button" class="btn btn-danger ml-1" [mat-dialog-close]>
-                        <i class="fa fa-close"></i> Close
-                    </button>
-                </div>
+                    <div class="form-group">
+                        <label>Libelle</label>
+                        <input type="text" class="form-control" [(ngModel)]="addEditScategoryDTO.libelle" name="libelle" id="libelle" #libelle="ngModel" required>
+                        <span class="text-danger" *ngIf="(libelle.touched || addScategoryForm.submitted) && libelle.errors?.required">
+                Libelle est obligatoire
+            </span>
+                    </div>
 
-            </form>
+                    <div class="form-group">
+                        <label>Categorie</label>
+                        <div class="form-group">
+                            <select name="scategorie" [(ngModel)]="addEditScategoryDTO.categoryDto" class="form-control">
+                <option *ngFor="let cat of categoryListDTO"
+                  [ngValue]="cat.id == addEditScategoryDTO.categoryDto?.id ? addEditScategoryDTO.categoryDto : cat">{{cat.designation}}</option>
+              </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button *ngIf="!paramId" type="submit" class="btn btn-success" (click)="submit()"><i class="fa fa-database"></i> Submit</button>&nbsp;
+                        <button *ngIf="paramId" class="btn btn-warning" (click)="update()"><i class="fa fa-database"></i>Update</button>
+                        <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
+
+        <app-backend-footer></app-backend-footer>
     </div>
+
 </div>

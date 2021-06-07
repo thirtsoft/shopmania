@@ -71,6 +71,26 @@ export class ListClientComponent implements OnInit {
   public onDeleteClient(id: number): void{
     console.log('delete');
     console.log('id--', id);
+    this.clientService.deleteClientDto(id).subscribe(data => {
+      let _html=`
+              <div class="c-green">
+                <div class="material-icons">task_alt</div>
+                <h1>Client Delete Success!</h1>
+              </div>`;
+      this.openDialog(_html);
+      this.ngOnInit();
+
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+    );
+
+  }
+/*
+  public onDeleteClient(id: number): void{
+    console.log('delete');
+    console.log('id--', id);
     const res = this.clientService.deleteClientDto(id);
     if(res) {
       let _html=`
@@ -87,7 +107,7 @@ export class ListClientComponent implements OnInit {
 
     }
   }
-
+*/
 
 //  onDeleteClient(item) {}
 

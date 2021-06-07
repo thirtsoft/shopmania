@@ -34,7 +34,7 @@
 
                                 <td>
                                     <div class="container ">
-                                        <button mat-raised-button class="action-button btn-primary" routerLink="/admin/caegorie/:id">
+                                        <button mat-raised-button class="action-button btn-primary" [routerLink]="['/admin/categorie', categoryDTO.id]">
                           <mat-icon>edit</mat-icon>
                         </button>
                                         <button mat-raised-button class="action-button btn-danger" (click)="confirmDialog(categoryDTO.id)">

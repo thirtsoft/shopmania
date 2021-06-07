@@ -1,18 +1,16 @@
-import { DialogComponent } from './../../../shared/dialog/dialog.component';
-import { DialogConfirmComponent } from './../../../shared/dialog-confirm/dialog-confirm.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { DialogComponent } from './../../../shared/dialog/dialog.component';
+import { DialogConfirmComponent } from './../../../shared/dialog-confirm/dialog-confirm.component';
 
 
 import { DialogService } from './../../../services/dialog.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
-import { SScategoryService } from './../../../services/scategory.service';
-import { Scategory } from './../../../model/scategory';
 import { AddArticleComponent } from './../add-article/add-article.component';
 import { ArticleService } from '../../../services/article.service';
-import { Article, ArticleDto } from '../../../model/article';
+import { ArticleDto } from '../../../model/article';
 
 
 
@@ -76,7 +74,21 @@ export class ListArticleComponent implements OnInit {
   public onDeleteArticle(id: number): void{
     console.log('delete');
     console.log('id--', id);
-    const res = this.articleService.deleteArticleDto(id);
+    this.articleService.deleteArticleDto(id).subscribe(data => {
+      let _html=`
+              <div class="c-green">
+                <div class="material-icons">task_alt</div>
+                <h1>Article Delete Success!</h1>
+              </div>`;
+      this.openDialog(_html);
+      this.ngOnInit();
+
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+    );
+    /*
     if(res) {
       let _html=`
               <div class="c-green">
@@ -91,6 +103,7 @@ export class ListArticleComponent implements OnInit {
       }
 
     }
+    */
   }
 
   onAddArticle() {

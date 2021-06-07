@@ -2,15 +2,15 @@ import { DialogComponent } from './../../../shared/dialog/dialog.component';
 import { DialogConfirmComponent } from './../../../shared/dialog-confirm/dialog-confirm.component';
 import { UpdateCategoryComponent } from './../update-category/update-category.component';
 import { Router } from '@angular/router';
-import { Component, OnInit, Inject } from '@angular/core';
-import { Category, CategoryDto } from './../../../model/category';
+import { Component, OnInit } from '@angular/core';
+import { CategoryDto } from './../../../model/category';
 import { CategoryService } from './../../../services/category.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddCategoryComponent } from './../add-category/add-category.component';
 
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from './../../../services/dialog.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -33,8 +33,6 @@ export class ListCategoryComponent implements OnInit {
               private router: Router,
               public toastr: ToastrService,
               private dialogService: DialogService,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef:MatDialogRef<AddCategoryComponent>,
   ){}
 
   ngOnInit(): void {
@@ -76,8 +74,7 @@ export class ListCategoryComponent implements OnInit {
   public onDeleteCategory(id: number): void{
     console.log('delete');
     console.log('id--', id);
-    const res = this.categoryService.deleteCategoryDto(id);
-    if(res) {
+    this.categoryService.deleteCategoryDto(id).subscribe(data => {
       let _html=`
               <div class="c-green">
                 <div class="material-icons">task_alt</div>
@@ -85,12 +82,13 @@ export class ListCategoryComponent implements OnInit {
               </div>`;
       this.openDialog(_html);
       this.ngOnInit();
-    } else {
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
 
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
     }
+    );
+
   }
 
   onAddCategorie() {

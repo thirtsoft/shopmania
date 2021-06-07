@@ -51,10 +51,10 @@
                             <td>
                                 <div class="container ">
                                     <!-- <button mat-raised-button class="action-button btn-primary" (click)="addEditArticle(articleDTO) "></button> -->
-                                    <button mat-raised-button class="action-button btn-primary" routerLink="/admin/article/:id">
+                                    <button mat-raised-button class="action-button btn-primary" [routerLink]="['/admin/article', articleDTO.id]">
                           <mat-icon>edit</mat-icon>
                         </button>
-                                    <button mat-raised-button class="action-button btn-danger" (click)="confirmDialog(articleDTO.id)">
+                                    <button mat-raised-button class=" action-button btn-danger " (click)="confirmDialog(articleDTO.id) ">
                           <mat-icon>delete_outline</mat-icon>
                         </button>
                                 </div>
@@ -65,7 +65,7 @@
 
                 </table>
                 <div class="pagination ">
-                    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                    <pagination-controls (pageChange)="p=$event "></pagination-controls>
                 </div>
             </div>
         </div>

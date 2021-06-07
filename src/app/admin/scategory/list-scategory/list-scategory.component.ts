@@ -32,7 +32,6 @@ export class ListScategoryComponent implements OnInit {
               private router: Router,
               public toastr: ToastrService,
               private dialogService: DialogService,
-              private fb: FormBuilder
   ){}
 
   ngOnInit(): void {
@@ -74,22 +73,22 @@ export class ListScategoryComponent implements OnInit {
   public onDeleteScategory(id: number): void{
     console.log('delete');
     console.log('id--', id);
-    const res = this.scategorieService.deleteScategoryDto(id);
-    if(res) {
+    this.scategorieService.deleteScategoryDto(id).subscribe(data => {
       let _html=`
               <div class="c-green">
                 <div class="material-icons">task_alt</div>
-                <h1>Scategory Delete Success!</h1>
+                <h1>onScategory Delete Success!</h1>
               </div>`;
       this.openDialog(_html);
       this.ngOnInit();
-    } else {
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
 
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
     }
+    );
   }
+
 /*
   onAddScategorie() {
     this.openNoteDialog(null);

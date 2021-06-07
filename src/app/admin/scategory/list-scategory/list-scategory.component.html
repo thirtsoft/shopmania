@@ -43,7 +43,7 @@
                             <td>
                                 <div class="container ">
                                     <!-- <button mat-raised-button class="action-button btn-primary" (click)="addEditScategorie(scategoryDTO) "> -->
-                                    <button mat-raised-button class="action-button btn-primary" routerLink="/admin/scategorie/:id">
+                                    <button mat-raised-button class="action-button btn-primary" [routerLink]="['/admin/scategorie', scategoryDTO.id]">
                                 <mat-icon>edit</mat-icon>
                                 </button>
                                     <button mat-raised-button class="action-button btn-danger" (click)="confirmDialog(scategoryDTO.id)">

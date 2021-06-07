@@ -10,7 +10,7 @@ import { FournisseurService } from './../../../services/fournisseur.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from './../../../services/dialog.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -75,6 +75,27 @@ export class ListFournisseurComponent implements OnInit {
   public onDeleteForunisseur(id: number): void{
     console.log('delete');
     console.log('id--', id);
+    this.fournisseurService.deleteFournisseurDto(id).subscribe(data => {
+      let _html=`
+              <div class="c-green">
+                <div class="material-icons">task_alt</div>
+                <h1>Forunisseur Delete Success!</h1>
+              </div>`;
+      this.openDialog(_html);
+      this.ngOnInit();
+
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+    );
+
+  }
+/*
+
+  public onDeleteForunisseur(id: number): void{
+    console.log('delete');
+    console.log('id--', id);
     const res = this.fournisseurService.deleteFournisseurDto(id);
     if(res) {
       let _html=`
@@ -109,14 +130,13 @@ export class ListFournisseurComponent implements OnInit {
       if(result && data == null){
         this.fournisseurDTOList.push(result);
       }
-      // this.refreshData();
     });
   }
 
 
   addEditFournisseur(i) {
   }
-
+*/
  // onDeleteForunisseur(item) {}
 
  /*  public onDeleteForunisseur(four: FournisseurDto): void{
