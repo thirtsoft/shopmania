@@ -22,6 +22,8 @@ export class AddArticleComponent implements OnInit {
   deleteArticleDTO: ArticleDto;
   scategoryListDTO: ScategoryDto[];
 
+  public articleFile: any = File;
+
   data;
   paramId :any = 0;
   Errors = {status:false, msg:''};
@@ -149,6 +151,34 @@ export class AddArticleComponent implements OnInit {
   addEditArticle() { }
 
   */
+
+  onSelectFile(event) {
+   // selectionner une image et la garder
+    const file = event.target.files[0];
+    this.articleFile = file;
+  }
+
+  // Ajouter un produits avec sa photo
+  onSaveArticle() {
+    let formData = new FormData();
+    formData.append('article', JSON.stringify(this.addEditArticleDTO));
+    formData.append('photoArticle', this.articleFile);
+    this.articleService.addArticleDtoWithPhoto(formData)
+      .subscribe((response: ArticleDto)=> {
+        console.log('Response--', response);
+        let _html=`
+          <div class="c-green">
+            <div class="material-icons">task_alt</div>
+            <h1>Product Created Success!</h1>
+          </div>`;
+          this.openDialog(_html);
+          this.router.navigate([`/admin/articles`]);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 
 
 }

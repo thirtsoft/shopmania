@@ -9,6 +9,8 @@ import { environment } from './../../environments/environment';
 })
 export class CatalogueService {
 
+//  public apiServerUrl = environment.apiBaseUrl;
+
   public apiServerUrl = environment.apiBaseUrl;
 
 //  public host:string="http://localhost:8080";
@@ -17,9 +19,12 @@ export class CatalogueService {
   constructor(private http: HttpClient) {
   }
 
+  public getListArticleDTOByCategoryId(scatId: number) {
+    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/articlesByScategories/${scatId}`);
+  }
+
   public getPhotoArticle() {
-  /*   return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/photoArticle`); */
-    return this.http.get<ArticleDto>(this.apiBaseUrl+"/photoArticle");
+    return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
   }
 
 

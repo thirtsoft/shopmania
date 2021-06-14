@@ -39,7 +39,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let articleDTO of articleDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                            <td>{{articleDTO?.photo}}</td>
+                            <!--    <td>{{articleDTO?.photo}}</td> -->
+                            <td><img height="90" width="90" class="img-circle" src="{{this.catService.apiServerUrl+'/articles/photoArticle/'+articleDTO.id}}"></td>
                             <td>{{articleDTO?.reference}}</td>
                             <td>{{articleDTO?.designation}}</td>
                             <td>{{articleDTO?.scategoryDto?.libelle}}</td>

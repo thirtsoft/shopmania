@@ -1,3 +1,4 @@
+import { CatalogueService } from './../../../services/catalogue.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -30,6 +31,7 @@ export class ListArticleComponent implements OnInit {
   searchText;
 
   constructor(private articleService: ArticleService,
+              public catService: CatalogueService,
               private dialog: MatDialog,
               private router: Router,
 

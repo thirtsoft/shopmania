@@ -1,8 +1,10 @@
-import { Observable } from 'rxjs';
-import { Article, ArticleDto } from './../model/article';
-import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
+import { Article, ArticleDto } from './../model/article';
+
+import { environment } from './../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,8 +58,34 @@ export class ArticleService {
     return this.http.post<ArticleDto>(`${this.apiServerUrl}/articles/create`, articleDTO);
   }
 
+  public addArticleDtoWithPhoto(formData: FormData): Observable<any> {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/articles/createWithFile`, formData, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req);
+    // return this.http.post(this.host+"/saveCategory", formData);
+  }
+
+
   public updateArticleDto(articleId: number, articleDTO: ArticleDto): Observable<ArticleDto> {
     return this.http.put<ArticleDto>(`${this.apiServerUrl}/articles/update/${articleId}`, articleDTO);
+  }
+
+  uploadPhotoArticleDto(file: File, idArticle): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/articles/uploadArticlePhoto/${idArticle}`, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+
+  }
+
+  public getPhotoArticle() {
+    return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
   }
 
   public deleteArticleDto(articleId: number): Observable<void> {
