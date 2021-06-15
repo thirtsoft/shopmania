@@ -1,3 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { CatalogueService } from './../../../services/catalogue.service';
+import { ArticleDto } from './../../../model/article';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/data.service';
 import  axios  from 'axios';
@@ -13,8 +16,11 @@ export class ShopComponent implements OnInit {
 
   cart:any;
   products: any;
+  articleListDTOBySelected: ArticleDto[];
+
   constructor(private dataService: DataService,
               private router: Router,
+              public catalogueService: CatalogueService
   //            private productService:ProductService,
   ){ }
 
@@ -23,6 +29,21 @@ export class ShopComponent implements OnInit {
 
   // get from data using axios
     this.getProducts();
+
+    this.getArticleListDTOsBySelectedIsTrue();
+
+  }
+
+  public getArticleListDTOsBySelectedIsTrue() {
+    this.catalogueService.getListArticleDTOBySelectedIsTrue().subscribe(
+      (response: ArticleDto[]) => {
+        this.articleListDTOBySelected = response;
+        console.log(this.articleListDTOBySelected);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
 
   }
 

@@ -51,7 +51,7 @@ export class ArticleService {
   }
 
   public getArticleDtoByReference(reference: string): Observable<ArticleDto> {
-    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/${reference}`);
+    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/searchbyReference/${reference}`);
   }
 
   public addArticleDto(articleDTO: ArticleDto): Observable<ArticleDto> {

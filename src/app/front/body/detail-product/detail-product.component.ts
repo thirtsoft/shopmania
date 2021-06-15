@@ -1,3 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { CatalogueService } from './../../../services/catalogue.service';
+import { ArticleService } from './../../../services/article.service';
+import { ArticleDto } from './../../../model/article';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/data.service';
 import  axios  from 'axios';
@@ -20,21 +24,47 @@ export class DetailProductComponent implements OnInit {
   qtyDefault = 1;
   qtyPlus;
 
+  articleDTO;
+  articleDTOs;
+  reference;
+
   constructor(private dataService: DataService,
   //            private productService:ProductService,
               private router: Router,
-              private actRoute: ActivatedRoute
+              private actRoute: ActivatedRoute,
+              public artService: ArticleService,
+              public catalogueService: CatalogueService,
   ){}
 
   ngOnInit(): void {
+    /*
     this.actRoute.paramMap.subscribe(params => {
       this.slug = params.get('slug');
       console.log("this.slug--1-", this.slug);
+    });
+*/
+    this.actRoute.paramMap.subscribe(params => {
+      this.reference = params.get('reference');
+      console.log("this.reference--1-", this.reference);
     });
 
     this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
 
     this.getSingleProduct(this.slug);
+
+    this.getSingleArticleDTO(this.reference);
+
+  }
+
+  public getSingleArticleDTO(ref) {
+    this.artService.getArticleByReference(ref).subscribe(
+      response => {
+        this.articleDTOs = response;
+        console.log(this.articleDTOs);
+        }
+        ,(error: HttpErrorResponse) => {
+      alert(error.message);
+    });
 
   }
 

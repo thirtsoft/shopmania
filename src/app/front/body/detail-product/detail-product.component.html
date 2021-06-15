@@ -22,7 +22,8 @@
                     <div class="row align-items-center">
                         <div class="col-md-5">
                             <div class="product-slider-single normal-slider">
-                                <img src="assets/customer/img/{{pImageDefault}}" alt="Product Image">
+                                <!-- <img src="assets/customer/img/{{pImageDefault}}" alt="Product Image"> -->
+                                <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+articleDTOs.id}}" alt="Product Image">
                             </div>
                             <!--  <div *ngFor="let img of pImages; let i = index;" class="product-slider-single-nav normal-slider">
                                 <div class="slider-nav-img"><img src="assets/customer/img/{{img}}" alt="Product Image"></div>
@@ -35,7 +36,8 @@
                         <div class="col-md-7">
                             <div class="product-content">
                                 <div class="title">
-                                    <h2>{{product?.pName}}</h2>
+                                    <!-- <h2>{{product?.pName}}</h2> -->
+                                    <h2>{{articleDTOs?.designation}}</h2>
                                 </div>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
@@ -46,7 +48,8 @@
                                 </div>
                                 <div class="price">
                                     <h4>Price:</h4>
-                                    <p>$99 <span>$149</span></p>
+                                    <!-- <p>$99 <span>$149</span></p> -->
+                                    <p>$ {{articleDTOs?.price}} <span>$149</span></p>
                                 </div>
                                 <div class="quantity">
                                     <h4>Quantity:</h4>

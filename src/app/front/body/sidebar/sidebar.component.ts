@@ -1,3 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { SScategoryService } from './../../../services/scategory.service';
+import { ScategoryDto } from './../../../model/scategory';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  scategoryListDTOs: ScategoryDto[];
+
+  constructor(private scatService: SScategoryService,
+              
+  ) {}
 
   ngOnInit(): void {
+    this.getScategoryListDTOs();
+  }
+  public getScategoryListDTOs() {
+    this.scatService.getScategoryDtos().subscribe(
+      (response: ScategoryDto[]) => {
+        this.scategoryListDTOs = response;
+        console.log(this.scategoryListDTOs);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
   }
 
 }
