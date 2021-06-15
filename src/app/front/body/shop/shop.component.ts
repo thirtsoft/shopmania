@@ -1,3 +1,4 @@
+import { ArticleService } from './../../../services/article.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CatalogueService } from './../../../services/catalogue.service';
 import { ArticleDto } from './../../../model/article';
@@ -16,11 +17,12 @@ export class ShopComponent implements OnInit {
 
   cart:any;
   products: any;
-  articleListDTOBySelected: ArticleDto[];
+  articleListDTOBs: ArticleDto[];
 
   constructor(private dataService: DataService,
               private router: Router,
-              public catalogueService: CatalogueService
+              public catalogueService: CatalogueService,
+              private artService: ArticleService,
   //            private productService:ProductService,
   ){ }
 
@@ -30,15 +32,15 @@ export class ShopComponent implements OnInit {
   // get from data using axios
     this.getProducts();
 
-    this.getArticleListDTOsBySelectedIsTrue();
+    this.getArticleListDTOs();
 
   }
 
-  public getArticleListDTOsBySelectedIsTrue() {
-    this.catalogueService.getListArticleDTOBySelectedIsTrue().subscribe(
+  public getArticleListDTOs() {
+    this.artService.getArticleDTOs().subscribe(
       (response: ArticleDto[]) => {
-        this.articleListDTOBySelected = response;
-        console.log(this.articleListDTOBySelected);
+        this.articleListDTOBs = response;
+        console.log(this.articleListDTOBs);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

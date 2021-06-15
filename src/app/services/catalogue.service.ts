@@ -27,6 +27,14 @@ export class CatalogueService {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/articlesByScategories/${scatId}`);
   }
 
+  public getListArticleDTOByPageable(page: number, size: number): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByPageables?page=`+page+"&size="+size);
+  }
+
+  public getListArticleDTOByScategoryByPageable(scatId: number, page: number, size: number): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByScategoryByPageables/${scatId}+&page=`+page+"&size="+size);
+  }
+
   public getPhotoArticle() {
     return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
   }
