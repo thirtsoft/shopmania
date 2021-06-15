@@ -19,8 +19,12 @@ export class CatalogueService {
   constructor(private http: HttpClient) {
   }
 
-  public getListArticleDTOByCategoryId(scatId: number) {
-    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/articlesByScategories/${scatId}`);
+  public getListArticleDTOBySelectedIsTrue(): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByselectedIsTrue`);
+  }
+
+  public getListArticleDTOByCategoryId(scatId: number): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/articlesByScategories/${scatId}`);
   }
 
   public getPhotoArticle() {
