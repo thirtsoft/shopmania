@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
   scategoryListDTOs: ScategoryDto[];
 
   constructor(private scatService: SScategoryService,
-              
+
   ) {}
 
   ngOnInit(): void {

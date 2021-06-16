@@ -3,20 +3,20 @@
     <nav class="navbar bg-light">
         <ul class="navbar-nav" *ngFor="let scatDTO of scategoryListDTOs; let i = index">
             <li class="nav-item">
-                <a class="nav-link" style="cursor: pointer;">
-                    <i class="fa fa-female"></i>{{scatDTO.libelle}}</a>
+                <a [routerLink]="['/category', scatDTO.id]" class="nav-link " style="cursor: pointer; ">
+                    <i class="fa fa-female "></i>{{scatDTO.libelle}}</a>
             </li>
-            <!--    <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
+            <!--    <li class="nav-item ">
+                <a class="nav-link " href="# "><i class="fa fa-child "></i>Kids & Babies Clothes</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
+            <li class="nav-item ">
+                <a class="nav-link " href="# "><i class="fa fa-tshirt "></i>Men & Women Clothes</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
+            <li class="nav-item ">
+                <a class="nav-link " href="# "><i class="fa fa-mobile-alt "></i>Gadgets & Accessories</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Electronics & Accessories</a>
+            <li class="nav-item ">
+                <a class="nav-link " href="# "><i class="fa fa-microchip "></i>Electronics & Accessories</a>
             </li> -->
         </ul>
     </nav>

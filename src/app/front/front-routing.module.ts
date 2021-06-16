@@ -22,8 +22,10 @@ const routes: Routes = [
   // { path: '', component: HomeComponent},
   { path: '',   redirectTo: 'home', pathMatch: 'full' }, // redirect to
   { path: 'home', component: HomeComponent },
+  { path: 'search/:keyword', component: HomeComponent },
   { path: 'product-detail/:reference', component: DetailProductComponent },
   { path: 'products', component: ShopComponent },
+  { path: 'category/:id', component: ShopComponent },
   { path: 'cart', component: CartComponent },
   { path: 'my-account', component: MyaccountComponent },
   { path: 'checkout', component: CheckoutComponent },

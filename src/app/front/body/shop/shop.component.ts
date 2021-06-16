@@ -1,11 +1,11 @@
-import { ArticleService } from './../../../services/article.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { CatalogueService } from './../../../services/catalogue.service';
-import { ArticleDto } from './../../../model/article';
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { CatalogueService } from './../../../services/catalogue.service';
+import { ArticleService } from './../../../services/article.service';
+import { ArticleDto } from './../../../model/article';
 import { DataService } from '../../../shared/data.service';
 import  axios  from 'axios';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,20 +19,45 @@ export class ShopComponent implements OnInit {
   products: any;
   articleListDTOBs: ArticleDto[];
 
+  public size: number = 6;
+  public currentPage: number = 1;
+  public totalPages: number;
+  public pages: Array<number>;
+  public currentArticle;
+  public keyword: string;
+  public currentTime: number = 0;
+  currentRequest: string;
+  currentRequest2: string;
+  curentCategoryId: number;
+
+  currentCategorie;
+
+  currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
+
+  categoryList :any;
+  productsList:any;
+
   constructor(private dataService: DataService,
               private router: Router,
               public catalogueService: CatalogueService,
               private artService: ArticleService,
+              private route: ActivatedRoute,
   //            private productService:ProductService,
   ){ }
 
-  ngOnInit(): void {
-    this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
+  ngOnInit() {
+  //  this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
+  this.route.paramMap.subscribe(()=> {
+    this.getListArtilceDTOs();
+    console.log("Articles---", this.getListArtilceDTOs());
+  });
 
+  
   // get from data using axios
-    this.getProducts();
+ //   this.getProducts();
 
-    this.getArticleListDTOs();
+  //  this.getArticleListDTOs();
 
   }
 
@@ -47,6 +72,61 @@ export class ShopComponent implements OnInit {
       }
     );
 
+  }
+
+  getListArtilceDTOs() {
+    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
+    console.log("HasParam id: ", + hasCategoryId);
+    if (hasCategoryId) {
+      this.curentCategoryId = +this.route.snapshot.paramMap.get('id');
+    }else {
+      this.curentCategoryId = 1;
+      console.log("curentCategoryId id: ",  this.curentCategoryId);
+    }
+
+    if(this.previousCategoryId != this.curentCategoryId) {
+      this.currentPage = 1;
+    }
+    this.previousCategoryId = this.curentCategoryId;
+
+    this.catalogueService.getListArticleDTOByScategoryByPageable(
+          this.curentCategoryId,
+          this.currentPage - 1,
+          this.size).subscribe(this.processResult());
+  }
+
+  processResult() {
+    return data => {
+      this.totalPages = data['totalPages'];
+      //this.pages = new Array<number>(this.totalPages);
+      this.pages = new Array(data['totalPages']);
+      this.articleListDTOBs = data['content'];
+    }
+
+  }
+
+   // Liste des produits par page
+   getArticleDTOByPageable() {
+    this.catalogueService.getListArticleDTOByPageable(this.currentPage, this.size)
+      .subscribe(data=> {
+        this.totalPages = data['totalPages'];
+        //this.pages = new Array<number>(this.totalPages);
+        this.pages = new Array(data['totalPages']);
+        this.articleListDTOBs = data['content'];
+        console.log(data);
+      },err=> {
+        console.log(err);
+      });
+
+  }
+
+  getTS() {
+    return this.currentTime;
+  }
+
+  onPageArticle(i) {
+    this.currentPage = i;
+    this.getArticleDTOByPageable();
   }
 
   async getProducts() {
@@ -76,6 +156,8 @@ export class ShopComponent implements OnInit {
   bynow() {
     this.router.navigate(["cart"]);
   }
+
+
   /*
   recentClick(slug){
     const recent = this.productService.recentClick(slug);
