@@ -3,9 +3,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { CatalogueService } from './../../../services/catalogue.service';
 import { ArticleService } from './../../../services/article.service';
+import { CartService } from './../../../services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 import { ArticleDto } from './../../../model/article';
 import { DataService } from '../../../shared/data.service';
 import  axios  from 'axios';
+import { CartItem } from './../../../model/cartItem';
 
 
 @Component({
@@ -23,7 +26,7 @@ export class ShopComponent implements OnInit {
   public currentPage: number = 1;
   public totalPages: number;
   public pages: Array<number>;
- 
+
   public currentTime: number = 0;
 
   currentCategoryId: number;
@@ -33,10 +36,12 @@ export class ShopComponent implements OnInit {
   searchMode: boolean = false;
 
   constructor(private dataService: DataService,
-              private router: Router,
               public catalogueService: CatalogueService,
               private artService: ArticleService,
+              private cartService: CartService,
+              private toastr: ToastrService,
               private route: ActivatedRoute,
+              private router: Router,
   //            private productService:ProductService,
   ){ }
 
@@ -46,7 +51,7 @@ export class ShopComponent implements OnInit {
     this.getListArticleDTOs();
   });
 
-  
+
   // get from data using axios
  //   this.getProducts();
 
@@ -73,12 +78,10 @@ export class ShopComponent implements OnInit {
     if (this.searchMode) {
       this.getArticleListDTOsBySearchKeyword();
     } else {
-      
+
       this.handlerListArticleDTOs();
 
     }
-
-    
 
   }
 
@@ -105,7 +108,6 @@ export class ShopComponent implements OnInit {
   processResult() {
     return data => {
       this.totalPages = data['totalPages'];
-      //this.pages = new Array<number>(this.totalPages);
       this.pages = new Array(data['totalPages']);
       this.articleListDTOBs = data['content'];
     }
@@ -117,7 +119,6 @@ export class ShopComponent implements OnInit {
     this.catalogueService.getListArticleDTOByPageable(this.currentPage, this.size)
       .subscribe(data=> {
         this.totalPages = data['totalPages'];
-        //this.pages = new Array<number>(this.totalPages);
         this.pages = new Array(data['totalPages']);
         this.articleListDTOBs = data['content'];
         console.log(data);
@@ -135,6 +136,14 @@ export class ShopComponent implements OnInit {
       }
 
     )
+
+  }
+
+  addTocart(articleDTO: ArticleDto) {
+    console.log(`total designation: ${articleDTO.designation}, total price: ${articleDTO.price}`);
+    const cartItem = new CartItem(articleDTO);
+    this.cartService.addTocart(cartItem);
+    this.toastr.success('Article Ajoutée au panier avec succès');
 
   }
 

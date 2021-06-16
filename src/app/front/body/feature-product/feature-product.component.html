@@ -26,7 +26,7 @@
                             <!-- <img src="assets/customer/img/{{product.pImageDefault}}" alt="Product Image"> -->
                         </a>
                         <div class="product-action">
-                            <a (click)="addTocart(artDTO)"><i class="fa fa-cart-plus"></i></a>
+                            <a (click)="addTocart(artDTO)" style="cursor:pointer"><i class="fa fa-cart-plus"></i></a>
                             <a href="#"><i class="fa fa-heart"></i></a>
                             <a [routerLink]="['/product-detail', artDTO.reference]" (click)="recentClick(artDTO.reference)"><i class="fa fa-search"></i></a>
                         </div>
