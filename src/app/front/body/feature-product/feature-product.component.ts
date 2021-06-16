@@ -1,10 +1,15 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { ArticleDto } from './../../../model/article';
-import { CatalogueService } from './../../../services/catalogue.service';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/data.service';
 import  axios  from 'axios';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { CatalogueService } from './../../../services/catalogue.service';
+import { CartService } from './../../../services/cart.service';
+import { ArticleDto } from './../../../model/article';
+import { CartItem } from './../../../model/cartItem';
+
+
 
 
 @Component({
@@ -25,6 +30,8 @@ export class FeatureProductComponent implements OnInit {
   constructor(private dataService: DataService,
               private router: Router,
               public catalogueService: CatalogueService,
+              private cartService: CartService,
+              private toastr: ToastrService,
               private activeRoute: ActivatedRoute
   //            private productService:ProductService,
   ){ }
@@ -41,9 +48,6 @@ export class FeatureProductComponent implements OnInit {
 
  //   this.getArticleListDTOsBySelectedIsTrue();
 
- 
-    
-    
 
   }
 
@@ -79,6 +83,14 @@ export class FeatureProductComponent implements OnInit {
       }
 
     )
+
+  }
+
+  addTocart(articleDTO: ArticleDto) {
+    console.log(`total designation: ${articleDTO.designation}, total price: ${articleDTO.price}`);
+    const cartItem = new CartItem(articleDTO);
+    this.cartService.addTocart(cartItem);
+    this.toastr.success('Article Ajoutée au panier avec succès');
 
   }
 

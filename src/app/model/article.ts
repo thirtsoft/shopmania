@@ -18,6 +18,7 @@ export class Article {
 
 export class ArticleDto {
   id: number;
+//  id: string;
   reference: string;
   designation: string;
   quantity: number;

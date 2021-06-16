@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from './../../../services/cart.service';
 import { DataService } from '../../../shared/data.service';
+import { CartItem } from './../../../model/cartItem';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -9,12 +11,36 @@ import { DataService } from '../../../shared/data.service';
 export class BottomBarComponent implements OnInit {
 
   cart: any;
-  constructor(private dataService: DataService) { }
+
+  cartItems: CartItem[] = [];
+
+  totalPrice: number = 0;
+  totalQuantity: number = 0;
+
+  constructor(private dataService: DataService,
+              private cartService: CartService
+  ) { }
 
   ngOnInit(): void {
     //Set value as default for test
  //   this.dataService.updateCart("1");
     this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
+
+    this.updateCartStatus();
+
+  }
+
+  updateCartStatus() {
+    //subscribe to the events
+    this.cartService.totalPrice.subscribe(
+      data => this.totalPrice = data
+    )
+
+    this.cartService.totalQuantity.subscribe(
+      data => this.totalQuantity = data
+    );
+
+    this.cartItems = this.cartService.cartItems;
 
   }
 
