@@ -4,7 +4,7 @@ import { CatalogueService } from './../../../services/catalogue.service';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/data.service';
 import  axios  from 'axios';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,20 +18,44 @@ export class FeatureProductComponent implements OnInit {
   products: any;
   articleListDTOBySelected: ArticleDto[];
 
+  public currentTime: number = 0;
+
+  searchMode: boolean = false;
+
   constructor(private dataService: DataService,
               private router: Router,
-              public catalogueService: CatalogueService
+              public catalogueService: CatalogueService,
+              private activeRoute: ActivatedRoute
   //            private productService:ProductService,
   ){ }
 
   ngOnInit(): void {
-    this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
+    this.activeRoute.paramMap.subscribe(()=>{
+      this.getListArticleDTOs();
+      }
+    );
+  //  this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
 
   // get from data using axios
-    this.getProducts();
+  //  this.getProducts();
 
-    this.getArticleListDTOsBySelectedIsTrue();
+ //   this.getArticleListDTOsBySelectedIsTrue();
 
+ 
+    
+    
+
+  }
+
+  getListArticleDTOs() {
+    this.searchMode = this.activeRoute.snapshot.paramMap.has('keyword');
+    if (this.searchMode) {
+      // do search work
+      this.getArticleListDTOsBySearchKeyword();
+    } else {
+      //display product list
+      this.getArticleListDTOsBySelectedIsTrue();
+    }
   }
 
   public getArticleListDTOsBySelectedIsTrue() {
@@ -44,6 +68,17 @@ export class FeatureProductComponent implements OnInit {
         alert(error.message);
       }
     );
+
+  }
+
+  getArticleListDTOsBySearchKeyword() {
+    const keyword: string = this.activeRoute.snapshot.paramMap.get('keyword');
+    this.catalogueService.getListArticleDTOByKeyword(keyword).subscribe(
+      data  => {
+        this.articleListDTOBySelected = data;
+      }
+
+    )
 
   }
 

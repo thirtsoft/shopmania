@@ -31,6 +31,11 @@ export class CatalogueService {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByPageables?page=`+page+"&size="+size);
   }
 
+  public getListArticleDTOByKeyword(keyword: string): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByKeyword?keyword=`+keyword);
+  }
+
+
   public getListArticleDTOByScategoryByPageable(scatId: number, page: number, size: number): Observable<ArticleDto[]> {
     const searchUrl = (this.apiServerUrl+"/articles/searchArticleByScategoryByPageables?id="+scatId+"&page="+page+"&size="+size);
     console.log("Search Url---", searchUrl);
