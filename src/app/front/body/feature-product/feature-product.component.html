@@ -10,7 +10,7 @@
                 <div class="product-item">
                     <div class="product-title">
                         <!--  <a routerLink="/product-detail/{{product.pSlug}}" (click)="recentClick(product.pSlug)">{{product.pName}}</a> -->
-                        <a routerLink="/product-detail/{{artDTO.reference}}">{{artDTO.designation}}</a>
+                        <a [routerLink]="['/product-detail', artDTO.reference]">{{artDTO.designation}}</a>
                         <div class="ratting">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="product-image">
-                        <a routerLink="/product-detail/{{artDTO.reference}}">
+                        <a [routerLink]="['/product-detail', artDTO.reference]">
                             <!--  <img src="{{imgPath}}{{product.pImageDefault}}" alt="Product Image"> -->
                             <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="Product Image">
                             <!-- <img src="assets/customer/img/{{product.pImageDefault}}" alt="Product Image"> -->
@@ -28,7 +28,7 @@
                         <div class="product-action">
                             <a (click)="add2cart(1,artDTO)"><i class="fa fa-cart-plus"></i></a>
                             <a href="#"><i class="fa fa-heart"></i></a>
-                            <a routerLink="/product-detail/{{artDTO.reference}}" (click)="recentClick(artDTO.reference)"><i class="fa fa-search"></i></a>
+                            <a [routerLink]="['/product-detail', artDTO.reference]" (click)="recentClick(artDTO.reference)"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="product-price">

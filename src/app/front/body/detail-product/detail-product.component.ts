@@ -37,12 +37,16 @@ export class DetailProductComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.actRoute.paramMap.subscribe(()=> {
+      this.getSingleArticleDTO();
+    });
     /*
     this.actRoute.paramMap.subscribe(params => {
       this.slug = params.get('slug');
       console.log("this.slug--1-", this.slug);
     });
 */
+/*
     this.actRoute.paramMap.subscribe(params => {
       this.reference = params.get('reference');
       console.log("this.reference--1-", this.reference);
@@ -53,11 +57,12 @@ export class DetailProductComponent implements OnInit {
     this.getSingleProduct(this.slug);
 
     this.getSingleArticleDTO(this.reference);
-
+*/
   }
 
-  public getSingleArticleDTO(ref) {
-    this.artService.getArticleByReference(ref).subscribe(
+  public getSingleArticleDTO() {
+    const ref: string = this.actRoute.snapshot.paramMap.get('reference');
+    this.artService.getArticleDtoByReference(ref).subscribe(
       response => {
         this.articleDTOs = response;
         console.log(this.articleDTOs);
