@@ -23,20 +23,14 @@ export class ShopComponent implements OnInit {
   public currentPage: number = 1;
   public totalPages: number;
   public pages: Array<number>;
-  public currentArticle;
-  public keyword: string;
+ 
   public currentTime: number = 0;
-  currentRequest: string;
-  currentRequest2: string;
-  curentCategoryId: number;
 
-  currentCategorie;
+  currentCategoryId: number;
 
-  currentCategoryId: number = 1;
   previousCategoryId: number = 1;
 
-  categoryList :any;
-  productsList:any;
+  searchMode: boolean = false;
 
   constructor(private dataService: DataService,
               private router: Router,
@@ -49,8 +43,7 @@ export class ShopComponent implements OnInit {
   ngOnInit() {
   //  this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
   this.route.paramMap.subscribe(()=> {
-    this.getListArtilceDTOs();
-    console.log("Articles---", this.getListArtilceDTOs());
+    this.getListArticleDTOs();
   });
 
   
@@ -74,23 +67,37 @@ export class ShopComponent implements OnInit {
 
   }
 
-  getListArtilceDTOs() {
-    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
-    console.log("HasParam id: ", + hasCategoryId);
-    if (hasCategoryId) {
-      this.curentCategoryId = +this.route.snapshot.paramMap.get('id');
-    }else {
-      this.curentCategoryId = 1;
-      console.log("curentCategoryId id: ",  this.curentCategoryId);
+  getListArticleDTOs() {
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+
+    if (this.searchMode) {
+      this.getArticleListDTOsBySearchKeyword();
+    } else {
+      
+      this.handlerListArticleDTOs();
+
     }
 
-    if(this.previousCategoryId != this.curentCategoryId) {
+    
+
+  }
+
+  handlerListArticleDTOs() {
+    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
+
+    if (hasCategoryId) {
+      this.currentCategoryId = +this.route.snapshot.paramMap.get('id');
+    }else {
+      this.currentCategoryId = 1;
+    }
+
+    if(this.previousCategoryId != this.currentCategoryId) {
       this.currentPage = 1;
     }
-    this.previousCategoryId = this.curentCategoryId;
+    this.previousCategoryId = this.currentCategoryId;
 
     this.catalogueService.getListArticleDTOByScategoryByPageable(
-          this.curentCategoryId,
+          this.currentCategoryId,
           this.currentPage - 1,
           this.size).subscribe(this.processResult());
   }
@@ -117,6 +124,17 @@ export class ShopComponent implements OnInit {
       },err=> {
         console.log(err);
       });
+
+  }
+
+  getArticleListDTOsBySearchKeyword() {
+    const keyword: string = this.route.snapshot.paramMap.get('keyword');
+    this.catalogueService.getListArticleDTOByKeyword(keyword).subscribe(
+      data  => {
+        this.articleListDTOBs = data;
+      }
+
+    )
 
   }
 
@@ -157,14 +175,5 @@ export class ShopComponent implements OnInit {
     this.router.navigate(["cart"]);
   }
 
-
-  /*
-  recentClick(slug){
-    const recent = this.productService.recentClick(slug);
-    if(recent){
-      console.log('recent-', recent);
-    }
-  }
-*/
 
 }

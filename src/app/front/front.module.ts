@@ -49,6 +49,7 @@ import { BestSellerComponent } from './body/best-seller/best-seller.component';
 import { BestSellingComponent } from './body/best-selling/best-selling.component';
 import { BannerComponent } from './body/banner/banner.component';
 import { FeatureComponent } from './body/feature/feature.component';
+import { SearchInShopComponent } from './body/search-in-shop/search-in-shop.component';
 
 
 @NgModule({
@@ -98,6 +99,7 @@ import { FeatureComponent } from './body/feature/feature.component';
     BestSellingComponent,
     BannerComponent,
     FeatureComponent,
+    SearchInShopComponent,
   ],
   imports: [
     CommonModule,

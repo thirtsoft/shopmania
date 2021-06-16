@@ -19,6 +19,7 @@ import { DialogConfirmComponent } from './shared/dialog-confirm/dialog-confirm.c
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { DefautLayoutComponent } from './layouts/defaut-layout/defaut-layout.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
