@@ -28,6 +28,7 @@ export class ArticleDto {
   selected: boolean;
   description: string;
   photo: string;
+  quantite: number = 1;
 
   scategoryDto: ScategoryDto;
 

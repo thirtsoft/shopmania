@@ -93,5 +93,16 @@ export class ArticleService {
   }
 
 
+  incrementQuantityArticleDTO(articleDTO: ArticleDto) {
+    articleDTO.quantite++;
+
+  }
+
+  decrementQuantityArticleDTO(articleDTO: ArticleDto) {
+    articleDTO.quantite--;
+
+  }
+
+
 
 }

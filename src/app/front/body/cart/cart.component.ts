@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
+import { CatalogueService } from './../../../services/catalogue.service';
+import { ArticleService } from './../../../services/article.service';
+import { CartService } from './../../../services/cart.service';
+import { CartItem } from './../../../model/cartItem';
 
 @Component({
   selector: 'app-cart',
@@ -13,19 +17,69 @@ export class CartComponent implements OnInit {
   products;
   cart;
   cartItem=[]; // for car list show
+
+  cartItems: CartItem[] = [];
+  totalPrice: number = 0;
+  totalQuantity: number = 0;
+  shippingCost: number;
+
+  currentTime: number = 0;
+
   constructor(private dataService: DataService,
+              public catalogueService: CatalogueService,
+              private cartService: CartService,
+              private toastr: ToastrService,
+              private route: ActivatedRoute,
               private router: Router,
-              private activeRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
-    console.log('ngOnInit-this.cart---1---', this.cart);
-    if(this.cart) {
-      this.cartList(this.cart);
-
-    }
+    this.cartDetails();
   }
+
+  cartDetails() {
+    this.cartItems = this.cartService.cartItems;
+
+    this.cartService.totalPrice.subscribe(
+      data => this.totalPrice = data
+    )
+
+    this.cartService.totalQuantity.subscribe(
+      data => this.totalQuantity = data
+    );
+
+    this.shippingCost = this.cartService.shippingCost;
+
+    this.cartService.calculateTotalPrice();
+
+    
+  }
+
+   // increment quantity
+   inCrementQuantity(cartItem: CartItem) {
+    console.log('increment quantity', cartItem);
+    this.cartService.addTocart(cartItem);
+    this.toastr.success('au panier avec succès','Article Ajoutée', {
+      timeOut: 1500,
+      positionClass: 'toast-top-right', 
+    });
+
+  }
+
+  // decrement quantity
+  decrementQuantity(cartItem: CartItem) {
+    console.log('decrement', cartItem);
+    this.cartService.decrementQuantity(cartItem);
+  }
+
+  removeCart(cartItem: CartItem) {
+    this.cartService.remove(cartItem);
+  }
+
+  getTS() {
+    return this.currentTime;
+  }
+
 
   cartList(items) {
     this.cartItem = [];
@@ -112,7 +166,7 @@ export class CartComponent implements OnInit {
 
   }
 
-  removeCart(pId) {
+  removeCarts(pId) {
     //-- find on cartItem list
     this.cartItem.forEach((item, index) => {
       if(item.pId === pId) {

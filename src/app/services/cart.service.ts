@@ -11,6 +11,8 @@ export class CartService {
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
 
+  shippingCost: number = 2000 ;
+
   constructor() { }
 
   addTocart(theCartItem: CartItem) {
@@ -52,7 +54,29 @@ export class CartService {
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
 
+  }
 
+  decrementQuantity(cartItem: CartItem) {
+    cartItem.quantity--;
+
+    if (cartItem.quantity === 0) {
+      this.remove(cartItem);
+
+    } else {
+      this.calculateTotalPrice();
+    }
+
+  }
+
+  remove(cartItem: CartItem) {
+
+    const itemIndex = this.cartItems.findIndex((tempCartItem) => tempCartItem.id === cartItem.id);
+
+    if (itemIndex > -1) {
+      this.cartItems.splice(itemIndex, 1);
+      this.calculateTotalPrice();
+
+    }
   }
 
 

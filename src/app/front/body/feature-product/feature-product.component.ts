@@ -90,7 +90,10 @@ export class FeatureProductComponent implements OnInit {
     console.log(`total designation: ${articleDTO.designation}, total price: ${articleDTO.price}`);
     const cartItem = new CartItem(articleDTO);
     this.cartService.addTocart(cartItem);
-    this.toastr.success('Article Ajoutée au panier avec succès');
+    this.toastr.success('au panier avec succès','Article Ajoutée', {
+      timeOut: 1500,
+      positionClass: 'toast-top-right', 
+    });
 
   }
 

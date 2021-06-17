@@ -1,11 +1,14 @@
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from './../../../services/cart.service';
 import { CatalogueService } from './../../../services/catalogue.service';
 import { ArticleService } from './../../../services/article.service';
-import { ArticleDto } from './../../../model/article';
-import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/data.service';
 import  axios  from 'axios';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ArticleDto } from './../../../model/article';
+import { CartItem } from './../../../model/cartItem';
 
 
 @Component({
@@ -22,18 +25,19 @@ export class DetailProductComponent implements OnInit {
   pImageDefault='blank.jpg';
   pImages=['blank.jpg'];
   qtyDefault = 1;
-  qtyPlus;
 
-  articleDTO;
-  articleDTOs;
-  reference;
+  articleDTOs: ArticleDto = new ArticleDto();
 
   constructor(private dataService: DataService,
   //            private productService:ProductService,
-              private router: Router,
-              private actRoute: ActivatedRoute,
               public artService: ArticleService,
               public catalogueService: CatalogueService,
+              private cartService: CartService,
+              private toastr: ToastrService,
+              private router: Router,
+              private actRoute: ActivatedRoute,
+              
+
   ){}
 
   ngOnInit(): void {
@@ -70,6 +74,22 @@ export class DetailProductComponent implements OnInit {
         ,(error: HttpErrorResponse) => {
       alert(error.message);
     });
+
+  }
+
+  addTocart() {
+    console.log(`total designation: ${this.articleDTOs.designation}, total price: ${this.articleDTOs.price}`);
+    const cartItem = new CartItem(this.articleDTOs);
+    this.cartService.addTocart(cartItem);
+//    this.toastr.success('Article Ajoutée au panier avec succès');
+    this.toastr.success('au panier avec succès','Article Ajoutée', {
+      timeOut: 1500,
+      positionClass: 'toast-top-right', 
+    });
+
+ /*    this.toastrService.error('everything is broken', 'Major Error', {
+      timeOut: 3000,
+    }); */
 
   }
 
@@ -118,6 +138,7 @@ export class DetailProductComponent implements OnInit {
   }
 
   minus() {
+    this.qtyDefault = this.articleDTOs.quantite;
     if(this.qtyDefault > 1) {
       this.qtyDefault--;
       console.log('minus');
@@ -128,7 +149,6 @@ export class DetailProductComponent implements OnInit {
   plus() {
     this.qtyDefault++;
     console.log('plus');
-
   }
 
 

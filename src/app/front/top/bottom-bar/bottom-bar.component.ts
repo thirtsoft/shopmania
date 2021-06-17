@@ -22,12 +22,7 @@ export class BottomBarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //Set value as default for test
- //   this.dataService.updateCart("1");
-    this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
-
     this.updateCartStatus();
-
   }
 
   updateCartStatus() {
