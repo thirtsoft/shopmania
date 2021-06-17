@@ -26,7 +26,6 @@ export class BottomBarComponent implements OnInit {
   }
 
   updateCartStatus() {
-    //subscribe to the events
     this.cartService.totalPrice.subscribe(
       data => this.totalPrice = data
     )

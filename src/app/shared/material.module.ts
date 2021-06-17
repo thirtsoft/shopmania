@@ -44,6 +44,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+
+
 
 //import { FlexLayoutModule } from "@angular/flex-layout";
 
@@ -100,6 +103,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     OverlayModule,
     PortalModule,
     ScrollingModule,
+
+    MatCarouselModule,
 
   
   ]
