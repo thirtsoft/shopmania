@@ -16,13 +16,13 @@
                 <div class="user">
                     <a routerLink="/wishlist" class="btn wishlist">
                         <i class="fa fa-heart"></i>
-                        <span>(0)</span>
+                        <!-- <span>(0)</span> -->
+                        <span>({{totalPrice | currency: 'USD'}})</span>
                     </a>
 
                     <a routerLink="/cart" class="btn cart">
                         <i class="fa fa-shopping-cart"></i>
                         <span>({{totalQuantity}})</span>
-                        <!--  <span>({{cart.cart}})</span> -->
                     </a>
                 </div>
             </div>

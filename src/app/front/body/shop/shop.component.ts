@@ -72,6 +72,10 @@ export class ShopComponent implements OnInit {
 
   }
 
+  updateStatusCart() {
+    
+  }
+
   getListArticleDTOs() {
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
 

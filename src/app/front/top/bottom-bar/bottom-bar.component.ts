@@ -10,32 +10,30 @@ import { CartItem } from './../../../model/cartItem';
 })
 export class BottomBarComponent implements OnInit {
 
-  cart: any;
-
-  cartItems: CartItem[] = [];
-
   totalPrice: number = 0;
   totalQuantity: number = 0;
-
-  constructor(private dataService: DataService,
-              private cartService: CartService
-  ) { }
+  
+  constructor(public cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.updateCartStatus();
+
   }
 
   updateCartStatus() {
+    this.cartService.totalQuantity.subscribe(
+      data => {
+        this.totalQuantity = data
+      }
+    )
     this.cartService.totalPrice.subscribe(
-      data => this.totalPrice = data
+      data => {
+        this.totalPrice = data
+      }
     )
 
-    this.cartService.totalQuantity.subscribe(
-      data => this.totalQuantity = data
-    );
-
-    this.cartItems = this.cartService.cartItems;
-
   }
+
 
 }

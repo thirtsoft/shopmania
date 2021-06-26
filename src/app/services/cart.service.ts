@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Subject, Observable, BehaviorSubject} from 'rxjs';
 import { CartItem } from './../model/cartItem';
 
 @Injectable({
@@ -8,14 +8,20 @@ import { CartItem } from './../model/cartItem';
 export class CartService {
 
   cartItems: CartItem[] = [];
+ /*  totalPrice: Subject<number> = new Subject<number>(); */
+ /*
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
+  */
+  totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
+  totalPrice: Subject<number> = new BehaviorSubject<number>(0);
+
 
   shippingCost: number = 2000 ;
 
   constructor() { }
 
-  addTocart(theCartItem: CartItem) {
+  addTocart(theCartItem: CartItem){
     // check wether article/item is already in the cart
     let alreadyExistsInCart: boolean = false;
     let existingCartItem: CartItem = undefined;
@@ -38,7 +44,6 @@ export class CartService {
   }
 
   calculateTotalPrice() {
-
     let totalPriceValue: number = 0;
     let totalQuantityValue: number = 0;
 
@@ -50,15 +55,21 @@ export class CartService {
 
     console.log(`total price: ${totalPriceValue}, total quantity: ${totalQuantityValue}`);
 
-    // publish the events
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
 
   }
 
+  getTotalPrice(): Observable<any> {
+    return this.totalPrice.asObservable();
+  }
+
+  getTotalQuantity(): Observable<any> {
+    return this.totalQuantity.asObservable();
+  }
+
   decrementQuantity(cartItem: CartItem) {
     cartItem.quantity--;
-
     if (cartItem.quantity === 0) {
       this.remove(cartItem);
 
@@ -69,9 +80,7 @@ export class CartService {
   }
 
   remove(cartItem: CartItem) {
-
     const itemIndex = this.cartItems.findIndex((tempCartItem) => tempCartItem.id === cartItem.id);
-
     if (itemIndex > -1) {
       this.cartItems.splice(itemIndex, 1);
       this.calculateTotalPrice();

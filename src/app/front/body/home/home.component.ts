@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.getListArticleDTOs();
+  //  this.getListArticleDTOs();
   }
 
   public getListArticleDTOs(): void {
