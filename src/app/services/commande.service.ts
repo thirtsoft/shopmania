@@ -14,42 +14,22 @@ export class CommandeService {
   constructor(private http: HttpClient) {
   }
 
-  public getCommandes(): Observable<Commande[]> {
-    return this.http.get<Commande[]>(`${this.apiServerUrl}/commandes/all`);
-  }
-
-  public getCommandeById(commandeId: number): Observable<Commande> {
-    return this.http.get<Commande>(`${this.apiServerUrl}/commandes/${commandeId}`);
-  }
-
-  public addCommande(commande: Commande): Observable<Commande> {
-    return this.http.post<Commande>(`${this.apiServerUrl}/commandes/create`, commande);
-  }
-
-  public updateCommande(commande: Commande): Observable<Commande> {
-    return this.http.put<Commande>(`${this.apiServerUrl}/commandes/create`, commande);
-  }
-
-  public deleteCommande(commandeId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/commandes/delete/${commandeId}`);
-  }
-
   /***********************  CommandeDTO ***********/
 
   public getCommandeDtos(): Observable<CommandeDto[]> {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/all`);
   }
 
-  public getCommandeDtoById(commandeId: number): Observable<CommandeDto> {
-    return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/${commandeId}`);
+  public getCommandeDtoById(comId: number): Observable<CommandeDto> {
+    return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/${comId}`);
   }
 
   public addCommandeDto(commandeDTO: CommandeDto): Observable<CommandeDto> {
     return this.http.post<CommandeDto>(`${this.apiServerUrl}/commandes/create`, commandeDTO);
   }
 
-  public updateCommandeDto(commandeDTO: CommandeDto): Observable<CommandeDto> {
-    return this.http.put<CommandeDto>(`${this.apiServerUrl}/commandes/create`, commandeDTO);
+  public updateCommandeDto(comId: number, commandeDTO: CommandeDto): Observable<CommandeDto> {
+    return this.http.put<CommandeDto>(`${this.apiServerUrl}/articles/update/${comId}`, commandeDTO);
   }
 
   public deleteCommandeDto(commandeId: number): Observable<void> {

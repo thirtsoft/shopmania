@@ -35,12 +35,22 @@ export class CatalogueService {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByKeyword?keyword=`+keyword);
   }
 
+  public getListArticleDTOBySamePrice(price: number): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/articlesByScategories/${price}`);
+  }
+
 
   public getListArticleDTOByScategoryByPageable(scatId: number, page: number, size: number): Observable<ArticleDto[]> {
     const searchUrl = (this.apiServerUrl+"/articles/searchArticleByScategoryByPageables?id="+scatId+"&page="+page+"&size="+size);
     console.log("Search Url---", searchUrl);
     return this.http.get<ArticleDto[]>(searchUrl);
  //   return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByScategoryByPageables/${scatId}?&page=`+page+"&size="+size);
+  }
+
+  public getListArticleDTOBySamePriceByPageable(price: number, page: number, size: number): Observable<ArticleDto[]> {
+    const searchbyPriceUrl = (this.apiServerUrl+"/articles/searchArticleBySamePriceByPageables?price="+price+"&page="+page+"&size="+size);
+    console.log("Search Price Url---", searchbyPriceUrl);
+    return this.http.get<ArticleDto[]>(searchbyPriceUrl);
   }
 
   public getPhotoArticle() {

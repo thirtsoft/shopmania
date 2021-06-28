@@ -35,6 +35,8 @@ export class ShopComponent implements OnInit {
 
   searchMode: boolean = false;
 
+  priceSearch: number;
+
   constructor(private dataService: DataService,
               public catalogueService: CatalogueService,
               private artService: ArticleService,
@@ -73,18 +75,18 @@ export class ShopComponent implements OnInit {
   }
 
   updateStatusCart() {
-    
+
   }
 
   getListArticleDTOs() {
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
-
+    this.priceSearch = +this.route.snapshot.paramMap.get('price');
     if (this.searchMode) {
       this.getArticleListDTOsBySearchKeyword();
-    } else {
-
+    }
+     else  {
       this.handlerListArticleDTOs();
-
+    //  this.getArticleListDTOsBySamePriceByPageable();
     }
 
   }
@@ -107,6 +109,18 @@ export class ShopComponent implements OnInit {
           this.currentCategoryId,
           this.currentPage - 1,
           this.size).subscribe(this.processResult());
+  }
+
+  getArticleListDTOsBySamePriceByPageable() {
+    const hasPriceId: boolean = this.route.snapshot.paramMap.has('price');
+    if (hasPriceId) {
+      this.priceSearch = +this.route.snapshot.paramMap.get('price');
+    }
+    this.catalogueService.getListArticleDTOBySamePriceByPageable(
+        this.priceSearch,
+        this.currentPage - 1,
+          this.size).subscribe(this.processResult());
+
   }
 
   processResult() {
@@ -143,13 +157,27 @@ export class ShopComponent implements OnInit {
 
   }
 
+  getArticleListDTOsBySamePrice() {
+    const hasPriceId: boolean = this.route.snapshot.paramMap.has('price');
+    if (hasPriceId) {
+      this.priceSearch = +this.route.snapshot.paramMap.get('price');
+    }
+    this.catalogueService.getListArticleDTOBySamePrice(this.priceSearch).subscribe(
+      data  => {
+        this.articleListDTOBs = data;
+      }
+
+    )
+
+  }
+
   addTocart(articleDTO: ArticleDto) {
     console.log(`total designation: ${articleDTO.designation}, total price: ${articleDTO.price}`);
     const cartItem = new CartItem(articleDTO);
     this.cartService.addTocart(cartItem);
     this.toastr.success('au panier avec succès','Article Ajoutée', {
       timeOut: 1500,
-      positionClass: 'toast-top-right', 
+      positionClass: 'toast-top-right',
     });
 
   }
