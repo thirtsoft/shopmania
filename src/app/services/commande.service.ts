@@ -32,6 +32,14 @@ export class CommandeService {
     return this.http.put<CommandeDto>(`${this.apiServerUrl}/articles/update/${comId}`, commandeDTO);
   }
 
+
+  public getListCommandeDTOByCustomerPageable(clientId: number, page: number, size: number): Observable<CommandeDto[]> {
+    const searchbyPriceUrl = (this.apiServerUrl+"/commandes/searchCommandeByCustomerByPageables?clientId="+clientId+"&page="+page+"&size="+size);
+    console.log("Search Commande by Customer Url---", searchbyPriceUrl);
+    return this.http.get<CommandeDto[]>(searchbyPriceUrl);
+  }
+
+
   public deleteCommandeDto(commandeId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/commandes/delete/${commandeId}`);
   }
