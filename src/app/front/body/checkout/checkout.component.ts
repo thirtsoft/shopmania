@@ -1,8 +1,11 @@
+import { AddresslivraisonService } from './../../../services/addresslivraison.service';
+import { ClientService } from './../../../services/client.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CatalogueService } from './../../../services/catalogue.service';
+import { CommandeService } from './../../../services/commande.service';
 import { CartItem } from './../../../model/cartItem';
 import { CartService } from './../../../services/cart.service';
 import { StateService } from './../../../services/state.service';
@@ -29,6 +32,9 @@ export class CheckoutComponent implements OnInit {
 
   constructor(public catalogueService: CatalogueService,
               private cartService: CartService,
+              private comService: CommandeService,
+              private clientService: ClientService,
+              private addService: AddresslivraisonService,
               private toastr: ToastrService,
               private countService: CountryService,
               private statService: StateService,
@@ -86,6 +92,14 @@ export class CheckoutComponent implements OnInit {
     );
 
   }
+
+  onSaveClient(event) {
+
+  }
+
+  onSaveAddressLivraison(event) {}
+
+  onOrder(){}
 
   getTS() {
     return this.currentTime;

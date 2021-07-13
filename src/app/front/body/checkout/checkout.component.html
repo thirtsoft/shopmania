@@ -14,6 +14,8 @@
                     <div class="billing-address">
                         <h2>Billing Address</h2>
                         <div class="row">
+
+
                             <div class="col-md-6">
                                 <label>First Name</label>
                                 <input class="form-control" type="text" placeholder="First Name">
@@ -30,6 +32,7 @@
                                 <label>Mobile No</label>
                                 <input class="form-control" type="text" placeholder="Mobile No">
                             </div>
+
                             <div class="col-md-12">
                                 <label>Address</label>
                                 <input class="form-control" type="text" placeholder="Address">
@@ -73,7 +76,9 @@
                                     <label class="custom-control-label" for="shipto">Ship to different address</label>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
 
                     <div class="shipping-address">
@@ -125,7 +130,8 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="checkout-inner" *ngIf="cartItems.length > 0 ">
+                <!--  <div class="checkout-inner" *ngIf="cartItems.length > 0 "> -->
+                <div class="checkout-inner">
                     <div class="checkout-summary">
                         <h1>Cart Total</h1>
                         <div *ngFor="let item of cartItems; let i=index;">
@@ -149,7 +155,7 @@
                             <div class="payment-method">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="payment-1" name="payment">
-                                    <label class="custom-control-label" for="payment-1">Paypal</label>
+                                    <label class="custom-control-label" for="payment-1">Orange Money</label>
                                 </div>
                                 <div class="payment-content" id="payment-1-show">
                                     <p>
@@ -160,7 +166,7 @@
                             <div class="payment-method">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="payment-2" name="payment">
-                                    <label class="custom-control-label" for="payment-2">Payoneer</label>
+                                    <label class="custom-control-label" for="payment-2">Wave</label>
                                 </div>
                                 <div class="payment-content" id="payment-2-show">
                                     <p>
@@ -171,7 +177,7 @@
                             <div class="payment-method">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="payment-3" name="payment">
-                                    <label class="custom-control-label" for="payment-3">Check Payment</label>
+                                    <label class="custom-control-label" for="payment-3">Tigo Cash</label>
                                 </div>
                                 <div class="payment-content" id="payment-3-show">
                                     <p>
@@ -182,7 +188,7 @@
                             <div class="payment-method">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="payment-4" name="payment">
-                                    <label class="custom-control-label" for="payment-4">Direct Bank Transfer</label>
+                                    <label class="custom-control-label" for="payment-4">A La Livraison </label>
                                 </div>
                                 <div class="payment-content" id="payment-4-show">
                                     <p>
@@ -190,7 +196,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="payment-method">
+                            <!--  <div class="payment-method">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="payment-5" name="payment">
                                     <label class="custom-control-label" for="payment-5">Cash on Delivery</label>
@@ -200,10 +206,10 @@
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
                                     </p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="checkout-btn">
-                            <button>Place Order</button>
+                            <button (click)="onOrder()">Place Order</button>
                         </div>
                     </div>
                 </div>
