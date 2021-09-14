@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
 import { FrontRoutingModule } from './front-routing.module';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { HomeComponent } from './body/home/home.component';
 
 import { WishListComponent } from './body/wish-list/wish-list.component';
@@ -109,6 +111,7 @@ import { SearchbyPriceComponent } from './body/searchby-price/searchby-price.com
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgbModule
   ]
 })
 export class FrontModule { }

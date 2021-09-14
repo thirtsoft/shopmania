@@ -135,11 +135,16 @@
                                 <div class="reviews-submit">
                                     <h4>Give your Review:</h4>
                                     <div class="ratting">
+                                       <!--  <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i> -->
+                                        <ngb-rating
+                                          [max]="5"
+                                          [readonly]="false"
+                                          [id]="'rating3'" >
+                                        </ngb-rating>
                                     </div>
                                     <div class="row form">
                                         <div class="col-sm-6">

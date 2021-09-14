@@ -12,16 +12,22 @@
                         <!--  <a routerLink="/product-detail/{{product.pSlug}}" (click)="recentClick(product.pSlug)">{{product.pName}}</a> -->
                         <a [routerLink]="['/product-detail', artDTO.reference]">{{artDTO.designation}}</a>
                         <div class="ratting">
+                          <!--   <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i> -->
+
+                            <ngb-rating
+                              [(rate)]="starRating"
+                              [max]="5"
+                              [readonly]="true" [id]="'rating3'" >
+                            </ngb-rating>
+
                         </div>
                     </div>
                     <div class="product-image">
                         <a [routerLink]="['/product-detail', artDTO.reference]">
-                            <!--  <img src="{{imgPath}}{{product.pImageDefault}}" alt="Product Image"> -->
                             <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="Product Image">
                             <!-- <img src="assets/customer/img/{{product.pImageDefault}}" alt="Product Image"> -->
                         </a>

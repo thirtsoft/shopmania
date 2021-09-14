@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
+
 /* import { MatCarouselModule } from '@ngmodule/material-carousel'; */
 
 
@@ -43,6 +45,7 @@ import { DefautLayoutComponent } from './layouts/defaut-layout/defaut-layout.com
     AdminRoutingModule,
     MaterialModule,
     ToastrModule.forRoot(),
+
 
     /* MatCarouselModule.forRoot(), */
   ],

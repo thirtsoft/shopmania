@@ -27,6 +27,8 @@ export class FeatureProductComponent implements OnInit {
 
   searchMode: boolean = false;
 
+  starRating = 0;
+
   constructor(private dataService: DataService,
               private router: Router,
               public catalogueService: CatalogueService,
@@ -41,12 +43,7 @@ export class FeatureProductComponent implements OnInit {
       this.getListArticleDTOs();
       }
     );
-  //  this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
 
-  // get from data using axios
-  //  this.getProducts();
-
- //   this.getArticleListDTOsBySelectedIsTrue();
 
 
   }
@@ -92,7 +89,7 @@ export class FeatureProductComponent implements OnInit {
     this.cartService.addTocart(cartItem);
     this.toastr.success('au panier avec succès','Article Ajoutée', {
       timeOut: 1500,
-      positionClass: 'toast-top-right', 
+      positionClass: 'toast-top-right',
     });
 
   }
