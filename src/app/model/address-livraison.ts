@@ -3,11 +3,17 @@ import { Commande, CommandeDto } from './commande';
 export class AddressLivraison {
   id: number;
   reference: string;
-  quartier: string;
+  /* quartier: string;
   phone: string;
   city: string;
   rue: string;
+  country: string; */
+
+  street: string;
   country: string;
+  city: string;
+  state: string;
+  zipCode: string;
 
   commande: Commande;
 
@@ -15,12 +21,17 @@ export class AddressLivraison {
 
 export class AddressLivraisonDto {
   id: number;
-  reference: string;
+ /*  reference: string;
   quartier: string;
   phone: string;
   city: string;
   rue: string;
+  country: string; */
+  street: string;
   country: string;
+  city: string;
+  state: string;
+  zipCode: string;
 
   commandeDto: CommandeDto;
 

@@ -8,213 +8,332 @@
 <!-- Checkout Start -->
 <div class="checkout">
     <div class="container-fluid">
+      <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
         <div class="row">
+
             <div class="col-lg-8">
+              <!-- Customer info -->
                 <div class="checkout-inner">
                     <div class="billing-address">
-                        <h2>Billing Address</h2>
-                        <div class="row">
-
+                        <h2>Customer Information</h2>
+                        <div class="row" formGroupName="customer">
 
                             <div class="col-md-6">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="First Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Last Name"</label>
-                                <input class="form-control" type="text" placeholder="Last Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="E-mail">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Mobile No</label>
-                                <input class="form-control" type="text" placeholder="Mobile No">
+                                <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" required>
+
+                              <!--   <div *ngIf="f['firstName'].invalid && (f['firstName'].dirty || f['firstName'].touched)" class="alert alert-danger mt-1">
+                                  <div *ngIf="f['firstName'].errors.required">
+                                      First Name is required
+                                  </div>
+                                  <div *ngIf="f['firstName'].errors.minlength">
+                                      First Name must be at least 2 characters long.
+                                  </div>
+                                </div> -->
                             </div>
 
-                            <div class="col-md-12">
-                                <label>Address</label>
-                                <input class="form-control" type="text" placeholder="Address">
-                            </div>
                             <div class="col-md-6">
-                                <label>Country</label>
-                                <select class="custom-select">
-                                  <option [value]="0" selected>United State</option>
-                                  <option *ngFor="let count of listCountryDto">{{count.name}}</option>
-                                <!--             <option>Albania</option>
-                                            <option>Algeria</option> -->
-                                </select>
+                                <label>Last Name"</label>
+                                <input class="form-control" formControlName="lastName" type="text" placeholder="Last Name">
+
                             </div>
+
                             <div class="col-md-6">
-                                <label>City</label>
-                                <input class="form-control" type="text" placeholder="City">
+                                <label>E-mail</label>
+                                <input class="form-control" formControlName="email" type="text" placeholder="E-mail">
+
                             </div>
+
                             <div class="col-md-6">
-                                <label>State</label>
-                                <!--  <input class="form-control" type="text" placeholder="State"> -->
-                                <select class="custom-select">
-                                  <option [value]="0" selected>Bignona</option>
-                                  <option *ngFor="let state of listStateDto">{{state.name}}</option>
-                                <!--             <option>Albania</option>
-                                            <option>Algeria</option> -->
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label>ZIP Code</label>
-                                <input class="form-control" type="text" placeholder="ZIP Code">
-                            </div>
-                            <div class="col-md-12">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="newaccount">
-                                    <label class="custom-control-label" for="newaccount">Create an account</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="shipto">
-                                    <label class="custom-control-label" for="shipto">Ship to different address</label>
-                                </div>
+                                <label>Mobile No</label>
+                                <input class="form-control" formControlName="mobile" type="text" placeholder="Mobile No">
                             </div>
 
                         </div>
-
                     </div>
 
-                    <div class="shipping-address">
-                        <h2>Shipping Address</h2>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="First Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Last Name"</label>
-                                <input class="form-control" type="text" placeholder="Last Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="E-mail">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Mobile No</label>
-                                <input class="form-control" type="text" placeholder="Mobile No">
-                            </div>
-                            <div class="col-md-12">
-                                <label>Address</label>
-                                <input class="form-control" type="text" placeholder="Address">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Country</label>
-                                <select class="custom-select">
-                                            <option selected>United States</option>
-                                            <option>Afghanistan</option>
-                                            <option>Albania</option>
-                                            <option>Algeria</option>
-                                        </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label>City</label>
-                                <input class="form-control" type="text" placeholder="City">
-                            </div>
-                            <div class="col-md-6">
-                                <label>State</label>
-                                <input class="form-control" type="text" placeholder="State">
-                            </div>
-                            <div class="col-md-6">
-                                <label>ZIP Code</label>
-                                <input class="form-control" type="text" placeholder="ZIP Code">
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <!--  <div class="checkout-inner" *ngIf="cartItems.length > 0 "> -->
+
+                <!-- End Customer info -->
+
+                <!-- Shipping info -->
                 <div class="checkout-inner">
-                    <div class="checkout-summary">
-                        <h1>Cart Total</h1>
-                        <div *ngFor="let item of cartItems; let i=index;">
-                            <p> <img [src]="this.catalogueService.apiServerUrl+'/articles/photoArticle/'+item.id+'?ts='+getTS()" style="width: 40px; height: 40px;" alt="Product Image"> {{item.name}}
-                                <span style="text-align: right;">${{item.unitPrice}}</span>
+                  <div class="billing-address">
+                      <h2>Shipping Address</h2>
+                      <div class="row" formGroupName="shippingAddress">
 
-                            </p>
-                        </div>
-                        <!--    <p class="sub-total">Sub Total<span>$99</span></p>
-                        <p class="ship-cost">Shipping Cost<span>$1</span></p>
-                        <h2>Grand Total<span>$100</span></h2> -->
+                        <div class="col-md-12">
+                          <label>Street</label>
+                          <input class="form-control" formControlName="street" type="text" placeholder="Street">
 
-                        <p class="sub-total">Sub Total<span>${{totalPrice}}</span></p>
-                        <p class="ship-cost">Shipping Cost<span>${{shippingCost}}</span></p>
-                        <h2>Grand Total<span>${{totalPrice + shippingCost}}</span></h2>
-                    </div>
+                        </div>
 
-                    <div class="checkout-payment">
-                        <div class="payment-methods">
-                            <h1>Payment Methods</h1>
-                            <div class="payment-method">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="payment-1" name="payment">
-                                    <label class="custom-control-label" for="payment-1">Orange Money</label>
-                                </div>
-                                <div class="payment-content" id="payment-1-show">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="payment-method">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="payment-2" name="payment">
-                                    <label class="custom-control-label" for="payment-2">Wave</label>
-                                </div>
-                                <div class="payment-content" id="payment-2-show">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="payment-method">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="payment-3" name="payment">
-                                    <label class="custom-control-label" for="payment-3">Tigo Cash</label>
-                                </div>
-                                <div class="payment-content" id="payment-3-show">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="payment-method">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="payment-4" name="payment">
-                                    <label class="custom-control-label" for="payment-4">A La Livraison </label>
-                                </div>
-                                <div class="payment-content" id="payment-4-show">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                    </p>
-                                </div>
-                            </div>
-                            <!--  <div class="payment-method">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="payment-5" name="payment">
-                                    <label class="custom-control-label" for="payment-5">Cash on Delivery</label>
-                                </div>
-                                <div class="payment-content" id="payment-5-show">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
-                                    </p>
-                                </div>
-                            </div> -->
+                        <div class="col-md-12">
+                          <label>City</label>
+                          <input class="form-control" formControlName="city"  type="text" placeholder="City">
                         </div>
-                        <div class="checkout-btn">
-                            <button (click)="onOrder()">Place Order</button>
+
+                        <div class="col-md-12">
+                          <label>Country</label>
+
+                          <select formControlName="country"  (change)="getStates('shippingAddress')" class="custom-select">
+
+                            <option *ngFor="let country of listCountryDto" [ngValue]="country">
+                                {{ country.name }}
+                            </option>
+                            <!--   <option [value]="0" selected>United State</option>
+                              <option *ngFor="let tempCountry of listCountryDto" [ngValue]="tempCountry">
+                                  {{ tempCountry.name }}
+                              </option> -->
+                          </select>
+
                         </div>
-                    </div>
+
+
+                        <div class="col-md-12">
+                          <label>State</label>
+                          <select formControlName="state" id="" class="custom-select">
+                            <option *ngFor="let tempState of listStateDto" [ngValue]="tempState">
+                                {{ tempState.name }}
+                            </option>
+                          </select>
+
+                        </div>
+
+                        <div class="col-md-12">
+                          <label>ZIP Code</label>
+                          <input class="form-control" formControlName="zipcode" type="text" placeholder="ZIP Code">
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="newaccount">
+                            <label class="custom-control-label" for="newaccount">Create an account</label>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)" class="custom-control-input" id="shipto">
+                            <label class="custom-control-label" for="shipto">Ship to different address</label>
+                          </div>
+                        </div>
+
+                      </div>
+                  </div>
+
                 </div>
+
+
+                 <!-- Shipping info -->
+                 <div class="billing-address">
+                      <h2>Billing Address</h2>
+                      <div class="row" formGroupName="billingAddress">
+
+                        <div class="col-md-12">
+                          <label>Street</label>
+                          <input class="form-control" formControlName="street" type="text" placeholder="Street">
+                        </div>
+
+                        <div class="col-md-12">
+                          <label>City</label>
+                          <input class="form-control" formControlName="city"  type="text" placeholder="City">
+                        </div>
+
+                        <div class="col-md-12">
+                          <label>Country</label>
+
+                          <select formControlName="country"  (change)="getStates('shippingAddress')" class="custom-select">
+
+                            <option *ngFor="let country of listCountryDto" [ngValue]="country">
+                                {{ country.name }}
+                            </option>
+                            <!--   <option [value]="0" selected>United State</option>
+                              <option *ngFor="let tempCountry of listCountryDto" [ngValue]="tempCountry">
+                                  {{ tempCountry.name }}
+                              </option> -->
+                          </select>
+
+                        </div>
+
+
+                        <div class="col-md-12">
+                          <label>State</label>
+                          <select formControlName="state" id="" class="custom-select">
+                            <option *ngFor="let tempState of listStateDto" [ngValue]="tempState">
+                                {{ tempState.name }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-12">
+                          <label>ZIP Code</label>
+                          <input class="form-control" formControlName="zipcode" type="text" placeholder="ZIP Code">
+                        </div>
+
+                       <!--  <div class="col-md-12">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="newaccount">
+                            <label class="custom-control-label" for="newaccount">Create an account</label>
+                          </div>
+                        </div> -->
+
+                       <!--  <div class="col-md-12">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="shipto">
+                            <label class="custom-control-label" for="shipto">Ship to different address</label>
+                          </div>
+                        </div> -->
+
+                      </div>
+
+
+                  </div>
+
             </div>
+
+            <div class="col-lg-4">
+              <!--  <div class="checkout-inner" *ngIf="cartItems.length > 0 "> -->
+              <div class="checkout-inner">
+                  <div class="checkout-summary">
+                      <h1>Cart Total</h1>
+                      <div *ngFor="let item of cartItems; let i=index;">
+                          <p> <img [src]="this.catalogueService.apiServerUrl+'/articles/photoArticle/'+item.id+'?ts='+getTS()" style="width: 40px; height: 40px;" alt="Product Image"> {{item.name}}
+                              <span style="text-align: right;">${{item.unitPrice}}</span>
+
+                          </p>
+                      </div>
+                      <!--    <p class="sub-total">Sub Total<span>$99</span></p>
+                      <p class="ship-cost">Shipping Cost<span>$1</span></p>
+                      <h2>Grand Total<span>$100</span></h2> -->
+
+                      <p class="sub-total">Sub Total<span>${{totalPrice}}</span></p>
+                      <p class="ship-cost">Shipping Cost<span>${{shippingCost}}</span></p>
+                      <h2>Grand Total<span>${{totalPrice + shippingCost}}</span></h2>
+                  </div>
+
+                  <div class="checkout-payment">
+                      <div class="payment-methods">
+                          <h1>Payment Methods</h1>
+                          <div class="payment-method">
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="payment-1" name="payment">
+                                  <label class="custom-control-label" for="payment-1">Orange Money</label>
+                              </div>
+                              <div class="payment-content" id="payment-1-show">
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="payment-method">
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="payment-2" name="payment">
+                                  <label class="custom-control-label" for="payment-2">Wave</label>
+                              </div>
+                              <div class="payment-content" id="payment-2-show">
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="payment-method">
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="payment-3" name="payment">
+                                  <label class="custom-control-label" for="payment-3">Tigo Cash</label>
+                              </div>
+                              <div class="payment-content" id="payment-3-show">
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="payment-method">
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="payment-4" name="payment">
+                                  <label class="custom-control-label" for="payment-4">A La Livraison </label>
+                              </div>
+                              <div class="payment-content" id="payment-4-show">
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                  </p>
+                              </div>
+                          </div>
+                          <!--  <div class="payment-method">
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" class="custom-control-input" id="payment-5" name="payment">
+                                  <label class="custom-control-label" for="payment-5">Cash on Delivery</label>
+                              </div>
+                              <div class="payment-content" id="payment-5-show">
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt orci ac eros volutpat maximus lacinia quis diam.
+                                  </p>
+                              </div>
+                          </div> -->
+                      </div>
+                      <div class="checkout-btn">
+                          <button type="submit" >Place Order</button>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+         <!--    <div class="col-lg-8">
+              <div class="checkout-inner">
+                  <div class="billing-address">
+                      <h2>Billing Address</h2>
+                      <div class="row" formGroupName="billingAddress">
+
+                        <div class="col-md-12">
+                          <label>Street</label>
+                          <input class="form-control" formControlName="street" type="text" placeholder="Street">
+                        </div>
+
+                        <div class="col-md-12">
+                          <label>City</label>
+                          <input class="form-control" formControlName="city"  type="text" placeholder="City">
+                        </div>
+
+                        <div class="col-md-12">
+                          <label>Country</label>
+
+                          <select formControlName="country"  (change)="getStates('shippingAddress')" class="custom-select">
+
+                            <option *ngFor="let country of listCountryDto" [ngValue]="country">
+                                {{ country.name }}
+                            </option>
+
+                          </select>
+
+                        </div>
+
+
+                        <div class="col-md-12">
+                          <label>State</label>
+                          <select formControlName="state" id="" class="custom-select">
+                            <option *ngFor="let tempState of listStateDto" [ngValue]="tempState">
+                                {{ tempState.name }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-12">
+                          <label>ZIP Code</label>
+                          <input class="form-control" formControlName="zipcode" type="text" placeholder="ZIP Code">
+                        </div>
+
+                      </div>
+
+
+                  </div>
+              </div>
+
+            </div> -->
+
         </div>
+
+      </form>
+
     </div>
+
 </div>
 <!-- Checkout End -->
