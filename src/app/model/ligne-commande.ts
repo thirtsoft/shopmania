@@ -9,16 +9,18 @@ export class LigneCommande {
   price: number;
   quantity: number;
   productId: number;
+  productName: string;
 
   commande: Commande;
 
-  article: Article;
+  article: ArticleDto;
 
   constructor(cartItem: CartItem){
     this.imageUrl = cartItem.image;
     this.price = cartItem.unitPrice;
     this.quantity = cartItem.quantity;
     this.productId = cartItem.id;
+    this.productName = cartItem.name;
 }
 
 }

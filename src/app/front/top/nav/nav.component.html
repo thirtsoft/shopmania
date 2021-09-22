@@ -8,12 +8,14 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a routerLink="/home" routerLinkActive="active" class="nav-item nav-link">Home</a>
-                    <a routerLink="/products" class="nav-item nav-link ">Products</a>
-                    <a routerLink="/product-detail" class="nav-item nav-link">Product Detail</a>
-                    <a routerLink="/cart" routerLinkActive="active" class="nav-item nav-link">Cart</a>
-                    <a routerLink="/checkout" routerLinkActive="active" class="nav-item nav-link ">Checkout</a>
+                    <a routerLink="/home" routerLinkActive="active" class="nav-item nav-link">Accueil</a>
+                    <a routerLink="/about" class="nav-item nav-link ">A Propos</a>
+                    <a routerLink="/products" class="nav-item nav-link ">Nos Produits</a>
+                 <!--    <a routerLink="/product-detail" class="nav-item nav-link">Product Detail</a> -->
+                    <a routerLink="/cart" routerLinkActive="active" class="nav-item nav-link">Panier</a>
+                   <!--  <a routerLink="/checkout" routerLinkActive="active" class="nav-item nav-link ">Checkout</a> -->
                     <a routerLink="/my-account" routerLinkActive="active" class="nav-item nav-link">My Account</a>
+                    <a routerLink="/contactus" routerLinkActive="active" class="nav-item nav-link">Nous Contactez</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                         <div class="dropdown-menu">
@@ -27,12 +29,12 @@
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> User Account</a>
                         <div class="dropdown-menu">
-                            <a routerLink="/login" class="dropdown-item cursor-pointer">Login</a>
-                            <a routerLink="/register" class="dropdown-item cursor-pointer">Register</a>
-                            <a routerLink="/my-account" class="dropdown-item cursor-pointer">My Account</a>
-                            <a (click)="logout()" class="dropdown-item cursor-pointer">LogOut</a>
+                            <a routerLink="/login" class="dropdown-item cursor-pointer">Se Connecter</a>
+                            <a routerLink="/register" class="dropdown-item cursor-pointer">Créer Compte</a>
+                            <a routerLink="/my-account" class="dropdown-item cursor-pointer">Mes Commandes</a>
+                            <a (click)="logout()" class="dropdown-item cursor-pointer">Deconnecter</a>
                         </div>
                     </div>
                 </div>
