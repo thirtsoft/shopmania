@@ -36,6 +36,16 @@ export class StateService {
     return this.http.put<StateDto>(`${this.apiServerUrl}/states/update/${statId}`, stateDto);
   }
 
+  public getListStateByCountryCode(code: string): Observable<StateDto[]> {
+/*     return this.http.post<StateDto>(`${this.apiServerUrl}/states/searchStateByCountryCode`, code); */
+    return this.http.get<StateDto[]>(`${this.apiServerUrl}/states/searchStateByCountryCode?code=`+code);
+  }
+
+  getStates(theCountryCode: string): Observable<any> {
+    const searchStateUrl = `${this.apiServerUrl}/states/searchStateByCountryCode?code=${theCountryCode}`;
+    return this.http.get(searchStateUrl);
+  }
+
   public deleteStateDto(statId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/states/delete/${statId}`);
   }

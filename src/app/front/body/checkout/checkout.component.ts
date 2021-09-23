@@ -218,8 +218,10 @@ export class CheckoutComponent implements OnInit {
     if (event.target.checked) {
       this.checkoutFormGroup.controls.billingAddress
         .setValue(this.checkoutFormGroup.controls.shippingAddress.value)
+        this.billingAddressStates = this.shippingAddressStates;
     }else {
-      this.checkoutFormGroup.controls.billingAddress.reset();
+        this.checkoutFormGroup.controls.billingAddress.reset();
+        this.billingAddressStates = [];
     }
   }
 
@@ -232,7 +234,7 @@ export class CheckoutComponent implements OnInit {
     console.log(`{formGroupName} country code: ${countryCode}`);
     console.log(`{formGroupName} country name: ${countryName}`);
 
-  /*  this.addService.getAddressLivraisonDtos(countryCode).subscribe(
+    this.statService.getStates(countryCode).subscribe(
       data => {
 
         if (formGroupName === 'shippingAddress') {
@@ -246,7 +248,7 @@ export class CheckoutComponent implements OnInit {
         formGroup.get('state').setValue(data[0]);
       }
     );
-    */
+
   }
 
   resetCart() {

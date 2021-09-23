@@ -93,7 +93,7 @@
                         <div class="col-md-12">
                           <label>Région</label>
                           <select formControlName="state" id="" class="custom-select">
-                            <option *ngFor="let tempState of listStateDto" [ngValue]="tempState">
+                            <option *ngFor="let tempState of shippingAddressStates" [ngValue]="tempState">
                                 {{ tempState.name }}
                             </option>
                           </select>
@@ -142,7 +142,7 @@
                         <div class="col-md-12">
                           <label>Pays</label>
 
-                          <select formControlName="country"  (change)="getStates('shippingAddress')" class="custom-select">
+                          <select formControlName="country"  (change)="getStates('billingAddress')" class="custom-select">
 
                             <option *ngFor="let country of listCountryDto" [ngValue]="country">
                                 {{ country.name }}
@@ -159,7 +159,7 @@
                         <div class="col-md-12">
                           <label>Région</label>
                           <select formControlName="state" id="" class="custom-select">
-                            <option *ngFor="let tempState of listStateDto" [ngValue]="tempState">
+                            <option *ngFor="let tempState of billingAddressStates" [ngValue]="tempState">
                                 {{ tempState.name }}
                             </option>
                           </select>

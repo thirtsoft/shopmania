@@ -29,11 +29,12 @@
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> User Account</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Se Connecter</a>
                         <div class="dropdown-menu">
-                            <a routerLink="/login" class="dropdown-item cursor-pointer">Se Connecter</a>
-                            <a routerLink="/register" class="dropdown-item cursor-pointer">Créer Compte</a>
-                            <a routerLink="/my-account" class="dropdown-item cursor-pointer">Mes Commandes</a>
+                            <a type="button" routerLink="/login" class="dropdown-item cursor-pointer">Se Connecter</a>
+                            <a routerLink="/register" class="dropdown-item cursor-pointer">
+                              <i class="fa fa-user"></i>Votre Compte</a>
+                            <a routerLink="/my-account" class="dropdown-item cursor-pointer">Vos Commandes</a>
                             <a (click)="logout()" class="dropdown-item cursor-pointer">Deconnecter</a>
                         </div>
                     </div>
