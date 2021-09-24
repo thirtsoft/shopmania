@@ -20,49 +20,38 @@
                     <div class="col-md-12">
                         <div class="product-view-top">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <!-- Start search in shop -->
                                     <app-search-in-shop></app-search-in-shop>
                                     <!-- End search in shop  -->
                                 </div>
-                                <!--  <div class="col-md-4">
-                                    <div class="product-search">
-                                        <input type="email" value="Search">
-                                        <button><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div> -->
-                                <div class="col-md-4">
+
+                                <div class="col-md-6">
                                     <div class="product-short">
-                                        <div class="dropdown">
+                                        <select id="sort-by" (change)="sort($event)" class="form-control">
+                                          <option value="" selected disabled hidden class="form-control">Filtrer Par</option>
+                                          <option value="Name" class="form-control">Designation</option>
+                                          <option value="Low" class="form-control">Produits les moins chers</option>
+                                          <option value="High" class="form-control">Produits les plus chers</option>
+                                        </select>
+                                       <!--  <div class="dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">Product short by</div>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Newest</a>
+                                            <div class="dropdown-menu dropdown-menu-right" (change)="sort($event)" id="sort-by">
+                                                 <a href="#" class="dropdown-item">Newest</a>
                                                 <a href="#" class="dropdown-item">Popular</a>
                                                 <a href="#" class="dropdown-item">Most sale</a>
+
+                                                <a value="Name" class="dropdown-item">Name</a>
+                                                <a value="Low"class="dropdown-item">Show Low to High Price</a>
+                                                <a value="High" class="dropdown-item">Show High to Low Price</a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                               <!--  <div class="col-md-4">
                                     <app-searchby-price></app-searchby-price>
-                                    <!-- <div class="product-price-range">
-                                        <div class="dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">Product price range</div>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">$0 to $50</a>
-                                                <a href="#" class="dropdown-item">$51 to $100</a>
-                                                <a href="#" class="dropdown-item">$101 to $150</a>
-                                                <a href="#" class="dropdown-item">$151 to $200</a>
-                                                <a href="#" class="dropdown-item">$201 to $250</a>
-                                                <a href="#" class="dropdown-item">$251 to $300</a>
-                                                <a href="#" class="dropdown-item">$301 to $350</a>
-                                                <a href="#" class="dropdown-item">$351 to $400</a>
-                                                <a href="#" class="dropdown-item">$401 to $450</a>
-                                                <a href="#" class="dropdown-item">$451 to $500</a>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                </div>
+
+                                </div> -->
                             </div>
                         </div>
                     </div>

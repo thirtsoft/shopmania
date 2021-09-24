@@ -74,10 +74,6 @@ export class ShopComponent implements OnInit {
 
   }
 
-  updateStatusCart() {
-
-  }
-
   getListArticleDTOs() {
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
     this.priceSearch = +this.route.snapshot.paramMap.get('price');
@@ -191,29 +187,50 @@ export class ShopComponent implements OnInit {
     this.getArticleDTOByPageable();
   }
 
-  async getProducts() {
-    try {
-      const response = await  axios.get('assets/data/products.json');
-      console.log("response data", response.data);
-      console.log("response status", response.status);
+  sort(event: any) {
+    console.log(event.target.value)
+    switch (event.target.value) {
+      case "Low":
+        {
+          this.articleListDTOBs = this.articleListDTOBs.sort((low, high) => low.price - high.price);
+          break;
+        }
 
-      this.products = response.data;
+      case "High":
+        {
+          this.articleListDTOBs = this.articleListDTOBs.sort((low, high) => high.price - low.price);
+          break;
+        }
 
-    } catch (e) {
-      console.log(e);
+      case "Name":
+        {
+          this.articleListDTOBs = this.articleListDTOBs.sort(function (low, high) {
+            if (low.designation < high.designation) {
+              return -1;
+            }
+            else if (low.designation > high.designation) {
+              return 1;
+            }
+            else {
+              return 0;
+            }
+          })
+          break;
+        }
+
+      default: {
+        this.articleListDTOBs = this.articleListDTOBs.sort((low, high) => low.price - high.price);
+        break;
+      }
+
     }
+    return this.articleListDTOBs;
+
+
 
   }
 
-  add2cat(qty,product) {
-  //  let tmpCart = {cart: this.cart.cart + item, products: []};
-    this.cart.products.push(product);
-    this.cart.cart = this.cart.cart + qty;
- //   this.cart++;
-    this.dataService.updateCart(this.cart);
 
-    console.log("this.cart--", this.cart);
-  }
 
   bynow() {
     this.router.navigate(["cart"]);
