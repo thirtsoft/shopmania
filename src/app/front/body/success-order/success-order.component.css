@@ -1,8 +1,3 @@
-.alert alert-warning {
-    text-align: center;
-    border: 3px solid green;
-}
-
 @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
 
 body {
@@ -48,9 +43,4 @@ body {
 .btn-primary:disabled {
     background-color: #4466f2 !important;
     border-color: #4466f2 !important
-}
-
-.center {
-  margin-left: 25%;
-  width: 900px;
 }

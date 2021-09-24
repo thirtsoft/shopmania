@@ -1,3 +1,4 @@
+import { SuccessOrderComponent } from './body/success-order/success-order.component';
 import { RegisterComponent } from './body/register/register.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -29,8 +30,9 @@ const routes: Routes = [
   { path: 'searchInshop/:keyword', component: ShopComponent },
   { path: 'searchbyPrice/:price', component: ShopComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'my-account', component: MyaccountComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'success-order', component: SuccessOrderComponent },
+  { path: 'my-account', component: MyaccountComponent },
   { path: 'wishlist', component: WishListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

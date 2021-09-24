@@ -53,6 +53,7 @@ import { BannerComponent } from './body/banner/banner.component';
 import { FeatureComponent } from './body/feature/feature.component';
 import { SearchInShopComponent } from './body/search-in-shop/search-in-shop.component';
 import { SearchbyPriceComponent } from './body/searchby-price/searchby-price.component';
+import { SuccessOrderComponent } from './body/success-order/success-order.component';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { SearchbyPriceComponent } from './body/searchby-price/searchby-price.com
     FeatureComponent,
     SearchInShopComponent,
     SearchbyPriceComponent,
+    SuccessOrderComponent,
   ],
   imports: [
     CommonModule,
