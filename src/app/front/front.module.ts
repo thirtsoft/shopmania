@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
 import { FrontRoutingModule } from './front-routing.module';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HomeComponent } from './body/home/home.component';
 
@@ -113,7 +113,7 @@ import { SuccessOrderComponent } from './body/success-order/success-order.compon
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgbModule
+//    NgbModule
   ]
 })
 export class FrontModule { }
