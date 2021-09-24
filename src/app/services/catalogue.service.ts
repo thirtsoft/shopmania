@@ -1,3 +1,4 @@
+import { TokenStorageService } from './../auth/token-storage.service';
 import { ArticleDto } from './../model/article';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -13,10 +14,13 @@ export class CatalogueService {
 
   public apiServerUrl = environment.apiBaseUrl;
 
+  id: any;
+
 //  public host:string="http://localhost:8080";
   public apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private tokenService: TokenStorageService) {
   }
 
   public getListArticleDTOBySelectedIsTrue(): Observable<ArticleDto[]> {
@@ -59,6 +63,20 @@ export class CatalogueService {
 
   public getPhotoArticle() {
     return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
+  }
+
+  getCurrentUser(): Observable<any> {
+    return this.tokenService.getUser();
+  }
+
+  getUserId() {
+    const user = this.tokenService.getUser();
+    this.id = user.id
+    /* this.authService.getUserById(this.id).subscribe(arg => {
+      this.currentUser = arg;
+      console.log(this.currentUser);
+    });
+    ; */
   }
 
 

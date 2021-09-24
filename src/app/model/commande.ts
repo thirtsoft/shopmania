@@ -1,3 +1,4 @@
+import { Utilisateur } from './utilisateur';
 import { LigneCommande } from './ligne-commande';
 import { AddressLivraisonDto } from './address-livraison';
 import { Statuscommande } from './statuscommande';
@@ -15,6 +16,8 @@ export class Commande {
   statusCommande: Statuscommande;
 
   client: Client;
+
+  utilisateur: Utilisateur;
 
 }
 

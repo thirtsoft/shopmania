@@ -42,6 +42,8 @@ export class CheckoutComponent implements OnInit {
 
   formData:  FormGroup;
 
+  userId: any;
+
 
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
@@ -73,6 +75,8 @@ export class CheckoutComponent implements OnInit {
     this.getListCountryDTOs();
 
     this.getListStateDTOs();
+
+    this.userId =  this.catalogueService.getCurrentUser();
   }
 
 
@@ -166,6 +170,8 @@ export class CheckoutComponent implements OnInit {
     commande.totalCommande = this.totalPrice;
     commande.totalQuantity = this.totalQuantity;
 
+    commande.utilisateur = this.userId;
+
     console.log(commande.totalCommande);
 
     console.log(commande.totalQuantity);
@@ -200,12 +206,14 @@ export class CheckoutComponent implements OnInit {
     console.log("Purchase is", purchase);
 
       // call REST API via checkoutService
+
     this.checkoutService.placeToOrder(purchase).subscribe(
       data =>{
          alert(`your order has been recieved.\n order tracking number: ${data.orderTrackingNumber}`);
          // reset checkout form
          this.resetCart();
          console.log("Response is", data);
+         this.router.navigateByUrl("success-order");
       },
       error=>{
         alert(`there was a error: ${error.message}`);

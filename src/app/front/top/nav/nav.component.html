@@ -4,7 +4,7 @@
             <a href="#" class="navbar-brand">MENU</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
               <span class="navbar-toggler-icon"></span>
-          </button>
+            </button>
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
@@ -29,13 +29,16 @@
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Se Connecter</a>
+                        <a *ngIf="!this.username" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                          <em class="fa fa-user"></em>Se Connecter</a>
+                        <a *ngIf="this.username" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                          <em class="fa fa-user"></em> {{ username }} </a>
                         <div class="dropdown-menu">
                             <a type="button" routerLink="/login" class="dropdown-item cursor-pointer">Se Connecter</a>
                             <a routerLink="/register" class="dropdown-item cursor-pointer">
-                              <i class="fa fa-user"></i>Votre Compte</a>
-                            <a routerLink="/my-account" class="dropdown-item cursor-pointer">Vos Commandes</a>
-                            <a (click)="logout()" class="dropdown-item cursor-pointer">Deconnecter</a>
+                              <em class="fa fa-user"></em>Votre Compte</a>
+                            <a *ngIf="this.isLoggedIn" routerLink="/my-account" class="dropdown-item cursor-pointer">Vos Commandes</a>
+                            <a *ngIf="this.isLoggedIn" (click)="logout()" class="dropdown-item cursor-pointer">Deconnecter</a>
                         </div>
                     </div>
                 </div>

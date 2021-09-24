@@ -54,6 +54,7 @@ import { FeatureComponent } from './body/feature/feature.component';
 import { SearchInShopComponent } from './body/search-in-shop/search-in-shop.component';
 import { SearchbyPriceComponent } from './body/searchby-price/searchby-price.component';
 import { SuccessOrderComponent } from './body/success-order/success-order.component';
+import { SuccessRegisterComponent } from './body/success-register/success-register.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import { SuccessOrderComponent } from './body/success-order/success-order.compon
     SearchInShopComponent,
     SearchbyPriceComponent,
     SuccessOrderComponent,
+    SuccessRegisterComponent,
   ],
   imports: [
     CommonModule,

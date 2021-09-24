@@ -1,3 +1,4 @@
+import { SuccessRegisterComponent } from './body/success-register/success-register.component';
 import { SuccessOrderComponent } from './body/success-order/success-order.component';
 import { RegisterComponent } from './body/register/register.component';
 import { NgModule } from '@angular/core';
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'success-register', component: SuccessRegisterComponent },
   { path: 'contactus', component: ContactComponent},
   { path: 'about', component: AboutComponent },
   { path: 'faq', component: FaqComponent },

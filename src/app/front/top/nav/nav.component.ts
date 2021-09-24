@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../../../shared/dialog/dialog.component';
+import { TokenStorageService } from './../../../auth/token-storage.service';
+import { UtilisateurService } from './../../../services/utilisateur.service';
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -9,12 +12,59 @@ import { DialogComponent } from '../../../shared/dialog/dialog.component';
 })
 export class NavComponent implements OnInit {
 
-  constructor(
-    private router: Router,
-    public dialog: MatDialog,
-    ) { }
+  info: any;
+  private roles: string[];
+
+  currentTime: number = 0;
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showUserBoard = false;
+  showVendeurBoard = false;
+
+  username: string;
+  email: String;
+  userId;
+  photo;
+  img: boolean;
+
+
+  constructor(private tokenService: TokenStorageService,
+              public userService: UtilisateurService,
+              public dialog: MatDialog,
+              private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showVendeurBoard = this.roles.includes("ROLE_VENDEUR");
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+
+      this.username = user.username;
+      this.userId = user.id;
+      this.photo = user.photo;
+
+    }
+
+  }
+
+  logout() {
+    this.tokenService.signOut();
+    window.location.reload();
+    this.router.navigateByUrl("home");
+  }
+
+  getProfile() {
+    this.router.navigate(['/home/profile/' + this.userId]);
+  }
+
+  getTS() {
+    return this.currentTime;
   }
 
   openDialog(_html) {
@@ -27,7 +77,7 @@ export class NavComponent implements OnInit {
       dialogRef.close();
     }, 2000);
   }
-  logout(){
+  logout2(){
   //  sessionStorage.removeItem("user-data");
     let _html=`
       <div class="c-red">

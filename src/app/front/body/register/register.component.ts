@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
       console.log("User register Succeffuly");
       window.alert("User register Succeffuly");
 //      this.toastr.warning("User register Succeffuly");
-      this.router.navigateByUrl("auth/success-register");
+      this.router.navigateByUrl("success-register");
     },
     error => {
       this.errorMessage = error.error.message;
