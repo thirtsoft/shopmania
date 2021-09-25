@@ -1,0 +1,61 @@
+<div class="reviews-submit">
+    <h4>Donner votre Avis:</h4>
+
+    <form [formGroup]="this.formData" (ngSubmit)="onSubmit()">
+
+        <div class="ratting">
+
+            <ngb-rating
+              formControlName="nbreEtoile"
+              [(rate)]="currentRating"
+              [max]="maxRatingValue"
+              [readonly]="false"
+              [id]="'rating3'"
+              [readonly]="false"
+              (hover)="isRating = true; hovered = $event"
+              (leave)="isRating = false; hovered = 0"
+              (rateChange)="onRateChange($event)"
+            >
+            </ngb-rating>
+
+            <div
+                  *ngIf="
+                    f['nbreEtoile'].invalid &&
+                    (f['nbreEtoile'].dirty || f['nbreEtoile'].touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <span *ngIf="f['nbreEtoile'].errors.required"
+                    >Le choix du nombre d'étoiles est obligatoire.</span
+                  >
+
+                </div>
+
+        </div>
+
+        <div class="row form">
+
+          <div class="col-sm-12">
+                <textarea
+                  formControlName="observation"
+                    id="observation" required placeholder="Review"></textarea>
+                <div
+                  *ngIf="
+                    f['observation'].invalid &&
+                    (f['observation'].dirty || f['observation'].touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <span *ngIf="f['observation'].errors.required"
+                    >L'observation de est obligatoire.</span
+                  >
+
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <button type="submit" [disabled]="!this.formData.valid">Envoyer</button>
+            </div>
+        </div>
+    </form>
+</div>

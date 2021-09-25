@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Notification, NotificationDto } from './../model/notification';
+import { ArticleService } from './article.service';
+import { TokenStorageService } from './../auth/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,13 @@ export class NotificationService {
 
   private apiServerUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) {
+  id: any;
+  artId: any;
+
+  constructor(private http: HttpClient,
+              private tokenService: TokenStorageService,
+              private artService: ArticleService
+  ) {
   }
 
   public getNotifications(): Observable<Notification[]> {
@@ -48,6 +56,10 @@ export class NotificationService {
     return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/create`, notificationDTO);
   }
 
+  public addRatingToArticle(notificationDTO: NotificationDto, reference: string, userId:number): Observable<NotificationDto> {
+    return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/createRatingToArticle?reference=${reference}&userId=${userId}`, notificationDTO);
+  }
+
   public updateNotificationDto(notificationDTO: NotificationDto): Observable<NotificationDto> {
     return this.http.put<NotificationDto>(`${this.apiServerUrl}/notifications/create`, notificationDTO);
   }
@@ -55,6 +67,12 @@ export class NotificationService {
   public deleteNotificationDto(notificationId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete/${notificationId}`);
   }
+
+  getUserId() {
+    const user = this.tokenService.getUser();
+    this.id = user.id
+  }
+
 
 
 }

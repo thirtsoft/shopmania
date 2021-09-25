@@ -3,7 +3,6 @@ import { Article, ArticleDto } from './article';
 
 export class Notification {
   id: number;
-  reference: string;
   nbreEtoile: string;
   observation: string;
 
@@ -15,8 +14,7 @@ export class Notification {
 
 export class NotificationDto {
   id: number;
-  reference: string;
-  nbreEtoile: string;
+  nbreEtoile: number;
   observation: string;
 
   articleDto: ArticleDto;

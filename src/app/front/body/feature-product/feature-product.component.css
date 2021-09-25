@@ -12,3 +12,11 @@
   overflow: hidden;
 }
  */
+
+ ngb-rating {
+/*  color: #F4661B; */
+/*  color: #FF7F00; */
+/*  color: #F7230C; */
+  color: #FF5733;
+  font-size: 20px;
+}

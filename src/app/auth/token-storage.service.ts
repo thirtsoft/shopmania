@@ -15,14 +15,14 @@ export class TokenStorageService {
 
   private roles: Array<string> = [];
 
-  constructor() {}
+  constructor() { }
 
   signOut() {
     window.sessionStorage.clear();
   }
 
   public saveToken(token: string) {
-    window.sessionStorage.getItem(TOKEN_KEY);
+    window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
 
@@ -30,12 +30,16 @@ export class TokenStorageService {
     const token = sessionStorage.getItem(TOKEN_KEY);
     return token;
   }
-
+/*
   public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
-
+*/
+  public saveUser(user: any): void {
+    window.sessionStorage.removeItem(USER_KEY);
+    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
 
   public getUser(): any {
     const user = window.sessionStorage.getItem(USER_KEY);
@@ -45,7 +49,11 @@ export class TokenStorageService {
 
     return {};
   }
-
+/*
+  public getUser() {
+    return JSON.parse(sessionStorage.getItem(USER_KEY));
+  }
+*/
   public saveUserId(id) {
     window.sessionStorage.removeItem(USER_ID);
     window.sessionStorage.setItem(USER_ID, id);
@@ -81,10 +89,10 @@ export class TokenStorageService {
     return sessionStorage.getItem(EMAIL_KEY);
   }
 
-  public saveAuthorities(authorities: string[]) {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
 
+  public saveAuthorities(autorities: string[]) {
+    window.sessionStorage.removeItem(AUTHORITIES_KEY);
+    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(autorities));
   }
 
   public getAuthorities(): string[] {
@@ -99,4 +107,5 @@ export class TokenStorageService {
     }
     return this.roles;
   }
+
 }

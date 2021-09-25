@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../shared/data.service';
-import  axios  from 'axios';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import  axios  from 'axios';
+import { DataService } from '../../../shared/data.service';
 import { CatalogueService } from './../../../services/catalogue.service';
 import { CartService } from './../../../services/cart.service';
 import { ArticleDto } from './../../../model/article';
@@ -28,6 +28,8 @@ export class FeatureProductComponent implements OnInit {
   searchMode: boolean = false;
 
   starRating = 0;
+
+  currentRating = 4;
 
   constructor(private dataService: DataService,
               private router: Router,

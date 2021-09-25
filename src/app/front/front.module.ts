@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
 import { FrontRoutingModule } from './front-routing.module';
 
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HomeComponent } from './body/home/home.component';
 
@@ -55,6 +55,7 @@ import { SearchInShopComponent } from './body/search-in-shop/search-in-shop.comp
 import { SearchbyPriceComponent } from './body/searchby-price/searchby-price.component';
 import { SuccessOrderComponent } from './body/success-order/success-order.component';
 import { SuccessRegisterComponent } from './body/success-register/success-register.component';
+import { RatingComponent } from './body/rating/rating.component';
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { SuccessRegisterComponent } from './body/success-register/success-regist
     SearchbyPriceComponent,
     SuccessOrderComponent,
     SuccessRegisterComponent,
+    RatingComponent,
   ],
   imports: [
     CommonModule,
@@ -115,7 +117,7 @@ import { SuccessRegisterComponent } from './body/success-register/success-regist
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-//    NgbModule
+    NgbModule
   ]
 })
 export class FrontModule { }

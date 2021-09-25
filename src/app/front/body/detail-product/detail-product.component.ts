@@ -28,6 +28,8 @@ export class DetailProductComponent implements OnInit {
 
   articleDTOs: ArticleDto = new ArticleDto();
 
+  currentRating = 4;
+
   constructor(private dataService: DataService,
   //            private productService:ProductService,
               public artService: ArticleService,

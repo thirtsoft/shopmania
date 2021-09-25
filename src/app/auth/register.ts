@@ -15,4 +15,5 @@ export class Register {
   //  this.role = ['user'];
     this.roles = roles;
   }
+
 }
