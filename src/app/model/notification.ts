@@ -6,6 +6,8 @@ export class Notification {
   nbreEtoile: string;
   observation: string;
 
+  createdDate: Date;
+
   article: Article;
 
   utilisateur: Utilisateur;
@@ -16,6 +18,8 @@ export class NotificationDto {
   id: number;
   nbreEtoile: number;
   observation: string;
+
+  createdDate: Date;
 
   articleDto: ArticleDto;
 

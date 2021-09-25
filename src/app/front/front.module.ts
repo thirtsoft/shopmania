@@ -55,7 +55,8 @@ import { SearchInShopComponent } from './body/search-in-shop/search-in-shop.comp
 import { SearchbyPriceComponent } from './body/searchby-price/searchby-price.component';
 import { SuccessOrderComponent } from './body/success-order/success-order.component';
 import { SuccessRegisterComponent } from './body/success-register/success-register.component';
-import { RatingComponent } from './body/rating/rating.component';
+import { RatingComponent } from './body/ratings/rating/rating.component';
+import { ListRatingComponent } from './body/ratings/list-rating/list-rating.component';
 
 
 @NgModule({
@@ -110,6 +111,7 @@ import { RatingComponent } from './body/rating/rating.component';
     SuccessOrderComponent,
     SuccessRegisterComponent,
     RatingComponent,
+    ListRatingComponent,
   ],
   imports: [
     CommonModule,

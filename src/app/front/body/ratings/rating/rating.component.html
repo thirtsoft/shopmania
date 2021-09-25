@@ -1,4 +1,4 @@
-<div class="reviews-submit">
+<div class="reviews-submit" *ngIf="this.isLoggedIn">
     <h4>Donner votre Avis:</h4>
 
     <form [formGroup]="this.formData" (ngSubmit)="onSubmit()">

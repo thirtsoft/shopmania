@@ -48,6 +48,11 @@ export class NotificationService {
     return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/all`);
   }
 
+  public getTop3RatingOrderByCreatedDateDesc(): Observable<NotificationDto[]> {
+    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/searchTop3RatingOrderByCreatedDateDesc`);
+  }
+
+
   public getNotificationDtoById(notificationId: number): Observable<NotificationDto> {
     return this.http.get<NotificationDto>(`${this.apiServerUrl}/notifications/${notificationId}`);
   }

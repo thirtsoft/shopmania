@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { TokenStorageService } from './../../../auth/token-storage.service';
-import { CatalogueService } from './../../../services/catalogue.service';
-import { NotificationService } from './../../../services/notification.service';
-import { NotificationDto } from './../../../model/notification';
-import { ArticleService } from './../../../services/article.service';
-import { ArticleDto } from './../../../model/article';
+import { TokenStorageService } from '../../../../auth/token-storage.service';
+import { CatalogueService } from '../../../../services/catalogue.service';
+import { NotificationService } from '../../../../services/notification.service';
+import { NotificationDto } from '../../../../model/notification';
+import { ArticleService } from '../../../../services/article.service';
+import { ArticleDto } from '../../../../model/article';
 
 @Component({
   selector: 'app-rating',
@@ -25,6 +25,8 @@ export class RatingComponent implements OnInit {
   articleDTOs: ArticleDto = new ArticleDto();
   currentRating: number = 0;
   maxRatingValue = 5;
+  isLoggedIn = false;
+  username: string;
 
   constructor(private ratingService: NotificationService,
               private catalogueService: CatalogueService,
@@ -43,7 +45,17 @@ export class RatingComponent implements OnInit {
 
     this.getSingleArticleDTO();
 
-    this.ratingService.getUserId();
+
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+
+      this.ratingService.getUserId();
+
+      this.username = user.username;
+
+    }
+
 
   }
 

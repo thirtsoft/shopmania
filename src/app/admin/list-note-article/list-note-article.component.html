@@ -25,8 +25,7 @@
 
                     <thead class="thead-inverse">
                         <tr>
-                            <th>Reference</th>
-                            <th>Nombre Etoile</th>
+                            <th>Nbre Etoile</th>
                             <th>Observation</th>
                             <th>Article</th>
                             <th>Utilisateur</th>
@@ -35,7 +34,6 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let noteDTO of notificationDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                            <td>{{noteDTO?.reference}}</td>
                             <td>{{noteDTO?.nbreEtoile}}</td>
                             <td>{{noteDTO?.observation}}</td>
                             <td>{{noteDTO?.articleDto.designation}}</td>

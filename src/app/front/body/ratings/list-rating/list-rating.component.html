@@ -1,0 +1,24 @@
+<div class="reviews-submitted" *ngFor="let rat of notificationListDTO; let i=index;">
+
+  <div class="reviewer">{{ rat.utilisateurDto.name }} - <span>{{ rat.createdDate | date:'dd-MM-yyyy' }}</span></div>
+  <div class="ratting">
+     <!--  <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i> -->
+
+      <ngb-rating
+
+      [(rate)]="rat.nbreEtoile"
+      [id]="'rating3'"
+      [readonly]="true"
+      [max]="maxRatingValue"
+    >
+    </ngb-rating>
+
+  </div>
+  <p>
+    {{ rat.observation }}
+  </p>
+</div>
