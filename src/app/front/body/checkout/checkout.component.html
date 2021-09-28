@@ -10,8 +10,13 @@
     <div class="container-fluid">
       <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
         <div class="row">
+            <input type="text" class="form-control" [value]="this.username"  required>
 
             <div class="col-lg-8">
+
+
+
+
               <!-- Customer info -->
                 <div class="checkout-inner">
                     <div class="billing-address">

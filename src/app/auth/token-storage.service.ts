@@ -49,11 +49,11 @@ export class TokenStorageService {
 
     return {};
   }
-/*
-  public getUser() {
-    return JSON.parse(sessionStorage.getItem(USER_KEY));
+
+  public getLogginUser() {
+    return sessionStorage.getItem(USER_KEY);
   }
-*/
+
   public saveUserId(id) {
     window.sessionStorage.removeItem(USER_ID);
     window.sessionStorage.setItem(USER_ID, id);

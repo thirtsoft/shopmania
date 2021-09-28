@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../shared/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DataService } from '../../../shared/data.service';
 import { ToastrService } from 'ngx-toastr';
-import { CatalogueService } from './../../../services/catalogue.service';
-import { ArticleService } from './../../../services/article.service';
+import { TokenStorageService } from './../../../auth/token-storage.service';
+
 import { CartService } from './../../../services/cart.service';
 import { CartItem } from './../../../model/cartItem';
+import { CatalogueService } from './../../../services/catalogue.service';
 
 @Component({
   selector: 'app-cart',
@@ -24,10 +25,13 @@ export class CartComponent implements OnInit {
   shippingCost: number;
 
   currentTime: number = 0;
+  isLoggedIn = false;
+  username: string;
 
   constructor(private dataService: DataService,
               public catalogueService: CatalogueService,
               private cartService: CartService,
+              private tokenService: TokenStorageService,
               private toastr: ToastrService,
               private route: ActivatedRoute,
               private router: Router,
@@ -52,7 +56,19 @@ export class CartComponent implements OnInit {
 
     this.cartService.calculateTotalPrice();
 
-    
+    this.isLoggedIn = !!this.tokenService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+
+      this.catalogueService.getUserId();
+
+      this.username = user.username;
+
+    }
+
+
+
   }
 
    // increment quantity
@@ -61,7 +77,7 @@ export class CartComponent implements OnInit {
     this.cartService.addTocart(cartItem);
     this.toastr.success('au panier avec succès','Article Ajoutée', {
       timeOut: 1500,
-      positionClass: 'toast-top-right', 
+      positionClass: 'toast-top-right',
     });
 
   }

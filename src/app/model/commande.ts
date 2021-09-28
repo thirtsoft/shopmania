@@ -12,6 +12,8 @@ export class Commande {
   totalCommande: number;
   total: number;
   dateCommande: Date;
+  userId: number;
+  username: string;
 
   statusCommande: Statuscommande;
 

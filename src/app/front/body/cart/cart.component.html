@@ -101,10 +101,14 @@
                                     <p>Shipping Cost<span>${{shippingCost}}</span></p>
                                     <h2>Grand Total<span>${{totalPrice + shippingCost}}</span></h2>
                                 </div>
-                                <div class="cart-btn">
+                                <div class="cart-btn" *ngIf="!this.isLoggedIn">
                                     <button>Continuer Achat</button>
-                                    <button routerLink="/login">Finaliser Achat</button>
+                                    <button  routerLink="/login">Finaliser Achat</button>
                                 </div>
+                                <div class="cart-btn" *ngIf="this.isLoggedIn">
+                                  <button>Continuer Achat</button>
+                                  <button *ngIf="this.isLoggedIn" routerLink="/checkout">Finaliser Achat</button>
+                              </div>
                             </div>
                         </div>
                     </div>

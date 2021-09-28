@@ -15,6 +15,8 @@ export class CatalogueService {
   public apiServerUrl = environment.apiBaseUrl;
 
   id: any;
+  currentUser: any;
+  username: any;
 
 //  public host:string="http://localhost:8080";
   public apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
@@ -68,6 +70,17 @@ export class CatalogueService {
   getCurrentUser(): Observable<any> {
     return this.tokenService.getUser();
   }
+
+  getLogginUser() {
+    const user = this.tokenService.getLogginUser();
+    this.currentUser = user;
+  }
+
+  getUsername() {
+    const user = this.tokenService.getUser();
+    this.username = user.username;
+  }
+
 
   getUserId() {
     const user = this.tokenService.getUser();

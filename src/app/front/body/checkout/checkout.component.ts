@@ -1,12 +1,11 @@
-import { AddressLivraisonDto } from './../../../model/address-livraison';
-import { ClientDto } from './../../../model/client';
-import { Article } from './../../../model/article';
-import { Purchase } from './../../../model/purchase';
-import { LigneCommande } from './../../../model/ligne-commande';
-import { Commande } from './../../../model/commande';
+import { Utilisateur } from './../../../model/utilisateur';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from './../../../auth/token-storage.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { Purchase } from './../../../model/purchase';
 import { ToastrService } from 'ngx-toastr';
 import { CatalogueService } from './../../../services/catalogue.service';
 import { CommandeService } from './../../../services/commande.service';
@@ -14,12 +13,11 @@ import { CartItem } from './../../../model/cartItem';
 import { CartService } from './../../../services/cart.service';
 import { StateService } from './../../../services/state.service';
 import { CheckoutService } from './../../../services/checkout.service';
-import { AddresslivraisonService } from './../../../services/addresslivraison.service';
-import { ClientService } from './../../../services/client.service';
 import { StateDto, State } from './../../../model/state';
 import { CountryService } from './../../../services/country.service';
 import { CountryDto, Country } from './../../../model/country';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LigneCommande } from './../../../model/ligne-commande';
+import { Commande } from './../../../model/commande';
 
 @Component({
   selector: 'app-checkout',
@@ -42,7 +40,7 @@ export class CheckoutComponent implements OnInit {
 
   formData:  FormGroup;
 
-  userId: any;
+  idUser: any;
 
 
   creditCardYears: number[] = [];
@@ -50,11 +48,13 @@ export class CheckoutComponent implements OnInit {
   shippingAddressStates: StateDto[] = [];
   billingAddressStates: StateDto[] = [];
 
+  isLoggedIn = false;
+  username: any;
+
   constructor(public catalogueService: CatalogueService,
               private cartService: CartService,
               private comService: CommandeService,
-              private clientService: ClientService,
-              private addService: AddresslivraisonService,
+              private tokenService: TokenStorageService,
               private toastr: ToastrService,
               private countService: CountryService,
               private checkoutService: CheckoutService,
@@ -76,7 +76,23 @@ export class CheckoutComponent implements OnInit {
 
     this.getListStateDTOs();
 
-    this.userId =  this.catalogueService.getCurrentUser();
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+
+      this.catalogueService.getUserId();
+
+      this.idUser = this.catalogueService.id
+
+      this.catalogueService.getLogginUser();
+
+      this.catalogueService.getUsername();
+
+      this.username = this.catalogueService.username;
+
+    }
+
+
   }
 
 
@@ -108,8 +124,13 @@ export class CheckoutComponent implements OnInit {
         country: [''],
         zipcode: ['']
       }),
-
+      /*
+      utilisateur: this.formBuilder.group({
+        userId: this.catalogueService.id
+      }),
+*/
     });
+
 
 
   }
@@ -170,7 +191,15 @@ export class CheckoutComponent implements OnInit {
     commande.totalCommande = this.totalPrice;
     commande.totalQuantity = this.totalQuantity;
 
-    commande.utilisateur = this.userId;
+    console.log("User " + this.catalogueService.id);
+
+    console.log("Username " + this.catalogueService.username);
+
+    console.log("Current User " + this.catalogueService.currentUser);
+
+    commande.username = this.catalogueService.username;
+
+  //  commande.utilisateur = this.userId;
 
     console.log(commande.totalCommande);
 
@@ -183,6 +212,9 @@ export class CheckoutComponent implements OnInit {
 
     // populate purchase - customer
     purchase.client = this.checkoutFormGroup.get('customer').value;
+
+    // populate purchase - user
+  //  purchase.utilisateur = this.checkoutFormGroup.get('utilisateur').value;
 
     // populate purchase - shippingAddress
     purchase.shippingAddress = this.checkoutFormGroup.get('shippingAddress').value;
@@ -207,6 +239,7 @@ export class CheckoutComponent implements OnInit {
 
       // call REST API via checkoutService
 
+
     this.checkoutService.placeToOrder(purchase).subscribe(
       data =>{
          alert(`your order has been recieved.\n order tracking number: ${data.orderTrackingNumber}`);
@@ -219,6 +252,7 @@ export class CheckoutComponent implements OnInit {
         alert(`there was a error: ${error.message}`);
       }
     )
+
 
   }
 
