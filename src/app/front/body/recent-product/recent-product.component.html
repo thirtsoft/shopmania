@@ -1,38 +1,46 @@
 <div class="recent-product product">
     <div class="container-fluid">
         <div class="section-header">
-            <h1>Recent Product</h1>
+            <h1>Recents Produits</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
-            <div class="col-lg-3">
+            <div class="col-lg-3" *ngFor="let artDTO of articleTop12OrderByCreatedDateDesc; let i = index">
                 <div class="product-item">
                     <div class="product-title">
-                        <a href="#">Product Name</a>
+                        <a [routerLink]="['/product-detail', artDTO.reference]">{{artDTO.designation}}</a>
                         <div class="ratting">
+                            <!-- <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i> -->
+
+                            <ngb-rating
+                                [max]="5"
+                                [(rate)]="currentRating"
+                                [readonly]="true">
+                            </ngb-rating>
+
                         </div>
                     </div>
                     <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="assets/customer/img/product-6.jpg" alt="Product Image">
+                        <a [routerLink]="['/product-detail', artDTO.reference]">
+                            <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="Product Image">
                         </a>
                         <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+                            <a (click)="addTocart(artDTO)" style="cursor:pointer"><i class="fa fa-cart-plus"></i></a>
                             <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
+                            <a [routerLink]="['/product-detail', artDTO.reference]"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="product-price">
-                        <h3><span>$</span>99</h3>
-                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                        <h3><span>$</span>{{artDTO.price}}</h3>
+                       <!--  <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a> -->
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+
+            <!-- <div class="col-lg-3">
                 <div class="product-item">
                     <div class="product-title">
                         <a href="#">Product Name</a>
@@ -143,7 +151,8 @@
                         <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
         </div>
     </div>
 </div>

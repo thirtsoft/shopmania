@@ -29,6 +29,10 @@ export class CatalogueService {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByselectedIsTrue`);
   }
 
+  public getTop12ArticleDTOOrderByCreatedDateDesc(): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchTop12ArticleOrderByCreatedDateDesc`);
+  }
+
   public getListArticleDTOByCategoryId(scatId: number): Observable<ArticleDto[]> {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/articlesByScategories/${scatId}`);
   }

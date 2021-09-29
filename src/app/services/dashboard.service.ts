@@ -32,6 +32,10 @@ export class DashboardService {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/countNumberOfOrdersByPendingStatus`);
   }
 
+  public countNumberOfCommandeByMonth(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/numberOfCommandeByMonth`);
+  }
+
   public sumTotaleOfCommandeInMonth(): Observable<CommandeDto[]> {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/sumTotalOfCommandeByMonth`);
   }
@@ -40,12 +44,13 @@ export class DashboardService {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/sumTotalOfCommandeByYear`);
   }
 
-  public countNumberOfCommandeByMonth(): Observable<CommandeDto[]> {
-    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/numberOfCommandeByMonth`);
-  }
 
   public SumTotaleOfCommandeByMonth(): Observable<CommandeDto[]> {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/sumTotaleOfCommandeByMonthByList`);
+  }
+
+  public SumTotaleOfOrdersByYear(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/sumTotaleOfCommandeByYearList`);
   }
 
   public countNumberOfClient(): Observable<ClientDto[]> {

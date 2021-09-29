@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenStorageService } from './../../auth/token-storage.service';
 
 @Component({
   selector: 'app-backend-sidebar',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackendSidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenService: TokenStorageService,
+              private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.tokenService.signOut();
+    window.location.reload();
+    this.router.navigateByUrl("admin/signIn");
   }
 
 }

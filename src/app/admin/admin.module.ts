@@ -21,6 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination' ;
 
 import { MaterialModule } from '../shared/material.module';
 
+//import { ChartsModule } from 'ng2-charts';
+
 /*
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -58,6 +60,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { SeConnecterComponent } from './authentication/se-connecter/se-connecter.component';
 import { SuccessSignUpComponent } from './authentication/success-sign-up/success-sign-up.component';
+import { VenteByMonthBarChartComponent } from './chartjs/vente-by-month-bar-chart/vente-by-month-bar-chart.component';
+import { VenteByYearBarChartComponent } from './chartjs/vente-by-year-bar-chart/vente-by-year-bar-chart.component';
+import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
 
 
 
@@ -94,6 +99,9 @@ import { SuccessSignUpComponent } from './authentication/success-sign-up/success
     SignUpComponent,
     SeConnecterComponent,
     SuccessSignUpComponent,
+    VenteByMonthBarChartComponent,
+    VenteByYearBarChartComponent,
+    BarChartComponent,
 
 
   ],
@@ -118,6 +126,8 @@ import { SuccessSignUpComponent } from './authentication/success-sign-up/success
     MatPaginatorModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+
+//    ChartsModule
 /*
     NgbModalModule,
     ModalModule,

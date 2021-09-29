@@ -1,3 +1,4 @@
+import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
 import { SuccessSignUpComponent } from './authentication/success-sign-up/success-sign-up.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -130,6 +131,10 @@ const routes: Routes = [
   {
     path: 'notifications',
     component: ListNoteArticleComponent
+  },
+  {
+    path: 'chart',
+    component: BarChartComponent
   },
   {
     path: 'utilisateurs',
