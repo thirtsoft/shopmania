@@ -1,0 +1,198 @@
+<body class="bg-gradient-primary">
+  <div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Créer un Compte !</h1>
+              </div>
+              <form
+                [formGroup]="registrationForm"
+
+                class="user"
+              >
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input
+                      type="text"
+                      id="name"
+                      formControlName="name"
+                      placeholder="Nom et Prénom"
+                      autofocus
+                      required
+                      class="form-control form-control-user"
+                    />
+                    <div
+                      class="alert alert-danger"
+                      *ngIf="
+                        registrationForm.get('name').invalid &&
+                        registrationForm.get('name').touched
+                      "
+                    >
+                      <div *ngIf="registrationForm.get('name').errors.required">
+                        Name is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <input
+                      type="text"
+                      id="username"
+                      formControlName="username"
+                      class="form-control form-control-user"
+                      placeholder="Username"
+                      required
+                    />
+                    <div
+                      class="alert alert-danger"
+                      *ngIf="
+                        registrationForm.get('username').invalid &&
+                        registrationForm.get('username').touched
+                      "
+                    >
+                      <div
+                        *ngIf="registrationForm.get('username').errors.required"
+                      >
+                        Username is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="email"
+                    id="email"
+                    formControlName="email"
+                    required
+                    email
+                    class="form-control form-control-user"
+                    id="exampleInputEmail"
+                    placeholder="Email Address"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      registrationForm.get('email').invalid &&
+                      registrationForm.get('email').touched
+                    "
+                  >
+                    <div *ngIf="registrationForm.get('email').errors.required">
+                      Email must be a valid email address
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input
+                      type="password"
+                      id="password"
+                      formControlName="password"
+                      required
+                      minlength="6"
+                      class="form-control"
+                      placeholder="Mot de Password"
+                      class="form-control form-control-user"
+                    />
+
+                    <div
+                      class="alert alert-danger"
+                      *ngIf="
+                        registrationForm.get('password').invalid &&
+                        registrationForm.get('password').touched
+                      "
+                    >
+                      <div
+                        *ngIf="registrationForm.get('password').errors.required"
+                      >
+                        Password is required
+                      </div>
+                      <div
+                        *ngIf="
+                          registrationForm.get('password').errors.minlength
+                        "
+                      >
+                        Password must be at least 6 characters long
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <input
+                      type="password"
+                      class="form-control form-control-user"
+                      id="exampleRepeatPassword"
+                      placeholder="Repeat Password"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group custom-checkbox small">
+                  <label>Choisir un Role</label>
+                  <div
+                    class="form-check"
+                    *ngFor="
+                      let role of registrationForm.get('roleSelection')[
+                        'controls'
+                      ];
+                      let i = index
+                    "
+                  >
+                    <label class="custom-control-label">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        [formControl]="role"
+                      />
+                      {{ roles[i].name }}
+                    </label>
+                  </div>
+
+                  <!-- <div class="custom-control custom-checkbox small">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                                    <label class="custom-control-label" for="customCheck">Assistant
+                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                                        <label class="custom-control-label" for="customCheck">Manager
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                                            <label class="custom-control-label" for="customCheck">Admin
+                                                </label>
+                                </div> -->
+                </div>
+
+                <a (click)="onSubmit()" type="submit" class="btn btn-primary btn-user btn-block">
+                  Créer un Compte
+                </a>
+                <hr />
+                <div
+                  *ngIf="submitted && isSignUpFailed"
+                  class="alert alert-warning"
+                >
+                  Signup failed!<br />{{ errorMessage }}
+                </div>
+              </form>
+              <hr />
+              <!--  <div class="text-center">
+                              <a class="small" href="forgot-password.html">Forgot Password?</a>
+                          </div> -->
+              <div class="text-center">
+                <a class="small" routerLink="/admin/signIn"
+                  >Vous avez déjà un compte? Se conncter!</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

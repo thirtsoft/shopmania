@@ -52,10 +52,12 @@ import { AdminComponent } from './admin/admin.component';
 import { BackendHeaderComponent } from './backend-header/backend-header.component';
 import { BackendSidebarComponent } from './backend-sidebar/backend-sidebar.component';
 import { BackendFooterComponent } from './backend-footer/backend-footer.component';
-import { SignInComponent } from './sign-in/sign-in.component';
 import { TopLeftComponent } from './top-left/top-left.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
+
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+import { SeConnecterComponent } from './authentication/se-connecter/se-connecter.component';
+import { SuccessSignUpComponent } from './authentication/success-sign-up/success-sign-up.component';
 
 
 
@@ -87,12 +89,13 @@ import { LoginComponent } from './login/login.component';
     BackendHeaderComponent,
     BackendSidebarComponent,
     BackendFooterComponent,
-    SignInComponent,
     TopLeftComponent,
     DashboardComponent,
-    LoginComponent,
-    
-    
+    SignUpComponent,
+    SeConnecterComponent,
+    SuccessSignUpComponent,
+
+
   ],
   imports: [
     CommonModule,

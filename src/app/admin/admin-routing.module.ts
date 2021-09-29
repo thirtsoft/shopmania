@@ -1,3 +1,6 @@
+import { SuccessSignUpComponent } from './authentication/success-sign-up/success-sign-up.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { TopLeftComponent } from './top-left/top-left.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
@@ -6,8 +9,6 @@ import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/upd
 import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
 import { UpdateScategoryComponent } from './scategory/update-scategory/update-scategory.component';
 import { UpdateCategoryComponent } from './category/update-category/update-category.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
 import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
 import { ListArticleComponent } from './article/list-article/list-article.component';
@@ -25,10 +26,28 @@ import { ListCommandeComponent } from './list-commande/list-commande.component';
 import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
-import { LoginComponent } from './login/login.component';
+
+import { SeConnecterComponent } from './authentication/se-connecter/se-connecter.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 
 
 const routes: Routes = [
+
+  { path: '', component: SeConnecterComponent, children: [
+    { path:'', redirectTo:'signIn' , pathMatch:'full'},
+
+  ] },
+
+  /* {
+    path: 'signIn', component: SeConnecterComponent
+  }, */
+  {
+    path: 'signUp', component: SignUpComponent
+  },
+  {
+    path: 'success-signUp',
+    component: SuccessSignUpComponent
+  },
 
   { path: '',   redirectTo: 'dashborad', pathMatch: 'full' }, // redirect to
 
@@ -38,10 +57,7 @@ const routes: Routes = [
     component: DashboardComponent
   },
 
-  {
-    path: 'login',
-    component: LoginComponent
-  },
+
 
   {
     path: 'categories',
