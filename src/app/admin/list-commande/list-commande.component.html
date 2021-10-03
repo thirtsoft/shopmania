@@ -35,7 +35,7 @@
                                 <td>{{commandeDTO?.clientDto.firstName}} {{commandeDTO?.clientDto.lastName}}</td>
                                 <td>{{commandeDTO?.total}}</td>
                                 <td>{{commandeDTO?.statusCommande}}</td>
-                                <td>{{commandeDTO?.dateCommande}}</td>
+                                <td>{{commandeDTO?.dateCommande | date:'dd-MM-yyyy'}}</td>
 
                                 <td>
                                     <div class="container ">

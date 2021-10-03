@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LigneCommandeDto } from '../../model/ligne-commande';
 import { LigneLigneCommandeService } from '../../services/lignecommande.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from '../../services/dialog.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { LigneCommandeDto } from './../../model/ligne-commande';
 
 
 @Component({

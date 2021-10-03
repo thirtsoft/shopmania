@@ -26,6 +26,11 @@ export class CheckoutService {
     return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/placeToOrder`, purchase);
   }
 
+  place2Order(purchase: Purchase, id: number): Observable<any> {
+    return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/placeToOrder?id=${id}`, purchase);
+
+  }
+
 
 }
 

@@ -10,7 +10,7 @@
     <div class="container-fluid">
       <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
         <div class="row">
-            <input type="text" class="form-control" [value]="this.username"  required>
+             <input type="text" class="form-control" formControlName="id" [value]="this.userId"  required>
 
             <div class="col-lg-8">
 

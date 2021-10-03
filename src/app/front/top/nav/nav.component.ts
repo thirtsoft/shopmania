@@ -1,3 +1,4 @@
+import { AuthService } from './../../../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
@@ -28,9 +29,12 @@ export class NavComponent implements OnInit {
   photo;
   img: boolean;
 
+  currentUser;
+
 
   constructor(private tokenService: TokenStorageService,
               public userService: UtilisateurService,
+              public autService: AuthService,
               public dialog: MatDialog,
               private router: Router,
   ) { }
@@ -48,6 +52,13 @@ export class NavComponent implements OnInit {
       this.username = user.username;
       this.userId = user.id;
       this.photo = user.photo;
+
+      this.currentUser = this.autService.getCurrentUser();
+
+      console.log(this.autService.getCurrentUser());
+
+      const loginUser = this.autService.getCurrentLogginUser();
+      console.log("Current user " + loginUser);
 
     }
 

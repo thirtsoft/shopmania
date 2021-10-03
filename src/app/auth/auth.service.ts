@@ -61,6 +61,14 @@ export class AuthService {
     this.islogin = true;
   }
 
+  getCurrentUser(){
+    return this.http.get(AUTH_API + '/auth/currentUser');
+  }
+
+  getCurrentLogginUser(){
+    return this.http.get(AUTH_API + '/auth/currentLogginUser');
+  }
+
   getUserProfile(id): Observable<any> {
     return this.http.get(`${this.baseUrl_1}/utilisateurs/${id}`, httpOptions).pipe(
       map((res: Response) => {

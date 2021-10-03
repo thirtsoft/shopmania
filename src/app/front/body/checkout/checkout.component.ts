@@ -50,6 +50,7 @@ export class CheckoutComponent implements OnInit {
 
   isLoggedIn = false;
   username: any;
+  userId: any;
 
   constructor(public catalogueService: CatalogueService,
               private cartService: CartService,
@@ -90,6 +91,8 @@ export class CheckoutComponent implements OnInit {
 
       this.username = this.catalogueService.username;
 
+      this.userId = this.catalogueService.id;
+
     }
 
 
@@ -124,11 +127,9 @@ export class CheckoutComponent implements OnInit {
         country: [''],
         zipcode: ['']
       }),
-      /*
-      utilisateur: this.formBuilder.group({
-        userId: this.catalogueService.id
-      }),
-*/
+
+      id: this.catalogueService.id
+
     });
 
 
@@ -197,7 +198,7 @@ export class CheckoutComponent implements OnInit {
 
     console.log("Current User " + this.catalogueService.currentUser);
 
-    commande.username = this.catalogueService.username;
+  //  commande.username = this.catalogueService.username;
 
   //  commande.utilisateur = this.userId;
 

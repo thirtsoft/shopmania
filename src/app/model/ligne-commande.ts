@@ -32,6 +32,7 @@ export class LigneCommandeDto {
   price: number;
   quantity: number;
   productId: number;
+  productName: string;
 
   commandeDto: CommandeDto;
 
