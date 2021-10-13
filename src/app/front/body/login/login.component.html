@@ -1,7 +1,15 @@
 <app-main-top></app-main-top>
 
 <!-- Breadcrumb Start -->
-<app-breadcrumb></app-breadcrumb>
+<!-- <app-breadcrumb></app-breadcrumb> -->
+<div class="breadcrumb-wrap">
+  <div class="container-fluid">
+      <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Accueil</a></li>
+          <li class="breadcrumb-item active">Login</li>
+      </ul>
+  </div>
+</div>
 <!-- Breadcrumb End -->
 
 
@@ -48,7 +56,7 @@
                     <div class="row">
 
                       <div class="col-md-6">
-                            <label>E-mail / Username</label>
+                            <label>NOM UTILISATEUR</label>
                             <input  type="text" name="username" [(ngModel)]="form.username" #username="ngModel" class="form-control" required placeholder="E-mail / Username">
                             <div *ngIf="f.submitted && username.invalid">
                                <div *ngIf="username.errors.required">Nom utilisateur est incorrect</div>
