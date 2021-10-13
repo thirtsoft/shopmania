@@ -22,12 +22,12 @@ export class ShopComponent implements OnInit {
   products: any;
   articleListDTOBs: ArticleDto[];
 
-  public size: number = 6;
-  public currentPage: number = 1;
-  public totalPages: number;
-  public pages: Array<number>;
+  size: number = 6;
+  currentPage: number = 1;
+  totalPages: number;
+  pages: Array<number>;
 
-  public currentTime: number = 0;
+  currentTime: number = 0;
 
   currentCategoryId: number;
 
@@ -36,6 +36,10 @@ export class ShopComponent implements OnInit {
   searchMode: boolean = false;
 
   priceSearch: number;
+
+  starRating = 0;
+
+  currentRating = 4;
 
   constructor(private dataService: DataService,
               public catalogueService: CatalogueService,
