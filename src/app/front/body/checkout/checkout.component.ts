@@ -1,14 +1,13 @@
 import { Utilisateur } from './../../../model/utilisateur';
+
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TokenStorageService } from './../../../auth/token-storage.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { Purchase } from './../../../model/purchase';
-import { ToastrService } from 'ngx-toastr';
 import { CatalogueService } from './../../../services/catalogue.service';
-import { CommandeService } from './../../../services/commande.service';
 import { CartItem } from './../../../model/cartItem';
 import { CartService } from './../../../services/cart.service';
 import { StateService } from './../../../services/state.service';
@@ -54,13 +53,10 @@ export class CheckoutComponent implements OnInit {
 
   constructor(public catalogueService: CatalogueService,
               private cartService: CartService,
-              private comService: CommandeService,
               private tokenService: TokenStorageService,
-              private toastr: ToastrService,
               private countService: CountryService,
               private checkoutService: CheckoutService,
               private statService: StateService,
-              private route: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder
   ) { }
@@ -198,10 +194,6 @@ export class CheckoutComponent implements OnInit {
 
     console.log("Current User " + this.catalogueService.currentUser);
 
-  //  commande.username = this.catalogueService.username;
-
-  //  commande.utilisateur = this.userId;
-
     console.log(commande.totalCommande);
 
     console.log(commande.totalQuantity);
@@ -214,8 +206,9 @@ export class CheckoutComponent implements OnInit {
     // populate purchase - customer
     purchase.client = this.checkoutFormGroup.get('customer').value;
 
-    // populate purchase - user
-  //  purchase.utilisateur = this.checkoutFormGroup.get('utilisateur').value;
+    // populate purchase - customer
+  //  purchase.utilisateur = this.checkoutFormGroup.get('customer').value;
+
 
     // populate purchase - shippingAddress
     purchase.shippingAddress = this.checkoutFormGroup.get('shippingAddress').value;

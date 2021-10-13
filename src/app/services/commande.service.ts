@@ -1,6 +1,7 @@
+import { Statuscommande } from './../model/statuscommande';
 import { Commande, CommandeDto } from './../model/commande';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
@@ -31,6 +32,22 @@ export class CommandeService {
   public updateCommandeDto(comId: number, commandeDTO: CommandeDto): Observable<CommandeDto> {
     return this.http.put<CommandeDto>(`${this.apiServerUrl}/articles/update/${comId}`, commandeDTO);
   }
+
+  public updateStatusOfCommandeDto(id: number, statusCommande: Statuscommande): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    let data = {"status":Statuscommande};
+    const urlUpdateStatus = (this.apiServerUrl+"/commandes/updateStatusOfCommande/"+id+"?status="+data.status);
+    return this.http.patch<any>(urlUpdateStatus, {headers: headers});
+
+  }
+
+  /* updateStatusApproCreance(id: number, status: string): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    let data = {"status":status};
+    return this.http.patch<any>("http://localhost:8081/alAmine/updateStatusApproById/"+id+"?status="+data.status, {headers: headers});
+  } */
 
 
   public getListCommandeDTOByCustomerPageable(clientId: number, page: number, size: number): Observable<CommandeDto[]> {

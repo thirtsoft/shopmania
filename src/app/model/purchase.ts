@@ -10,6 +10,6 @@ export class Purchase {
   billingAddress: AddressLivraison;
   commande: Commande;
   lcomms: LigneCommande[];
-//  utilisateur: Utilisateur
+  utilisateur: Utilisateur
 
 }
