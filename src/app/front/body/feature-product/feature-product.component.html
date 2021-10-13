@@ -18,12 +18,6 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i> -->
 
-                          <!--    <ngb-rating
-                              [(rate)]="starRating"
-                              [max]="5"
-                              [readonly]="true" [id]="'rating3'" >
-                            </ngb-rating> -->
-
                             <ngb-rating
                                 [max]="5"
                                 [(rate)]="currentRating"
@@ -39,13 +33,13 @@
                             <!-- <img src="assets/customer/img/{{product.pImageDefault}}" alt="Product Image"> -->
                         </a>
                         <div class="product-action">
-                            <a (click)="addTocart(artDTO)" style="cursor:pointer"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a [routerLink]="['/product-detail', artDTO.reference]" (click)="recentClick(artDTO.reference)"><i class="fa fa-search"></i></a>
+                            <a (click)="addTocart(artDTO)" style="cursor:pointer"><em class="fa fa-cart-plus"></em></a>
+                            <!-- <a href="#"><i class="fa fa-heart"></i></a> -->
+                            <a [routerLink]="['/product-detail', artDTO.reference]"><em class="fa fa-search"></em></a>
                         </div>
                     </div>
                     <div class="product-price">
-                        <h3><span>$</span>{{artDTO.price}}</h3>
+                        <h3><span></span>{{ artDTO.price }}f</h3>
                        <!--  <a class="btn" (click)="[add2cart(1,artDTO), buynow()]"><i class="fa fa-shopping-cart"></i>Buy Now</a> -->
                     </div>
                 </div>

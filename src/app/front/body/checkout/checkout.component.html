@@ -29,7 +29,7 @@
               <!-- Customer info -->
                 <div class="checkout-inner">
                     <div class="billing-address">
-                        <h2>Customer Information</h2>
+                        <h2>Information Personnel</h2>
                         <div class="row" formGroupName="customer">
 
                             <div class="col-md-6">
@@ -73,7 +73,7 @@
                 <!-- Shipping info -->
                 <div class="checkout-inner">
                   <div class="billing-address">
-                      <h2>Shipping Address</h2>
+                      <h2>Address Achat</h2>
                       <div class="row" formGroupName="shippingAddress">
 
                         <div class="col-md-12">
@@ -119,16 +119,16 @@
                           <input class="form-control" formControlName="zipcode" type="text" placeholder="ZIP Code">
                         </div>
 
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                           <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="newaccount">
                             <label class="custom-control-label" for="newaccount">Create an account</label>
                           </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-12">
                           <div class="custom-control custom-checkbox">
                             <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)" class="custom-control-input" id="shipto">
-                            <label class="custom-control-label" for="shipto">Ship to same address</label>
+                            <label class="custom-control-label" for="shipto">Choisir la meme addresse</label>
                           </div>
                         </div>
 
@@ -140,7 +140,7 @@
 
                  <!-- Shipping info -->
                  <div class="billing-address">
-                      <h2>Billing Address</h2>
+                      <h2>Addresse Livraison</h2>
                       <div class="row" formGroupName="billingAddress">
 
                         <div class="col-md-12">
@@ -209,10 +209,10 @@
               <!--  <div class="checkout-inner" *ngIf="cartItems.length > 0 "> -->
               <div class="checkout-inner">
                   <div class="checkout-summary">
-                      <h1>Cart Total</h1>
+                      <h1>Total Panier</h1>
                       <div *ngFor="let item of cartItems; let i=index;">
                           <p> <img [src]="this.catalogueService.apiServerUrl+'/articles/photoArticle/'+item.id+'?ts='+getTS()" style="width: 40px; height: 40px;" alt="Product Image"> {{item.name}}
-                              <span style="text-align: right;">${{item.unitPrice}}</span>
+                              <span style="text-align: right;">{{ item.unitPrice }}f</span>
 
                           </p>
                       </div>
@@ -220,9 +220,10 @@
                       <p class="ship-cost">Shipping Cost<span>$1</span></p>
                       <h2>Grand Total<span>$100</span></h2> -->
 
-                      <p class="sub-total">Sub Total<span>${{totalPrice}}</span></p>
-                      <p class="ship-cost">Shipping Cost<span>${{shippingCost}}</span></p>
-                      <h2>Grand Total<span>${{totalPrice + shippingCost}}</span></h2>
+                      <p class="sub-total">Sous Total<span>${{totalPrice}}</span></p>
+                     <!--  <p class="ship-cost">Shipping Cost<span>${{shippingCost}}</span></p>
+                      <h2>Total Net<span>${{totalPrice + shippingCost}}f</span></h2> -->
+                      <h2>Total Net<span>${{totalPrice}}f</span></h2>
                   </div>
 
                   <div class="checkout-payment">
@@ -276,7 +277,7 @@
                       </div> -->
 
                       <div class="checkout-btn">
-                          <button type="submit">Place Order</button>
+                          <button type="submit">Valider votre commande</button>
                       </div>
                   </div>
 

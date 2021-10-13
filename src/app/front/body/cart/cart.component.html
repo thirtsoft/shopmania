@@ -105,17 +105,18 @@
                         <div class="col-md-12">
                             <div class="cart-summary">
                                 <div class="cart-content">
-                                    <h1>Cart Summary</h1>
-                                    <p>Sub Total<span>${{totalPrice}}</span></p>
-                                    <p>Shipping Cost<span>${{shippingCost}}</span></p>
-                                    <h2>Grand Total<span>${{totalPrice + shippingCost}}</span></h2>
+                                    <h1>Somme Panier</h1>
+                                    <p>Sous Total<span>${{totalPrice}}</span></p>
+                                   <!--  <p>Shipping Cost<span>${{shippingCost}}</span></p>
+                                    <h2>Grand Total<span>${{totalPrice + shippingCost}}</span></h2> -->
+                                    <h2>Total Net<span>${{ totalPrice }}f</span></h2>
                                 </div>
                                 <div class="cart-btn" *ngIf="!this.isLoggedIn">
-                                    <button>Continuer Achat</button>
+                                    <button routerLink="/home">Continuer Achat</button>
                                     <button  routerLink="/login">Finaliser Achat</button>
                                 </div>
                                 <div class="cart-btn" *ngIf="this.isLoggedIn">
-                                  <button>Continuer Achat</button>
+                                  <button routerLink="/home">Continuer Achat</button>
                                   <button *ngIf="this.isLoggedIn" routerLink="/checkout">Finaliser Achat</button>
                               </div>
                             </div>

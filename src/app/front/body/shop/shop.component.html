@@ -4,7 +4,7 @@
 <div class="breadcrumb-wrap">
     <div class="container-fluid">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/home">Accueil</a></li>
             <li class="breadcrumb-item active">Notre catalogues</li>
         </ul>
     </div>
@@ -51,11 +51,7 @@
                                 <!-- <a routerLink="/product-detail/{{product.pSlug}} ">{{product.pName}}</a> -->
                                 <a routerLink="/product-detail/{{artDTO.reference}}">{{artDTO.designation}}</a>
                                 <div class="ratting ">
-                                   <!--  <i class="fa fa-star "></i>
-                                    <i class="fa fa-star "></i>
-                                    <i class="fa fa-star "></i>
-                                    <i class="fa fa-star "></i>
-                                    <i class="fa fa-star "></i> -->
+
                                     <ngb-rating
                                         [max]="5"
                                         [(rate)]="currentRating"
@@ -70,16 +66,16 @@
                                 </a>
                                 <div class="product-action ">
                                     <a (click)="addTocart(artDTO)" style="cursor: pointer;">
-                                        <i class="fa fa-cart-plus"></i>
+                                        <em class="fa fa-cart-plus"></em>
                                     </a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                   <!--  <a href="#"><i class="fa fa-heart"></i></a> -->
                                     <a routerLink="/product-detail/{{artDTO.reference}}" style="cursor: pointer;">
-                                        <i class="fa fa-search"></i>
+                                        <em class="fa fa-search"></em>
                                     </a>
                                 </div>
                             </div>
                             <div class="product-price ">
-                                <h3><span>$</span>{{artDTO.price}}</h3>
+                                <h3><span></span>{{ artDTO.price }}f</h3>
                                <!--  <a class="btn" (click)="[addTocart(artDTO), bynow()]">
                                     <i class="fa fa-shopping-cart "></i>Buy Now</a> -->
                             </div>
