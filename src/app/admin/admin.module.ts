@@ -63,6 +63,8 @@ import { SuccessSignUpComponent } from './authentication/success-sign-up/success
 import { VenteByMonthBarChartComponent } from './chartjs/vente-by-month-bar-chart/vente-by-month-bar-chart.component';
 import { VenteByYearBarChartComponent } from './chartjs/vente-by-year-bar-chart/vente-by-year-bar-chart.component';
 import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
+import { UpdateStatusCommandeComponent } from './update-status-commande/update-status-commande.component';
+import { ListCommandeEncoursComponent } from './list-commande-encours/list-commande-encours.component';
 
 
 
@@ -102,6 +104,8 @@ import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
     VenteByMonthBarChartComponent,
     VenteByYearBarChartComponent,
     BarChartComponent,
+    UpdateStatusCommandeComponent,
+    ListCommandeEncoursComponent,
 
 
   ],

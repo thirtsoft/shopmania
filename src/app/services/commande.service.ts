@@ -21,6 +21,10 @@ export class CommandeService {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/all`);
   }
 
+  public getCommandeDtosByStatusPending(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/findListOrderByStatuePending`);
+  }
+
   public getCommandeDtoById(comId: number): Observable<CommandeDto> {
     return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/${comId}`);
   }
