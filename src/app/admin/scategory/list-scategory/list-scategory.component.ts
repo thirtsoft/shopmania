@@ -7,9 +7,7 @@ import { SScategoryService } from './../../../services/scategory.service';
 import { Scategory, ScategoryDto } from './../../../model/scategory';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from './../../../services/dialog.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { AddScategoryComponent } from './../add-scategory/add-scategory.component';
-import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -31,7 +29,6 @@ export class ListScategoryComponent implements OnInit {
               private dialog: MatDialog,
               private router: Router,
               public toastr: ToastrService,
-              private dialogService: DialogService,
   ){}
 
   ngOnInit(): void {

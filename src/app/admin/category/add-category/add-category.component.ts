@@ -1,5 +1,5 @@
 import { DialogComponent } from './../../../shared/dialog/dialog.component';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { CategoryService } from './../../../services/category.service';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Category, CategoryDto } from './../../../model/category';
 import { ToastrService } from 'ngx-toastr';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 
 
@@ -24,38 +24,52 @@ export class AddCategoryComponent implements OnInit {
   listData: CategoryDto[];
   addCategoryForm: NgForm;
 
-  data;
   paramId :any = 0;
   Errors = {status:false, msg:''};
   mySubscription: any;
 
-  constructor(private categoryService: CategoryService,
-              private router: Router,
+  constructor(private crudApi: CategoryService,
               private toastr: ToastrService,
               public fb: FormBuilder,
-              private actRoute: ActivatedRoute,
-              public dialog: MatDialog,
+              private router : Router,
+              @Inject(MAT_DIALOG_DATA)  public data,
+              public dialogRef:MatDialogRef<AddCategoryComponent>,
   ){
-    //--for reload componant
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+   /*  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Trick the Router into believing it's last link wasn't previously loaded
         this.router.navigated = false;
       }
+    }); */
+  }
+
+  get f() { return this.crudApi.dataForm.controls; }
+
+  ngOnInit() {
+    if (this.crudApi.choixmenu == "A"){
+      this.infoForm()
+    };
+  }
+
+  infoForm() {
+    const validatorString = '^[a-zA-Z,.!?\\s-]*$';
+    this.crudApi.dataForm = this.fb.group({
+    //  id: 0,
+      code: ['', [Validators.required]],
+      designation: ['', [Validators.required, Validators.pattern(validatorString)]],
     });
   }
 
-  ngOnInit(): void {
+  /* ngOnInit(): void {
     this.paramId = this.actRoute.snapshot.paramMap.get('id');
     console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getCategoryDTOByID(this.paramId);
     }
 
-  }
+  } */
 
-  public getCategoryDTOByID(id: number) {
+ /*  public getCategoryDTOByID(id: number) {
     console.log('getOne');
     this.categoryService.getCategoryDtoById(id).subscribe(
       (response: CategoryDto) => {
@@ -67,22 +81,64 @@ export class AddCategoryComponent implements OnInit {
       }
     );
 
+  } */
+
+  getListCategories() {
+    this.crudApi.getCategorieDTOs().subscribe(
+      response =>{
+        this.listData = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
-  openDialog(_html) {
-    let dialogRef = this.dialog.open(DialogComponent, {
-        data: {
-          html: _html,
+  onSubmit() {
+    if (this.crudApi.choixmenu == "A"){
+      this.saveCategorie();
+      this.dialogRef.close();
+    }else{
+        this.updateCategorie();
+    }
+
+  }
+
+  saveCategorie() {
+    this.crudApi.addCategoryDto(this.crudApi.dataForm.value)
+      .subscribe(response => {
+        this.dialogRef.close();
+        this.toastr.success("Categorie Ajouté avec Succès");
+   //     this.getListCategories();
+  //      this.router.navigate(['/admin/categories']);
+        this.router.navigateByUrl("admin/categories").then(() => {
+          window.location.reload();
+        });
+      },
+        (error: HttpErrorResponse) => {
+          this.toastr.error("Cette catgory exist déjà, veuillez changez de code");
         }
-    });
-    setTimeout(() => {
-      dialogRef.close();
-    }, 2000);
+      );
+
   }
 
-  submit() {
+  updateCategorie(){
+    this.crudApi.updateCategoryDto(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value).
+    subscribe( data => {
+      this.dialogRef.close();
+      this.toastr.success("Categorie Modifier avec Succès");
+    /*   this.getListCategories();
+      this.router.navigate(['/admin/categories']); */
+      this.router.navigateByUrl("admin/categories").then(() => {
+        window.location.reload();
+      });
+    });
+  }
+
+
+  /* submit() {
     console.log('Data send--', this.addEditCategoryData);
-    this.categoryService.addCategoryDto(this.addEditCategoryData).subscribe(
+    this.crudApi.addCategoryDto(this.addEditCategoryData).subscribe(
       (response: CategoryDto) => {
         console.log('Response--', response);
         let _html=`
@@ -103,7 +159,7 @@ export class AddCategoryComponent implements OnInit {
 
   update() {
     console.log('Data send--', this.addEditCategoryData);
-    this.categoryService.updateCategoryDto(this.addEditCategoryData.id, this.addEditCategoryData).subscribe(
+    this.crudApi.updateCategoryDto(this.addEditCategoryData.id, this.addEditCategoryData).subscribe(
       (response: CategoryDto) => {
         console.log('Response--', response);
         let _html=`
@@ -119,7 +175,7 @@ export class AddCategoryComponent implements OnInit {
       }
 
     );
-  }
+  } */
 
 
 

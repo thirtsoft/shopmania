@@ -1,16 +1,16 @@
-import { DialogComponent } from './../../../shared/dialog/dialog.component';
-import { DialogConfirmComponent } from './../../../shared/dialog-confirm/dialog-confirm.component';
-import { UpdateCategoryComponent } from './../update-category/update-category.component';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { CategoryDto } from './../../../model/category';
-import { CategoryService } from './../../../services/category.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AddCategoryComponent } from './../add-category/add-category.component';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 
 import { ToastrService } from 'ngx-toastr';
+
 import { DialogService } from './../../../services/dialog.service';
-import { MatDialog } from '@angular/material/dialog';
+
+import { CategoryDto } from './../../../model/category';
+import { CategoryService } from './../../../services/category.service';
+import { AddCategoryComponent } from './../add-category/add-category.component';
 
 
 
@@ -28,11 +28,14 @@ export class ListCategoryComponent implements OnInit {
   p : number=1;
   searchText;
 
-  constructor(private categoryService: CategoryService,
-              private dialog: MatDialog,
-              private router: Router,
+  constructor(public crudApi: CategoryService,
               public toastr: ToastrService,
               private dialogService: DialogService,
+              private matDialog: MatDialog,
+              private route: Router,
+              public fb: FormBuilder,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef:MatDialogRef<AddCategoryComponent>,
   ){}
 
   ngOnInit(): void {
@@ -40,7 +43,7 @@ export class ListCategoryComponent implements OnInit {
   }
 
   public getListCategoryDTOs(): void {
-    this.categoryService.getCategorieDTOs().subscribe(
+    this.crudApi.getCategorieDTOs().subscribe(
       (response: CategoryDto[]) => {
         this.categoryListDTO = response;
         console.log(this.categoryListDTO);
@@ -51,84 +54,44 @@ export class ListCategoryComponent implements OnInit {
     );
   }
 
-  openDialog(_html) {
-    let dialogRef = this.dialog.open(DialogComponent, {
-      data: {
-        html: _html,
+  onCreateCategorie(){
+    this.crudApi.choixmenu == "A";
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(AddCategoryComponent, dialogConfig);
+  }
+
+  selectData(item : CategoryDto) {
+    this.crudApi.choixmenu = "M";
+    this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(AddCategoryComponent, dialogConfig);
+  }
+
+  deleteCategory(id: number){
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this.crudApi.deleteCategoryDto(id).subscribe(data => {
+          this.toastr.warning('Categorie supprimé avec succès!');
+          this.route.navigateByUrl("admin/categories").then(() => {
+            window.location.reload();
+          });
+        },
+          (error: HttpErrorResponse) => {
+          this.toastr.error("Impossible de supprimer cet sous_catégorie, veuillez supprimer tous les articles lié à celle-ci");
+          }
+        );
       }
     });
-    setTimeout(() => {
-      dialogRef.close();
-    }, 2000);
-  }
-
-  confirmDialog(id) {
-    let dialogRef = this.dialog.open(DialogConfirmComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.onDeleteCategory(id);
-      }
-    })
-  }
-
-  public onDeleteCategory(id: number): void{
-    console.log('delete');
-    console.log('id--', id);
-    this.categoryService.deleteCategoryDto(id).subscribe(data => {
-      let _html=`
-              <div class="c-green">
-                <div class="material-icons">task_alt</div>
-                <h1>Category Delete Success!</h1>
-              </div>`;
-      this.openDialog(_html);
-      this.ngOnInit();
-
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-
-  }
-
-  onAddCategorie() {
-    this.openNoteDialog(null);
-  }
-
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(AddCategoryComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.categoryListDTO.push(result);
-      }
-      // this.refreshData();
-    });
   }
 
 
 
-
- /*  public onDeleteCategory(cat: CategoryDto): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.categoryService.deleteCategoryDto(cat.id).subscribe(data => {
-          this.toastr.warning('Category supprimé avec succès!');
-          this.categoryListDTO = this.categoryListDTO.filter(u => u !== cat);
-          this.getListCategoryDTOs();
-        });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  }
- */
 
 }

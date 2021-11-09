@@ -31,6 +31,7 @@ export class AddScategoryComponent implements OnInit {
               private router: Router,
               public dialog: MatDialog,
               private actRoute: ActivatedRoute,
+
   ){
     //--for reload componant
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;

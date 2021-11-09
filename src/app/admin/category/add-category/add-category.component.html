@@ -1,18 +1,17 @@
+ <!--
 <div id="wrapper">
     <app-backend-sidebar></app-backend-sidebar>
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
             <app-backend-header></app-backend-header>
-            <div class="container-fluid">
+          <div class="container-fluid">
                 <h1>Nouveau Categorie</h1>
-                <!--  <form #addArticleForm="ngForm" name="form" (ngSubmit)="onAddArticle()"> -->
+
                 <form name="form" #addCategoryForm="ngForm">
-                    <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editArticle.idCategory"> -->
-                    <!-- <div class="row"> -->
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Code</label>
-                            <!--  <div class="col-sm-10 col-md-6"> -->
                             <input type="text" class="form-control" [(ngModel)]="addEditCategoryData.code" name="code" id="code" placeholder="code" #code="ngModel" required>
                             <span class="text-danger" *ngIf="(code.touched || addCategoryForm.submitted) && code.errors?.required">
                         Code est obligatoire
@@ -22,7 +21,6 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Designation</label>
-                            <!--  <div class="col-sm-10 col-md-6"> -->
                             <input type="text" class="form-control" [(ngModel)]="addEditCategoryData.designation" name="designation" id="designation" #designation="ngModel" placeholder="designation">
                             <span class="text-danger" *ngIf="(designation.touched || addCategoryForm.submitted) && designation.errors?.required">
                             Designation est obligatoire
@@ -35,13 +33,59 @@
                         <button *ngIf="paramId" class="btn btn-warning" (click)="update()"><i class="fa fa-database"></i>Update</button>
                         <button type="button" class="btn btn-danger ml-1"><i class="fa fa-close"></i> Close</button>
                     </div>
-                    <!-- </div> -->
+
                 </form>
 
             </div>
-        </div>
+
+
+
+
+          </div>
 
         <app-backend-footer></app-backend-footer>
     </div>
+
+</div>
+-->
+
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <h2>Nouvelle Catégorie</h2>
+    <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
+       <!--  <input type="hidden"  formControlName="id" id="id"> -->
+        <div class="form-group">
+          <label>Code </label>
+          <input type="text" class="form-control" formControlName="code" id="code" placeholder="Code de la catégorie" required />
+           <div *ngIf="f['code'].invalid && (f['code'].dirty || f['code'].touched)" class="alert alert-danger">
+            <span *ngIf="f['code'].errors.required">
+              Code obligatoire.
+           </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Designation</label>
+          <input type="text" class="form-control" formControlName="designation" id="designation"  placeholder="Désignation de la catégorie" required />
+          <div *ngIf="f['designation'].invalid && (f['designation'].dirty || f['designation'].touched)" class="alert alert-danger">
+            <span *ngIf="f['designation'].errors.required">Designation obligatoire.</span>
+           <span *ngIf="f['designation'].errors?.pattern">SVP, Donner une désignation avec des lettres de l'alphabet A-Z..</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit"
+            class="btn btn-success"
+            [disabled]="!this.crudApi.dataForm.valid"
+          ><em class="fa fa-database"></em> Enregistrer
+          </button>&nbsp;
+          <button type="button" class="btn btn-danger ml-1"
+            [mat-dialog-close]
+          ><em class="fa fa-close"></em> Fermer
+        </button>
+        </div>
+
+    </form>
+  </div>
 
 </div>

@@ -4,7 +4,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,12 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination' ;
 
 import { MaterialModule } from '../shared/material.module';
 
-//import { ChartsModule } from 'ng2-charts';
 
-/*
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalModule } from 'ngx-bootstrap/modal';
-*/
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
 import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListArticleComponent } from './article/list-article/list-article.component';
@@ -137,8 +132,17 @@ import { ListCommandeEncoursComponent } from './list-commande-encours/list-comma
     ModalModule,
 */
   ],
-  providers: [
-    DatePipe,
+
+  providers: [DatePipe,{ provide: MAT_DIALOG_DATA, useValue: {} ,},
+    { provide: MatDialogRef, useValue: {} },
+
   ],
+
+
+  entryComponents: [
+    AddCategoryComponent,
+    DashboardComponent
+  ]
+
 })
 export class AdminModule { }

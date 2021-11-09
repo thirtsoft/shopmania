@@ -53,6 +53,14 @@ export class ListArticleComponent implements OnInit {
     );
   }
 
+  onAddNewArticle() {
+    this.router.navigateByUrl("admin/article");
+  }
+
+  editPhotoProduct(event) {
+
+  }
+
   openDialog(_html) {
     let dialogRef = this.dialog.open(DialogComponent, {
       data: {

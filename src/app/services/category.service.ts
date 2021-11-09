@@ -1,9 +1,11 @@
-import { environment } from './../../environments/environment';
-
-import { Category, CategoryDto } from './../model/category';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
+
+import { Category, CategoryDto } from './../model/category';
+
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,12 @@ import { HttpClient } from '@angular/common/http';
 export class CategoryService {
 
   private apiServerUrl = environment.apiBaseUrl;
+
+  public choixmenu : string  = 'A';
+
+  public dataForm:  FormGroup;
+
+  listData : CategoryDto[];
 
   constructor(private http: HttpClient) {
   }

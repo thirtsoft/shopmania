@@ -50,6 +50,10 @@ import { DefautLayoutComponent } from './layouts/defaut-layout/defaut-layout.com
     /* MatCarouselModule.forRoot(), */
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogConfirmComponent
+  ]
+
 })
 export class AppModule { }
