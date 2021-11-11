@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination' ;
@@ -28,8 +28,6 @@ import { ListArticleComponent } from './article/list-article/list-article.compon
 import { AddArticleComponent } from './article/add-article/add-article.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
 import { AddCategoryComponent } from './category/add-category/add-category.component';
-import { AddScategoryComponent } from './scategory/add-scategory/add-scategory.component';
-import { ListScategoryComponent } from './scategory/list-scategory/list-scategory.component';
 import { ListFournisseurComponent } from './fournisseur/list-fournisseur/list-fournisseur.component';
 import { AddFournisseurComponent } from './fournisseur/add-fournisseur/add-fournisseur.component';
 import { ListClientComponent } from './list-client/list-client.component';
@@ -40,7 +38,6 @@ import { ListNoteArticleComponent } from './list-note-article/list-note-article.
 import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utilisateur.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { UpdateCategoryComponent } from './category/update-category/update-category.component';
-import { UpdateScategoryComponent } from './scategory/update-scategory/update-scategory.component';
 import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
 import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
 import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
@@ -60,6 +57,8 @@ import { VenteByYearBarChartComponent } from './chartjs/vente-by-year-bar-chart/
 import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
 import { UpdateStatusCommandeComponent } from './update-status-commande/update-status-commande.component';
 import { ListCommandeEncoursComponent } from './list-commande-encours/list-commande-encours.component';
+import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-sub-category.component';
+import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/create-sub-category.component';
 
 
 
@@ -71,8 +70,6 @@ import { ListCommandeEncoursComponent } from './list-commande-encours/list-comma
     AddArticleComponent,
     ListCategoryComponent,
     AddCategoryComponent,
-    AddScategoryComponent,
-    ListScategoryComponent,
     ListFournisseurComponent,
     AddFournisseurComponent,
     ListClientComponent,
@@ -82,7 +79,6 @@ import { ListCommandeEncoursComponent } from './list-commande-encours/list-comma
     AddUtilisateurComponent,
     ListUtilisateurComponent,
     UpdateCategoryComponent,
-    UpdateScategoryComponent,
     UpdateArtileComponent,
     UpdateFournisseurComponent,
     UpdateUtilisateurComponent,
@@ -101,6 +97,8 @@ import { ListCommandeEncoursComponent } from './list-commande-encours/list-comma
     BarChartComponent,
     UpdateStatusCommandeComponent,
     ListCommandeEncoursComponent,
+    ListSubCategoryComponent,
+    CreateSubCategoryComponent,
 
 
   ],
@@ -140,7 +138,7 @@ import { ListCommandeEncoursComponent } from './list-commande-encours/list-comma
 
 
   entryComponents: [
-    AddCategoryComponent,
+    AddCategoryComponent, CreateSubCategoryComponent,
     DashboardComponent
   ]
 

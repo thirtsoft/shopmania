@@ -82,18 +82,9 @@ export class AddArticleComponent implements OnInit {
 
   }
 
-  openDialog(_html) {
-    let dialogRef = this.dialog.open(DialogComponent, {
-        data: {
-          html: _html,
-        }
-    });
-    setTimeout(() => {
-      dialogRef.close();
-    }, 2000);
-  }
 
-  submit() {
+
+ /*  submit() {
     console.log('Data send--', this.addEditArticleDTO);
     this.articleService.addArticleDto(this.addEditArticleDTO).subscribe(
       (response: ArticleDto) => {
@@ -112,21 +103,19 @@ export class AddArticleComponent implements OnInit {
 
     );
 
-  }
+  } */
 
   update() {
     console.log('Data send--', this.addEditArticleDTO);
     this.articleService.updateArticleDto(this.addEditArticleDTO.id, this.addEditArticleDTO).subscribe(
       (response: ArticleDto) => {
-        console.log('Response--', response);
-        let _html=`
-            <div class="c-green">
-              <div class="material-icons">task_alt</div>
-              <h1>Product Update Success!</h1>
-            </div>`;
-
-        this.openDialog(_html);
-        this.router.navigate([`/admin/articles`]);
+        this.toastr.warning('avec succès','Article Modifié', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/articles").then(() => {
+          window.location.reload();
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -134,23 +123,6 @@ export class AddArticleComponent implements OnInit {
 
     );
   }
-/*
-  public onAddArticle() {
-    this.articleService.addArticleDto(this.addEditArticleDTO).subscribe(
-      (response: ArticleDto) => {
-        this.dialogRef.close();
-        this.toastr.success("Article Ajouté avec Succès");
-        this.router.navigate(['/backend/admin/articles']);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  addEditArticle() { }
-
-  */
 
   onSelectFile(event) {
    // selectionner une image et la garder
@@ -166,18 +138,23 @@ export class AddArticleComponent implements OnInit {
     this.articleService.addArticleDtoWithPhoto(formData)
       .subscribe((response: ArticleDto)=> {
         console.log('Response--', response);
-        let _html=`
-          <div class="c-green">
-            <div class="material-icons">task_alt</div>
-            <h1>Product Created Success!</h1>
-          </div>`;
-          this.openDialog(_html);
-          this.router.navigate([`/admin/articles`]);
+        this.toastr.success('avec succès','Article Ajoutée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+
+        this.router.navigateByUrl("admin/articles").then(() => {
+          window.location.reload();
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  goBack() {
+    this.router.navigate([`/admin/articles`]);
   }
 
 

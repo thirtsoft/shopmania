@@ -28,10 +28,10 @@ export class AddCategoryComponent implements OnInit {
   Errors = {status:false, msg:''};
   mySubscription: any;
 
-  constructor(private crudApi: CategoryService,
-              private toastr: ToastrService,
+  constructor(public crudApi: CategoryService,
+              public toastr: ToastrService,
               public fb: FormBuilder,
-              private router : Router,
+              public router : Router,
               @Inject(MAT_DIALOG_DATA)  public data,
               public dialogRef:MatDialogRef<AddCategoryComponent>,
   ){

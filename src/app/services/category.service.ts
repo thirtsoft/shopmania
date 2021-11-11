@@ -12,7 +12,7 @@ import { environment } from './../../environments/environment';
 })
 export class CategoryService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
   public choixmenu : string  = 'A';
 

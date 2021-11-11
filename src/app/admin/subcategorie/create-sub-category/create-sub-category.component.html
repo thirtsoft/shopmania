@@ -1,0 +1,90 @@
+<div class="col-md-12">
+  <h3 style="align-items: center">Nouveau SubCategorie</h3>
+
+  <form #addScategorieForm="ngForm" (ngSubmit)="addScategorieForm.form.valid && onSubmit()" novalidate>
+    <input
+      type="hidden"
+      name="id"
+      #id="ngModel"
+      [(ngModel)]="formDataSubcategorie.id"
+    />
+
+    <div class="form-group">
+      <label>Code </label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="formDataSubcategorie.code"
+        name="code"
+        id="code"
+        #code="ngModel"
+        required
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          (code.touched || addScategorieForm.submitted) && code.errors?.required
+        "
+      >
+        Code est obligatoire
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Libelle</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="formDataSubcategorie.libelle"
+        name="libelle"
+        id="libelle"
+        #libelle="ngModel"
+        required
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          (libelle.touched || addScategorieForm.submitted) &&
+          libelle.errors?.required
+        "
+      >
+        Libelle est obligatoire
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Categorie</label>
+      <div class="form-group">
+        <select
+          name="scategorie"
+          [(ngModel)]="formDataSubcategorie.categoryDto"
+          class="form-control"
+        >
+          <option
+            *ngFor="let cat of categoryListDTO"
+            [ngValue]="
+              cat.id == formDataSubcategorie.categoryDto?.id
+                ? formDataSubcategorie.categoryDto
+                : cat
+            "
+          >
+            {{ cat.designation }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="addScategorieForm.invalid"
+      >
+        <em class="fa fa-database"></em> Enregistrer</button
+      >&nbsp;
+      <button type="button" class="btn btn-danger ml-1" [mat-dialog-close]>
+        <em class="fa fa-close"></em> Fermer
+      </button>
+    </div>
+  </form>
+</div>

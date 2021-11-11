@@ -1,5 +1,3 @@
-import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
-import { SuccessSignUpComponent } from './authentication/success-sign-up/success-sign-up.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TopLeftComponent } from './top-left/top-left.component';
@@ -8,14 +6,17 @@ import { AdminComponent } from './admin/admin.component';
 import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
 import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
 import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
-import { UpdateScategoryComponent } from './scategory/update-scategory/update-scategory.component';
 import { UpdateCategoryComponent } from './category/update-category/update-category.component';
+
+import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/create-sub-category.component';
+import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-sub-category.component';
+import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
+import { SuccessSignUpComponent } from './authentication/success-sign-up/success-sign-up.component';
+
 
 import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
 import { ListArticleComponent } from './article/list-article/list-article.component';
 import { AddCategoryComponent } from './category/add-category/add-category.component';
-import { ListScategoryComponent } from './scategory/list-scategory/list-scategory.component';
-import { AddScategoryComponent } from './scategory/add-scategory/add-scategory.component';
 import { AddArticleComponent } from './article/add-article/add-article.component';
 import { AddFournisseurComponent } from './fournisseur/add-fournisseur/add-fournisseur.component';
 import { ListFournisseurComponent } from './fournisseur/list-fournisseur/list-fournisseur.component';
@@ -59,7 +60,6 @@ const routes: Routes = [
   },
 
 
-
   {
     path: 'categories',
     component: ListCategoryComponent
@@ -72,7 +72,12 @@ const routes: Routes = [
     path: 'categorie',
     component: AddCategoryComponent
   },
-  {
+  { path: 'scategories', children: [
+    { path: '', component: ListSubCategoryComponent},
+    { path:'edit/:id',component: CreateSubCategoryComponent },
+  ]
+},
+  /* {
     path: 'scategories',
     component: ListScategoryComponent
   },
@@ -83,7 +88,7 @@ const routes: Routes = [
   {
     path: 'scategorie',
     component: AddScategoryComponent
-  },
+  }, */
   {
     path: 'articles',
     component: ListArticleComponent
