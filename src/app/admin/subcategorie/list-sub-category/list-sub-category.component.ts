@@ -20,6 +20,8 @@ export class ListSubCategoryComponent implements OnInit {
 
   subcategoryListDTO: ScategoryDto[];
   categoryDTO : ScategoryDto = new ScategoryDto();
+  addEditscategoryDTO: ScategoryDto;
+  deletescategoryDTO: ScategoryDto;
 
   id : number;
   p : number=1;
@@ -29,9 +31,7 @@ export class ListSubCategoryComponent implements OnInit {
               public toastr: ToastrService,
               private dialogService: DialogService,
               private matDialog: MatDialog,
-              private route: Router,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef:MatDialogRef<CreateSubCategoryComponent>,
+              private route: Router
   ){}
 
   ngOnInit(): void {
@@ -48,6 +48,10 @@ export class ListSubCategoryComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  onAddSubcategory() {
+    this.route.navigateByUrl('admin/scategorie');
   }
 
   addEditSubcategory(id?: number) {
@@ -67,7 +71,10 @@ export class ListSubCategoryComponent implements OnInit {
     .afterClosed().subscribe(res =>{
       if(res){
         this.crudApi.deleteScategoryDto(id).subscribe(data => {
-          this.toastr.warning('Sous-Categorie supprimé avec succès!');
+          this.toastr.error('avec succès','Sous-Categorie supprimée', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
           this.route.navigateByUrl("admin/scategories").then(() => {
             window.location.reload();
           });

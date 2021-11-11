@@ -68,7 +68,10 @@ export class ListArticleComponent implements OnInit {
     .afterClosed().subscribe(res =>{
       if(res){
         this.crudApi.deleteArticleDto(id).subscribe(data => {
-          this.toastr.warning('Articles supprimé avec succès!');
+          this.toastr.error('avec succès','Article supprimé', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
           this.router.navigateByUrl("admin/articles").then(() => {
             window.location.reload();
           });

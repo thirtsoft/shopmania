@@ -1,12 +1,12 @@
-<div class="col-md-12">
+<!-- <div class="col-md-12">
   <h3 style="align-items: center">Nouveau SubCategorie</h3>
 
-  <form #addScategorieForm="ngForm" (ngSubmit)="addScategorieForm.form.valid && onSubmit()" novalidate>
+  <form #addScategoryForm="ngForm" name="form">
     <input
       type="hidden"
       name="id"
       #id="ngModel"
-      [(ngModel)]="formDataSubcategorie.id"
+      [(ngModel)]="addEditScategoryDTO.id"
     />
 
     <div class="form-group">
@@ -14,7 +14,7 @@
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="formDataSubcategorie.code"
+        [(ngModel)]="addEditScategoryDTO.code"
         name="code"
         id="code"
         #code="ngModel"
@@ -23,7 +23,7 @@
       <span
         class="text-danger"
         *ngIf="
-          (code.touched || addScategorieForm.submitted) && code.errors?.required
+          (code.touched || addScategoryForm.submitted) && code.errors?.required
         "
       >
         Code est obligatoire
@@ -35,7 +35,7 @@
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="formDataSubcategorie.libelle"
+        [(ngModel)]="addEditScategoryDTO.libelle"
         name="libelle"
         id="libelle"
         #libelle="ngModel"
@@ -44,7 +44,7 @@
       <span
         class="text-danger"
         *ngIf="
-          (libelle.touched || addScategorieForm.submitted) &&
+          (libelle.touched || addScategoryForm.submitted) &&
           libelle.errors?.required
         "
       >
@@ -57,14 +57,14 @@
       <div class="form-group">
         <select
           name="scategorie"
-          [(ngModel)]="formDataSubcategorie.categoryDto"
+          [(ngModel)]="addEditScategoryDTO.categoryDto"
           class="form-control"
         >
           <option
             *ngFor="let cat of categoryListDTO"
             [ngValue]="
-              cat.id == formDataSubcategorie.categoryDto?.id
-                ? formDataSubcategorie.categoryDto
+              cat.id == addEditScategoryDTO.categoryDto?.id
+                ? addEditScategoryDTO.categoryDto
                 : cat
             "
           >
@@ -76,15 +76,127 @@
 
     <div class="form-group">
       <button
+        *ngIf="!paramId"
         type="submit"
-        class="btn btn-success"
-        [disabled]="addScategorieForm.invalid"
+        class="btn btn-lg btn-success"
+        (click)="submit()"
       >
-        <em class="fa fa-database"></em> Enregistrer</button
+        <i class="fa fa-database"></i> Enregistrer </button
       >&nbsp;
-      <button type="button" class="btn btn-danger ml-1" [mat-dialog-close]>
-        <em class="fa fa-close"></em> Fermer
+      <button *ngIf="paramId" class="btn btn-lg btn-warning" (click)="update()">
+        <i class="fa fa-database"></i>Modifier
+      </button>
+      <button type="button" (click)="goBack()" class="btn btn-lg btn-danger ml-1">
+        <i class="fa fa-close"></i> Fermer
       </button>
     </div>
   </form>
+</div> -->
+
+
+<div id="wrapper">
+  <app-backend-sidebar></app-backend-sidebar>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <app-backend-header></app-backend-header>
+      <div class="container-fluid">
+        <h1>Nouveau SCategorie</h1>
+        <!--  <form #addArticleForm="ngForm" name="form" (ngSubmit)="onAddArticle()"> -->
+
+  <form #addScategoryForm="ngForm" name="form">
+    <input
+      type="hidden"
+      name="id"
+      #id="ngModel"
+      [(ngModel)]="addEditScategoryDTO.id"
+    />
+
+    <div class="form-group">
+      <label>Code </label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="addEditScategoryDTO.code"
+        name="code"
+        id="code"
+        #code="ngModel"
+        required
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          (code.touched || addScategoryForm.submitted) && code.errors?.required
+        "
+      >
+        Code est obligatoire
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Libelle</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="addEditScategoryDTO.libelle"
+        name="libelle"
+        id="libelle"
+        #libelle="ngModel"
+        required
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          (libelle.touched || addScategoryForm.submitted) &&
+          libelle.errors?.required
+        "
+      >
+        Libelle est obligatoire
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Categorie</label>
+      <div class="form-group">
+        <select
+          name="scategorie"
+          [(ngModel)]="addEditScategoryDTO.categoryDto"
+          class="form-control"
+        >
+          <option
+            *ngFor="let cat of categoryListDTO"
+            [ngValue]="
+              cat.id == addEditScategoryDTO.categoryDto?.id
+                ? addEditScategoryDTO.categoryDto
+                : cat
+            "
+          >
+            {{ cat.designation }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button
+        *ngIf="!paramId"
+        type="submit"
+        class="btn btn-lg btn-success"
+        (click)="submit()"
+      >
+        <i class="fa fa-database"></i> Enregistrer </button
+      >&nbsp;
+      <button *ngIf="paramId" class="btn btn-lg btn-warning" (click)="update()">
+        <i class="fa fa-database"></i>Modifier
+      </button>
+      <button type="button" (click)="goBack()" class="btn btn-lg btn-danger ml-1">
+        <i class="fa fa-close"></i> Fermer
+      </button>
+    </div>
+  </form>
+      </div>
+    </div>
+
+    <app-backend-footer></app-backend-footer>
+  </div>
 </div>
+

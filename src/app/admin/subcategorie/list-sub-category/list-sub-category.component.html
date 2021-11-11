@@ -17,7 +17,7 @@
             <button
               _ngcontent-roy-c3=""
               class="btn-meeting"
-              (click)="addEditSubcategory(null)"
+              (click)="onAddSubcategory()"
               type="submit"
               style="margin-left: 5%; width: 30%"
             >
@@ -52,7 +52,7 @@
                 <td class="text-right">
                   <button
                     class="btn btn-warning btn-sm"
-                    (click)="addEditSubcategory(subCatDTO.id)"
+                    [routerLink]="['/admin/scategorie', subCatDTO.id]"
                   >
                     <i class="fa fa-edit" aria-hidden="true"></i></button
                   >&nbsp;

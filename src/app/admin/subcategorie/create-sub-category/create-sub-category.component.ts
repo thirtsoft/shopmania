@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, FormBuilder, FormControl, Validators } from '@angular/forms';
 
@@ -19,32 +19,52 @@ import { isNullOrUndefined } from 'util';
 })
 export class CreateSubCategoryComponent implements OnInit {
 
+  addEditScategoryDTO: ScategoryDto = new ScategoryDto();
   categoryListDTO: CategoryDto[];
-  formDataSubcategorie: ScategoryDto = new ScategoryDto();
-  addScategorieForm: NgForm;
 
-  code: FormControl;
-  libelle: FormControl;
-  categoryDto: FormControl;
-  validatorString = '^[a-zA-Z,.!?\\s-]*$';
+  data;
+  paramId :any = 0;
+  Errors = {status:false, msg:''};
+  mySubscription: any;
 
   constructor(public crudApi: SScategoryService,
-              private catService: CategoryService,
-              public fb: FormBuilder,
+              public catService: CategoryService,
               public toastr: ToastrService,
-              private router : Router,
-              @Inject(MAT_DIALOG_DATA)  public data,
-              public dialogRef:MatDialogRef<CreateSubCategoryComponent>,
-  ) {}
+              public router : Router,
+              public actRoute: ActivatedRoute,
+  ) {
+    //--for reload componant
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+  }
 
   ngOnInit() {
-    this.initForm();
-    this.getListCategoryDTOs();
-    if (!isNullOrUndefined(this.data.id)) {
-      console.log(this.crudApi.listData[this.data.id]);
-      this.formDataSubcategorie = Object.assign({},this.crudApi.listData[this.data.id])
+    this.paramId = this.actRoute.snapshot.paramMap.get('id');
+    console.log('Param--', this.paramId);
+    if(this.paramId  && this.paramId  > 0){
+      this.getScategoryDTOById(this.paramId);
     }
 
+    this.getListCategoryDTOs();
+
+  }
+
+  getScategoryDTOById(id: number) {
+    console.log('getOne');
+    this.crudApi.getScategoryDtoById(id).subscribe(
+      (response: ScategoryDto) => {
+        console.log('data--', response);
+        this.addEditScategoryDTO = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
 
   }
 
@@ -59,98 +79,56 @@ export class CreateSubCategoryComponent implements OnInit {
     )
   }
 
-  initForm() {
-    this.formDataSubcategorie = {
-      id:0,
-      code:"",
-      libelle:"",
-      categoryDto: new CategoryDto(),
-    };
-
-  }
-
- /*  infoForm() {
-    this.code = new FormControl('', Validators.required);
-    this.libelle = new FormControl('', [Validators.required]);
-    this.categoryDto = new FormControl('', Validators.required);
-  } */
 
   ResetForm() {
     this.crudApi.dataForm.reset();
   }
 
-  onSubmit() {
-    console.log(this.formDataSubcategorie)
-     if (isNullOrUndefined(this.data.id)) {
-      this.crudApi.addScategoryDto(this.formDataSubcategorie).
-      subscribe( data => {
-        this.dialogRef.close();
-        this.toastr.success("Scategorie Ajouté avec Succès");
-        this.router.navigate(['/admin/scategories']).then(() => {
+  submit() {
+    console.log('Data send--', this.addEditScategoryDTO);
+    this.crudApi.addScategoryDto(this.addEditScategoryDTO).subscribe(
+      (response: ScategoryDto) => {
+        console.log('Response--', response);
+
+        this.toastr.success('avec succès','Sous-Categorie Ajoutée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+
+        this.router.navigateByUrl("admin/scategories").then(() => {
           window.location.reload();
         });
       },
-        (error: HttpErrorResponse) => {
-          this.toastr.error("Cet Scategory exist déjà, veuillez changez le code");
-        }
-      );
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
 
-    } else {
-      console.log(this.formDataSubcategorie.id, this.formDataSubcategorie);
-      this.crudApi.updateScategoryDto(this.formDataSubcategorie.id, this.formDataSubcategorie).
-      subscribe( data => {
-        this.dialogRef.close();
-        this.toastr.success("Scategorie Modifiée avec Succès");
-        this.router.navigate(['/admin/scategories']).then(() => {
+    );
+
+  }
+
+  update() {
+    console.log('Data send--', this.addEditScategoryDTO);
+    this.crudApi.updateScategoryDto(this.addEditScategoryDTO.id, this.addEditScategoryDTO).subscribe(
+      (response: ScategoryDto) => {
+        this.toastr.warning('avec succès','Sous-Categorie Modifiée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+
+        this.router.navigateByUrl("admin/scategories").then(() => {
           window.location.reload();
         });
-      });
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
 
-    }
-
+    );
   }
 
-  saveScategorie() {
-    if (isNullOrUndefined(this.data.id)) {
-      this.crudApi.addScategoryDto(this.addScategorieForm.value).
-      subscribe( data => {
-        this.dialogRef.close();
-        this.toastr.success("Scategorie Ajouté avec Succès");
-        this.router.navigate(['/admin/scategories']).then(() => {
-          window.location.reload();
-        });
-      });
-    }
-  }
-
-  updateScategorie(addScategorieForm: NgForm) {
-    if (!isNullOrUndefined(this.data.id)) {
-      this.crudApi.updateScategoryDto(addScategorieForm.value.id, addScategorieForm.value).
-      subscribe( data => {
-        this.dialogRef.close();
-        this.toastr.success("Scategorie Ajouté avec Succès");
-        this.router.navigate(['/admin/scategories']).then(() => {
-          window.location.reload();
-        });
-      });
-    }
-  }
-
-
-  saveScategories() {
-    console.log(this.crudApi.dataForm.value);
-  }
-
-  updateScategories(){
-    this.crudApi.updateScategoryDto(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value).
-    subscribe( data => {
-      this.dialogRef.close();
-      this.toastr.success("Scategorie Modifier avec Succès");
-      this.router.navigate(['/home/scategories']).then(() => {
-        window.location.reload();
-      });
-//      this.router.navigate(['/home/scategories']);
-    });
+  goBack() {
+    this.router.navigateByUrl('admin/scategories');
   }
 
 }

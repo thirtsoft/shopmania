@@ -72,23 +72,23 @@ const routes: Routes = [
     path: 'categorie',
     component: AddCategoryComponent
   },
-  { path: 'scategories', children: [
+ /*  { path: 'scategories', children: [
     { path: '', component: ListSubCategoryComponent},
     { path:'edit/:id',component: CreateSubCategoryComponent },
   ]
-},
-  /* {
+}, */
+  {
     path: 'scategories',
-    component: ListScategoryComponent
+    component: ListSubCategoryComponent
   },
   {
     path:'scategorie/:id',
-    component:AddScategoryComponent
+    component:CreateSubCategoryComponent
   },
   {
     path: 'scategorie',
-    component: AddScategoryComponent
-  }, */
+    component: CreateSubCategoryComponent
+  },
   {
     path: 'articles',
     component: ListArticleComponent
