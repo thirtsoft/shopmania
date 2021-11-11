@@ -29,8 +29,7 @@ export class ListFournisseurComponent implements OnInit {
 
   fournisseurDTO : FournisseurDto = new FournisseurDto();
 
-  constructor(private fournisseurService: FournisseurService,
-              private dialog: MatDialog,
+  constructor(private crudApi: FournisseurService,
               private router: Router,
               public toastr: ToastrService,
               private dialogService: DialogService
@@ -41,7 +40,7 @@ export class ListFournisseurComponent implements OnInit {
   }
 
   public getListFournisseurDTOs(): void {
-    this.fournisseurService.getFournisseurDTOs().subscribe(
+    this.crudApi.getFournisseurDTOs().subscribe(
       (response: FournisseurDto[]) => {
         this.fournisseurDTOList = response;
         console.log(this.fournisseurDTOList);
@@ -52,109 +51,26 @@ export class ListFournisseurComponent implements OnInit {
     );
   }
 
-  openDialog(_html) {
-    let dialogRef = this.dialog.open(DialogComponent, {
-      data: {
-        html: _html,
-      }
-    });
-    setTimeout(() => {
-      dialogRef.close();
-    }, 2000);
-  }
-
-  confirmDialog(id) {
-    let dialogRef = this.dialog.open(DialogConfirmComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.onDeleteForunisseur(id);
-      }
-    })
-  }
-
-  public onDeleteForunisseur(id: number): void{
-    console.log('delete');
-    console.log('id--', id);
-    this.fournisseurService.deleteFournisseurDto(id).subscribe(data => {
-      let _html=`
-              <div class="c-green">
-                <div class="material-icons">task_alt</div>
-                <h1>Forunisseur Delete Success!</h1>
-              </div>`;
-      this.openDialog(_html);
-      this.ngOnInit();
-
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-
-  }
-/*
-
-  public onDeleteForunisseur(id: number): void{
-    console.log('delete');
-    console.log('id--', id);
-    const res = this.fournisseurService.deleteFournisseurDto(id);
-    if(res) {
-      let _html=`
-              <div class="c-green">
-                <div class="material-icons">task_alt</div>
-                <h1>Fournisseur Delete Success!</h1>
-              </div>`;
-      this.openDialog(_html);
-      this.ngOnInit();
-    } else {
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-
-    }
-  }
-
-
-  onCreateFournisseur() {
-    this.openNoteDialog(null);
-  }
-
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(AddFournisseurComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.fournisseurDTOList.push(result);
+  confirmDialog(id: number){
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this.crudApi.deleteFournisseurDto(id).subscribe(data => {
+          this.toastr.error('avec succès','Fournisseurs supprimée', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("admin/fournisseurs").then(() => {
+            window.location.reload();
+          });
+        },
+          (error: HttpErrorResponse) => {
+          this.toastr.error("Impossible de supprimer cet fournisseur, veuillez verifiez");
+          }
+        );
       }
     });
   }
-
-
-  addEditFournisseur(i) {
-  }
-*/
- // onDeleteForunisseur(item) {}
-
- /*  public onDeleteForunisseur(four: FournisseurDto): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.fournisseurService.deleteFournisseurDto(four.id).subscribe(data => {
-          this.toastr.warning('Fournisseur supprimé avec succès!');
-          this.fournisseurDTOList = this.fournisseurDTOList.filter(u => u !== four);
-          this.getListFournisseurDTOs();
-        });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  } */
 
 
 }

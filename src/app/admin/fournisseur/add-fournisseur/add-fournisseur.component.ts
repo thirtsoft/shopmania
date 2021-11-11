@@ -53,6 +53,7 @@ export class AddFournisseurComponent implements OnInit {
     this.getListArticleDTOs();
 
   }
+
   public getListArticleDTOs(): void {
     this.articleService.getArticleDTOs().subscribe(
       (response: ArticleDto[]) => {
@@ -62,6 +63,7 @@ export class AddFournisseurComponent implements OnInit {
       }
     )
   }
+
   getFournisseurDTOById(id: number) {
     console.log('getOne');
     this.fournisseurService.getFournisseurDtoById(id).subscribe(
@@ -76,29 +78,17 @@ export class AddFournisseurComponent implements OnInit {
 
   }
 
-  openDialog(_html) {
-    let dialogRef = this.dialog.open(DialogComponent, {
-        data: {
-          html: _html,
-        }
-    });
-    setTimeout(() => {
-      dialogRef.close();
-    }, 2000);
-  }
-
   submit() {
     console.log('Data send--', this.formDataFournisseurDTO);
     this.fournisseurService.addFournisseurDto(this.formDataFournisseurDTO).subscribe(
       (response: FournisseurDto) => {
-        console.log('Response--', response);
-        let _html=`
-          <div class="c-green">
-            <div class="material-icons">task_alt</div>
-            <h1>Fournisseur Created Success!</h1>
-          </div>`;
-          this.openDialog(_html);
-          this.router.navigate([`/admin/fournisseurs`]);
+        this.toastr.success('avec succès','Fournisseurs Ajouté', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/fournisseurs").then(() => {
+          window.location.reload();
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -113,14 +103,13 @@ export class AddFournisseurComponent implements OnInit {
     this.fournisseurService.updateFournisseurDto(this.formDataFournisseurDTO.id, this.formDataFournisseurDTO).subscribe(
       (response: FournisseurDto) => {
         console.log('Response--', response);
-        let _html=`
-            <div class="c-green">
-              <div class="material-icons">task_alt</div>
-              <h1>Fournisseur Update Success!</h1>
-            </div>`;
-
-        this.openDialog(_html);
-        this.router.navigate([`/admin/fournisseurs`]);
+        this.toastr.warning('avec succès','Fournisseurs Modifié', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/fournisseurs").then(() => {
+          window.location.reload();
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -128,20 +117,10 @@ export class AddFournisseurComponent implements OnInit {
 
     );
   }
-/*
-  public onAddFournisseur() {
-    this.fournisseurService.addFournisseurDto(this.formDataFournisseurDTO).subscribe(
-      (response: FournisseurDto) => {
-        this.dialogRef.close();
-        this.toastr.success("Fournisseur Ajouté avec Succès");
-        this.router.navigate(['/backend/admin/fournisseurs']);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
 
- */
+
+  goBack() {
+
+  }
 
 }

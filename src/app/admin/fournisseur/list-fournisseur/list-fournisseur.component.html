@@ -1,76 +1,85 @@
 <div id="wrapper">
-    <app-backend-sidebar></app-backend-sidebar>
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-            <app-backend-header></app-backend-header>
-            <div class="container-fluid">
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1>
-                        <i class="fa fa-angle-right"></i> List of fournisseurs
-                    </h1>
+  <app-backend-sidebar></app-backend-sidebar>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <app-backend-header></app-backend-header>
+      <div class="container-fluid">
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1><i class="fa fa-angle-right"></i> List of fournisseurs</h1>
+        </div> -->
 
-                </div>
-                <!--  <h3>
-                  <i class="fa fa-angle-right"></i> List of articles</h3>
-              <div> -->
+        <div class="row">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search"
+            [(ngModel)]="searchText"
+          />
 
-                <div class="row">
-                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-
-                    <!-- <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onAddArticle()">Add article</button> -->
-                    <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" routerLink="/admin/fournisseur">Add fournisseur</button>
-
-                </div>
-
-                <table class="table table-striped">
-
-                    <thead class="thead-inverse">
-                        <tr>
-                            <th>Article</th>
-                            <th>Fournisseur</th>
-                            <!-- <th>Nom</th> -->
-                            <th>Addresse</th>
-                            <th>Telephone</th>
-                            <th>Email</th>
-                            <th>City</th>
-                            <th>Country</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let fourDTO of fournisseurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                            <!--  <td>{{fourDTO?.reference}}</td> -->
-                            <td>{{fourDTO?.articleDto.designation}}</td>
-                            <td>{{fourDTO?.firstName}} {{fourDTO?.lastName}}</td>
-                            <!-- <td>{{fourDTO?.lastName}}</td> -->
-                            <td>{{fourDTO?.address}}</td>
-                            <td>{{fourDTO?.telephoneFournisseur}}</td>
-                            <td>{{fourDTO?.email}}</td>
-                            <td>{{fourDTO?.city}}</td>
-                            <td>{{fourDTO?.country}}</td>
-                            <td>
-                                <div class="container ">
-                                    <button mat-raised-button class="action-button btn-primary" [routerLink]="['/admin/fournisseur', fourDTO.id]">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                                    <!-- <button mat-raised-button class="action-button btn-danger " (click)="onDeleteForunisseur(fourDTO) "> -->
-                                    <button mat-raised-button class="action-button btn-danger " (click)="confirmDialog(fourDTO.id) ">
-                  <mat-icon>delete_outline</mat-icon>
-                </button>
-                                </div>
-                            </td>
-
-                        </tr>
-                    </tbody>
-
-                </table>
-                <div class="pagination ">
-                    <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                </div>
-            </div>
+          <button
+            _ngcontent-roy-c3=""
+            class="btn-meeting"
+            type="submit"
+            style="margin-left: 5%; width: 30%"
+            routerLink="/admin/fournisseur"
+          >
+            Add fournisseur
+          </button>
         </div>
 
-        <app-backend-footer></app-backend-footer>
+        <table class="table table-striped" aria-label="">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Article</th>
+              <th>Fournisseur</th>
+              <th>Addresse</th>
+              <th>Telephone</th>
+              <th>Email</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let fourDTO of fournisseurDTOList
+                  | filter: searchText
+                  | paginate: { itemsPerPage: 4, currentPage: p }
+              "
+            >
+              <td>{{ fourDTO?.articleDto.designation }}</td>
+              <td>{{ fourDTO?.firstName }} {{ fourDTO?.lastName }}</td>
+              <td>{{ fourDTO?.address }}</td>
+              <td>{{ fourDTO?.telephoneFournisseur }}</td>
+              <td>{{ fourDTO?.email }}</td>
+              <td>{{ fourDTO?.city }}</td>
+              <td>{{ fourDTO?.country }}</td>
+
+              <td class="text-right">
+                <button
+                  class="btn btn-primary btn-sm"
+                  [routerLink]="['/admin/fournisseur', fourDTO.id]"
+                >
+                  <em class="fa fa-edit" aria-hidden="true"></em></button
+                >&nbsp;
+
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="confirmDialog(fourDTO.id)"
+                >
+                  <i class="fa fa-trash" aria-hidden="true"></i></button
+                >&nbsp;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
     </div>
 
+    <app-backend-footer></app-backend-footer>
+  </div>
 </div>
