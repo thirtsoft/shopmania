@@ -59,6 +59,7 @@ import { ListCommandeEncoursComponent } from './commande/list-commande-encours/l
 import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-sub-category.component';
 import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/create-sub-category.component';
 import { ViewCommandeComponent } from './commande/view-commande/view-commande.component';
+import { UploadFileComponent } from './article/upload-file/upload-file.component';
 
 
 
@@ -99,6 +100,7 @@ import { ViewCommandeComponent } from './commande/view-commande/view-commande.co
     ListSubCategoryComponent,
     CreateSubCategoryComponent,
     ViewCommandeComponent,
+    UploadFileComponent,
 
 
   ],
