@@ -1,13 +1,17 @@
+import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
-import { DatePipe } from '@angular/common';
-import { LigneLigneCommandeService } from './../../../services/lignecommande.service';
 import { ToastrService } from 'ngx-toastr';
+
+import { LigneLigneCommandeService } from './../../../services/lignecommande.service';
 import { CommandeService } from './../../../services/commande.service';
 import { CommandeDto } from './../../../model/commande';
 import { LigneCommandeDto } from './../../../model/ligne-commande';
-import { Component, OnInit, Inject } from '@angular/core';
+
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-view-commande',
@@ -31,7 +35,6 @@ export class ViewCommandeComponent implements OnInit {
   constructor(public crudApi: CommandeService,
               public toastr: ToastrService,
               public lcmdService: LigneLigneCommandeService,
-              private datePipe : DatePipe,
               public fb: FormBuilder,
               private router : Router,
               public route: ActivatedRoute,
@@ -42,13 +45,13 @@ export class ViewCommandeComponent implements OnInit {
   ngOnInit(): void {
     this.comId = this.route.snapshot.params.id;
     console.log(this.comId);
-    this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCmdClient[]) => {
+    this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCommandeDto[]) => {
       this.lcmdService.listData = data;
       this.numeroCommande = this.lcmdService.listData[0].numero;
-      this.totalCommande = this.lcmdService.listData[0].commande.totalCommande;
-      this.dateCommande = this.lcmdService.listData[0].commande.dateCommande;
-      this.client = this.lcmdService.listData[0].commande.client.chefService;
-      this.username = this.lcmdService.listData[0].commande.utilisateur.name;
+      this.totalCommande = this.lcmdService.listData[0].commandeDto.totalCommande;
+      this.dateCommande = this.lcmdService.listData[0].commandeDto.dateCommande;
+      this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName;
+  //    this.username = this.lcmdService.listData[0].commande.utilisateur.name;
      // this.dtTrigger.next();
     }, err => {
       console.log(err);
@@ -60,11 +63,9 @@ export class ViewCommandeComponent implements OnInit {
    * methode pour recharger automatique le Datatable
   */
 
-  rerender() {
+ /*  rerender() {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      // Destroy the table first in the current context
       dtInstance.destroy();
-      // call the dtTrigger to rerender again
       this.dtTrigger.next();
     });
   }
@@ -72,13 +73,13 @@ export class ViewCommandeComponent implements OnInit {
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
-
+ */
  /*  transformDate(date){
     return this.datePipe.transform(date, 'yyyy-MM-dd, h:mm:ss');
   } */
 
   getListCommandeClients() {
-    this.crudApi.getAllCommandeClients()
+    this.crudApi.getCommandeDtos()
     .subscribe(
       response =>{
         this.listData = response;
@@ -87,10 +88,10 @@ export class ViewCommandeComponent implements OnInit {
 
   }
 
-  onCreateCommandeClient() {
+ /*  onCreateCommandeClient() {
     this.crudApi.choixmenu == 'A';
     this.router.navigateByUrl("home/commande");
-  }
+  } */
 
   OpenPdf() {
     const document = this.getDocument();
@@ -147,7 +148,7 @@ export class ViewCommandeComponent implements OnInit {
 
             [
               {
-                text: `Agent : ${this.lcmdService.listData[0].commande.utilisateur.name}`,
+                text: `Agent : ${this.lcmdService.listData[0].commandeDto.clientDto.firstName}`,
                 fontSize: 12,
                 bold: true,
                 margin: [0, 15, 0, 15]
@@ -157,7 +158,7 @@ export class ViewCommandeComponent implements OnInit {
 
             [
               {
-                text: `Date : ${this.lcmdService.listData[0].commande.dateCommande.toLocaleString()}`,
+                text: `Date : ${this.lcmdService.listData[0].commandeDto.dateCommande.toLocaleString()}`,
                 alignment: 'right',
                 margin: [0, 15, 0, 15]
               },
@@ -175,7 +176,7 @@ export class ViewCommandeComponent implements OnInit {
           margin: [0, 5, 0, 5]
         },
         {
-          text: `N° : ${this.lcmdService.listData[0].commande.numeroCommande}`,
+          text: `N° : ${this.lcmdService.listData[0].commandeDto.numeroCommande}`,
           bold: true,
           fontSize: 14,
           alignment: 'center',
@@ -184,7 +185,7 @@ export class ViewCommandeComponent implements OnInit {
         },
         {
         //  bold:true,
-          text: 'Pour : ' +this.lcmdService.listData[0].commande.client.chefService,
+          text: 'Pour : ' +this.lcmdService.listData[0].commandeDto.clientDto.firstName,
           alignment: 'left',
           margin: [0, 8, 0, 8]
         },
@@ -199,14 +200,14 @@ export class ViewCommandeComponent implements OnInit {
         },
 
         {
-          text: `Total CFA : ${this.lcmdService.listData[0].commande.totalCommande}`,
+          text: `Total CFA : ${this.lcmdService.listData[0].commandeDto.totalCommande}`,
           alignment: 'right',
           margin: [0, 8, 0, 8],
           bold: true,
           fontSize: 12,
         },
 
-        {
+       /*  {
           text: ''
            + [(this.lcmdService.listData[0].commande.typeReglement) + ' : ' + (this.lcmdService.listData[0].commande.montantReglement)],
           alignment: 'right',
@@ -222,7 +223,7 @@ export class ViewCommandeComponent implements OnInit {
           margin: [0, 5, 0, 15],
           bold: true,
           fontSize: 12,
-        },
+        }, */
 
         {
           text: 'Signature',
@@ -295,8 +296,8 @@ export class ViewCommandeComponent implements OnInit {
 
           ],
           ...item.map(x => {
-            return ([x.quantite, x.produit.designation, x.prixCommande,
-              (x.quantite*x.prixCommande).toFixed(2)])
+            return ([x.quantity, x.articleDto.designation, x.price,
+              (x.quantity*x.price).toFixed(2)])
           }),
           [
             {
@@ -304,7 +305,7 @@ export class ViewCommandeComponent implements OnInit {
               alignment: 'center',
               colSpan: 3
             }, {}, {},
-            this.lcmdService.listData.reduce((sum, x)=> sum + (x.quantite * x.prixCommande), 0).toFixed(2)
+            this.lcmdService.listData.reduce((sum, x)=> sum + (x.quantity * x.price), 0).toFixed(2)
           ]
         ]
       }

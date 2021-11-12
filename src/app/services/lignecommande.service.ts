@@ -11,6 +11,8 @@ export class LigneLigneCommandeService {
 
   private apiServerUrl = environment.apiBaseUrl;
 
+  listData : LigneCommandeDto[];
+
   constructor(private http: HttpClient) {
   }
 

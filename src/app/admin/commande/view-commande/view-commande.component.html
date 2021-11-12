@@ -20,7 +20,7 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="form-group col-sm-2">
+      <!-- <div class="form-group col-sm-2">
         <label>Agent : </label>
         <input
           type="text"
@@ -29,7 +29,7 @@
           [value]="this.username"
           readonly
         />
-      </div>
+      </div> -->
 
       <div class="form-group col-sm-3">
         <label>Commande Numéro : </label>
@@ -84,8 +84,7 @@
     <table
       class="table table-striped table-bordered table-sm row-border hover"
       datatable
-      [dtOptions]="dtOptions"
-      [dtTrigger]="dtTrigger"
+
       aria-label=""
     >
       <thead>
@@ -98,10 +97,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of this.lcmdService.listData">
-          <td>{{ item.produit.designation }}</td>
-          <td>{{ item.quantite }}</td>
-          <td>{{ item.prixCommande }}</td>
-          <td>{{ item.prixCommande * item.quantite }}</td>
+          <td>{{ item.articleDto?.designation }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.price * item.quantity }}</td>
         </tr>
       </tbody>
     </table>
