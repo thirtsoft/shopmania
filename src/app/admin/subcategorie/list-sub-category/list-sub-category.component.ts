@@ -39,7 +39,7 @@ export class ListSubCategoryComponent implements OnInit {
   }
 
   public getSListCategoryDTOs(): void {
-    this.crudApi.getScategoryDtos().subscribe(
+    this.crudApi.getALLSuCategoryDtosOrderByIdDesc().subscribe(
       (response: ScategoryDto[]) => {
         this.subcategoryListDTO = response;
         console.log(this.subcategoryListDTO);

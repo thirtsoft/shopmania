@@ -40,6 +40,18 @@ export class LigneLigneCommandeService {
     return this.http.get<LigneCommandeDto[]>(`${this.apiServerUrl}/lignecommandes/all`);
   }
 
+  public getAllLigneCommandeDtosOrderByIdDesc(): Observable<LigneCommandeDto[]> {
+    return this.http.get<LigneCommandeDto[]>(`${this.apiServerUrl}/lignecommandes/searchAllLigneCommandeOrderByIdDesc`);
+  }
+
+  public getLigneCommandeDtosOrderByIdDesc(): Observable<LigneCommandeDto[]> {
+    return this.http.get<LigneCommandeDto[]>(`${this.apiServerUrl}/lignecommandes/findListArticleGroupByIdDesc`);
+  }
+
+  public getLigneCommandeDtosByCommandeId(comId: number): Observable<LigneCommandeDto[]> {
+    return this.http.get<LigneCommandeDto[]>(`${this.apiServerUrl}/lignecommandes/searchAllLigneCommandesByCommandeId/${comId}`);
+  }
+
   public getLigneCommandeDtoById(ligneCommandeId: number): Observable<LigneCommandeDto> {
     return this.http.get<LigneCommandeDto>(`${this.apiServerUrl}/lignecommandes/${ligneCommandeId}`);
   }

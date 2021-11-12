@@ -31,8 +31,8 @@ import { AddCategoryComponent } from './category/add-category/add-category.compo
 import { ListFournisseurComponent } from './fournisseur/list-fournisseur/list-fournisseur.component';
 import { AddFournisseurComponent } from './fournisseur/add-fournisseur/add-fournisseur.component';
 import { ListClientComponent } from './list-client/list-client.component';
-import { ListCommandeComponent } from './list-commande/list-commande.component';
-import { ListLigneCommandeComponent } from './list-ligne-commande/list-ligne-commande.component';
+import { ListCommandeComponent } from './commande/list-commande/list-commande.component';
+import { ListLigneCommandeComponent } from './commande/list-ligne-commande/list-ligne-commande.component';
 import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
 
 import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utilisateur.component';
@@ -42,7 +42,6 @@ import { UpdateArtileComponent } from './article/update-artile/update-artile.com
 import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
 import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
 import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
-import { AdminComponent } from './admin/admin.component';
 import { BackendHeaderComponent } from './backend-header/backend-header.component';
 import { BackendSidebarComponent } from './backend-sidebar/backend-sidebar.component';
 import { BackendFooterComponent } from './backend-footer/backend-footer.component';
@@ -56,9 +55,10 @@ import { VenteByMonthBarChartComponent } from './chartjs/vente-by-month-bar-char
 import { VenteByYearBarChartComponent } from './chartjs/vente-by-year-bar-chart/vente-by-year-bar-chart.component';
 import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
 import { UpdateStatusCommandeComponent } from './update-status-commande/update-status-commande.component';
-import { ListCommandeEncoursComponent } from './list-commande-encours/list-commande-encours.component';
+import { ListCommandeEncoursComponent } from './commande/list-commande-encours/list-commande-encours.component';
 import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-sub-category.component';
 import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/create-sub-category.component';
+import { ViewCommandeComponent } from './commande/view-commande/view-commande.component';
 
 
 
@@ -83,7 +83,6 @@ import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/c
     UpdateFournisseurComponent,
     UpdateUtilisateurComponent,
     PageNotfoundComponent,
-    AdminComponent,
     BackendHeaderComponent,
     BackendSidebarComponent,
     BackendFooterComponent,
@@ -99,6 +98,7 @@ import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/c
     ListCommandeEncoursComponent,
     ListSubCategoryComponent,
     CreateSubCategoryComponent,
+    ViewCommandeComponent,
 
 
   ],
@@ -139,6 +139,7 @@ import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/c
 
   entryComponents: [
     AddCategoryComponent, CreateSubCategoryComponent,
+    ViewCommandeComponent,
     DashboardComponent
   ]
 

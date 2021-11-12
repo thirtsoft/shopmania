@@ -34,7 +34,7 @@ export class ListAddressLivraisonComponent implements OnInit {
   }
 
   public getAddressLivraisonDtos(): void {
-    this.addLivraisonService.getAddressLivraisonDtos().subscribe(
+    this.addLivraisonService.getAddressLivraisonDtosOrderByIdDesc().subscribe(
       (response: AddressLivraisonDto[]) => {
         this.addressLivraisonDTOList = response;
         console.log(this.addressLivraisonDTOList);

@@ -46,6 +46,10 @@ export class ArticleService {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/all`);
   }
 
+  public getArticleDTOsOrderByIdDesc(): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchAllArticleOrderByIdDesc`);
+  }
+
   public getArticleDtoById(articleId: number): Observable<ArticleDto> {
     return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/${articleId}`);
   }

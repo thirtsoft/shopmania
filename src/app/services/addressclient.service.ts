@@ -36,9 +36,13 @@ export class AddressAddressClientService {
   }
 
   /****************************** AddressClientDTO ******************/
-  
+
   public getAddressClientDtos(): Observable<AddressClientDto[]> {
     return this.http.get<AddressClientDto[]>(`${this.apiServerUrl}/addresseclients/all`);
+  }
+
+  public getAddressClientDtosOrderByIdDesc(): Observable<AddressClientDto[]> {
+    return this.http.get<AddressClientDto[]>(`${this.apiServerUrl}/addresseclients/searchAllAddressClientsOrderByIdDesc`);
   }
 
   public getAddressClientDtoById(addressClientId: number): Observable<AddressClientDto> {

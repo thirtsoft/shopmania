@@ -37,7 +37,7 @@ export class ListClientComponent implements OnInit {
   }
 
   public getListClientDtos(): void {
-    this.clientService.getClientDTOs().subscribe(
+    this.clientService.getClientDTOsOrderByIdDesc().subscribe(
       (response: ClientDto[]) => {
         this.clientDTOList = response;
         console.log(this.clientDTOList);

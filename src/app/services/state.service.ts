@@ -20,6 +20,10 @@ export class StateService {
     return this.http.get<StateDto[]>(`${this.apiServerUrl}/states/all`);
   }
 
+  public getAllStateDTOsOrderByIdDesc(): Observable<StateDto[]> {
+    return this.http.get<StateDto[]>(`${this.apiServerUrl}/states/searchAllStatesOrderByIdDesc`);
+  }
+
   public getStateDtoById(statId: number): Observable<StateDto> {
     return this.http.get<StateDto>(`${this.apiServerUrl}/states/${statId}`);
   }

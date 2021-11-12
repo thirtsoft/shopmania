@@ -32,7 +32,7 @@ export class VenteByMonthBarChartComponent implements OnInit {
         this.VenteOfMonth.push(this.listAnnes[i][m]);
       }
     //  this
-      this.Barchart = new Chart('barChart', {
+      this.Barchart = new Chart('barChartVenteByMonth', {
         type: 'bar',
         data: {
           labels: this.VenteOfMonth,

@@ -21,6 +21,10 @@ export class CountryService {
     return this.http.get<CountryDto[]>(`${this.apiServerUrl}/countries/all`);
   }
 
+  public getAllCountryDTOsOrderByIdDesc(): Observable<CountryDto[]> {
+    return this.http.get<CountryDto[]>(`${this.apiServerUrl}/countries/searchAllCountryOrderByIdDesc`);
+  }
+
   public getCountryDtoById(countId: number): Observable<CountryDto> {
     return this.http.get<CountryDto>(`${this.apiServerUrl}/countries/${countId}`);
   }

@@ -40,6 +40,10 @@ export class AddresslivraisonService {
     return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/all`);
   }
 
+  public getAddressLivraisonDtosOrderByIdDesc(): Observable<AddressLivraisonDto[]> {
+    return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/searchAllAddressLivraisonsOrderByIdDesc`);
+  }
+
   public getAddressLivraisonDtoById(addressLivraisonId: number): Observable<AddressLivraisonDto> {
     return this.http.get<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/${addressLivraisonId}`);
   }

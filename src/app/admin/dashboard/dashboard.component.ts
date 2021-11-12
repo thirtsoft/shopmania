@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   numberOfCommandes: any;
   numberOfCommandeInMonth: any;
   numberOfCommandeByPendingStatus: any;
+  sumOfCommandeInDay: any;
   sumOfCommandeInMonth: any;
   sumOfCommandeInYear: any;
   numberOfNotificationInMonth: any;
@@ -75,6 +76,13 @@ export class DashboardComponent implements OnInit {
   getNumberOfOrdersInMonth(): void {
     this.dashboardService.countNumberOfOrdersInMonth().subscribe(response => {
       this.numberOfCommandeInMonth = response;
+    });
+  }
+
+  getSumOfOdersInDay(): void {
+    this.dashboardService.sumTotaleOfCommandeInDay()
+      .subscribe(response => {
+        this.sumOfCommandeInDay = response;
     });
   }
 

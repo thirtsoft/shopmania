@@ -21,6 +21,10 @@ export class CommandeService {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/all`);
   }
 
+  public getCommandeDtosOrderByIdDesc(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/searchAllComandesOrderByIdDesc`);
+  }
+
   public getCommandeDtosByStatusPending(): Observable<CommandeDto[]> {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/findListOrderByStatuePending`);
   }

@@ -40,6 +40,10 @@ export class FournisseurService {
     return this.http.get<FournisseurDto[]>(`${this.apiServerUrl}/fournisseurs/all`);
   }
 
+  public getFournisseurDTOsOrderByIdDesc(): Observable<FournisseurDto[]> {
+    return this.http.get<FournisseurDto[]>(`${this.apiServerUrl}/fournisseurs/searchAllFournisseursOrderByIdDesc`);
+  }
+
   public getFournisseurDtoById(fournisseurId: number): Observable<FournisseurDto> {
     return this.http.get<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/${fournisseurId}`);
   }

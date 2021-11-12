@@ -34,7 +34,7 @@ export class ListAddressClientComponent implements OnInit {
   }
 
   public getAddressClientDtos(): void {
-    this.addClientService.getAddressClientDtos().subscribe(
+    this.addClientService.getAddressClientDtosOrderByIdDesc().subscribe(
       (response: AddressClientDto[]) => {
         this.addressClientDTOList = response;
         console.log(this.addressClientDTOList);

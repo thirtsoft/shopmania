@@ -40,6 +40,10 @@ export class ClientService {
     return this.http.get<ClientDto[]>(`${this.apiServerUrl}/clients/all`);
   }
 
+  public getClientDTOsOrderByIdDesc(): Observable<ClientDto[]> {
+    return this.http.get<ClientDto[]>(`${this.apiServerUrl}/clients/searchAllClientsOrderByIdDesc`);
+  }
+
   public getClientDtoById(clientId: number): Observable<ClientDto> {
     return this.http.get<ClientDto>(`${this.apiServerUrl}/clients/${clientId}`);
   }

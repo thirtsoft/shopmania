@@ -43,7 +43,7 @@ export class ListArticleComponent implements OnInit {
   }
 
   public getListArticleDTOs(): void {
-    this.crudApi.getArticleDTOs().subscribe(
+    this.crudApi.getArticleDTOsOrderByIdDesc().subscribe(
       (response: ArticleDto[]) => {
         this.articleDTOList = response;
         console.log(this.articleDTOList);

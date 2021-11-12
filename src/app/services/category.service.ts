@@ -54,6 +54,10 @@ export class CategoryService {
     return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/all`);
   }
 
+  public getCategorieDTOsOrderByIdDesc(): Observable<CategoryDto[]> {
+    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/searchAllCategorieOrderByIdDesc`);
+  }
+
   public getCategoryDtoById(categoryId: number): Observable<CategoryDto> {
     return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/${categoryId}`);
   }

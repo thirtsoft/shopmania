@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TopLeftComponent } from './top-left/top-left.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AdminComponent } from './admin/admin.component';
 import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
 import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
 import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
 import { UpdateCategoryComponent } from './category/update-category/update-category.component';
 
-import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/create-sub-category.component';
-import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-sub-category.component';
 import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
 import { SuccessSignUpComponent } from './authentication/success-sign-up/success-sign-up.component';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ListNoteArticleComponent } from './list-note-article/list-note-article.component';
 import { ListArticleComponent } from './article/list-article/list-article.component';
@@ -23,12 +20,15 @@ import { ListFournisseurComponent } from './fournisseur/list-fournisseur/list-fo
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utilisateur.component';
 import { ListClientComponent } from './list-client/list-client.component';
-import { ListLigneCommandeComponent } from './list-ligne-commande/list-ligne-commande.component';
-import { ListCommandeComponent } from './list-commande/list-commande.component';
+import { ListLigneCommandeComponent } from './commande/list-ligne-commande/list-ligne-commande.component';
+import { ListCommandeComponent } from './commande/list-commande/list-commande.component';
+import { ViewCommandeComponent } from './commande/view-commande/view-commande.component';
 import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
 
+import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/create-sub-category.component';
+import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-sub-category.component';
 import { SeConnecterComponent } from './authentication/se-connecter/se-connecter.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 
@@ -120,6 +120,10 @@ const routes: Routes = [
   {
     path: 'commandes',
     component: ListCommandeComponent
+  },
+  {
+    path:'commandeView/:id',
+    component: ViewCommandeComponent
   },
   {
     path: 'detailsCommandes',

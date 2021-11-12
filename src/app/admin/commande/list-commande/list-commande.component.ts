@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommandeDto } from '../../model/commande';
-import { CommandeService } from '../../services/commande.service';
 import { HttpErrorResponse } from '@angular/common/http';
+
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { DialogService } from '../../services/dialog.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+
+import { CommandeDto } from './../../../model/commande';
+import { DialogService } from './../../../services/dialog.service';
+import { CommandeService } from './../../../services/commande.service';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class ListCommandeComponent implements OnInit {
   }
 
   public getCommandeDtos(): void {
-    this.comService.getCommandeDtos().subscribe(
+    this.comService.getCommandeDtosOrderByIdDesc().subscribe(
       (response: CommandeDto[]) => {
         this.commandeDTOList = response;
         console.log(this.commandeDTOList);
@@ -46,23 +47,25 @@ export class ListCommandeComponent implements OnInit {
     );
   }
 
-  onDeleteCommande(item) {}
+  viewCommande(item: CommandeDto) {
+    this.router.navigateByUrl('admin/commandeView/' + item.id);
+  }
 
- /*  public onDeleteCommande(com: CommandeDto): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.comService.deleteCommandeDto(com.id).subscribe(data => {
-          this.toastr.warning('Commande supprimé avec succès!');
-          this.commandeDTOList = this.commandeDTOList.filter(u => u !== com);
-          this.getCommandeDtos();
+  onDeleteCommande(id: number){
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this.comService.deleteCommandeDto(id).subscribe(data => {
+          this.toastr.error('avec succès','Commande supprimé', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("admin/listcommandes").then(() => {
+            window.location.reload();
+          });
         });
       }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  } */
+    });
+  }
 
 }

@@ -36,6 +36,10 @@ export class DashboardService {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/numberOfCommandeByMonth`);
   }
 
+  public sumTotaleOfCommandeInDay(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/sumTotalOfCommandeByDay`);
+  }
+
   public sumTotaleOfCommandeInMonth(): Observable<CommandeDto[]> {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/sumTotalOfCommandeByMonth`);
   }

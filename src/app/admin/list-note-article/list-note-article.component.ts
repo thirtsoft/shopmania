@@ -29,14 +29,14 @@ export class ListNoteArticleComponent implements OnInit {
               private dialog: MatDialog,
               public toastr: ToastrService,
               private dialogService: DialogService
-              ){}
+  ){}
 
   ngOnInit(): void {
     this.getNotificationDtos();
   }
 
   public getNotificationDtos(): void {
-    this.noteService.getNotificationDtos().subscribe(
+    this.noteService.getAllNotificationDtosOrderByIdDesc().subscribe(
       (response: NotificationDto[]) => {
         this.notificationDTOList = response;
         console.log(this.notificationDTOList);

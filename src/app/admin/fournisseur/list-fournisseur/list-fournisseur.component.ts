@@ -40,7 +40,7 @@ export class ListFournisseurComponent implements OnInit {
   }
 
   public getListFournisseurDTOs(): void {
-    this.crudApi.getFournisseurDTOs().subscribe(
+    this.crudApi.getFournisseurDTOsOrderByIdDesc().subscribe(
       (response: FournisseurDto[]) => {
         this.fournisseurDTOList = response;
         console.log(this.fournisseurDTOList);
