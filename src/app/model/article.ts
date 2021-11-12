@@ -27,6 +27,7 @@ export class ArticleDto {
   promo: boolean;
   selected: boolean;
   description: string;
+  manufactured: string;
   photo: string;
   quantite: number = 1;
 
