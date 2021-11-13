@@ -1,3 +1,4 @@
+import { ListCommandeEncoursComponent } from './commande/list-commande-encours/list-commande-encours.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TopLeftComponent } from './top-left/top-left.component';
@@ -120,6 +121,10 @@ const routes: Routes = [
   {
     path: 'commandes',
     component: ListCommandeComponent
+  },
+  {
+    path: 'commandes-encours',
+    component: ListCommandeEncoursComponent
   },
   {
     path:'commandeView/:id',

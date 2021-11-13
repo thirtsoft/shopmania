@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { Chart } from 'chart.js';
+
+import { HttpErrorResponse } from '@angular/common/http';
 import { DashboardService } from './../../services/dashboard.service';
+
+import { CommandeDto } from './../../model/commande';
+import { LigneCommandeDto } from './../../model/ligne-commande';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +26,20 @@ export class DashboardComponent implements OnInit {
   numberOfClients: any;
   numberOfFournisseurs: any;
 
-  constructor(private dashboardService: DashboardService,
+  Barchart: any = [];
+
+  NombreCommandeParMois: number[] = [];
+  CommandeOfMonth: Date[] = [];
+
+  listAnnes: any={};
+
+  ligneCommandeDTOList: LigneCommandeDto[];
+
+  id : number;
+  p : number=1;
+  searchText;
+
+  constructor(private crupdApi: DashboardService,
               private router: Router,
               public toastr: ToastrService,
   ){}
@@ -45,65 +64,125 @@ export class DashboardComponent implements OnInit {
 
     this.getNumberOfNotificationInMonth();
 
+    this.getTop200LigneCommandeOrdrByIdDesc();
+
+    this.crupdApi.countNumberOfCommandeByMonth().subscribe((result: CommandeDto[]) => {
+      this.listAnnes = result;
+      const n = 1;
+      const m = 0;
+      console.log(this.listAnnes);
+      for (let i=0; i<this.listAnnes.length; i++) {
+        this.NombreCommandeParMois.push(this.listAnnes[i][n]);
+        this.CommandeOfMonth.push(this.listAnnes[i][m]);
+      }
+    //  this
+      this.Barchart = new Chart('barChartCommandeParMonth', {
+        type: 'bar',
+        data: {
+          labels: this.CommandeOfMonth,
+
+          datasets: [
+            {
+              data: this.NombreCommandeParMois,
+              borderColor: '#3cb371',
+              backgroundColor: "#5F9EA0",
+
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          scales: {
+            xAxes: [{
+              display: true,
+              ticks: {
+                beginAtZero: true
+              }
+            }],
+            yAxes: [{
+              display: true,
+              ticks: {
+                beginAtZero: true
+              }
+            }],
+          }
+        }
+      });
+    });
 
   }
 
   getNumberOfClients(): void {
-    this.dashboardService.countNumberOfClient().subscribe(data => {
+    this.crupdApi.countNumberOfClient().subscribe(data => {
       this.numberOfClients = data;
       console.log(data);
     });
   }
 
   getNumberOfFournisseurs(): void {
-    this.dashboardService.countNumberOfFournisseurs().subscribe(data => {
+    this.crupdApi.countNumberOfFournisseurs().subscribe(data => {
       this.numberOfFournisseurs = data;
     });
   }
 
   getNumberOfOrders(): void {
-    this.dashboardService.countNumberOfCommande().subscribe(response => {
+    this.crupdApi.countNumberOfCommande().subscribe(response => {
       this.numberOfCommandes = response;
     });
   }
 
   getNumberOfOrderByPendingStatus(): void {
-    this.dashboardService.countNumberOfOrdersByStatusPending().subscribe(response => {
+    this.crupdApi.countNumberOfOrdersByStatusPending().subscribe(response => {
       this.numberOfCommandeByPendingStatus = response;
     });
   }
 
   getNumberOfOrdersInMonth(): void {
-    this.dashboardService.countNumberOfOrdersInMonth().subscribe(response => {
+    this.crupdApi.countNumberOfOrdersInMonth().subscribe(response => {
       this.numberOfCommandeInMonth = response;
     });
   }
 
   getSumOfOdersInDay(): void {
-    this.dashboardService.sumTotaleOfCommandeInDay()
+    this.crupdApi.sumTotaleOfCommandeInDay()
       .subscribe(response => {
         this.sumOfCommandeInDay = response;
     });
   }
 
   getSumOfOdersInMonth(): void {
-    this.dashboardService.sumTotaleOfCommandeInMonth().subscribe(response => {
+    this.crupdApi.sumTotaleOfCommandeInMonth().subscribe(response => {
       this.sumOfCommandeInMonth = response;
     });
   }
 
   getSumOfOdersInYear(): void {
-    this.dashboardService.sumTotaleOfCommandeInYear()
+    this.crupdApi.sumTotaleOfCommandeInYear()
       .subscribe(response => {
       this.sumOfCommandeInYear = response;
     });
   }
 
   getNumberOfNotificationInMonth(): void {
-    this.dashboardService.countNumberOfNotification()
+    this.crupdApi.countNumberOfNotification()
       .subscribe(response => {
       this.numberOfNotificationInMonth = response;
     });
+  }
+
+
+  getTop200LigneCommandeOrdrByIdDesc(): void {
+    this.crupdApi.getTop200LigneCommandeOrderByIdDesc().subscribe(
+      (response: LigneCommandeDto[]) => {
+        this.ligneCommandeDTOList = response;
+        console.log(this.ligneCommandeDTOList);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
 

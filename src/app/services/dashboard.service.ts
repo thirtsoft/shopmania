@@ -1,3 +1,4 @@
+import { LigneCommandeDto } from './../model/ligne-commande';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -20,6 +21,10 @@ export class DashboardService {
   constructor(private http: HttpClient
   ) {}
 
+  public getTop200LigneCommandeOrderByIdDesc(): Observable<LigneCommandeDto[]> {
+    return this.http.get<LigneCommandeDto[]>(`${this.apiServerUrl}/lignecommandes/searchTopLigneCommandesOrderByIdDesc`);
+  }
+
   public countNumberOfCommande(): Observable<CommandeDto[]> {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/countNumberOfCommande`);
   }
@@ -30,6 +35,10 @@ export class DashboardService {
 
   public countNumberOfOrdersByStatusPending(): Observable<CommandeDto[]> {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/countNumberOfOrdersByPendingStatus`);
+  }
+
+  public countNumberOfCommandeByDay(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/numberOfCommandeByDay`);
   }
 
   public countNumberOfCommandeByMonth(): Observable<CommandeDto[]> {
