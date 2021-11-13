@@ -1,3 +1,4 @@
+import { UploadFileComponent } from './article/upload-file/upload-file.component';
 import { ListCommandeEncoursComponent } from './commande/list-commande-encours/list-commande-encours.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -101,6 +102,14 @@ const routes: Routes = [
   {
     path:'article/:id',
     component:AddArticleComponent
+  },
+  {
+    path:'wiewArticle/:id',
+    component : UpdateArtileComponent
+  },
+  {
+    path : 'articles/:id',
+    component : UploadFileComponent
   },
   {
     path: 'fournisseurs',

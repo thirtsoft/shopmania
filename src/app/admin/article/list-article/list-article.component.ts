@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { UploadFileComponent } from './../upload-file/upload-file.component';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -7,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CatalogueService } from './../../../services/catalogue.service';
 
 import { DialogService } from './../../../services/dialog.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
 import { ArticleService } from '../../../services/article.service';
 import { ArticleDto } from '../../../model/article';
@@ -35,6 +37,9 @@ export class ListArticleComponent implements OnInit {
               public router: Router,
               public dialogService: DialogService,
               public toastr: ToastrService,
+              public fb: FormBuilder,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef:MatDialogRef<UploadFileComponent>,
 
   ){}
 
@@ -58,7 +63,14 @@ export class ListArticleComponent implements OnInit {
     this.router.navigateByUrl("admin/article");
   }
 
-  editPhotoProduct(event) {
+  editPhotoProduct(item : ArticleDto) {
+    this.crudApi.choixmenu = "M";
+    this.crudApi.formData = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    this.matDialog.open(UploadFileComponent, dialogConfig);
 
   }
 

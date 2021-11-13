@@ -1,3 +1,4 @@
+import { CatalogueService } from './../../../services/catalogue.service';
 import { DialogComponent } from './../../../shared/dialog/dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -31,6 +32,7 @@ export class AddArticleComponent implements OnInit {
 
   constructor(private articleService: ArticleService,
               private scategorieService: SScategoryService,
+              public catService: CatalogueService,
               private router: Router,
               private toastr: ToastrService,
               public dialog: MatDialog,
@@ -81,29 +83,6 @@ export class AddArticleComponent implements OnInit {
     );
 
   }
-
-
-
- /*  submit() {
-    console.log('Data send--', this.addEditArticleDTO);
-    this.articleService.addArticleDto(this.addEditArticleDTO).subscribe(
-      (response: ArticleDto) => {
-        console.log('Response--', response);
-        let _html=`
-          <div class="c-green">
-            <div class="material-icons">task_alt</div>
-            <h1>Product Created Success!</h1>
-          </div>`;
-          this.openDialog(_html);
-          this.router.navigate([`/admin/articles`]);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-
-    );
-
-  } */
 
   update() {
     console.log('Data send--', this.addEditArticleDTO);

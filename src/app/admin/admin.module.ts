@@ -142,7 +142,7 @@ import { UploadFileComponent } from './article/upload-file/upload-file.component
   entryComponents: [
     AddCategoryComponent, CreateSubCategoryComponent,
     ViewCommandeComponent, UpdateStatusCommandeComponent,
-    DashboardComponent
+    DashboardComponent, UploadFileComponent
   ]
 
 })

@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
@@ -12,6 +13,11 @@ import { environment } from './../../environments/environment';
 export class ArticleService {
 
   private apiServerUrl = environment.apiBaseUrl;
+
+  choixmenu : string  = 'A';
+  listData : ArticleDto[];
+
+  formData:  FormGroup;
 
   constructor(private http: HttpClient) {
   }
@@ -68,7 +74,6 @@ export class ArticleService {
       responseType: 'text'
     });
     return this.http.request(req);
-    // return this.http.post(this.host+"/saveCategory", formData);
   }
 
 
@@ -76,16 +81,15 @@ export class ArticleService {
     return this.http.put<ArticleDto>(`${this.apiServerUrl}/articles/update/${articleId}`, articleDTO);
   }
 
-  uploadPhotoArticleDto(file: File, idArticle): Observable<HttpEvent<{}>> {
+  uploadPhotoArticleDto(file: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', `${this.apiServerUrl}/articles/uploadArticlePhoto/${idArticle}`, formdata, {
+    const req = new HttpRequest('POST', this.apiServerUrl+'/articles/uploadArticlePhoto/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
 
     return this.http.request(req);
-
   }
 
   public getPhotoArticle() {

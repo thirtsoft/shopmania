@@ -4,14 +4,13 @@
     <div id="content">
       <app-backend-header></app-backend-header>
       <div class="container-fluid">
-        <h1>Nouveau Article</h1>
-        <!--  <form #addArticleForm="ngForm" name="form" (ngSubmit)="onAddArticle()"> -->
+        <h2  *ngIf="!paramId"> Nouveau Article</h2>
+        <h2  *ngIf="paramId"> Modifier Article</h2>
         <form
           #addArticleForm="ngForm"
           name="form"
           enctype="multipart/form-data"
         >
-          <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editArticle.idCategory"> -->
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -101,9 +100,7 @@
                   Price est obligatoire
                 </span>
               </div>
-            </div>
 
-            <div class="col-md-6">
               <div class="form-group">
                 <label>CurrentPrice</label>
                 <input
@@ -125,6 +122,9 @@
                   Désignation est obligatoire
                 </span>
               </div>
+            </div>
+
+            <div class="col-md-6">
 
               <div class="form-group">
                 <label>Quantity </label>
@@ -170,7 +170,7 @@
                   >
                     Promo est obligatoire
                   </span>
-                </div>
+                </div>&nbsp;&nbsp;&nbsp;
 
                 <div class="form-group">
                   <label>Selected</label>
@@ -197,6 +197,18 @@
 
               <div class="form-group">
                 <label>Photo</label>
+                <img
+                  height="90"
+                  width="90"
+                  class="img-circle"
+                  alt=""
+                  src="{{
+                    this.catService.apiServerUrl +
+                      '/articles/photoArticle/' +
+                      addEditArticleDTO.id
+                  }}"
+                  *ngIf="paramId"
+                />
                 <input
                   type="file"
                   (change)="onSelectFile($event)"
@@ -208,60 +220,76 @@
                   required
                   class="form-control"
                 />
+                <input type="submit" value="Save Change" class="btn btn-primary">
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Description</label>
-                <textarea
-                  type="text "
-                  class="form-control"
-                  name="description "
-                  id="description "
-                  [(ngModel)]="addEditArticleDTO.description"
-                  cols="30 "
-                  rows="10 "
-                  #description="ngModel"
-                  required
-                >
-                </textarea>
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (description.touched || addArticleForm.submitted) &&
-                    description.errors?.required
-                  "
-                >
-                  Description est obligatoire
-                </span>
+
+
+
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea
+                    type="text "
+                    class="form-control"
+                    name="description "
+                    id="description "
+                    [(ngModel)]="addEditArticleDTO.description"
+                    cols="30 "
+                    rows="10 "
+                    #description="ngModel"
+                    required
+                  >
+                  </textarea>
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      (description.touched || addArticleForm.submitted) &&
+                      description.errors?.required
+                    "
+                  >
+                    Description est obligatoire
+                  </span>
+                </div>
               </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Specification</label>
-                <textarea
-                  type="text "
-                  class="form-control"
-                  name="description"
-                  id="description "
-                  [(ngModel)]="addEditArticleDTO.description"
-                  cols="30 "
-                  rows="10 "
-                  #description="ngModel"
-                  required
-                >
-                </textarea>
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (description.touched || addArticleForm.submitted) &&
-                    description.errors?.required
-                  "
-                >
-                  Specification est obligatoire
-                </span>
-              </div>
-            </div>
+
+
+
+
+              <div class="col-md-6">
+
+                  <div class="form-group">
+                    <label>Specification</label>
+                    <textarea
+                      type="text "
+                      class="form-control"
+                      name="description"
+                      id="description "
+                      [(ngModel)]="addEditArticleDTO.description"
+                      cols="30 "
+                      rows="10 "
+                      #description="ngModel"
+                      required
+                    >
+                    </textarea>
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        (description.touched || addArticleForm.submitted) &&
+                        description.errors?.required
+                      "
+                    >
+                      Specification est obligatoire
+                    </span>
+                  </div>
+                </div>
+
+
+
+
+
+
           </div>
 
           <div class="form-group">
