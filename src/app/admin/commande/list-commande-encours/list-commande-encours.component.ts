@@ -1,13 +1,15 @@
-import { UpdateStatusCommandeComponent } from './../update-status-commande/update-status-commande.component';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { DialogService } from './../../services/dialog.service';
-import { ToastrService } from 'ngx-toastr';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { CommandeService } from './../../services/commande.service';
-import { CommandeDto } from './../../model/commande';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+
+import { DialogService } from './../../../services/dialog.service';
+
+import { CommandeService } from './../../../services/commande.service';
+import { CommandeDto } from './../../../model/commande';
+import { UpdateStatusCommandeComponent } from '../update-status-commande/update-status-commande.component';
 
 @Component({
   selector: 'app-list-commande-encours',
@@ -31,7 +33,7 @@ export class ListCommandeEncoursComponent implements OnInit {
               public toastr: ToastrService,
               public fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private dialogService: DialogService
+              public dialogRef:MatDialogRef<UpdateStatusCommandeComponent>,
   ){}
 
 
@@ -61,24 +63,7 @@ export class ListCommandeEncoursComponent implements OnInit {
 
   }
 
-
-  onDeleteCommande(item) {}
-
- /*  public onDeleteCommande(com: CommandeDto): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.comService.deleteCommandeDto(com.id).subscribe(data => {
-          this.toastr.warning('Commande supprimé avec succès!');
-          this.commandeDTOList = this.commandeDTOList.filter(u => u !== com);
-          this.getCommandeDtos();
-        });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  } */
-
+  viewAllCommande() {
+    this.router.navigate(['/admin/commandes']);
+  }
 }

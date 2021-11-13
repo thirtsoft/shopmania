@@ -2,8 +2,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CommandeService } from './../../services/commande.service';
-import { CommandeDto } from './../../model/commande';
+import { CommandeService } from '../../../services/commande.service';
+import { CommandeDto } from '../../../model/commande';
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
@@ -56,10 +56,10 @@ export class UpdateStatusCommandeComponent implements OnInit {
     subscribe( data => {
       this.dialogRef.close();
       window.alert('status commande modifié avec succès');
-  //    this.toastr.success("Status Appro Modifier avec Succès");
+      this.toastr.success("Status Appro Modifier avec Succès");
   //    this.crudApi.filter('Register click');
       this.getListCommandeDTOs();
-      this.router.navigate(['/home/commandes']);
+      this.router.navigate(['/admin/commandes']);
     });
   }
 
@@ -71,7 +71,7 @@ export class UpdateStatusCommandeComponent implements OnInit {
   //    this.toastr.success("Status Appro Modifier avec Succès");
   //    this.crudApi.filter('Register click');
       this.getListCommandeDTOs();
-      this.router.navigate(['/home/commandes']);
+      this.router.navigate(['/admin/commandes']);
     });
   }
 

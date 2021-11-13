@@ -54,7 +54,7 @@ import { SuccessSignUpComponent } from './authentication/success-sign-up/success
 import { VenteByMonthBarChartComponent } from './chartjs/vente-by-month-bar-chart/vente-by-month-bar-chart.component';
 import { VenteByYearBarChartComponent } from './chartjs/vente-by-year-bar-chart/vente-by-year-bar-chart.component';
 import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
-import { UpdateStatusCommandeComponent } from './update-status-commande/update-status-commande.component';
+import { UpdateStatusCommandeComponent } from './commande/update-status-commande/update-status-commande.component';
 import { ListCommandeEncoursComponent } from './commande/list-commande-encours/list-commande-encours.component';
 import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-sub-category.component';
 import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/create-sub-category.component';
@@ -141,7 +141,7 @@ import { UploadFileComponent } from './article/upload-file/upload-file.component
 
   entryComponents: [
     AddCategoryComponent, CreateSubCategoryComponent,
-    ViewCommandeComponent,
+    ViewCommandeComponent, UpdateStatusCommandeComponent,
     DashboardComponent
   ]
 
