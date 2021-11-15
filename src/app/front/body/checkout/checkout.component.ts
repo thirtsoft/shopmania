@@ -73,6 +73,8 @@ export class CheckoutComponent implements OnInit {
 
     this.getListStateDTOs();
 
+    this.checkoutService.getUserId();
+
     this.isLoggedIn = !!this.tokenService.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenService.getUser();
@@ -233,11 +235,15 @@ export class CheckoutComponent implements OnInit {
 
       // call REST API via checkoutService
 
+    console.log("Conected user is", this.checkoutService.id);
 
-    this.checkoutService.placeToOrder(purchase).subscribe(
+
+  //  this.checkoutService.placeToOrder(purchase).subscribe(
+
+    this.checkoutService.placeToOrderWithUser(purchase, this.checkoutService.id).subscribe(
       data =>{
          alert(`your order has been recieved.\n order tracking number: ${data.orderTrackingNumber}`);
-         // reset checkout form
+      //    reset checkout form
          this.resetCart();
          console.log("Response is", data);
          this.router.navigateByUrl("success-order");
