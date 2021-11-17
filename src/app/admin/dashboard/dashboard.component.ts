@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
 
     this.getNumberOfFournisseurs();
 
-    this.getNumberOfFournisseurs();
+    this.getSumOfOdersInDay();
 
     this.getNumberOfOrders();
 
@@ -148,6 +148,7 @@ export class DashboardComponent implements OnInit {
   getSumOfOdersInDay(): void {
     this.crupdApi.sumTotaleOfCommandeInDay()
       .subscribe(response => {
+        console.log("Day order :" +response);
         this.sumOfCommandeInDay = response;
     });
   }

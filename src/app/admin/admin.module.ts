@@ -60,6 +60,7 @@ import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-
 import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/create-sub-category.component';
 import { ViewCommandeComponent } from './commande/view-commande/view-commande.component';
 import { UploadFileComponent } from './article/upload-file/upload-file.component';
+import { Detail200LatesCommandeComponent } from './commande/detail200-lates-commande/detail200-lates-commande.component';
 
 
 
@@ -101,6 +102,7 @@ import { UploadFileComponent } from './article/upload-file/upload-file.component
     CreateSubCategoryComponent,
     ViewCommandeComponent,
     UploadFileComponent,
+    Detail200LatesCommandeComponent,
 
 
   ],
