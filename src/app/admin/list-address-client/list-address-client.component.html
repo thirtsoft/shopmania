@@ -10,10 +10,7 @@
 
                     <div class="row">
                         <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-                        <!--
-        <button _ngcontent-roy-c3="" class="btn-meeting" type="submit" style="margin-left: 5%; width: 30%;" (click)="onCreateFournisseur()">Add fournisseur</button>
- -->
-                    </div>
+             </div>
 
                     <table class="table table-striped">
 
@@ -30,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let addClientDTO of addressClientDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
+                            <tr *ngFor="let addClientDTO of addressClientDTOList | filter:searchText | paginate: {itemsPerPage: 10, currentPage: p} ">
                                 <td>{{addClientDTO?.reference}}</td>
                                 <td>{{addClientDTO?.clientDto.firstName}} {{addClientDTO?.clientDto.lastName}}</td>
                                 <td>{{addClientDTO?.phone}}</td>
@@ -38,15 +35,13 @@
                                 <td>{{addClientDTO?.rue}}</td>
                                 <td>{{addClientDTO?.country}}</td>
 
-                                <td>
-                                    <div class="container ">
-                                        <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
-                          <mat-icon>edit</mat-icon>
-                        </button> -->
-                                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteAddressClient(addClientDTO)">
-                          <mat-icon>delete_outline</mat-icon>
-                        </button>
-                                    </div>
+                                <td class="text-right">
+                                  <button
+                                    class="btn btn-danger btn-sm"
+                                    (click)="onDeleteAddressClient(addClientDTO.id)"
+                                  >
+                                    <i class="fa fa-trash" aria-hidden="true"></i></button
+                                  >&nbsp;
                                 </td>
 
                             </tr>

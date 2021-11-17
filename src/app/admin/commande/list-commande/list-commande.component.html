@@ -19,7 +19,6 @@
           <table class="table table-striped">
             <thead class="thead-inverse">
               <tr>
-                <th>Reference</th>
                 <th>Numéro</th>
                 <th>Client</th>
                 <th>Total</th>
@@ -33,11 +32,10 @@
                 *ngFor="
                   let commandeDTO of commandeDTOList
                     | filter: searchText
-                    | paginate: { itemsPerPage: 4, currentPage: p };
+                    | paginate: { itemsPerPage: 10, currentPage: p };
                   let i = index;
                 "
               >
-                <td>{{ commandeDTO?.reference }}</td>
                 <td>{{ commandeDTO?.numeroCommande }}</td>
                 <td>
                   {{ commandeDTO?.clientDto.firstName }}

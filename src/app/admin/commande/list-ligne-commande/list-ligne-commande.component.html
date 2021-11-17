@@ -16,10 +16,9 @@
 
                         <thead class="thead-inverse">
                             <tr>
-                                <th>Numero</th>
-                               <!--  <th>Commande</th> -->
+                                <th>Numero Commande</th>
                                 <th>Article</th>
-                                <th>Price</th>
+                                <th>P.Unitaire</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                                 <th>Date</th>
@@ -27,23 +26,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let ligneCommandeDTO of ligneCommandeDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                                <td>{{ligneCommandeDTO?.numero}}</td>
-                               <!--  <td>{{ligneCommandeDTO?.commandeDto.numeroCommande}}</td> -->
+                            <tr *ngFor="let ligneCommandeDTO of ligneCommandeDTOList | filter:searchText | paginate: {itemsPerPage: 10, currentPage: p} ">
+                                <td>{{ligneCommandeDTO?.commandeDto.numeroCommande}}</td>
                                 <td>{{ligneCommandeDTO?.productName}}</td>
                                 <td>{{ligneCommandeDTO?.price}}</td>
                                 <td>{{ligneCommandeDTO?.quantity}}</td>
                                 <td>{{ ligneCommandeDTO?.price * ligneCommandeDTO?.quantity}}</td>
                                 <td>{{ligneCommandeDTO?.commandeDto?.dateCommande | date:'dd-MM-yyyy'}}</td>
-                                <td>
-                                    <div class="container ">
-
-                                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteligneCommande(ligneCommandeDTO)">
-                          <mat-icon>delete_outline</mat-icon>
-                        </button>
-                                    </div>
+                                <td class="text-right">
+                                  <button
+                                    class="btn btn-danger btn-sm"
+                                    (click)="onDeleteligneCommande(ligneCommandeDTO.id)"
+                                  >
+                                    <i class="fa fa-trash" aria-hidden="true"></i></button
+                                  >&nbsp;
+                
                                 </td>
-
                             </tr>
                         </tbody>
 

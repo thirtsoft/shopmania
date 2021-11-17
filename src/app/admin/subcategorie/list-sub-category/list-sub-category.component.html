@@ -40,7 +40,7 @@
                 *ngFor="
                   let subCatDTO of subcategoryListDTO
                     | filter: searchText
-                    | paginate: { itemsPerPage: 4, currentPage: p };
+                    | paginate: { itemsPerPage: 10, currentPage: p };
                   let i = index;
                 "
               >

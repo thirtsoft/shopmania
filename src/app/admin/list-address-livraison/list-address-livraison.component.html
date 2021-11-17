@@ -15,8 +15,7 @@
 
                         <thead class="thead-inverse">
                             <tr>
-                                <th>Reference</th>
-                               <!--  <th>Commande</th> -->
+                                <th>Numéro Commande</th>
                                 <th>Pays</th>
                                 <th>Région</th>
                                 <th>Ville</th>
@@ -26,24 +25,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let addLivraisonDTO of addressLivraisonDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                                <td>{{addLivraisonDTO?.reference}}</td>
-                              <!--   <td>{{addLivraisonDTO?.commandeDto.numeroCommande}}</td> -->
+                            <tr *ngFor="let addLivraisonDTO of addressLivraisonDTOList | filter:searchText | paginate: {itemsPerPage: 10, currentPage: p} ">
+                               <td>{{addLivraisonDTO?.commandeDto.numeroCommande}}</td>
                                 <td>{{addLivraisonDTO?.country}}</td>
                                 <td>{{addLivraisonDTO?.state}}</td>
                                 <td>{{addLivraisonDTO?.city}}</td>
                                 <td>{{addLivraisonDTO?.rue}}</td>
                                 <td>{{addLivraisonDTO?.phone}}</td>
 
-                                <td>
-                                    <div class="container ">
-
-                                        <button mat-raised-button class="action-button btn-danger" (click)="onDeleteAddressLivraison(addLivraisonDTO)">
-                          <mat-icon>delete_outline</mat-icon>
-                        </button>
-                                    </div>
+                                <td class="text-right">
+                                  <button
+                                    class="btn btn-danger btn-sm"
+                                    (click)="onDeleteAddressLivraison(addLivraisonDTO.id)"
+                                  >
+                                    <i class="fa fa-trash" aria-hidden="true"></i></button
+                                  >&nbsp;
                                 </td>
-
                             </tr>
                         </tbody>
 

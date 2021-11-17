@@ -4,9 +4,6 @@
     <div id="content">
       <app-backend-header></app-backend-header>
       <div class="container-fluid">
-        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1><i class="fa fa-angle-right"></i> List of fournisseurs</h1>
-        </div> -->
 
         <div class="row">
           <input
@@ -45,7 +42,7 @@
               *ngFor="
                 let fourDTO of fournisseurDTOList
                   | filter: searchText
-                  | paginate: { itemsPerPage: 4, currentPage: p }
+                  | paginate: { itemsPerPage: 10, currentPage: p }
               "
             >
               <td>{{ fourDTO?.articleDto.designation }}</td>
