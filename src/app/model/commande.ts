@@ -41,6 +41,8 @@ export class CommandeDto {
 
   statusCommande: Statuscommande;
 
+  status: string;
+
   clientDto: ClientDto;
 
   utilisateurDto: UtilisateurDto;

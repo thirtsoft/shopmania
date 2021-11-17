@@ -43,7 +43,7 @@ export class ViewCommandeComponent implements OnInit {
       this.numeroCommande = this.lcmdService.listData[0].commandeDto.numeroCommande;
       this.totalCommande = this.lcmdService.listData[0].commandeDto.total;
       this.dateCommande = this.lcmdService.listData[0].commandeDto.dateCommande;
-      this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName  +''+ this.lcmdService.listData[0].commandeDto.clientDto.lastName;
+      this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName  + '' + this.lcmdService.listData[0].commandeDto.clientDto.lastName;
       this.username = this.lcmdService.listData[0].commandeDto.utilisateurDto.name;
       console.log("Username: " +this.username);
     }, err => {
@@ -120,7 +120,7 @@ export class ViewCommandeComponent implements OnInit {
 
              [
               {
-                text: `${this.lcmdService.listData[0].commandeDto.statusCommande}`,
+                text: `${this.lcmdService.listData[0].commandeDto.status}`,
                 fontSize: 15,
                 bold: true,
                 color: '#0000ff',
@@ -134,7 +134,7 @@ export class ViewCommandeComponent implements OnInit {
                 margin: [0, 7, 0, 7]
               },
               {
-                text: `${ this.lcmdService.listData[0].commandeDto.clientDto.firstName + '' + this.lcmdService.listData[0].commandeDto.clientDto.lastName }`,
+                text: `${ this.lcmdService.listData[0].commandeDto.clientDto.firstName + ' ' + this.lcmdService.listData[0].commandeDto.clientDto.lastName }`,
                 margin: [0, 5, 0, 5],
                 fontSize: 11,
               },
@@ -203,6 +203,15 @@ export class ViewCommandeComponent implements OnInit {
           fontSize: 12,
           alignment: 'center',
           color: '#0000ff',
+          margin: [0, 8, 0, 8]
+        },
+
+
+        {
+          text: `Achat effectue par :  ${this.lcmdService.listData[0].commandeDto.utilisateurDto.name}`,
+          bold: true,
+          fontSize: 11,
+          alignment: 'left',
           margin: [0, 8, 0, 8]
         },
        

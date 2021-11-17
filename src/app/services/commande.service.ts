@@ -1,9 +1,12 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Statuscommande } from './../model/statuscommande';
 import { Commande, CommandeDto } from './../model/commande';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { environment } from './../../environments/environment';
-import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,10 @@ import { Injectable } from '@angular/core';
 export class CommandeService {
 
   private apiServerUrl = environment.apiBaseUrl;
+
+  choixmenu : string  = 'A';
+
+  public formData:  FormGroup;
 
   constructor(private http: HttpClient) {
   }
@@ -41,10 +48,10 @@ export class CommandeService {
     return this.http.put<CommandeDto>(`${this.apiServerUrl}/articles/update/${comId}`, commandeDTO);
   }
 
-  public updateStatusOfCommandeDto(id: number, statusCommande: Statuscommande): Observable<any> {
+  public updateStatusOfCommandeDto(id: number, status: string): Observable<any> {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8');
-    let data = {"status":Statuscommande};
+    let data = {"status":status};
     const urlUpdateStatus = (this.apiServerUrl+"/commandes/updateStatusOfCommande/"+id+"?status="+data.status);
     return this.http.patch<any>(urlUpdateStatus, {headers: headers});
 

@@ -34,13 +34,13 @@
                     | paginate: { itemsPerPage: 10, currentPage: p }
                 "
               >
-                <td>{{ commandeDTO?.numeroCommande }}</td>
+                <td>{{ commandeDTO.numeroCommande }}</td>
                 <td>
-                  {{ commandeDTO?.clientDto.firstName }}
-                  {{ commandeDTO?.clientDto.lastName }}
+                  {{ commandeDTO.clientDto.firstName }}
+                  {{ commandeDTO.clientDto.lastName }}
                 </td>
-                <td>{{ commandeDTO?.total }}</td>
-                <td>{{ commandeDTO?.statusCommande }}
+                <td>{{ commandeDTO.total }}</td>
+                <!-- <td>{{ commandeDTO.statusCommande }}
                   <button
                     type="button"
                     class="btn-success btn-sm pull-right"
@@ -48,15 +48,24 @@
                     (click)="addEditStatusCommande(commandeDTO)"
                     style="cursor: pointer;"
                   >
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <i class="fa fa-edit" aria-hidden="true"></i>
+                </button> -->
+                <td>{{ commandeDTO.status }}
+                  <button
+                    type="button"
+                    class="btn-success btn-sm pull-right"
+                    (click)="addEditStatusCommande(commandeDTO)"
+                    style="cursor: pointer;"
+                  >
+                  <i class="fa fa-edit" aria-hidden="true"></i>
                 </button>
                 </td>
                 <td>{{ commandeDTO?.dateCommande | date: "dd-MM-yyyy" }}</td>
 
-                <td class="text-right">
+                <td>
                   <button
-                    class="btn btn-warning btn-sm"
-                    (click)="viewAllCommande()"
+                    class="btn btn-warning btn-lg"
+                    (click)="viewAllCommandes()"
                   >
                     <i class="fa fa-eye" aria-hidden="true"></i></button
                   >&nbsp;

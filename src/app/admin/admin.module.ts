@@ -61,6 +61,7 @@ import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/c
 import { ViewCommandeComponent } from './commande/view-commande/view-commande.component';
 import { UploadFileComponent } from './article/upload-file/upload-file.component';
 import { Detail200LatesCommandeComponent } from './commande/detail200-lates-commande/detail200-lates-commande.component';
+import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
 
 
 
@@ -103,6 +104,7 @@ import { Detail200LatesCommandeComponent } from './commande/detail200-lates-comm
     ViewCommandeComponent,
     UploadFileComponent,
     Detail200LatesCommandeComponent,
+    ListCommandePayeesComponent,
 
 
   ],

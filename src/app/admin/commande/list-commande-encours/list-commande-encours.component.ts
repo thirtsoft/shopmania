@@ -5,8 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-import { DialogService } from './../../../services/dialog.service';
-
 import { CommandeService } from './../../../services/commande.service';
 import { CommandeDto } from './../../../model/commande';
 import { UpdateStatusCommandeComponent } from '../update-status-commande/update-status-commande.component';
@@ -27,9 +25,9 @@ export class ListCommandeEncoursComponent implements OnInit {
 
   formData: FormGroup;
 
-  constructor(private comService: CommandeService,
+  constructor(private crudApi: CommandeService,
               private router: Router,
-              private dialog: MatDialog,
+              private matDialog: MatDialog,
               public toastr: ToastrService,
               public fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -42,7 +40,7 @@ export class ListCommandeEncoursComponent implements OnInit {
   }
 
   public getCommandeDtosByStatusPending(): void {
-    this.comService.getCommandeDtosByStatusPending().subscribe(
+    this.crudApi.getCommandeDtosByStatusPending().subscribe(
       (response: CommandeDto[]) => {
         this.commandeDTOList = response;
         console.log(this.commandeDTOList);
@@ -54,16 +52,18 @@ export class ListCommandeEncoursComponent implements OnInit {
   }
 
   addEditStatusCommande(item : CommandeDto) {
-    this.formData = this.fb.group(Object.assign({},item));
+    this.crudApi.choixmenu == 'M';
+    this.crudApi.formData = this.fb.group(Object.assign({},item));
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
-    this.dialog.open(UpdateStatusCommandeComponent, dialogConfig);
+    this.matDialog.open(UpdateStatusCommandeComponent, dialogConfig);
 
   }
 
-  viewAllCommande() {
+
+  viewAllCommandes() {
     this.router.navigate(['/admin/commandes']);
   }
 }
