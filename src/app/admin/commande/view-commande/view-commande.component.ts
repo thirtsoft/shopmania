@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+
 
 import { LigneLigneCommandeService } from './../../../services/lignecommande.service';
 import { CommandeService } from './../../../services/commande.service';
@@ -28,14 +27,8 @@ export class ViewCommandeComponent implements OnInit {
   client;
   username = '';
 
-/*   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
-  @ViewChild(DataTableDirective) dtElement: DataTableDirective; */
-
   constructor(public crudApi: CommandeService,
-              public toastr: ToastrService,
               public lcmdService: LigneLigneCommandeService,
-              public fb: FormBuilder,
               private router : Router,
               public route: ActivatedRoute,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -47,36 +40,18 @@ export class ViewCommandeComponent implements OnInit {
     console.log(this.comId);
     this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCommandeDto[]) => {
       this.lcmdService.listData = data;
-      this.numeroCommande = this.lcmdService.listData[0].numero;
-      this.totalCommande = this.lcmdService.listData[0].commandeDto.totalCommande;
+      this.numeroCommande = this.lcmdService.listData[0].commandeDto.numeroCommande;
+      this.totalCommande = this.lcmdService.listData[0].commandeDto.total;
       this.dateCommande = this.lcmdService.listData[0].commandeDto.dateCommande;
-      this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName;
-  //    this.username = this.lcmdService.listData[0].commande.utilisateur.name;
-     // this.dtTrigger.next();
+      this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName  +''+ this.lcmdService.listData[0].commandeDto.clientDto.lastName;
+      this.username = this.lcmdService.listData[0].commandeDto.utilisateurDto.name;
+      console.log("Username: " +this.username);
     }, err => {
       console.log(err);
     })
 
   }
 
-  /**
-   * methode pour recharger automatique le Datatable
-  */
-
- /*  rerender() {
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      dtInstance.destroy();
-      this.dtTrigger.next();
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
- */
- /*  transformDate(date){
-    return this.datePipe.transform(date, 'yyyy-MM-dd, h:mm:ss');
-  } */
 
   getListCommandeClients() {
     this.crudApi.getCommandeDtos()
@@ -87,11 +62,6 @@ export class ViewCommandeComponent implements OnInit {
     );
 
   }
-
- /*  onCreateCommandeClient() {
-    this.crudApi.choixmenu == 'A';
-    this.router.navigateByUrl("home/commande");
-  } */
 
   OpenPdf() {
     const document = this.getDocument();
@@ -113,27 +83,29 @@ export class ViewCommandeComponent implements OnInit {
       content: [
         {
           text: 'SOUL-BUSINESS',
-          fontSize: 50,
+          fontSize: 15,
           alignment: 'center',
           color: '#0000ff',
           decoration: 'underline',
           style: 'name',
         },
         {
-          text: 'Prestation de Service & Commerce GeneralRC SN ZGR 2016 C233 / NINEA 00058166762P6',
-          fontSize: 12,
+          text: 'Vente de produits cosmétiques et Habillements pour Hommes & Femmes',
+          fontSize: 11,
           bold: true,
-          color: '#0000ff'
+          color: '#0000ff',
+          alignment: 'center',
         },
         {
-          text: 'N°Compte CNCAS SN 048 03001 000108318801 J/40N° Compte BNDE SN 169 03001 001000519301/30',
-          fontSize: 10.5,
+          text: 'Au Centre Commerciale Touba Sandaga 2é Etages Boutique N° 266',
+          fontSize: 9.5,
           bold: true,
-          color: '#0000ff'
+          color: '#0000ff',
+          alignment: 'center',
         },
         {
-          text: 'Tél: +221 77 109 18 18 / Email: papeteriealamine@gmail.com',
-          fontSize: 12,
+          text: 'Tél: +221 77 147 75 28 / Email: soulbusiness@gmail.com',
+          fontSize: 11,
           bold: true,
           alignment: 'center',
           color: '#0000ff'
@@ -146,12 +118,35 @@ export class ViewCommandeComponent implements OnInit {
         {
           columns: [
 
-            [
+             [
               {
-                text: `Agent : ${this.lcmdService.listData[0].commandeDto.clientDto.firstName}`,
-                fontSize: 12,
+                text: `${this.lcmdService.listData[0].commandeDto.statusCommande}`,
+                fontSize: 15,
                 bold: true,
+                color: '#0000ff',
                 margin: [0, 15, 0, 15]
+              },
+              {
+                text: ' Facturé à : ',
+                fontSize: 11,
+                color: '#0000ff',
+                bold: true,
+                margin: [0, 7, 0, 7]
+              },
+              {
+                text: `${ this.lcmdService.listData[0].commandeDto.clientDto.firstName + '' + this.lcmdService.listData[0].commandeDto.clientDto.lastName }`,
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+              {
+                text: `Tél: ${this.lcmdService.listData[0].commandeDto.clientDto.mobile}`,
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+              {
+                text: `Email: ${this.lcmdService.listData[0].commandeDto.clientDto.email}`,
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
               },
 
             ],
@@ -162,15 +157,42 @@ export class ViewCommandeComponent implements OnInit {
                 alignment: 'right',
                 margin: [0, 15, 0, 15]
               },
+              {
+                text: ' Addresse Livraison : ',
+                fontSize: 11,
+                color: '#0000ff',
+                bold: true,
+                alignment: 'right',
+                margin: [0, 7, 0, 7]
+              },
+              {
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.city}`,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+              {
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state}`,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+              {
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.country}`,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
             ],
 
+      
           ]
         },
 
         {
-          text: ' FACTURE COMMANDE ',
+          text: ' FACTURE ',
           alignment: 'center',
-          fontSize: 15,
+          fontSize: 12,
           color: '#0000ff',
           bold: true,
           margin: [0, 5, 0, 5]
@@ -178,18 +200,13 @@ export class ViewCommandeComponent implements OnInit {
         {
           text: `N° : ${this.lcmdService.listData[0].commandeDto.numeroCommande}`,
           bold: true,
-          fontSize: 14,
+          fontSize: 12,
           alignment: 'center',
           color: '#0000ff',
           margin: [0, 8, 0, 8]
         },
-        {
-        //  bold:true,
-          text: 'Pour : ' +this.lcmdService.listData[0].commandeDto.clientDto.firstName,
-          alignment: 'left',
-          margin: [0, 8, 0, 8]
-        },
-
+       
+       
         {
 
         },
@@ -200,30 +217,12 @@ export class ViewCommandeComponent implements OnInit {
         },
 
         {
-          text: `Total CFA : ${this.lcmdService.listData[0].commandeDto.totalCommande}`,
+          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.total}`,
           alignment: 'right',
           margin: [0, 8, 0, 8],
           bold: true,
           fontSize: 12,
         },
-
-       /*  {
-          text: ''
-           + [(this.lcmdService.listData[0].commande.typeReglement) + ' : ' + (this.lcmdService.listData[0].commande.montantReglement)],
-          alignment: 'right',
-          margin: [0, 5, 0, 15],
-          bold: true,
-          fontSize: 10,
-        },
-
-        {
-          text: 'RENDU : '
-           +[(this.lcmdService.listData[0].commande.montantReglement)-(this.lcmdService.listData[0].commande.totalCommande)],
-          alignment: 'right',
-          margin: [0, 5, 0, 15],
-          bold: true,
-          fontSize: 12,
-        }, */
 
         {
           text: 'Signature',
@@ -278,30 +277,30 @@ export class ViewCommandeComponent implements OnInit {
         body: [
           [
             {
-              text: 'QUANTITE',
+              text: 'Quantité',
               style: 'tableHeader'
             },
             {
-              text: 'DESIGNATION',
+              text: 'Désignation',
               style: 'tableHeader'
             },
             {
-              text: 'P.UNITAIRE',
+              text: 'P.Unitaire',
               style: 'tableHeader'
             },
             {
-              text: 'P.TOTAL',
+              text: 'P.Total',
               style: 'tableHeader'
             },
 
           ],
           ...item.map(x => {
-            return ([x.quantity, x.articleDto.designation, x.price,
+            return ([x.quantity, x.productName, x.price,
               (x.quantity*x.price).toFixed(2)])
           }),
           [
             {
-              text: 'MONTANT TOTAL',
+              text: 'Montant Total',
               alignment: 'center',
               colSpan: 3
             }, {}, {},
@@ -314,7 +313,7 @@ export class ViewCommandeComponent implements OnInit {
   }
 
   onGoBack() {
-    this.router.navigateByUrl('home/listcommandes');
+    this.router.navigateByUrl('admin/commandes');
   }
 
 }

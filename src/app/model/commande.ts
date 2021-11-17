@@ -1,4 +1,4 @@
-import { Utilisateur } from './utilisateur';
+import { Utilisateur, UtilisateurDto } from './utilisateur';
 import { LigneCommande } from './ligne-commande';
 import { AddressLivraisonDto } from './address-livraison';
 import { Statuscommande } from './statuscommande';
@@ -29,7 +29,7 @@ export class CommandeDto {
   reference: string;
   numeroCommande: string;
   totalQuantity: number;
-  totalCommande: number;
+  total: number;
   dateCommande: Date;
 
   firstName: string;
@@ -42,6 +42,8 @@ export class CommandeDto {
   statusCommande: Statuscommande;
 
   clientDto: ClientDto;
+
+  utilisateurDto: UtilisateurDto;
 
   billingAddressDto: AddressLivraisonDto;
 
