@@ -1,7 +1,10 @@
-import { Fournisseur, FournisseurDto } from './../model/fournisseur';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
+import { Fournisseur, FournisseurDto } from './../model/fournisseur';
+
 import { environment } from './../../environments/environment';
 
 @Injectable({
@@ -10,6 +13,12 @@ import { environment } from './../../environments/environment';
 export class FournisseurService {
 
   private apiServerUrl = environment.apiBaseUrl;
+
+  choixmenu : string  = 'A';
+  listData : Fournisseur[];
+  formData:  Fournisseur;
+
+  dataForm:  FormGroup;
 
   constructor(private http: HttpClient) {
   }

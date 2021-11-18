@@ -4,7 +4,7 @@
     <div id="content">
       <app-backend-header></app-backend-header>
       <div class="container-fluid">
-        <!-- <h3><i class="fa fa-angle-right"></i> List of categories</h3> -->
+      <h3><i class="fa fa-angle-right"></i> List des scategories</h3>
         <div>
           <div class="row">
             <input
@@ -49,7 +49,7 @@
                 <td>{{ subCatDTO.categoryDto?.designation }}</td>
                 <td>{{ subCatDTO.libelle }}</td>
 
-                <td class="text-right">
+                <td>
                   <button
                     class="btn btn-warning btn-sm"
                     [routerLink]="['/admin/scategorie', subCatDTO.id]"

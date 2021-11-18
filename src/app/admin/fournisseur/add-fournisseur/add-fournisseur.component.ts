@@ -18,7 +18,6 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 export class AddFournisseurComponent implements OnInit {
 
   formDataFournisseurDTO: FournisseurDto = new FournisseurDto();
-  deleteFournisseurDTO: FournisseurDto;
   ListArticleDTO: ArticleDto[];
 
   data;
@@ -120,7 +119,7 @@ export class AddFournisseurComponent implements OnInit {
 
 
   goBack() {
-
+    this.router.navigateByUrl("admin/fournisseurs");
   }
 
 }

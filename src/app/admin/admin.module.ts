@@ -63,6 +63,7 @@ import { UploadFileComponent } from './article/upload-file/upload-file.component
 import { Detail200LatesCommandeComponent } from './commande/detail200-lates-commande/detail200-lates-commande.component';
 import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
 import { NumberOfVentePeerMonthComponent } from './chartjs/number-of-vente-peer-month/number-of-vente-peer-month.component';
+import { EnvoiEmailFournisseurComponent } from './fournisseur/envoi-email-fournisseur/envoi-email-fournisseur.component';
 
 
 
@@ -107,6 +108,7 @@ import { NumberOfVentePeerMonthComponent } from './chartjs/number-of-vente-peer-
     Detail200LatesCommandeComponent,
     ListCommandePayeesComponent,
     NumberOfVentePeerMonthComponent,
+    EnvoiEmailFournisseurComponent,
 
 
   ],
@@ -148,7 +150,7 @@ import { NumberOfVentePeerMonthComponent } from './chartjs/number-of-vente-peer-
   entryComponents: [
     AddCategoryComponent, CreateSubCategoryComponent,
     ViewCommandeComponent, UpdateStatusCommandeComponent,
-    DashboardComponent, UploadFileComponent
+    DashboardComponent, UploadFileComponent, AddFournisseurComponent,
   ]
 
 })

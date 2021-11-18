@@ -1,3 +1,4 @@
+import { EnvoiEmailFournisseurComponent } from './fournisseur/envoi-email-fournisseur/envoi-email-fournisseur.component';
 import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
 import { UploadFileComponent } from './article/upload-file/upload-file.component';
 import { ListCommandeEncoursComponent } from './commande/list-commande-encours/list-commande-encours.component';
@@ -119,6 +120,10 @@ const routes: Routes = [
   {
     path: 'fournisseur',
     component: AddFournisseurComponent
+  },
+  {
+    path : 'sendEmailToFournisseur',
+    component: EnvoiEmailFournisseurComponent
   },
   {
     path:'fournisseur/:id',

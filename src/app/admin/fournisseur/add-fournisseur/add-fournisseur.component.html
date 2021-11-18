@@ -4,10 +4,9 @@
     <div id="content">
       <app-backend-header></app-backend-header>
       <div class="container-fluid">
-        <h1>Nouveau Fournisseur</h1>
-        <!--  <form #addArticleForm="ngForm" name="form" (ngSubmit)="onAddArticle()"> -->
+        <h1 *ngIf="!paramId">Nouveau Fournisseur</h1>
+        <h1 *ngIf="paramId">Modifier Fournisseur</h1>
         <form #addFournisseurForm="ngForm" name="form">
-          <!--  <input type="hidden" name="id" #idCategory="ngModel" [(ngModel)]="editArticle.idCategory"> -->
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -220,13 +219,13 @@
               class="btn btn-success"
               (click)="submit()"
             >
-              <i class="fa fa-database"></i> Enregistrer </button
+              <em class="fa fa-database"></em> Enregistrer </button
             >&nbsp;
             <button *ngIf="paramId" class="btn btn-warning" (click)="update()">
-              <i class="fa fa-database"></i>Modifier
+              <em class="fa fa-database"></em>Modifier
             </button>
             <button (click)="goBack()" type="button" class="btn btn-danger ml-1">
-              <i class="fa fa-close"></i> Fermer
+              <i class="fa fa-angle-right"></i> Retour
             </button>
           </div>
         </form>
