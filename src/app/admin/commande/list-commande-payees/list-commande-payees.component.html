@@ -1,1 +1,70 @@
-<p>list-commande-payees works!</p>
+<div id="wrapper">
+  <app-backend-sidebar style="min-height: 200vh;"></app-backend-sidebar>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <app-backend-header></app-backend-header>
+      <div class="container-fluid">
+        <h3><em class="fa fa-angle-right"></em> List des commandes payées</h3>
+        <div>
+          <div class="row">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              [(ngModel)]="searchText"
+            />
+          </div>
+
+          <table class="table table-striped" aria-label="">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Numéro</th>
+                <th>Client</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let commandeDTO of commandeDTOList
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 10, currentPage: p }
+                "
+              >
+                <td>{{ commandeDTO.numeroCommande }}</td>
+                <td>
+                  {{ commandeDTO.clientDto.firstName }}
+                  {{ commandeDTO.clientDto.lastName }}
+                </td>
+                <td>{{ commandeDTO.total }}</td>
+
+                <td>{{ commandeDTO.status }}
+                </td>
+                <td>{{ commandeDTO?.dateCommande | date: "dd-MM-yyyy" }}</td>
+
+                <td>
+                  <button
+                    class="btn btn-warning btn-lg"
+                    (click)="viewAllCommandes()"
+                  >
+                    <i class="fa fa-eye" aria-hidden="true"></i></button
+                  >&nbsp;
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-backend-footer></app-backend-footer>
+  </div>
+</div>

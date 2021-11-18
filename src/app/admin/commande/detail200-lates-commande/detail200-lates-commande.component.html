@@ -1,1 +1,66 @@
-<p>detail200-lates-commande works!</p>
+
+    <!-- Card Body -->
+
+      <div class="chart-pie pt-4 pb-2">
+        <!--    <canvas id="myPieChart"></canvas>
+
+-->
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search"
+          [(ngModel)]="searchText"
+          style="margin-top: 0px"
+        />
+
+        <table
+          class="table table-striped"
+          aria-label=""
+          style="margin-top: 8px; height: 330px"
+        >
+          <thead class="thead-inverse">
+            <tr>
+              <th>Article</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Date</th>
+              <!--     <th>Action</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let ligneComDTO of ligneCommandeDTOList
+                  | filter: searchText
+                  | paginate: { itemsPerPage: 10, currentPage: p }
+              "
+            >
+              <td>{{ ligneComDTO?.productName }}</td>
+              <td>{{ ligneComDTO?.quantity }}</td>
+              <td>{{ ligneComDTO?.price }}</td>
+              <td>
+                {{
+                  ligneComDTO?.commandeDto?.dateCommande | date: "dd-MM-yyyy"
+                }}
+              </td>
+
+              <!--   <td class="text-right">
+                <button
+                  class="btn btn-primary btn-sm"
+                  [routerLink]="['/admin/article', ligneComDTO.id]"
+                >
+                  <i
+                    class="fa fa-edit"
+                    aria-hidden="true"
+                  ></i></button
+                >&nbsp;
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+
+

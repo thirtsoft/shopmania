@@ -1,3 +1,4 @@
+import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
 import { UploadFileComponent } from './article/upload-file/upload-file.component';
 import { ListCommandeEncoursComponent } from './commande/list-commande-encours/list-commande-encours.component';
 import { NgModule } from '@angular/core';
@@ -134,6 +135,10 @@ const routes: Routes = [
   {
     path: 'commandes-encours',
     component: ListCommandeEncoursComponent
+  },
+  {
+    path : 'commandes-payees',
+    component : ListCommandePayeesComponent
   },
   {
     path:'commandeView/:id',

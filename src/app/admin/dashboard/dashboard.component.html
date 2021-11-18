@@ -146,11 +146,8 @@
         <!-- Content Row -->
 
         <div class="row">
-
-          <!-- Pie Chart -->
           <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
-              <!-- Card Header - Dropdown -->
               <div
                 class="
                   card-header
@@ -165,89 +162,15 @@
                   Details des 2OO dernières commandes
                 </h3>
               </div>
-              <!-- Card Body -->
-              <div class="card-body">
-                <div class="chart-pie pt-4 pb-2">
-                  <!--    <canvas id="myPieChart"></canvas>
-
- -->
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search"
-                    [(ngModel)]="searchText"
-                    style="margin-top: 0px"
-                  />
-
-                  <table
-                    class="table table-striped"
-                    aria-label=""
-                    style="margin-top: 8px; height: 330px;"
-                  >
-                    <thead class="thead-inverse">
-                      <tr>
-                        <th>Article</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Date</th>
-                    <!--     <th>Action</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        *ngFor="
-                          let ligneComDTO of ligneCommandeDTOList
-                            | filter: searchText
-                            | paginate: { itemsPerPage: 10, currentPage: p }
-                        "
-                      >
-                        <td>{{ ligneComDTO?.productName }}</td>
-                        <td>{{ ligneComDTO?.quantity }}</td>
-                        <td>{{ ligneComDTO?.price }}</td>
-                        <td>
-                          {{
-                            ligneComDTO?.commandeDto?.dateCommande
-                              | date: "dd-MM-yyyy"
-                          }}
-                        </td>
-
-                      <!--   <td class="text-right">
-                          <button
-                            class="btn btn-primary btn-sm"
-                            [routerLink]="['/admin/article', ligneComDTO.id]"
-                          >
-                            <i
-                              class="fa fa-edit"
-                              aria-hidden="true"
-                            ></i></button
-                          >&nbsp;
-                        </td> -->
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="pagination">
-                    <pagination-controls
-                      (pageChange)="p = $event"
-                    ></pagination-controls>
-                  </div>
-                </div>
-                <!--    <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                          <i class="fas fa-circle text-primary"></i> Direct
-                      </span>
-                                    <span class="mr-2">
-                          <i class="fas fa-circle text-success"></i> Social
-                      </span>
-                                    <span class="mr-2">
-                          <i class="fas fa-circle text-info"></i> Referral
-                      </span>
-                                </div> -->
+              <div class="card-body" style="height: 600px;">
+                <app-detail200-lates-commande></app-detail200-lates-commande>
               </div>
+
             </div>
           </div>
         </div>
 
-        <div class="row" style="margin-top: 280px;">
+        <div class="row" style="margin-top: 50px;">
           <!-- Area Chart -->
           <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
@@ -267,15 +190,16 @@
                 </h3>
               </div>
               <!-- Card Body -->
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas height="90px" id="barChartCommandeParMonth"></canvas>
-                </div>
+              <div class="card-body"  style="height: 600px;">
+            <!--     <div class="chart-area"> -->
+                  <!-- <canvas height="90px" id="barChartCommandeParMonth"></canvas> -->
+                  <app-number-of-vente-peer-month></app-number-of-vente-peer-month>
+               <!--  </div> -->
               </div>
             </div>
           </div>
 
-       
+
         </div>
       </div>
       <!-- /.container-fluid -->
@@ -283,7 +207,7 @@
       <!-- End of Main Content -->
     </div>
 
-    <app-backend-footer style="margin-top: 150px;"></app-backend-footer>
+    <app-backend-footer style="margin-top: 10px;"></app-backend-footer>
   </div>
-  
+
 </div>

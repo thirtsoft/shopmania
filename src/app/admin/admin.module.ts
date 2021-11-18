@@ -62,6 +62,7 @@ import { ViewCommandeComponent } from './commande/view-commande/view-commande.co
 import { UploadFileComponent } from './article/upload-file/upload-file.component';
 import { Detail200LatesCommandeComponent } from './commande/detail200-lates-commande/detail200-lates-commande.component';
 import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
+import { NumberOfVentePeerMonthComponent } from './chartjs/number-of-vente-peer-month/number-of-vente-peer-month.component';
 
 
 
@@ -105,6 +106,7 @@ import { ListCommandePayeesComponent } from './commande/list-commande-payees/lis
     UploadFileComponent,
     Detail200LatesCommandeComponent,
     ListCommandePayeesComponent,
+    NumberOfVentePeerMonthComponent,
 
 
   ],

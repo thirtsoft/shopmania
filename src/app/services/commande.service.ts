@@ -36,6 +36,10 @@ export class CommandeService {
     return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/findListOrderByStatuePending`);
   }
 
+  public getCommandeDtosByStatusPurchased(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/findListOrderByStatuePayed`);
+  }
+
   public getCommandeDtoById(comId: number): Observable<CommandeDto> {
     return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/${comId}`);
   }

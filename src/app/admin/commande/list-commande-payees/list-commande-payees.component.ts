@@ -1,3 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { CommandeService } from './../../../services/commande.service';
+import { CommandeDto } from './../../../model/commande';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCommandePayeesComponent implements OnInit {
 
-  constructor() { }
+  commandeDTOList: CommandeDto[];
 
-  ngOnInit() {
+  id : number;
+  p : number=1;
+  searchText;
+
+  constructor(private crudApi: CommandeService,
+              private router: Router
+  ){}
+
+
+  ngOnInit(): void {
+    this.getCommandeDtosByStatusPurchase();
+  }
+
+  public getCommandeDtosByStatusPurchase(): void {
+    this.crudApi.getCommandeDtosByStatusPurchased().subscribe(
+      (response: CommandeDto[]) => {
+        this.commandeDTOList = response;
+        console.log(this.commandeDTOList);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  viewAllCommandes() {
+    this.router.navigate(['/admin/commandes']);
   }
 
 }

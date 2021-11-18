@@ -33,15 +33,7 @@ export class DashboardComponent implements OnInit {
 
   listAnnes: any={};
 
-  ligneCommandeDTOList: LigneCommandeDto[];
-
-  id : number;
-  p : number=1;
-  searchText;
-
-  constructor(private crupdApi: DashboardService,
-              private router: Router,
-              public toastr: ToastrService,
+  constructor(private crupdApi: DashboardService
   ){}
 
   ngOnInit(): void {
@@ -63,54 +55,6 @@ export class DashboardComponent implements OnInit {
     this.getSumOfOdersInYear();
 
     this.getNumberOfNotificationInMonth();
-
-    this.getTop200LigneCommandeOrdrByIdDesc();
-
-    this.crupdApi.countNumberOfCommandeByMonth().subscribe((result: CommandeDto[]) => {
-      this.listAnnes = result;
-      const n = 1;
-      const m = 0;
-      console.log(this.listAnnes);
-      for (let i=0; i<this.listAnnes.length; i++) {
-        this.NombreCommandeParMois.push(this.listAnnes[i][n]);
-        this.CommandeOfMonth.push(this.listAnnes[i][m]);
-      }
-    //  this
-      this.Barchart = new Chart('barChartCommandeParMonth', {
-        type: 'bar',
-        data: {
-          labels: this.CommandeOfMonth,
-
-          datasets: [
-            {
-              data: this.NombreCommandeParMois,
-              borderColor: '#3cb371',
-              backgroundColor: "#5F9EA0",
-
-            }
-          ]
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [{
-              display: true,
-              ticks: {
-                beginAtZero: true
-              }
-            }],
-            yAxes: [{
-              display: true,
-              ticks: {
-                beginAtZero: true
-              }
-            }],
-          }
-        }
-      });
-    });
 
   }
 
@@ -171,19 +115,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(response => {
       this.numberOfNotificationInMonth = response;
     });
-  }
-
-
-  getTop200LigneCommandeOrdrByIdDesc(): void {
-    this.crupdApi.getTop200LigneCommandeOrderByIdDesc().subscribe(
-      (response: LigneCommandeDto[]) => {
-        this.ligneCommandeDTOList = response;
-        console.log(this.ligneCommandeDTOList);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
   }
 
 
