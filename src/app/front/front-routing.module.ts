@@ -1,6 +1,3 @@
-import { SuccessRegisterComponent } from './body/success-register/success-register.component';
-import { SuccessOrderComponent } from './body/success-order/success-order.component';
-import { RegisterComponent } from './body/register/register.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -16,8 +13,10 @@ import { MyaccountComponent } from './body/myaccount/myaccount.component';
 import { WishListComponent } from './body/wish-list/wish-list.component';
 import { LoginComponent } from './body/login/login.component';
 
-
-
+import { SuccessRegisterComponent } from './body/success-register/success-register.component';
+import { SuccessOrderComponent } from './body/success-order/success-order.component';
+import { RegisterComponent } from './body/register/register.component';
+import { SuccessEmailComponent } from './body/success-email/success-email.component';
 
 
 const routes: Routes = [
@@ -38,6 +37,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'success-register', component: SuccessRegisterComponent },
+  { path : 'email-success', component: SuccessEmailComponent },
   { path: 'contactus', component: ContactComponent},
   { path: 'about', component: AboutComponent },
   { path: 'faq', component: FaqComponent },

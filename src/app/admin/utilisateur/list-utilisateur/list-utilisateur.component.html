@@ -26,29 +26,37 @@
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Address</th>
-                                <th>Active</th>
+                                <th>Password</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let userDTO of utilisateurDTOList | filter:searchText | paginate: {itemsPerPage: 4, currentPage: p} ">
-                                <td>{{userDTO?.photo}}</td>
+                              <td>
+                                <img [src]="this.crudApi.apiServerUrl+'/utilisateurs/avatar/'+userDTO.userId+'?ts='+getTS()"
+                                class="img-profile rounded-circle" width="70" height="30" routerLink ="/profil" *ngIf="img">
+
+                                <img class="img-profile rounded-circle" src="assets/admin/img/undraw_profile_2.svg">
+
+                              </td>
                                 <td>{{userDTO?.name}}</td>
                                 <td>{{userDTO?.username}}</td>
                                 <td>{{userDTO?.mobile}}</td>
                                 <td>{{userDTO?.email}}</td>
-                                <td>{{userDTO?.address}}</td>
-                                <td>{{userDTO?.activated}}</td>
+                                <td>{{userDTO?.password}}</td>
+                                <td>{{ userDTO.roles[0]?.name }}</td>
 
-                                <td>
-                                    <div class="container ">
-                                        <!--   <button mat-raised-button class="action-button btn-primary" (click)="addEditFournisseur(categoryDTO) ">
-                          <mat-icon>edit</mat-icon>
-                        </button> -->
-                                        <button mat-raised-button class="action-button btn-danger" (click)="confirmDialog(userDTO.id)">
-                          <mat-icon>delete_outline</mat-icon>
-                        </button>
-                                    </div>
+                                <td class="text-right">
+
+                                  <button (click)="addEditUtilisateur(userDTO.id)" class="btn btn-warning btn-sm">
+                                    <i class="fa fa-edit" aria-hidden="true"></i> </button>&nbsp;
+
+                                <button
+                                    class="btn btn-danger btn-sm"
+                                    (click)="confirmDialog(userDTO.id)"
+                                  >
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i></button
+                                  >&nbsp;
                                 </td>
 
                             </tr>

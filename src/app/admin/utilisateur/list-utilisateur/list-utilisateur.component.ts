@@ -27,7 +27,10 @@ export class ListUtilisateurComponent implements OnInit {
   p : number=1;
   searchText;
 
-  constructor(private userService: UtilisateurService,
+  currentTime: number = 0;
+  img: boolean;
+
+  constructor(public crudApi: UtilisateurService,
               private router: Router,
                private dialog: MatDialog,
               public toastr: ToastrService,
@@ -36,10 +39,15 @@ export class ListUtilisateurComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUtilisateurDTOs();
+
+    if (this.crudApi.getUserAvatar(this.id) === null)
+      this.img = false;
+    else this.img = true;
+
   }
 
   public getUtilisateurDTOs(): void {
-    this.userService.getUtilisateurDtos().subscribe(
+    this.crudApi.getAllUtilisateurDtosOrderByIdDesc().subscribe(
       (response: UtilisateurDto[]) => {
         this.utilisateurDTOList = response;
         console.log(this.utilisateurDTOList);
@@ -51,6 +59,14 @@ export class ListUtilisateurComponent implements OnInit {
   }
 
   onAddUtilisateur() {
+
+  }
+
+  getTS() {
+    return this.currentTime;
+  }
+
+  addEditUtilisateur(i) {
 
   }
 
@@ -77,7 +93,7 @@ export class ListUtilisateurComponent implements OnInit {
   public onDeleteUtilisateur(user: UtilisateurDto): void{
     console.log('delete');
     console.log('id--', user);
-    const res = this.userService.deleteUtilisateurDto(user.id);
+    const res = this.crudApi.deleteUtilisateurDto(user.id);
     if(res) {
       let _html=`
               <div class="c-green">

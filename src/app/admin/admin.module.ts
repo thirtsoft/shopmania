@@ -64,6 +64,7 @@ import { Detail200LatesCommandeComponent } from './commande/detail200-lates-comm
 import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
 import { NumberOfVentePeerMonthComponent } from './chartjs/number-of-vente-peer-month/number-of-vente-peer-month.component';
 import { EnvoiEmailFournisseurComponent } from './fournisseur/envoi-email-fournisseur/envoi-email-fournisseur.component';
+import { ListHistoriqueLoginComponent } from './utilisateur/list-historique-login/list-historique-login.component';
 
 
 
@@ -109,6 +110,7 @@ import { EnvoiEmailFournisseurComponent } from './fournisseur/envoi-email-fourni
     ListCommandePayeesComponent,
     NumberOfVentePeerMonthComponent,
     EnvoiEmailFournisseurComponent,
+    ListHistoriqueLoginComponent,
 
 
   ],

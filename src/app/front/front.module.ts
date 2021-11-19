@@ -58,6 +58,7 @@ import { SuccessRegisterComponent } from './body/success-register/success-regist
 import { RatingComponent } from './body/ratings/rating/rating.component';
 import { ListRatingComponent } from './body/ratings/list-rating/list-rating.component';
 import { ArticleListTop12OrderByCreatedDateDescComponent } from './body/article-list-top12-order-by-created-date-desc/article-list-top12-order-by-created-date-desc.component';
+import { SuccessEmailComponent } from './body/success-email/success-email.component';
 
 
 @NgModule({
@@ -114,6 +115,7 @@ import { ArticleListTop12OrderByCreatedDateDescComponent } from './body/article-
     RatingComponent,
     ListRatingComponent,
     ArticleListTop12OrderByCreatedDateDescComponent,
+    SuccessEmailComponent,
   ],
   imports: [
     CommonModule,

@@ -1,15 +1,17 @@
-import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Utilisateur, UtilisateurDto } from './../model/utilisateur';
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { Utilisateur, UtilisateurDto } from './../model/utilisateur';
+
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
   }
@@ -54,6 +56,21 @@ export class UtilisateurService {
 
   public updateUtilisateurDto(utilisateurId: number, utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
     return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${utilisateurId}`, utilisateurDTO);
+  }
+
+  public getUserAvatar(id: number){
+    return this.http.get(`${this.apiServerUrl}/utilisateurs/avatar/`+ id);
+  }
+
+  uploadPhotoUtilisateur(file: File, id: number): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+    const req = new HttpRequest('POST', this.apiServerUrl+'/utilisateurs/uploadUserPhoto/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
   }
 
   public deleteUtilisateurDto(utilisateurId: number): Observable<void> {

@@ -56,6 +56,10 @@ export class BackendHeaderComponent implements OnInit {
       this.userId = user.id;
       this.photo = user.photo;
 
+      if (this.userService.getUserAvatar(this.userId) === null)
+        this.img = false;
+      else this.img = true;
+
     }
 
   }

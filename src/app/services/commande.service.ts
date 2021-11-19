@@ -44,6 +44,18 @@ export class CommandeService {
     return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/${comId}`);
   }
 
+  public getCommandeDtoByUserIdOrderDesc(userId: number): Observable<CommandeDto> {
+    return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/searchCommandeByUserIdOrderByIdDesc/${userId}`);
+  }
+
+  public getCommandeDtoByBillingIdOrderDesc(billingAddressId: number): Observable<CommandeDto> {
+    return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/searchCommandeByBillingAddressIdDesc/${billingAddressId}`);
+  }
+
+  public getCommandeDtoByShippingIdOrderDesc(shippingAddressId: number): Observable<CommandeDto> {
+    return this.http.get<CommandeDto>(`${this.apiServerUrl}/commandes/searchCommandeByShippingAddressIdDesc/${shippingAddressId}`);
+  }
+
   public addCommandeDto(commandeDTO: CommandeDto): Observable<CommandeDto> {
     return this.http.post<CommandeDto>(`${this.apiServerUrl}/commandes/create`, commandeDTO);
   }

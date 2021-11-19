@@ -1,3 +1,4 @@
+import { ListHistoriqueLoginComponent } from './utilisateur/list-historique-login/list-historique-login.component';
 import { EnvoiEmailFournisseurComponent } from './fournisseur/envoi-email-fournisseur/envoi-email-fournisseur.component';
 import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
 import { UploadFileComponent } from './article/upload-file/upload-file.component';
@@ -180,6 +181,10 @@ const routes: Routes = [
   {
     path:'utilisateur/:id',
     component:AddUtilisateurComponent
+  },
+  {
+    path: 'historique-Connection',
+    component: ListHistoriqueLoginComponent
   },
 ];
 
