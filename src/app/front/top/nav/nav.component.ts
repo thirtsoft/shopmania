@@ -70,6 +70,10 @@ export class NavComponent implements OnInit {
     this.router.navigateByUrl("home");
   }
 
+  getUserOrder() {
+    this.router.navigate(['/my-account/' + this.userId]);
+  }
+
   getProfile() {
     this.router.navigate(['/home/profile/' + this.userId]);
   }

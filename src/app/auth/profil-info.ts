@@ -28,3 +28,10 @@ export class UpdatePasswordInfo {
   newPassword: string;
 }
 
+export class UpdatePasswordUser {
+  id: number;
+  oldPassword: string;
+  newPassword: string;
+}
+
+

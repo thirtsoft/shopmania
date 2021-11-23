@@ -185,7 +185,7 @@ export class ViewCommandeComponent implements OnInit {
               },
             ],
 
-      
+
           ]
         },
 
@@ -214,8 +214,8 @@ export class ViewCommandeComponent implements OnInit {
           alignment: 'left',
           margin: [0, 8, 0, 8]
         },
-       
-       
+
+
         {
 
         },

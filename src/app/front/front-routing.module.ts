@@ -21,26 +21,88 @@ import { SuccessEmailComponent } from './body/success-email/success-email.compon
 
 const routes: Routes = [
   // { path: '', component: HomeComponent},
-  { path: '',   redirectTo: 'home', pathMatch: 'full' }, // redirect to
-  { path: 'home', component: HomeComponent },
-  { path: 'search/:keyword', component: HomeComponent },
-  { path: 'product-detail/:reference', component: DetailProductComponent },
-  { path: 'products', component: ShopComponent },
-  { path: 'category/:id', component: ShopComponent },
-  { path: 'searchInshop/:keyword', component: ShopComponent },
-  { path: 'searchbyPrice/:price', component: ShopComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
-  { path: 'success-order', component: SuccessOrderComponent },
-  { path: 'my-account', component: MyaccountComponent },
-  { path: 'wishlist', component: WishListComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'success-register', component: SuccessRegisterComponent },
-  { path : 'email-success', component: SuccessEmailComponent },
-  { path: 'contactus', component: ContactComponent},
-  { path: 'about', component: AboutComponent },
-  { path: 'faq', component: FaqComponent },
+  {
+    path: '',   redirectTo: 'home', pathMatch: 'full'
+  }, // redirect to
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  { path: 'search/:keyword',
+    component: HomeComponent
+  },
+  {
+    path: 'product-detail/:reference',
+    component: DetailProductComponent
+  },
+  {
+    path: 'products',
+    component: ShopComponent
+  },
+  {
+    path: 'category/:id',
+    component: ShopComponent
+  },
+  {
+    path: 'searchInshop/:keyword',
+    component: ShopComponent
+  },
+  {
+    path: 'searchbyPrice/:price',
+    component: ShopComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent
+  },
+  {
+    path: 'success-order',
+    component: SuccessOrderComponent
+  },/*
+   {
+    path: 'my-account',
+    component: MyaccountComponent
+  },*/
+  {
+    path: 'my-account/:id',
+    component: MyaccountComponent
+  },
+  {
+    path: 'wishlist',
+    component: WishListComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'success-register',
+    component: SuccessRegisterComponent
+  },
+  {
+    path : 'email-success',
+    component: SuccessEmailComponent
+  },
+  {
+    path: 'contactus',
+    component: ContactComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'faq',
+    component: FaqComponent
+  },
 ];
 
 @NgModule({

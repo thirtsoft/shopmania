@@ -4,7 +4,7 @@ import { TokenStorageService } from './token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Register } from './register';
 import { Login } from './login';
-import { ProfilInfo, UpdatePasswordInfo, UpdateUsernameInfo, UpdateProfilInfo } from './profil-info';
+import { ProfilInfo, UpdatePasswordInfo, UpdateUsernameInfo, UpdateProfilInfo, UpdatePasswordUser } from './profil-info';
 import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 
@@ -111,6 +111,15 @@ export class AuthService {
       newPassword: item.newPassword
     }, httpOptions);
   }
+
+  updatePasswordByUserId(item: UpdatePasswordUser): Observable<UpdatePasswordUser> {
+    return this.http.patch<UpdatePasswordUser>("//localhost:8081/alAmine/updatePassword", {
+      ImageData: item.username,
+      oldPassword: item.oldPassword,
+      newPassword: item.newPassword
+    }, httpOptions);
+  }
+
 
   handleError(error: HttpErrorResponse) {
     let msg = '';

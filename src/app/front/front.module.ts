@@ -2,8 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
-import { MaterialModule } from '../shared/material.module';
 import { FrontRoutingModule } from './front-routing.module';
+
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination' ;
+
+import { MaterialModule } from '../shared/material.module';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -123,7 +130,12 @@ import { SuccessEmailComponent } from './body/success-email/success-email.compon
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
+
+    MatExpansionModule,
+    MatPaginatorModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ]
 })
 export class FrontModule { }
