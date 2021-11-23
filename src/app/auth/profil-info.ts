@@ -10,15 +10,22 @@ export class ProfilInfo {
 }
 
 export class UpdateProfilInfo {
+  id: number;
+  oldUsername: string;
   name: string;
   username: string;
   email: string;
-  password: string;
-  confirmPassword: string;
+  mobile: string;
+
 }
 
 export class UpdateUsernameInfo {
   username: string;
+  newUsername: string;
+}
+
+export class UpdateUsernameUser {
+  id: string;
   newUsername: string;
 }
 
@@ -29,7 +36,7 @@ export class UpdatePasswordInfo {
 }
 
 export class UpdatePasswordUser {
-  id: number;
+  id: string;
   oldPassword: string;
   newPassword: string;
 }

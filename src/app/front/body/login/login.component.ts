@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(
         private authService: AuthService,
         private tokenStorage: TokenStorageService,
+        private toastr: ToastrService,
         private router: Router,
         private location: Location
   ) {}
@@ -50,7 +52,6 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        console.log("Login Success");
         console.log(this.roles);
         this.router.navigateByUrl("home");
 
@@ -65,6 +66,10 @@ export class LoginComponent implements OnInit {
         console.log(error);
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
+        this.toastr.error('de connexion','Veuillez verifer vos identifiant', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
       }
     );
   }

@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <h2>Modifier Votre Mot Profil</h2>
+    <form
+      #addUsernameForm="ngForm"
+      name="form"
+      (ngSubmit)="addUsernameForm.form.valid && onSubmit()"
+    >
+      <div class="form-group">
+        <label>Ancien Nom Utilisateur</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="formDataProfile.oldUsername"
+          name="olderUsername"
+          id="oldUsername"
+          #oldUsername="ngModel"
+          placeholder="ancien nom d'utiisateur"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Nom</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="formDataProfile.name"
+          name="name"
+          id="name"
+          #name="ngModel"
+          placeholder="votre nom"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Nom Utilisateur</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="formDataProfile.username"
+          name="username"
+          id="username"
+          #username="ngModel"
+          placeholder="votre nom d'utiisateur"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="formDataProfile.email"
+          name="email"
+          id="email"
+          #email="ngModel"
+          placeholder="votre email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Telephone</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="formDataProfile.mobile"
+          name="mobile"
+          id="mobile"
+          #mobile="ngModel"
+          placeholder="numero telephone"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">
+          <em class="fa fa-database"></em> Enregistrer</button
+        >&nbsp;
+        <button type="button" class="btn btn-danger ml-1" [mat-dialog-close]>
+          <em class="fa fa-close"></em> Fermer
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+

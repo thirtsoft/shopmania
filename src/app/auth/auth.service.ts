@@ -1,10 +1,11 @@
+import { UtilisateurDto } from './../model/utilisateur';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TokenStorageService } from './token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Register } from './register';
 import { Login } from './login';
-import { ProfilInfo, UpdatePasswordInfo, UpdateUsernameInfo, UpdateProfilInfo, UpdatePasswordUser } from './profil-info';
+import { ProfilInfo, UpdatePasswordInfo, UpdateUsernameInfo, UpdateProfilInfo, UpdatePasswordUser, UpdateUsernameUser } from './profil-info';
 import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 
@@ -28,12 +29,13 @@ export class AuthService {
   private apiServerUrl = environment.apiBaseUrl;
 
   private loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
-  private baseUrl = 'http://localhost:8081/api/auth';
-  private baseUrl_1 = 'http://localhost:8081/alAmine';
+
+  private baseUrl_1 = environment.apiBaseUrl;
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
-  listData: ProfilInfo;
+//  listData: ProfilInfo;
+  listData: UtilisateurDto;
   listDataUsername: UpdateUsernameInfo;
 
   islogin = false ;
@@ -79,33 +81,63 @@ export class AuthService {
   }
 
   getUserByUsername(username: string): Observable<any> {
-    return this.http.get<any>(this.baseUrl + `/getUserByUsername/${username}`);
+    return this.http.get<any>(this.baseUrl_1 + `/getUserByUsername/${username}`);
   }
   getUserById(id: any) {
     return this.http.get(`${this.baseUrl_1}/utilisateurs/${id}`);
   }
 
-  updateProfil(item: UpdateProfilInfo): Observable<UpdateProfilInfo> {
-    return this.http.patch<UpdateProfilInfo>("//localhost:8081/alAmine/updateProfil", {
+  /* updateProfil(id: number, item: UpdateProfilInfo): Observable<UpdateProfilInfo> {
+    const urlUpdateUserProfile = (`${this.baseUrl_1}/utilisateurs/update/${id}`);
+    return this.http.patch<UpdateProfilInfo>(urlUpdateUserProfile, {
       name: item.name,
       username: item.username,
       email: item.email,
-      password: item.password,
-      confirmPassword: item.confirmPassword
+      mobile: item.mobile,
+    }, httpOptions);
+
+  } */
+
+  public updateProfil(userId: number, userDTO: UpdateProfilInfo): Observable<UpdateProfilInfo> {
+    return this.http.put<UpdateProfilInfo>(`${this.apiServerUrl}/utilisateurs/update/${userId}`, userDTO);
+  }
+
+  updateCustomerProfil(item: UpdateProfilInfo): Observable<UpdateProfilInfo> {
+    const urlUpdateUserProfile = (`${this.baseUrl_1}/utilisateurs/updateCustomerProfileByUsername/`);
+    return this.http.patch<UpdateProfilInfo>(urlUpdateUserProfile, {
+      id: item.id,
+      oldUsername: item.oldUsername,
+      name: item.name,
+      username: item.username,
+      email: item.email,
+      mobile: item.mobile,
     }, httpOptions);
 
   }
 
+
   updateUsername(item: UpdateUsernameInfo): Observable<UpdateUsernameInfo> {
-    return this.http.patch<UpdateUsernameInfo>("//localhost:8081/alAmine/updateUsername", {
+    const urlUpdateUsername = (`${this.baseUrl_1}/utilisateurs/updateUsernameOfUserByUsername`);
+  //  return this.http.patch<UpdateUsernameInfo>("//localhost:8081/alAmine/updateUsername", {
+    return this.http.patch<UpdateUsernameInfo>(urlUpdateUsername, {
       username: item.username,
       newUsername: item.newUsername
     }, httpOptions);
 
   }
 
+  updateUsernameByUserId(item: UpdateUsernameUser): Observable<UpdateUsernameUser> {
+    const urlUpdateUsername = (`${this.baseUrl_1}/utilisateurs/updateUsernameOfUserById`);
+    return this.http.patch<UpdateUsernameUser>(urlUpdateUsername, {
+      id: item.id,
+      newUsername: item.newUsername
+    }, httpOptions);
+
+  }
+
   updatePassword(item: UpdatePasswordInfo): Observable<UpdatePasswordInfo> {
-    return this.http.patch<UpdatePasswordInfo>("//localhost:8081/alAmine/updatePassword", {
+    const urlUpdatePassword = (`${this.baseUrl_1}/utilisateurs/updatePasswordByUsername`);
+    return this.http.patch<UpdatePasswordInfo>(urlUpdatePassword, {
       username: item.username,
       oldPassword: item.oldPassword,
       newPassword: item.newPassword
@@ -113,8 +145,9 @@ export class AuthService {
   }
 
   updatePasswordByUserId(item: UpdatePasswordUser): Observable<UpdatePasswordUser> {
-    return this.http.patch<UpdatePasswordUser>("//localhost:8081/alAmine/updatePassword", {
-      ImageData: item.username,
+    const urlUpdatePassword = (`${this.baseUrl_1}/utilisateurs/updatePasswordByUserId`);
+    return this.http.patch<UpdatePasswordUser>(urlUpdatePassword, {
+      userId: item.id,
       oldPassword: item.oldPassword,
       newPassword: item.newPassword
     }, httpOptions);

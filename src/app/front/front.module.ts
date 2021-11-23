@@ -66,6 +66,8 @@ import { RatingComponent } from './body/ratings/rating/rating.component';
 import { ListRatingComponent } from './body/ratings/list-rating/list-rating.component';
 import { ArticleListTop12OrderByCreatedDateDescComponent } from './body/article-list-top12-order-by-created-date-desc/article-list-top12-order-by-created-date-desc.component';
 import { SuccessEmailComponent } from './body/success-email/success-email.component';
+import { UpdateCustomerUsernameComponent } from './body/myaccount/update-customer-username/update-customer-username.component';
+import { UpdateCustomerPasswordComponent } from './body/myaccount/update-customer-password/update-customer-password.component';
 
 
 @NgModule({
@@ -123,6 +125,8 @@ import { SuccessEmailComponent } from './body/success-email/success-email.compon
     ListRatingComponent,
     ArticleListTop12OrderByCreatedDateDescComponent,
     SuccessEmailComponent,
+    UpdateCustomerUsernameComponent,
+    UpdateCustomerPasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -136,6 +140,9 @@ import { SuccessEmailComponent } from './body/success-email/success-email.compon
     MatPaginatorModule,
     Ng2SearchPipeModule,
     NgxPaginationModule
+  ],
+  entryComponents: [
+    UpdateCustomerUsernameComponent, UpdateCustomerPasswordComponent,
   ]
 })
 export class FrontModule { }

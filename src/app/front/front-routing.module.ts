@@ -1,3 +1,5 @@
+import { UpdateCustomerPasswordComponent } from './body/myaccount/update-customer-password/update-customer-password.component';
+import { UpdateCustomerUsernameComponent } from './body/myaccount/update-customer-username/update-customer-username.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -70,6 +72,14 @@ const routes: Routes = [
   {
     path: 'my-account/:id',
     component: MyaccountComponent
+  },
+  {
+    path: 'my-account/:id',
+    component: UpdateCustomerUsernameComponent
+  },
+  {
+    path: 'my-account/:id',
+    component: UpdateCustomerPasswordComponent
   },
   {
     path: 'wishlist',

@@ -47,7 +47,7 @@ export class UtilisateurService {
   }
 
   public getUtilisateurDtoById(utilisateurId: number): Observable<UtilisateurDto> {
-    return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/${utilisateurId}`);
+    return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/findById/${utilisateurId}`);
   }
 
   public addUtilisateurDto(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
