@@ -4,7 +4,6 @@
     <div id="content">
       <app-backend-header></app-backend-header>
       <div class="container-fluid">
-
         <div class="row">
           <input
             type="text"
@@ -20,64 +19,70 @@
             style="margin-left: 5%; width: 30%"
             routerLink="/admin/fournisseur"
           >
-            Add fournisseur
+            Ajouter fournisseur
           </button>
         </div>
 
-        <table class="table table-striped" aria-label="">
-          <thead class="thead-inverse">
-            <tr>
-              <th>Article</th>
-              <th>Fournisseur</th>
-              <th>Addresse</th>
-              <th>Telephone</th>
-              <th>Email</th>
-              <th>City</th>
-              <th>Country</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              *ngFor="
-                let fourDTO of fournisseurDTOList
-                  | filter: searchText
-                  | paginate: { itemsPerPage: 10, currentPage: p }
-              "
-            >
-              <td>{{ fourDTO?.articleDto.designation }}</td>
-              <td>{{ fourDTO?.firstName }} {{ fourDTO?.lastName }}</td>
-              <td>{{ fourDTO?.address }}</td>
-              <td>{{ fourDTO?.telephoneFournisseur }}</td>
-              <td>{{ fourDTO?.email }}</td>
-              <td>{{ fourDTO?.city }}</td>
-              <td>{{ fourDTO?.country }}</td>
+        <div class="table-responsive">
+          <table class="table table-striped" aria-label="">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Article</th>
+                <th>Fournisseur</th>
+                <th>Addresse</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let fourDTO of fournisseurDTOList
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 10, currentPage: p }
+                "
+              >
+                <td>{{ fourDTO?.articleDto.designation }}</td>
+                <td>{{ fourDTO?.firstName }} {{ fourDTO?.lastName }}</td>
+                <td>{{ fourDTO?.address }}</td>
+                <td>{{ fourDTO?.telephoneFournisseur }}</td>
+                <td>{{ fourDTO?.email }}</td>
+                <td>{{ fourDTO?.city }}</td>
+                <td>{{ fourDTO?.country }}</td>
 
-              <td class="text-right">
+                <td class="text-right">
+                  <button
+                    class="btn btn-warning btn-sm"
+                    (click)="envoiEmailFournisseur(fourDTO)"
+                  >
+                    <i class="fa fa-envelope" aria-hidden="true"></i></button
+                  >&nbsp;
 
-                <button class="btn btn-warning btn-sm" (click)="envoiEmailFournisseur(fourDTO)">
-                  <i class="fa fa-envelope" aria-hidden="true"></i></button
-                >&nbsp;
+                  <button
+                    class="btn btn-primary btn-sm"
+                    [routerLink]="['/admin/fournisseur', fourDTO.id]"
+                  >
+                    <em class="fa fa-edit" aria-hidden="true"></em></button
+                  >&nbsp;
 
-                <button
-                  class="btn btn-primary btn-sm"
-                  [routerLink]="['/admin/fournisseur', fourDTO.id]"
-                >
-                  <em class="fa fa-edit" aria-hidden="true"></em></button
-                >&nbsp;
-
-                <button
-                  class="btn btn-danger btn-sm"
-                  (click)="confirmDialog(fourDTO.id)"
-                >
-                  <i class="fa fa-trash" aria-hidden="true"></i></button
-                >&nbsp;
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="pagination">
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="confirmDialog(fourDTO.id)"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i></button
+                  >&nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
         </div>
       </div>
     </div>

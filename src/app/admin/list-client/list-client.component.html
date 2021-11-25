@@ -4,9 +4,9 @@
     <div id="content">
       <app-backend-header></app-backend-header>
       <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1><i class="fa fa-angle-right"></i> List des clients</h1>
-        </div>
+        <div
+          class="d-sm-flex align-items-center justify-content-between mb-4"
+        ></div>
 
         <div class="row">
           <input
@@ -17,44 +17,48 @@
           />
         </div>
 
-        <table class="table table-striped" aria-label="">
-          <thead class="thead-inverse">
-            <tr>
-              <th>#</th>
-              <th>FirstName</th>
-              <th>LastName</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              *ngFor="
-                let clientDTO of clientDTOList
-                  | filter: searchText
-                  | paginate: { itemsPerPage: 10, currentPage: p }
-              "
-            >
-              <td>{{ clientDTO?.id }}</td>
-              <td>{{ clientDTO?.firstName }}</td>
-              <td>{{ clientDTO?.lastName }}</td>
-              <td>{{ clientDTO?.email }}</td>
-              <td>{{ clientDTO?.mobile }}</td>
+        <div class="table-responsive">
+          <table class="table table-striped" aria-label="">
+            <thead class="thead-inverse">
+              <tr>
+                <th>#</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let clientDTO of clientDTOList
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 10, currentPage: p }
+                "
+              >
+                <td>{{ clientDTO?.id }}</td>
+                <td>{{ clientDTO?.firstName }}</td>
+                <td>{{ clientDTO?.lastName }}</td>
+                <td>{{ clientDTO?.email }}</td>
+                <td>{{ clientDTO?.mobile }}</td>
 
-              <td class="text-right">
-                <button
-                  class="btn btn-danger btn-sm"
-                  (click)="confirmDialog(clientDTO.id)"
-                >
-                  <i class="fa fa-trash" aria-hidden="true"></i></button
-                >&nbsp;
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="pagination">
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <td class="text-right">
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="confirmDialog(clientDTO.id)"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i></button
+                  >&nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
         </div>
       </div>
     </div>

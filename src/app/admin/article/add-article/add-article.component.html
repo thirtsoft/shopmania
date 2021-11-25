@@ -4,8 +4,8 @@
     <div id="content">
       <app-backend-header></app-backend-header>
       <div class="container-fluid">
-        <h2  *ngIf="!paramId"> Nouveau Article</h2>
-        <h2  *ngIf="paramId"> Modifier Article</h2>
+        <h2 *ngIf="!paramId">Nouveau Article</h2>
+        <h2 *ngIf="paramId">Modifier Article</h2>
         <form
           #addArticleForm="ngForm"
           name="form"
@@ -125,7 +125,6 @@
             </div>
 
             <div class="col-md-6">
-
               <div class="form-group">
                 <label>Quantity </label>
                 <input
@@ -170,7 +169,8 @@
                   >
                     Promo est obligatoire
                   </span>
-                </div>&nbsp;&nbsp;&nbsp;
+                </div>
+                &nbsp;&nbsp;&nbsp;
 
                 <div class="form-group">
                   <label>Selected</label>
@@ -210,94 +210,72 @@
                   *ngIf="paramId"
                 />
                 <span *ngIf="!editPhoto">
-                  <input type="file" (change)="onSelectedFile($event)">
-                  <button class="btn btn-success btn-sm" (click)="processForm()">
+                  <input type="file" (change)="onSelectedFile($event)" />
+                  <button
+                    class="btn btn-success btn-sm"
+                    (click)="processForm()"
+                  >
                     <span class="glyphicon glyphicon-upload"></span>
-                      Save Change
+                    Save Change
                   </button>
-                  {{progress}}
+                  {{ progress }}
                 </span>
-               <!--  <input
-                  type="file"
-                  (change)="onSelectedFile($event)"
-                  name="photo"
-                  [(ngModel)]="addEditArticleDTO.photo"
-                  name="photo"
-                  id="photo"
-                  #photo="ngModel"
-                  required
-                  class="form-control"
-                />
-                <input (click)="processForm()" type="submit" value="Save Change" class="btn btn-primary"> -->
               </div>
             </div>
 
-
-
-              <div class="col-md-6">
-
-                <div class="form-group">
-                  <label>Description</label>
-                  <textarea
-                    type="text "
-                    class="form-control"
-                    name="description "
-                    id="description "
-                    [(ngModel)]="addEditArticleDTO.description"
-                    cols="30 "
-                    rows="10 "
-                    #description="ngModel"
-                    required
-                  >
-                  </textarea>
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (description.touched || addArticleForm.submitted) &&
-                      description.errors?.required
-                    "
-                  >
-                    Description est obligatoire
-                  </span>
-                </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Description</label>
+                <textarea
+                  type="text "
+                  class="form-control"
+                  name="description "
+                  id="description "
+                  [(ngModel)]="addEditArticleDTO.description"
+                  cols="30 "
+                  rows="10 "
+                  #description="ngModel"
+                  required
+                >
+                </textarea>
+                <span
+                  class="text-danger"
+                  *ngIf="
+                    (description.touched || addArticleForm.submitted) &&
+                    description.errors?.required
+                  "
+                >
+                  Description est obligatoire
+                </span>
               </div>
+            </div>
 
-
-
-
-              <div class="col-md-6">
-
-                  <div class="form-group">
-                    <label>Specification</label>
-                    <textarea
-                      type="text "
-                      class="form-control"
-                      name="description"
-                      id="description "
-                      [(ngModel)]="addEditArticleDTO.description"
-                      cols="30 "
-                      rows="10 "
-                      #description="ngModel"
-                      required
-                    >
-                    </textarea>
-                    <span
-                      class="text-danger"
-                      *ngIf="
-                        (description.touched || addArticleForm.submitted) &&
-                        description.errors?.required
-                      "
-                    >
-                      Specification est obligatoire
-                    </span>
-                  </div>
-                </div>
-
-
-
-
-
-
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Manufacturée</label>
+                <textarea
+                  type="text "
+                  class="form-control"
+                  name="manufactured"
+                  id="manufactured "
+                  [(ngModel)]="addEditArticleDTO.manufactured"
+                  cols="30 "
+                  rows="10 "
+                  #manufactured="ngModel"
+                  required
+                >
+                </textarea>
+                <span
+                  class="text-danger"
+                  *ngIf="
+                    (description.touched || addArticleForm.submitted) &&
+                    description.errors?.required
+                  "
+                >
+                  Specification est obligatoire
+                </span>
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
@@ -307,12 +285,20 @@
               class="btn btn-lg btn-success"
               (click)="onSaveArticle()"
             >
-              <i class="fa fa-database"></i> Enregistrer </button
+              <i class="fa fa-database"></i> Enregistrer</button
             >&nbsp;
-            <button *ngIf="paramId" class="btn btn-lg btn-warning" (click)="update()">
+            <button
+              *ngIf="paramId"
+              class="btn btn-lg btn-warning"
+              (click)="update()"
+            >
               <i class="fa fa-database"></i> Modifier
             </button>
-            <button (click)="goBack()" type="button" class="btn btn-lg btn-danger ml-1">
+            <button
+              (click)="goBack()"
+              type="button"
+              class="btn btn-lg btn-danger ml-1"
+            >
               <i class="fa fa-angle-right"></i> Retour
             </button>
           </div>

@@ -1,58 +1,74 @@
 <div id="wrapper">
-    <app-backend-sidebar></app-backend-sidebar>
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-            <app-backend-header></app-backend-header>
-            <div class="container-fluid">
+  <app-backend-sidebar></app-backend-sidebar>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <app-backend-header></app-backend-header>
+      <div class="container-fluid">
+        <h3><i class="fa fa-angle-right"></i> List des lignes de Commandes</h3>
+        <div>
+          <div class="row">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              [(ngModel)]="searchText"
+            />
+          </div>
 
-                <h3><i class="fa fa-angle-right"></i> List of ligneCommandes</h3>
-                <div>
-
-                    <div class="row">
-                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-                    </div>
-
-                    <table class="table table-striped">
-
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Numero Commande</th>
-                                <th>Article</th>
-                                <th>P.Unitaire</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th>Date</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let ligneCommandeDTO of ligneCommandeDTOList | filter:searchText | paginate: {itemsPerPage: 10, currentPage: p} ">
-                                <td>{{ligneCommandeDTO?.commandeDto.numeroCommande}}</td>
-                                <td>{{ligneCommandeDTO?.productName}}</td>
-                                <td>{{ligneCommandeDTO?.price}}</td>
-                                <td>{{ligneCommandeDTO?.quantity}}</td>
-                                <td>{{ ligneCommandeDTO?.price * ligneCommandeDTO?.quantity}}</td>
-                                <td>{{ligneCommandeDTO?.commandeDto?.dateCommande | date:'dd-MM-yyyy'}}</td>
-                                <td class="text-right">
-                                  <button
-                                    class="btn btn-danger btn-sm"
-                                    (click)="onDeleteligneCommande(ligneCommandeDTO.id)"
-                                  >
-                                    <i class="fa fa-trash" aria-hidden="true"></i></button
-                                  >&nbsp;
-
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                    <div class="pagination ">
-                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                    </div>
-                </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>Numero Commande</th>
+                  <th>Article</th>
+                  <th>P.Unitaire</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let ligneCommandeDTO of ligneCommandeDTOList
+                      | filter: searchText
+                      | paginate: { itemsPerPage: 10, currentPage: p }
+                  "
+                >
+                  <td>{{ ligneCommandeDTO?.commandeDto.numeroCommande }}</td>
+                  <td>{{ ligneCommandeDTO?.productName }}</td>
+                  <td>{{ ligneCommandeDTO?.price }}</td>
+                  <td>{{ ligneCommandeDTO?.quantity }}</td>
+                  <td>
+                    {{ ligneCommandeDTO?.price * ligneCommandeDTO?.quantity }}
+                  </td>
+                  <td>
+                    {{
+                      ligneCommandeDTO?.commandeDto?.dateCommande
+                        | date: "dd-MM-yyyy"
+                    }}
+                  </td>
+                  <td class="text-right">
+                    <button
+                      class="btn btn-danger btn-sm"
+                      (click)="onDeleteligneCommande(ligneCommandeDTO.id)"
+                    >
+                      <i class="fa fa-trash" aria-hidden="true"></i></button
+                    >&nbsp;
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <pagination-controls
+                (pageChange)="p = $event"
+              ></pagination-controls>
             </div>
-
+          </div>
         </div>
-        <app-backend-footer></app-backend-footer>
-
+      </div>
     </div>
+    <app-backend-footer></app-backend-footer>
+  </div>
+</div>
