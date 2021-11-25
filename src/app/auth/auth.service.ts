@@ -38,6 +38,8 @@ export class AuthService {
   listData: UtilisateurDto;
   listDataUsername: UpdateUsernameInfo;
 
+  listDataProfil: ProfilInfo;
+
   islogin = false ;
 
   profileInfo: ProfilInfo = {} as ProfilInfo;

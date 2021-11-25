@@ -20,8 +20,8 @@ export class UtilisateurService {
     return this.http.get<Utilisateur[]>(`${this.apiServerUrl}/utilisateurs/all`);
   }
 
-  public getUtilisateurById(utilisateurId: number): Observable<Utilisateur> {
-    return this.http.get<Utilisateur>(`${this.apiServerUrl}/utilisateurs/${utilisateurId}`);
+  public getUtilisateurById(userId: number): Observable<Utilisateur> {
+    return this.http.get<Utilisateur>(`${this.apiServerUrl}/utilisateurs/findById/${userId}`);
   }
 
   public addUtilisateur(utilisateur: Utilisateur): Observable<Utilisateur> {
@@ -46,8 +46,8 @@ export class UtilisateurService {
     return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAllUtilisateurOrderByIdDesc`);
   }
 
-  public getUtilisateurDtoById(utilisateurId: number): Observable<UtilisateurDto> {
-    return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/findById/${utilisateurId}`);
+  public getUtilisateurDtoById(userId: number): Observable<UtilisateurDto> {
+    return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/findById/${userId}`);
   }
 
   public addUtilisateurDto(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {

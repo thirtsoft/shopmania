@@ -65,6 +65,10 @@ import { ListCommandePayeesComponent } from './commande/list-commande-payees/lis
 import { NumberOfVentePeerMonthComponent } from './chartjs/number-of-vente-peer-month/number-of-vente-peer-month.component';
 import { EnvoiEmailFournisseurComponent } from './fournisseur/envoi-email-fournisseur/envoi-email-fournisseur.component';
 import { ListHistoriqueLoginComponent } from './utilisateur/list-historique-login/list-historique-login.component';
+import { ProfilComponent } from './authentication/profil/profil.component';
+import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
+import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
+import { UpdateUsernameComponent } from './authentication/update-username/update-username.component';
 
 
 
@@ -111,6 +115,10 @@ import { ListHistoriqueLoginComponent } from './utilisateur/list-historique-logi
     NumberOfVentePeerMonthComponent,
     EnvoiEmailFournisseurComponent,
     ListHistoriqueLoginComponent,
+    ProfilComponent,
+    UpdatePasswordComponent,
+    UpdateProfilComponent,
+    UpdateUsernameComponent,
 
 
   ],
@@ -153,6 +161,7 @@ import { ListHistoriqueLoginComponent } from './utilisateur/list-historique-logi
     AddCategoryComponent, CreateSubCategoryComponent,
     ViewCommandeComponent, UpdateStatusCommandeComponent,
     DashboardComponent, UploadFileComponent, AddFournisseurComponent,
+    ProfilComponent, UpdateProfilComponent, UpdateUsernameComponent, UpdatePasswordComponent
   ]
 
 })

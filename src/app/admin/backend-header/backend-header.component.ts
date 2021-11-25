@@ -74,6 +74,10 @@ export class BackendHeaderComponent implements OnInit {
     this.router.navigate(['/admin/profile/' + this.userId]);
   }
 
+  goToHistoriqueConnexion() {
+    this.router.navigateByUrl("admin/historique-Connection");
+  }
+
   getTS() {
     return this.currentTime;
   }

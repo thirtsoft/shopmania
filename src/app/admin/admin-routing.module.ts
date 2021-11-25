@@ -1,3 +1,6 @@
+import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
+import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
+import { ProfilComponent } from './authentication/profil/profil.component';
 import { ListHistoriqueLoginComponent } from './utilisateur/list-historique-login/list-historique-login.component';
 import { EnvoiEmailFournisseurComponent } from './fournisseur/envoi-email-fournisseur/envoi-email-fournisseur.component';
 import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
@@ -169,6 +172,18 @@ const routes: Routes = [
   {
     path: 'chart',
     component: BarChartComponent
+  },
+  {
+    path : 'profile/:id',
+    component : ProfilComponent
+  },
+  {
+    path : 'profil/:id',
+    component : UpdateProfilComponent
+  },
+  {
+    path : 'profil/:id',
+    component : UpdatePasswordComponent
   },
   {
     path: 'utilisateurs',

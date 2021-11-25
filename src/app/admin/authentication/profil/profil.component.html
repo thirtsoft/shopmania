@@ -1,0 +1,155 @@
+<div id="wrapper">
+  <app-backend-sidebar></app-backend-sidebar>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <app-backend-header></app-backend-header>
+      <div class="container-fluid">
+        <h1>PROFILE UTILISATEUR</h1>
+
+          <form
+          #addArticleForm="ngForm"
+          name="form"
+          enctype="multipart/form-data"
+          (ngSubmit)="processForm()"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <label>Photo</label>
+              <div class="form-group">
+
+              <img
+                src="../../../assets/admin/img/undraw_profile_2.svg"
+                class="img-circle"
+                height="90"
+                width="90"
+                alt=""
+                *ngIf="!img"
+              />
+
+              <img
+              [src]="
+                this.userService.apiServerUrl +
+                '/utilisateurs/avatar/' +
+                this.id +
+                '?ts=' +
+                getTS()
+              "
+              class="avatar"
+              height="120"
+              width="120"
+              alt=""
+              *ngIf="img"
+            />
+
+              </div>
+
+              <br />
+
+              <input
+                type="file"
+                (change)="onSelectedFile($event)"
+                class="select"
+                accept="image/*"
+              />&nbsp;&nbsp;
+              <input
+                type="submit"
+                value="enregistrer photo"
+                class="btn btn-sm"
+                style="cursor: pointer"
+              />
+              {{ progress }}
+              <!-- </p> -->
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <h2  class="form-control">
+                  Je m'appele {{ listDataProfil.name }}, employé à Soul-Business
+                  Center.
+                </h2>
+              </div>
+            </div>
+          </div>
+        </form>
+
+          <h1 style="margin-top: 30px;">Biobliographie</h1>
+          <form>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Nom et Prénom </label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  value="{{ listDataProfil.name }}"
+                  readonly
+                />
+                </div>
+
+                <div class="form-group">
+                  <label>Nom utilisateur  </label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  value="{{ listDataProfil.username }}"
+                  readonly
+                />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Address Email</label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  value="{{ listDataProfil.email }}"
+                  readonly
+                />
+                </div>
+
+                <div class="form-group">
+                  <label>Identifiant </label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  value="{{ listDataProfil.id }}"
+                  readonly
+                />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button
+                (click)="addEditUsername(listDataProfil)"
+                type="button"
+                class="btn btn-lg btn-warning ml-1"
+              >
+                Edit Username
+              </button>
+
+              <button
+                (click)="addEditPassword(listDataProfil)"
+                type="button"
+                class="btn btn-lg btn-info ml-1"
+              >
+              Edit Password
+              </button>
+
+              <button
+              (click)="goToDashboard()"
+              type="button"
+              class="btn btn-lg btn-danger ml-1"
+            >
+              <i class="fa fa-angle-right"></i> Retour
+            </button>
+            </div>
+          </form>
+
+      </div>
+    </div>
+
+    <app-backend-footer></app-backend-footer>
+  </div>
+</div>
