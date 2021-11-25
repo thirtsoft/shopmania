@@ -178,11 +178,11 @@ const routes: Routes = [
     component : ProfilComponent
   },
   {
-    path : 'profil/:id',
+    path : 'profile/:id',
     component : UpdateProfilComponent
   },
   {
-    path : 'profil/:id',
+    path : 'profile/:id',
     component : UpdatePasswordComponent
   },
   {

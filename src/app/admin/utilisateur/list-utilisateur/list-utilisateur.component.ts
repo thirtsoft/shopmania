@@ -1,16 +1,16 @@
-import { DialogConfirmComponent } from './../../../shared/dialog-confirm/dialog-confirm.component';
-import { DialogComponent } from './../../../shared/dialog/dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UtilisateurDto } from './../../../model/utilisateur';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UtilisateurService } from './../../../services/utilisateur.service';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from './../../../services/dialog.service';
-import { MatDialog } from '@angular/material/dialog';
 
+import { UtilisateurService } from './../../../services/utilisateur.service';
+import { UtilisateurDto } from './../../../model/utilisateur';
 
-import { AddUtilisateurComponent } from './../add-utilisateur/add-utilisateur.component';
+import { DialogConfirmComponent } from './../../../shared/dialog-confirm/dialog-confirm.component';
+import { DialogComponent } from './../../../shared/dialog/dialog.component';
+
 
 @Component({
   selector: 'app-list-utilisateur',
@@ -34,10 +34,11 @@ export class ListUtilisateurComponent implements OnInit {
               private router: Router,
                private dialog: MatDialog,
               public toastr: ToastrService,
-              private dialogService: DialogService,
+              private dialogService: DialogService
   ){}
 
   ngOnInit(): void {
+
     this.getUtilisateurDTOs();
 
     if (this.crudApi.getUserAvatar(this.id) === null)
@@ -58,100 +59,33 @@ export class ListUtilisateurComponent implements OnInit {
     );
   }
 
-  onAddUtilisateur() {
-
-  }
 
   getTS() {
     return this.currentTime;
   }
 
-  addEditUtilisateur(i) {
 
-  }
-
-  openDialog(_html) {
-    let dialogRef = this.dialog.open(DialogComponent, {
-      data: {
-        html: _html,
+  confirmDialog(id: number){
+    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this.crudApi.deleteUtilisateurDto(id).subscribe(data => {
+          this.toastr.error('avec succès','Utilisateur supprimée', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("admin/utilisateurs").then(() => {
+            window.location.reload();
+          });
+        },
+          (error: HttpErrorResponse) => {
+          this.toastr.error("Impossible de supprimer cet utilisateur, veuillez verifiez");
+          }
+        );
       }
     });
-    setTimeout(() => {
-      dialogRef.close();
-    }, 2000);
-  }
-
-  confirmDialog(id) {
-    let dialogRef = this.dialog.open(DialogConfirmComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.onDeleteUtilisateur(id);
-      }
-    })
-  }
-
-  public onDeleteUtilisateur(user: UtilisateurDto): void{
-    console.log('delete');
-    console.log('id--', user);
-    const res = this.crudApi.deleteUtilisateurDto(user.id);
-    if(res) {
-      let _html=`
-              <div class="c-green">
-                <div class="material-icons">task_alt</div>
-                <h1>User Delete Success!</h1>
-              </div>`;
-      this.openDialog(_html);
-      this.ngOnInit();
-    } else {
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-
-    }
-
-
   }
 
 
-/*
-  onAddUtilisateur() {
-    this.openNoteDialog(null);
-  }
-
-
-  openNoteDialog(data?: any){
-    const dialogRef = this.dialog.open(AddUtilisateurComponent, {
-      disableClose: true,
-      autoFocus : true ,
-      width : "50%",
-      data: data
-    } );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && data == null){
-        this.utilisateurDTOList.push(result);
-      }
-
-    });
-  }
-  */
- // onDeleteUtilisateur(item) {}
-
- /*  public onDeleteUtilisateur(user: UtilisateurDto): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.userService.deleteUtilisateurDto(user.id).subscribe(data => {
-          this.toastr.warning('Utilisateur supprimé avec succès!');
-          this.utilisateurDTOList = this.utilisateurDTOList.filter(u => u !== user);
-          this.getUtilisateurDTOs();
-        });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  } */
 
 }

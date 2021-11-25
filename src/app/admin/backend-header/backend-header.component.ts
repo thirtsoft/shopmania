@@ -67,7 +67,7 @@ export class BackendHeaderComponent implements OnInit {
   logout() {
     this.tokenService.signOut();
     window.location.reload();
-    this.router.navigateByUrl("admin/signIn");
+    this.router.navigateByUrl("admin");
   }
 
   getProfile() {
