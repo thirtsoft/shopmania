@@ -1,7 +1,7 @@
 import { CatalogueService } from './../../../services/catalogue.service';
 import { DialogComponent } from './../../../shared/dialog/dialog.component';
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
@@ -22,6 +22,7 @@ export class AddArticleComponent implements OnInit {
   addEditArticleDTO: ArticleDto = new ArticleDto();
   deleteArticleDTO: ArticleDto;
   scategoryListDTO: ScategoryDto[];
+  currentProduct;
 
   public articleFile: any = File;
 
@@ -30,7 +31,18 @@ export class AddArticleComponent implements OnInit {
   Errors = {status:false, msg:''};
   mySubscription: any;
 
-  constructor(private articleService: ArticleService,
+  editPhoto: boolean;
+  currentProfile: any;
+  selectedFiles;
+  progress: number;
+  currentFileUpload: any;
+  currentTime: number = 0;
+  id;
+
+  userId;
+  img: boolean;
+
+  constructor(private crudApi: ArticleService,
               private scategorieService: SScategoryService,
               public catService: CatalogueService,
               private router: Router,
@@ -60,6 +72,48 @@ export class AddArticleComponent implements OnInit {
 
   }
 
+  getTS() {
+    return this.currentTime;
+  }
+
+  onEditPhoto(p) {
+    if(this.paramId  && this.paramId  > 0){
+      this.paramId = p;
+      this.editPhoto=true;
+    }
+    this.editPhoto=false;
+  }
+
+  onSelectedFile(event) {
+    this.selectedFiles=event.target.files;
+  }
+
+  /* onSelectedFile(event) {
+    this.selectedFiles = event.target.files[0];
+    const file = event.target.files[0];
+    this.currentFileUpload = file;
+  } */
+
+  processForm() {
+    this.progress = 0;
+    this.currentFileUpload = this.selectedFiles.item(0)
+    console.log(this.currentFileUpload);
+    console.log(this.paramId);
+    this.crudApi.uploadPhotoArticleDto(this.currentFileUpload, this.addEditArticleDTO.id)
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.editPhoto=false;
+          this.currentTime = Date.now();
+        }
+      }, err => {
+        this.toastr.warning("Problème de chargment de la photo");
+      }
+    );
+    this.selectedFiles = undefined;
+  }
+
   getListScategoryDTOs() {
     this.scategorieService.getScategoryDtos().subscribe(
       (response: ScategoryDto[]) => {
@@ -72,7 +126,7 @@ export class AddArticleComponent implements OnInit {
 
   getArticleDTOById(id: number) {
     console.log('getOne');
-    this.articleService.getArticleDtoById(id).subscribe(
+    this.crudApi.getArticleDtoById(id).subscribe(
       (response: ArticleDto) => {
         console.log('data--', response);
         this.addEditArticleDTO = response;
@@ -86,7 +140,7 @@ export class AddArticleComponent implements OnInit {
 
   update() {
     console.log('Data send--', this.addEditArticleDTO);
-    this.articleService.updateArticleDto(this.addEditArticleDTO.id, this.addEditArticleDTO).subscribe(
+    this.crudApi.updateArticleDto(this.addEditArticleDTO.id, this.addEditArticleDTO).subscribe(
       (response: ArticleDto) => {
         this.toastr.warning('avec succès','Article Modifié', {
           timeOut: 1500,
@@ -114,7 +168,7 @@ export class AddArticleComponent implements OnInit {
     let formData = new FormData();
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
     formData.append('photoArticle', this.articleFile);
-    this.articleService.addArticleDtoWithPhoto(formData)
+    this.crudApi.addArticleDtoWithPhoto(formData)
       .subscribe((response: ArticleDto)=> {
         console.log('Response--', response);
         this.toastr.success('avec succès','Article Ajoutée', {

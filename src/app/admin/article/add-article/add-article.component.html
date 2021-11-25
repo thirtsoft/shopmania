@@ -209,9 +209,17 @@
                   }}"
                   *ngIf="paramId"
                 />
-                <input
+                <span *ngIf="!editPhoto">
+                  <input type="file" (change)="onSelectedFile($event)">
+                  <button class="btn btn-success btn-sm" (click)="processForm()">
+                    <span class="glyphicon glyphicon-upload"></span>
+                      Save Change
+                  </button>
+                  {{progress}}
+                </span>
+               <!--  <input
                   type="file"
-                  (change)="onSelectFile($event)"
+                  (change)="onSelectedFile($event)"
                   name="photo"
                   [(ngModel)]="addEditArticleDTO.photo"
                   name="photo"
@@ -220,7 +228,7 @@
                   required
                   class="form-control"
                 />
-                <input type="submit" value="Save Change" class="btn btn-primary">
+                <input (click)="processForm()" type="submit" value="Save Change" class="btn btn-primary"> -->
               </div>
             </div>
 
@@ -305,7 +313,7 @@
               <i class="fa fa-database"></i> Modifier
             </button>
             <button (click)="goBack()" type="button" class="btn btn-lg btn-danger ml-1">
-              <i class="fa fa-close"></i> Retour
+              <i class="fa fa-angle-right"></i> Retour
             </button>
           </div>
         </form>
