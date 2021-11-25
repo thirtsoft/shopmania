@@ -1,60 +1,66 @@
 <div id="wrapper">
-    <app-backend-sidebar></app-backend-sidebar>
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-            <app-backend-header></app-backend-header>
-            <div class="container-fluid">
+  <app-backend-sidebar></app-backend-sidebar>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <app-backend-header></app-backend-header>
+      <div class="container-fluid">
+        <h3><i class="fa fa-angle-right"></i> List des addresses d'Achats</h3>
+        <div>
+          <div class="row">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              [(ngModel)]="searchText"
+            />
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped" aria-label="">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>Rue</th>
+                  <th>Ville</th>
+                  <th>Région</th>
+                  <th>Pays</th>
+                  <th>Code Zip</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let addClientDTO of addressLivraisonDTOList
+                      | filter: searchText
+                      | paginate: { itemsPerPage: 10, currentPage: p }
+                  "
+                >
+                <td>{{ addClientDTO?.rue }}</td>
+                <td>{{ addClientDTO?.city }}</td>
+                <td>{{ addClientDTO?.state }}</td>
+                <td>{{ addClientDTO?.country }}</td>
+                <td>{{ addClientDTO?.zipcode }}</td>
 
-                <h3><i class="fa fa-angle-right"></i> List of addressClients</h3>
-                <div>
-
-                    <div class="row">
-                        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" />
-             </div>
-
-                    <table class="table table-striped">
-
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Reference</th>
-                                <th>Client</th>
-                                <th>Quartier</th>
-                                <th>Phone</th>
-                                <th>City</th>
-                                <th>Rue</th>
-                                <th>Country</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let addClientDTO of addressClientDTOList | filter:searchText | paginate: {itemsPerPage: 10, currentPage: p} ">
-                                <td>{{addClientDTO?.reference}}</td>
-                                <td>{{addClientDTO?.clientDto.firstName}} {{addClientDTO?.clientDto.lastName}}</td>
-                                <td>{{addClientDTO?.phone}}</td>
-                                <td>{{addClientDTO?.city}}</td>
-                                <td>{{addClientDTO?.rue}}</td>
-                                <td>{{addClientDTO?.country}}</td>
-
-                                <td class="text-right">
-                                  <button
-                                    class="btn btn-danger btn-sm"
-                                    (click)="onDeleteAddressClient(addClientDTO.id)"
-                                  >
-                                    <i class="fa fa-trash" aria-hidden="true"></i></button
-                                  >&nbsp;
-                                </td>
-
-                            </tr>
-                        </tbody>
-
-                    </table>
-                    <div class="pagination ">
-                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                    </div>
-                </div>
+                  <td>
+                    <button
+                      class="btn btn-danger btn-sm"
+                      (click)="onDeleteAddressClient(addClientDTO.id)"
+                    >
+                      <i class="fa fa-trash" aria-hidden="true"></i></button
+                    >&nbsp;
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <pagination-controls
+                (pageChange)="p = $event"
+              ></pagination-controls>
             </div>
-
+          </div>
 
         </div>
-        <app-backend-footer></app-backend-footer>
+      </div>
     </div>
+    <app-backend-footer></app-backend-footer>
+  </div>
+</div>

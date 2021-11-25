@@ -111,7 +111,7 @@ export class CheckoutComponent implements OnInit {
       }),
 
       shippingAddress: this.formBuilder.group({
-        street: [''],
+        rue: [''],
         city: [''],
         state: [''],
         country: [''],
@@ -119,7 +119,7 @@ export class CheckoutComponent implements OnInit {
       }),
 
       billingAddress: this.formBuilder.group({
-        street: [''],
+        rue: [''],
         city: [''],
         state: [''],
         country: [''],
@@ -242,7 +242,7 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutService.placeToOrderWithUser(purchase, this.checkoutService.id).subscribe(
       data =>{
-         alert(`your order has been recieved.\n order tracking number: ${data.orderTrackingNumber}`);
+         alert(`Nous avons bien reçu votre commande.\n order tracking number: ${data.orderTrackingNumber}`);
       //    reset checkout form
          this.resetCart();
          console.log("Response is", data);

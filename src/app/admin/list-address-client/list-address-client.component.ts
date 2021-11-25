@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AddressClientDto } from '../../model/address-client';
-import { AddressAddressClientService } from '../../services/addressclient.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from '../../services/dialog.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+
+import { AddressLivraisonDto } from '../../model/address-livraison';
+import { AddresslivraisonService } from '../../services/addresslivraison.service';
 
 
 @Component({
@@ -15,45 +17,44 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angu
 })
 export class ListAddressClientComponent implements OnInit {
 
-  addressClientDTOList: AddressClientDto[];
-  deleteAddressClientDTO: AddressClientDto;
+  addressLivraisonDTOList: AddressLivraisonDto[];
+  deleteAddressLivraisonDTO: AddressLivraisonDto;
 
   id : number;
   p : number=1;
   searchText;
 
-  constructor(private addClientService: AddressAddressClientService,
+  constructor(private addLivraisonService: AddresslivraisonService,
               private router: Router,
-               private dialog: MatDialog,
+              private dialog: MatDialog,
               public toastr: ToastrService,
               private dialogService: DialogService
   ){}
 
   ngOnInit(): void {
-    this.getAddressClientDtos();
+    this.getAddressLivraisonDtos();
   }
 
-  public getAddressClientDtos(): void {
-    this.addClientService.getAddressClientDtosOrderByIdDesc().subscribe(
-      (response: AddressClientDto[]) => {
-        this.addressClientDTOList = response;
-        console.log(this.addressClientDTOList);
+  public getAddressLivraisonDtos(): void {
+    this.addLivraisonService.getAddressLivraisonDtosOrderByIdDesc().subscribe(
+      (response: AddressLivraisonDto[]) => {
+        this.addressLivraisonDTOList = response;
+        console.log(this.addressLivraisonDTOList);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
   }
-  onDeleteAddressClient(item) {}
 
- /*   public onDeleteAddressClient(addClient: AddressClientDto): void{
+  onDeleteAddressClient(livraison: AddressLivraisonDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
-        this.addClientService.deleteAddressClientDto(addClient.id).subscribe(data => {
-          this.toastr.warning('AddressClient supprimé avec succès!');
-          this.addressClientDTOList = this.addressClientDTOList.filter(u => u !== addClient);
-          this.getAddressClientDtos();
+        this.addLivraisonService.deleteAddressLivraisonDto(livraison.id).subscribe(data => {
+          this.toastr.warning('AddressLivraison supprimé avec succès!');
+          this.addressLivraisonDTOList = this.addressLivraisonDTOList.filter(u => u !== livraison);
+          this.getAddressLivraisonDtos();
         });
       }
     },
@@ -61,6 +62,6 @@ export class ListAddressClientComponent implements OnInit {
       alert(error.message);
     }
     );
-  } */
+  }
 
 }

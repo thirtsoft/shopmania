@@ -54,7 +54,6 @@ export class BackendSidebarComponent implements OnInit {
 
   logout() {
     this.tokenService.signOut();
-    window.location.reload();
     this.router.navigateByUrl("admin");
   }
 

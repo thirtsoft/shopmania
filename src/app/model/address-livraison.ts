@@ -26,11 +26,12 @@ export class AddressLivraisonDto {
   phone: string;
   city: string;
   rue: string;
-  country: string; */
-  street: string;
-  country: string;
+  country: string; 
+  street: string;*/
+  rue: string;
   city: string;
   state: string;
+  country: string;
   zipCode: string;
 
   commandeDto: CommandeDto;
