@@ -31,7 +31,7 @@
                       Montant commande journalier
                     </div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      ${{ this.sumOfCommandeInDay }}
+                      {{ this.sumOfCommandeInDay }} f
                     </div>
                   </div>
                   <div class="col-auto">
@@ -59,7 +59,7 @@
                       Montant commande mensuel
                     </div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      $ {{ this.sumOfCommandeInMonth }}
+                       {{ this.sumOfCommandeInMonth }} f
                     </div>
                   </div>
                   <div class="col-auto">
@@ -77,12 +77,14 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div
+                      (click)="goToListOfClient()"
                       class="
                         text-xs
                         font-weight-bold
                         text-info text-uppercase
                         mb-1
                       "
+                      style="cursor: pointer;"
                     >
                       Nbre Clients
                     </div>
@@ -162,7 +164,7 @@
                   Details des 2OO dernières commandes
                 </h3>
               </div>
-              <div class="card-body" style="height: 700px;">
+              <div class="card-body" style="height: 930px;">
                 <app-detail200-lates-commande></app-detail200-lates-commande>
               </div>
 
@@ -207,7 +209,7 @@
       <!-- End of Main Content -->
     </div>
 
-    <app-backend-footer style="margin-top: 10px;"></app-backend-footer>
+    <app-backend-footer style="margin-top: 7px;"></app-backend-footer>
   </div>
 
 </div>

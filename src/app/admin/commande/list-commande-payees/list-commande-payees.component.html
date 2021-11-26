@@ -32,7 +32,7 @@
                   *ngFor="
                     let commandeDTO of commandeDTOList
                       | filter: searchText
-                      | paginate: { itemsPerPage: 10, currentPage: p }
+                      | paginate: { itemsPerPage: 20, currentPage: p }
                   "
                 >
                   <td>{{ commandeDTO.numeroCommande }}</td>

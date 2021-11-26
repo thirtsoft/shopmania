@@ -31,7 +31,7 @@
                   *ngFor="
                     let addClientDTO of addressLivraisonDTOList
                       | filter: searchText
-                      | paginate: { itemsPerPage: 10, currentPage: p }
+                      | paginate: { itemsPerPage: 20, currentPage: p }
                   "
                 >
                 <td>{{ addClientDTO?.rue }}</td>

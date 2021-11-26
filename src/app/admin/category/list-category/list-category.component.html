@@ -38,7 +38,7 @@
                   *ngFor="
                     let categoryDTO of categoryListDTO
                       | filter: searchText
-                      | paginate: { itemsPerPage: 10, currentPage: p };
+                      | paginate: { itemsPerPage: 20, currentPage: p };
                     let i = index
                   "
                 >

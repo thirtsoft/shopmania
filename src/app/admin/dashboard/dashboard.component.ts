@@ -33,7 +33,8 @@ export class DashboardComponent implements OnInit {
 
   listAnnes: any={};
 
-  constructor(private crupdApi: DashboardService
+  constructor(private crupdApi: DashboardService,
+              private router: Router
   ){}
 
   ngOnInit(): void {
@@ -115,6 +116,10 @@ export class DashboardComponent implements OnInit {
       .subscribe(response => {
       this.numberOfNotificationInMonth = response;
     });
+  }
+
+  goToListOfClient() {
+    this.router.navigateByUrl("admin/clients");
   }
 
 

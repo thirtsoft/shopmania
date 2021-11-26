@@ -33,7 +33,7 @@
                   *ngFor="
                     let commandeDTO of commandeDTOList
                       | filter: searchText
-                      | paginate: { itemsPerPage: 10, currentPage: p };
+                      | paginate: { itemsPerPage: 20, currentPage: p };
                     let i = index;
                   "
                 >
@@ -46,7 +46,7 @@
                   <td>{{ commandeDTO?.status }}</td>
                   <td>{{ commandeDTO?.dateCommande | date: "dd-MM-yyyy" }}</td>
 
-                  <td class="text-right">
+                  <td>
                     <button
                       class="btn btn-warning btn-sm"
                       (click)="viewCommande(commandeDTO)"

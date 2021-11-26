@@ -22,10 +22,10 @@
             <thead class="thead-inverse">
               <tr>
                 <th>#</th>
-                <th>FirstName</th>
-                <th>LastName</th>
+                <th>Prénom</th>
+                <th>Nom</th>
                 <th>Email</th>
-                <th>Phone</th>
+                <th>Téléphone</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -34,7 +34,7 @@
                 *ngFor="
                   let clientDTO of clientDTOList
                     | filter: searchText
-                    | paginate: { itemsPerPage: 10, currentPage: p }
+                    | paginate: { itemsPerPage: 20, currentPage: p }
                 "
               >
                 <td>{{ clientDTO?.id }}</td>
@@ -43,7 +43,7 @@
                 <td>{{ clientDTO?.email }}</td>
                 <td>{{ clientDTO?.mobile }}</td>
 
-                <td class="text-right">
+                <td>
                   <button
                     class="btn btn-danger btn-sm"
                     (click)="confirmDialog(clientDTO.id)"

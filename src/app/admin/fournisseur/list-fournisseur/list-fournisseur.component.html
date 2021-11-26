@@ -42,7 +42,7 @@
                 *ngFor="
                   let fourDTO of fournisseurDTOList
                     | filter: searchText
-                    | paginate: { itemsPerPage: 10, currentPage: p }
+                    | paginate: { itemsPerPage: 20, currentPage: p }
                 "
               >
                 <td>{{ fourDTO?.articleDto.designation }}</td>

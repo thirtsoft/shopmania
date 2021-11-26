@@ -33,7 +33,7 @@
                   *ngFor="
                     let ligneCommandeDTO of ligneCommandeDTOList
                       | filter: searchText
-                      | paginate: { itemsPerPage: 10, currentPage: p }
+                      | paginate: { itemsPerPage: 20, currentPage: p }
                   "
                 >
                   <td>{{ ligneCommandeDTO?.commandeDto.numeroCommande }}</td>
@@ -49,7 +49,7 @@
                         | date: "dd-MM-yyyy"
                     }}
                   </td>
-                  <td class="text-right">
+                  <td>
                     <button
                       class="btn btn-danger btn-sm"
                       (click)="onDeleteligneCommande(ligneCommandeDTO.id)"
