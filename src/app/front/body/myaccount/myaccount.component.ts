@@ -1,21 +1,22 @@
-import { UpdateCustomerPasswordComponent } from './update-customer-password/update-customer-password.component';
-import { UpdateCustomerUsernameComponent } from './update-customer-username/update-customer-username.component';
-import { ProfilInfo } from './../../../auth/profil-info';
-import { LigneCommandeDto } from './../../../model/ligne-commande';
+import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from './../../../auth/token-storage.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
+
 import { UtilisateurService } from './../../../services/utilisateur.service';
 import { UtilisateurDto } from './../../../model/utilisateur';
 import { AuthService } from './../../../auth/auth.service';
-import { TokenStorageService } from './../../../auth/token-storage.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
+
 import { CommandeDto } from './../../../model/commande';
 import { CommandeService } from './../../../services/commande.service';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DialogComponent } from '../../../shared/dialog/dialog.component';
-import { LigneLigneCommandeService } from 'src/app/services/lignecommande.service';
 
+import { LigneLigneCommandeService } from 'src/app/services/lignecommande.service';
+import { UpdateCustomerPasswordComponent } from './update-customer-password/update-customer-password.component';
+import { UpdateCustomerUsernameComponent } from './update-customer-username/update-customer-username.component';
+import { LigneCommandeDto } from './../../../model/ligne-commande';
 
 @Component({
   selector: 'app-myaccount',
@@ -54,27 +55,42 @@ export class MyaccountComponent implements OnInit {
   searchText;
   paramId :any = 0;
   comId: number;
+  Errors = {status:false, msg:''};
+  mySubscription: any;
+
 
 
 
   constructor(private crudApi: CommandeService,
               private tokenService: TokenStorageService,
+              public toastr: ToastrService,
               public authService: AuthService,
               public userService: UtilisateurService,
               public lcmdService: LigneLigneCommandeService,
               private router: Router,
               public matDialog: MatDialog,
-              private toastr: ToastrService,
               private route: ActivatedRoute,
-  ) { }
+  ) {
+    //--for reload componant
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+  }
 
   ngOnInit(): void {
-    this.getEmploye();
+  //  this.getEmploye();
  //   this.getAllLigneCommandeByCommandeId();
     this.paramId = this.route.snapshot.paramMap.get('id');
      console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getCommandeDTOByUserId(this.paramId);
+
+      this.getUtilisateurDTOById(this.paramId);
+
     }
 
     this.isLoggedIn = !!this.tokenService.getToken();
@@ -135,6 +151,20 @@ export class MyaccountComponent implements OnInit {
   getListLigneCommandes(item: LigneCommandeDto[]) {
   }
 
+  getUtilisateurDTOById(id: number) {
+    console.log('getOne');
+    this.userService.getUtilisateurDtoById(id).subscribe(
+      (response: UtilisateurDto) => {
+        console.log('data--', response);
+        this.listDataProfil = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
+  }
+
   getEmploye() {
     const user = this.tokenService.getUser();
     console.log(user.id);
@@ -171,6 +201,26 @@ export class MyaccountComponent implements OnInit {
     this.authService.listData = Object.assign({}, item);
     this.matDialog.open(UpdateCustomerPasswordComponent, dialogConfig);
 
+  }
+
+  update() {
+    console.log('Data send--', this.listDataProfil);
+    this.userService.updateUtilisateurDto(this.listDataProfil.id, this.listDataProfil).subscribe(
+      (response: UtilisateurDto) => {
+        this.toastr.warning('avec succès','Utulisateur Modifiée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+
+        this.router.navigateByUrl("/").then(() => {
+          window.location.reload();
+        });
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+
+    );
   }
 
 

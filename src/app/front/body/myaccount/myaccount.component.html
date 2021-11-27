@@ -15,7 +15,7 @@
                     <!-- <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab"><i class="fa fa-credit-card"></i>Payment Method</a> -->
                     <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab"><i class="fa fa-map-marker-alt"></i>Addresses</a>
                     <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Votre compte</a>
-                    <a class="nav-link" (click)="logout()"><i class="fa fa-sign-out-alt"></i>Deconnexion</a>
+                    <a class="nav-link" (click)="logout()" style="cursor: pointer;"><i class="fa fa-sign-out-alt"></i>Deconnexion</a>
                 </div>
             </div>
             <div class="col-md-9">
@@ -23,7 +23,7 @@
                     <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
                         <h4>Dashboard</h4>
                         <div class="table-responsive">
-                          <table class="table table-bordered">
+                          <table class="table table-bordered" aria-label="">
                               <thead class="thead-dark">
                                   <tr>
                                       <th>No</th>
@@ -58,7 +58,7 @@
                     <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
                       <h4>Commandes</h4>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" aria-label="">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>No</th>
@@ -190,25 +190,69 @@
                         <h4>Account Details</h4>
                         <div class="row">
                             <div class="col-md-6">
-                                <input class="form-control" type="text" [value]="listDataProfil.name" placeholder="First Name" readonly>
+                              <input
+                                type="text"
+                                class="form-control"
+                                [(ngModel)]="listDataProfil.name"
+                                name="name"
+                                id="name"
+                                #name="ngModel"
+                                required
+                              />
+                               <!--  <input class="form-control" type="text" [value]="listDataProfil.name" placeholder="First Name"> -->
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" [value]="listDataProfil.username" placeholder="Last Name" readonly>
+                              <input
+                                type="text"
+                                class="form-control"
+                                [(ngModel)]="listDataProfil.username"
+                                name="username"
+                                id="username"
+                                #username="ngModel"
+                                required
+                              />
+                                <!-- <input class="form-control" type="text" [value]="listDataProfil.username" placeholder="Last Name"> -->
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" [value]="listDataProfil.mobile" placeholder="Mobile" readonly>
+                              <input
+                                type="text"
+                                class="form-control"
+                                [(ngModel)]="listDataProfil.mobile"
+                                name="mobile"
+                                id="mobile"
+                                #mobile="ngModel"
+                                required
+                              />
+                                <!-- <input class="form-control" type="text" [value]="listDataProfil.mobile" placeholder="Mobile"> -->
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" [value]="listDataProfil.email" placeholder="Email" readonly>
+                                <!-- <input class="form-control" type="text" [value]="listDataProfil.email" placeholder="Email"> -->
+                                <input
+                                type="text"
+                                class="form-control"
+                                [(ngModel)]="listDataProfil.email"
+                                name="email"
+                                id="email"
+                                #email="ngModel"
+                                required
+                              />
                             </div>
                            <!--  <div class="col-md-12">
                                 <input class="form-control" type="text" [value]="listDataProfil.address" placeholder="Address" readonly>
                             </div> -->
-                            <div class="col-md-12">
+                           <!--  <div class="col-md-12">
                                 <button class="btn"
                                   (click)="addEditCustomerUsername(listDataProfil)"
+
                                   style="cursor: pointer">Modifier Compte</button>
                                 <br><br>
+                            </div> -->
+                            <div class="col-md-12">
+                              <button class="btn"
+                                (click)="update()"
+
+                                style="cursor: pointer">Modifier Compte</button>
+                              <br><br>
                             </div>
                         </div>
                         <h4>Password change</h4>

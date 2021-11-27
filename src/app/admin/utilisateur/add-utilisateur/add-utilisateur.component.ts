@@ -1,10 +1,11 @@
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
 import { CategoryService } from './../../../services/category.service';
 import { UtilisateurService } from './../../../services/utilisateur.service';
 import { UtilisateurDto } from './../../../model/utilisateur';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-utilisateur',
