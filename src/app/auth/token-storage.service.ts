@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+//const TOKEN_KEY = 'AuthToken';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
@@ -27,28 +28,31 @@ export class TokenStorageService {
   }
 
   public getToken(): string {
-    const token = sessionStorage.getItem(TOKEN_KEY);
-    return token;
+    return sessionStorage.getItem(TOKEN_KEY);
   }
-/*
-  public saveUser(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
-*/
-  public saveUser(user: any): void {
+
+  public saveUser(user) {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public getUser(): any {
+ /*  public saveUser(user: any): void {
+    window.sessionStorage.removeItem(USER_KEY);
+    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  } */
+
+  public getUser() {
+    return JSON.parse(sessionStorage.getItem(USER_KEY));
+  }
+
+ /*  public getUser(): any {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);
     }
 
     return {};
-  }
+  } */
 
   public getLogginUser() {
     return sessionStorage.getItem(USER_KEY);

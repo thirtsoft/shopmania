@@ -21,6 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination' ;
 
 import { MaterialModule } from '../shared/material.module';
 
+import { httpInterceptorProviders } from '../auth/auth-interceptor';
+
 
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
 import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
@@ -39,8 +41,6 @@ import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utili
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
 import { UpdateCategoryComponent } from './category/update-category/update-category.component';
 import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
-import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
-import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
 import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
 import { BackendHeaderComponent } from './backend-header/backend-header.component';
 import { BackendSidebarComponent } from './backend-sidebar/backend-sidebar.component';
@@ -69,6 +69,7 @@ import { ProfilComponent } from './authentication/profil/profil.component';
 import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
 import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
 import { UpdateUsernameComponent } from './authentication/update-username/update-username.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 
@@ -90,8 +91,6 @@ import { UpdateUsernameComponent } from './authentication/update-username/update
     ListUtilisateurComponent,
     UpdateCategoryComponent,
     UpdateArtileComponent,
-    UpdateFournisseurComponent,
-    UpdateUtilisateurComponent,
     PageNotfoundComponent,
     BackendHeaderComponent,
     BackendSidebarComponent,
@@ -119,6 +118,7 @@ import { UpdateUsernameComponent } from './authentication/update-username/update
     UpdatePasswordComponent,
     UpdateProfilComponent,
     UpdateUsernameComponent,
+    AccueilComponent,
 
 
   ],
@@ -151,8 +151,10 @@ import { UpdateUsernameComponent } from './authentication/update-username/update
 */
   ],
 
-  providers: [DatePipe,{ provide: MAT_DIALOG_DATA, useValue: {} ,},
-    { provide: MatDialogRef, useValue: {} },
+  providers: [
+        DatePipe,{ provide: MAT_DIALOG_DATA, useValue: {} ,},
+        { provide: MatDialogRef, useValue: {} },
+        httpInterceptorProviders
 
   ],
 

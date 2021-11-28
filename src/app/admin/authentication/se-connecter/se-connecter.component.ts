@@ -1,8 +1,9 @@
-import { Login } from './../../../auth/login';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { TokenStorageService } from './../../../auth/token-storage.service';
 import { AuthService } from './../../../auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Login } from './../../../auth/login';
 
 @Component({
   selector: 'app-se-connecter',
@@ -48,14 +49,7 @@ export class SeConnecterComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         console.log("Login Success");
-        console.log(this.roles);
-        this.router.navigateByUrl("/admin/dashborad");
-
-        /*
-        this.router.navigateByUrl("").then(() => {
-          window.location.reload();
-        });
-        */
+        this.router.navigateByUrl("admin/accueil");
 
       },
       error => {
@@ -71,8 +65,8 @@ export class SeConnecterComponent implements OnInit {
   }
 
   reloadHomePage() {
-    this.router.navigateByUrl("/home", { skipLocationChange: true }).then(() => {
-      this.router.navigate(['login']);
+    this.router.navigateByUrl("admin/accueil", { skipLocationChange: true }).then(() => {
+      this.router.navigate(['singIn']);
     });
   }
 

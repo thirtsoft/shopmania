@@ -11,9 +11,8 @@ import { throwError, Observable } from 'rxjs';
 
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { PreProcessedFileInfo } from 'typescript';
 
-const AUTH_API = 'http://localhost:8081/shop-mania/v1';
+const AUTH_API = 'http://localhost:8081/shop-mania/v1/';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -28,7 +27,7 @@ export class AuthService {
 
   private apiServerUrl = environment.apiBaseUrl;
 
-  private loginUrl = 'http://localhost:8081/sen-chauffeurs/v1/auth/authenticated';
+  public loginUrl = 'http://localhost:8081/shop-mania/v1/auth/authenticated';
 
   private baseUrl_1 = environment.apiBaseUrl;
 
@@ -54,16 +53,34 @@ export class AuthService {
   }
 
   signUp(info: Register): Observable<Register> {
-    return this.http.post<Register>(AUTH_API + '/auth/signUp', info , httpOptions);
+    return this.http.post<Register>(AUTH_API + 'auth/signUp', info , httpOptions);
   }
 
-  attemptAuth(credentials: Login): Observable<any> {
-    return this.http.post(AUTH_API + '/auth/authenticated', {
+/*   attemptAuth(credentials: Login): Observable<any> {
+ //   return this.http.post(AUTH_API + '/auth/authenticated', {
+    return this.http.post(this.loginUrl, {
       username: credentials.username,
       password: credentials.password
     }, httpOptions);
     this.islogin = true;
+  } */
+
+  attemptAuth(credentials): Observable<any> {
+    const loginData = {
+      username: credentials.username,
+      password: credentials.password
+    };
+    return this.http.post(this.loginUrl, loginData, httpOptions);
+    this.islogin=true;
   }
+
+ /*  attemptAuth(credentials: Login): Observable<any>  {
+    return this.http.post(this.loginUrl, {
+      username: credentials.username,
+      password: credentials.password
+    }, httpOptions);
+    this.islogin = true;
+  } */
 
   getCurrentUser(){
     return this.http.get(AUTH_API + '/auth/currentUser');

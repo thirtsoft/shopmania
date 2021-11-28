@@ -1,3 +1,9 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { AccueilComponent } from './accueil/accueil.component';
+import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
+
 import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
 import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
 import { ProfilComponent } from './authentication/profil/profil.component';
@@ -6,14 +12,6 @@ import { EnvoiEmailFournisseurComponent } from './fournisseur/envoi-email-fourni
 import { ListCommandePayeesComponent } from './commande/list-commande-payees/list-commande-payees.component';
 import { UploadFileComponent } from './article/upload-file/upload-file.component';
 import { ListCommandeEncoursComponent } from './commande/list-commande-encours/list-commande-encours.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { TopLeftComponent } from './top-left/top-left.component';
-import { UpdateUtilisateurComponent } from './utilisateur/update-utilisateur/update-utilisateur.component';
-import { UpdateFournisseurComponent } from './fournisseur/update-fournisseur/update-fournisseur.component';
-import { UpdateArtileComponent } from './article/update-artile/update-artile.component';
-import { UpdateCategoryComponent } from './category/update-category/update-category.component';
-
 import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
 import { SuccessSignUpComponent } from './authentication/success-sign-up/success-sign-up.component';
 
@@ -39,168 +37,194 @@ import { CreateSubCategoryComponent } from './subcategorie/create-sub-category/c
 import { ListSubCategoryComponent } from './subcategorie/list-sub-category/list-sub-category.component';
 import { SeConnecterComponent } from './authentication/se-connecter/se-connecter.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+import { AuthGuardService } from '../auth/auth-guard.service';
 
 
 const routes: Routes = [
 
-  { path: '', component: SeConnecterComponent, children: [
-    { path:'', redirectTo:'signIn' , pathMatch:'full'},
+/*   { path: 'signIn', component: SeConnecterComponent, children: [
 
-  ] },
+    { path:'signIn', redirectTo:'signIn' , pathMatch:'full'},
 
-  /* {
+  ] }, */
+  { path: '',   redirectTo: 'signIn', pathMatch: 'full' },
+  {
+    path: 'signIn',
+    component: SeConnecterComponent
+  },
+  /*
+
+  { path:'', redirectTo:'signIn' , pathMatch:'full'},
+
+  {
     path: 'signIn', component: SeConnecterComponent
-  }, */
+  },
+
   {
     path: 'signUp', component: SignUpComponent
-  },
+  },*/
   {
     path: 'success-signUp',
     component: SuccessSignUpComponent
   },
 
-  { path: '',   redirectTo: 'dashborad', pathMatch: 'full' }, // redirect to
+  { path: 'accueil', component: AccueilComponent,
+    canActivate: [AuthGuardService],
+    canActivateChild: [AuthGuardService],
+    children : [
+
+    { path: '',   redirectTo: 'dashborad', pathMatch: 'full' }, // redirect to
 
 
-  {
-    path: 'dashborad',
-    component: DashboardComponent
-  },
+    {
+      path: 'dashborad',
+      component: DashboardComponent
+    },
+
+    {
+      path: 'signUp', component: SignUpComponent
+    },
 
 
-  {
-    path: 'categories',
-    component: ListCategoryComponent
-  },
-   {
-    path:'categorie/:id',
-    component:AddCategoryComponent
-  },
-  {
-    path: 'categorie',
-    component: AddCategoryComponent
-  },
- /*  { path: 'scategories', children: [
-    { path: '', component: ListSubCategoryComponent},
-    { path:'edit/:id',component: CreateSubCategoryComponent },
+    {
+      path: 'categories',
+      component: ListCategoryComponent
+    },
+     {
+      path:'categorie/:id',
+      component:AddCategoryComponent
+    },
+    {
+      path: 'categorie',
+      component: AddCategoryComponent
+    },
+   /*  { path: 'scategories', children: [
+      { path: '', component: ListSubCategoryComponent},
+      { path:'edit/:id',component: CreateSubCategoryComponent },
+    ]
+  }, */
+    {
+      path: 'scategories',
+      component: ListSubCategoryComponent
+    },
+    {
+      path:'scategorie/:id',
+      component:CreateSubCategoryComponent
+    },
+    {
+      path: 'scategorie',
+      component: CreateSubCategoryComponent
+    },
+    {
+      path: 'articles',
+      component: ListArticleComponent
+    },
+    {
+      path: 'article',
+      component: AddArticleComponent
+    },
+    {
+      path:'article/:id',
+      component:AddArticleComponent
+    },
+    {
+      path:'wiewArticle/:id',
+      component : UpdateArtileComponent
+    },
+    {
+      path : 'articles/:id',
+      component : UploadFileComponent
+    },
+    {
+      path: 'fournisseurs',
+      component: ListFournisseurComponent
+    },
+    {
+      path: 'fournisseur',
+      component: AddFournisseurComponent
+    },
+    {
+      path : 'sendEmailToFournisseur',
+      component: EnvoiEmailFournisseurComponent
+    },
+    {
+      path:'fournisseur/:id',
+      component:AddFournisseurComponent
+    },
+    {
+      path: 'clients',
+      component: ListClientComponent
+    },
+    {
+      path: 'commandes',
+      component: ListCommandeComponent
+    },
+    {
+      path: 'commandes-encours',
+      component: ListCommandeEncoursComponent
+    },
+    {
+      path : 'commandes-payees',
+      component : ListCommandePayeesComponent
+    },
+    {
+      path:'commandeView/:id',
+      component: ViewCommandeComponent
+    },
+    {
+      path: 'detailsCommandes',
+      component: ListLigneCommandeComponent
+    },
+    {
+      path: 'addresses',
+      component: ListAddressClientComponent
+    },
+    {
+      path: 'livraisons',
+      component: ListAddressLivraisonComponent
+    },
+    {
+      path: 'notifications',
+      component: ListNoteArticleComponent
+    },
+    {
+      path: 'chart',
+      component: BarChartComponent
+    },
+    {
+      path : 'profile/:id',
+      component : ProfilComponent
+    },
+    {
+      path : 'profile/:id',
+      component : UpdateProfilComponent
+    },
+    {
+      path : 'profile/:id',
+      component : UpdatePasswordComponent
+    },
+    {
+      path: 'utilisateurs',
+      component: ListUtilisateurComponent
+    },
+    {
+      path: 'utilisateur',
+      component: AddUtilisateurComponent
+    },
+    {
+      path:'utilisateur/:id',
+      component:AddUtilisateurComponent
+    },
+    {
+      path: 'historique-Connection',
+      component: ListHistoriqueLoginComponent
+    },
   ]
-}, */
-  {
-    path: 'scategories',
-    component: ListSubCategoryComponent
+
   },
-  {
-    path:'scategorie/:id',
-    component:CreateSubCategoryComponent
-  },
-  {
-    path: 'scategorie',
-    component: CreateSubCategoryComponent
-  },
-  {
-    path: 'articles',
-    component: ListArticleComponent
-  },
-  {
-    path: 'article',
-    component: AddArticleComponent
-  },
-  {
-    path:'article/:id',
-    component:AddArticleComponent
-  },
-  {
-    path:'wiewArticle/:id',
-    component : UpdateArtileComponent
-  },
-  {
-    path : 'articles/:id',
-    component : UploadFileComponent
-  },
-  {
-    path: 'fournisseurs',
-    component: ListFournisseurComponent
-  },
-  {
-    path: 'fournisseur',
-    component: AddFournisseurComponent
-  },
-  {
-    path : 'sendEmailToFournisseur',
-    component: EnvoiEmailFournisseurComponent
-  },
-  {
-    path:'fournisseur/:id',
-    component:AddFournisseurComponent
-  },
-  {
-    path: 'clients',
-    component: ListClientComponent
-  },
-  {
-    path: 'commandes',
-    component: ListCommandeComponent
-  },
-  {
-    path: 'commandes-encours',
-    component: ListCommandeEncoursComponent
-  },
-  {
-    path : 'commandes-payees',
-    component : ListCommandePayeesComponent
-  },
-  {
-    path:'commandeView/:id',
-    component: ViewCommandeComponent
-  },
-  {
-    path: 'detailsCommandes',
-    component: ListLigneCommandeComponent
-  },
-  {
-    path: 'addresses',
-    component: ListAddressClientComponent
-  },
-  {
-    path: 'livraisons',
-    component: ListAddressLivraisonComponent
-  },
-  {
-    path: 'notifications',
-    component: ListNoteArticleComponent
-  },
-  {
-    path: 'chart',
-    component: BarChartComponent
-  },
-  {
-    path : 'profile/:id',
-    component : ProfilComponent
-  },
-  {
-    path : 'profile/:id',
-    component : UpdateProfilComponent
-  },
-  {
-    path : 'profile/:id',
-    component : UpdatePasswordComponent
-  },
-  {
-    path: 'utilisateurs',
-    component: ListUtilisateurComponent
-  },
-  {
-    path: 'utilisateur',
-    component: AddUtilisateurComponent
-  },
-  {
-    path:'utilisateur/:id',
-    component:AddUtilisateurComponent
-  },
-  {
-    path: 'historique-Connection',
-    component: ListHistoriqueLoginComponent
-  },
+
+
+
 ];
 
 

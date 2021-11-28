@@ -67,9 +67,11 @@ export class SignUpComponent implements OnInit {
       console.log(response);
       this.isRegistered = true;
       this.isSignUpFailed = false;
-      console.log("User register Succeffuly");
-      window.alert("User register Succeffuly");
-      this.router.navigateByUrl("/admin/success-signUp");
+      this.toastr.success('avec succès','Utilisateur crée', {
+        timeOut: 1500,
+        positionClass: 'toast-top-right',
+      });
+      this.router.navigateByUrl("/admin/signIn");
     },
     error => {
       this.errorMessage = error.error.message;

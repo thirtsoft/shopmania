@@ -1,94 +1,90 @@
-<div id="wrapper">
-  <app-backend-sidebar></app-backend-sidebar>
-  <div id="content-wrapper" class="d-flex flex-column">
-    <div id="content">
-      <app-backend-header></app-backend-header>
-      <div class="container-fluid">
-        <h3><i class="fa fa-angle-right"></i> List des utilisateurs</h3>
-        <div>
-          <div class="row">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              [(ngModel)]="searchText"
+<h3><i class="fa fa-angle-right"></i> List des utilisateurs</h3>
+<div>
+  <div class="row">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search"
+      [(ngModel)]="searchText"
+    />
+
+    <button
+      _ngcontent-roy-c3=""
+      class="btn-meeting"
+      type="submit"
+      style="margin-left: 5%; width: 30%"
+      routerLink="/admin/utilisateur"
+    >
+      Ajouter utilisateur
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let userDTO of utilisateurDTOList
+              | filter: searchText
+              | paginate: { itemsPerPage: 8, currentPage: p }
+          "
+        >
+          <td>
+            <img
+              [src]="
+                this.crudApi.apiServerUrl +
+                '/utilisateurs/avatar/' +
+                userDTO.id +
+                '?ts=' +
+                getTS()
+              "
+              class="img-profile rounded-circle"
+              width="70"
+              height="30"
+              *ngIf="img"
             />
 
+            <img
+              class="img-profile rounded-circle"
+              src="assets/admin/img/undraw_profile_2.svg"
+              *ngIf="!img"
+            />
+          </td>
+          <td>{{ userDTO?.name }}</td>
+          <td>{{ userDTO?.username }}</td>
+          <td>{{ userDTO?.mobile }}</td>
+          <td>{{ userDTO?.email }}</td>
+
+          <td class="text-right">
             <button
-              _ngcontent-roy-c3=""
-              class="btn-meeting"
-              type="submit"
-              style="margin-left: 5%; width: 30%"
-              routerLink="/admin/utilisateur"
+              class="btn btn-primary btn-sm"
+              [routerLink]="['/admin/utilisateur', userDTO.id]"
             >
-              Ajouter utilisateur
-            </button>
-          </div>
+              <em class="fa fa-edit" aria-hidden="true"></em></button
+            >&nbsp;
 
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead class="thead-inverse">
-                <tr>
-                  <th>Photo</th>
-                  <th>Name</th>
-                  <th>Username</th>
-                  <th>Mobile</th>
-                  <th>Email</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="
-                    let userDTO of utilisateurDTOList
-                      | filter: searchText
-                      | paginate: { itemsPerPage: 8, currentPage: p }
-                  "
-                >
-                  <td>
-                    <img [src]="this.crudApi.apiServerUrl+'/utilisateurs/avatar/'+userDTO.id+'?ts='+getTS()"
-                    class="img-profile rounded-circle" width="70" height="30" *ngIf="img">
-
-                    <img
-                      class="img-profile rounded-circle"
-                      src="assets/admin/img/undraw_profile_2.svg"
-                      *ngIf="!img"
-                    />
-                  </td>
-                  <td>{{ userDTO?.name }}</td>
-                  <td>{{ userDTO?.username }}</td>
-                  <td>{{ userDTO?.mobile }}</td>
-                  <td>{{ userDTO?.email }}</td>
-
-                  <td class="text-right">
-                    <button
-                      class="btn btn-primary btn-sm"
-                      [routerLink]="['/admin/utilisateur', userDTO.id]"
-                    >
-                      <em class="fa fa-edit" aria-hidden="true"></em></button
-                    >&nbsp;
-
-                    <button
-                      class="btn btn-danger btn-sm"
-                      (click)="confirmDialog(userDTO.id)"
-                    >
-                      <i class="fa fa-trash" aria-hidden="true"></i></button
-                    >&nbsp;
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="pagination">
-              <pagination-controls
-                (pageChange)="p = $event"
-              ></pagination-controls>
-            </div>
-          </div>
-        </div>
-
-      <app-backend-footer></app-backend-footer>
-    </div>
-
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="confirmDialog(userDTO.id)"
+            >
+              <i class="fa fa-trash" aria-hidden="true"></i></button
+            >&nbsp;
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>
