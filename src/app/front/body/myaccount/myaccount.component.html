@@ -43,7 +43,10 @@
                                       <td> {{ comDTO.total }} </td>
                                       <td> {{ comDTO.status }} </td>
                                       <td> {{ comDTO.dateCommande | date:'dd-MM-yyyy' }} </td>
-                                      <td><button class="btn">View</button></td>
+                                      <td>
+                                        <button class="btn"
+                                          (click)="viewCommande(comDTO)"
+                                        ><i class="fa fa-file-pdf" aria-hidden="true">  </i></button></td>
                                   </tr>
 
                               </tbody>

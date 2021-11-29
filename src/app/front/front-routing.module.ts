@@ -1,3 +1,4 @@
+import { CustomerFactureComponent } from './body/myaccount/customer-facture/customer-facture.component';
 import { UpdateCustomerPasswordComponent } from './body/myaccount/update-customer-password/update-customer-password.component';
 import { UpdateCustomerUsernameComponent } from './body/myaccount/update-customer-username/update-customer-username.component';
 import { NgModule } from '@angular/core';
@@ -80,6 +81,10 @@ const routes: Routes = [
   {
     path: 'my-account/:id',
     component: UpdateCustomerPasswordComponent
+  },
+  {
+    path : 'facture/:id',
+    component : CustomerFactureComponent
   },
   {
     path: 'wishlist',

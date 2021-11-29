@@ -68,6 +68,7 @@ import { ArticleListTop12OrderByCreatedDateDescComponent } from './body/article-
 import { SuccessEmailComponent } from './body/success-email/success-email.component';
 import { UpdateCustomerUsernameComponent } from './body/myaccount/update-customer-username/update-customer-username.component';
 import { UpdateCustomerPasswordComponent } from './body/myaccount/update-customer-password/update-customer-password.component';
+import { CustomerFactureComponent } from './body/myaccount/customer-facture/customer-facture.component';
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import { UpdateCustomerPasswordComponent } from './body/myaccount/update-custome
     SuccessEmailComponent,
     UpdateCustomerUsernameComponent,
     UpdateCustomerPasswordComponent,
+    CustomerFactureComponent,
   ],
   imports: [
     CommonModule,
@@ -142,7 +144,7 @@ import { UpdateCustomerPasswordComponent } from './body/myaccount/update-custome
     NgxPaginationModule
   ],
   entryComponents: [
-    UpdateCustomerUsernameComponent, UpdateCustomerPasswordComponent,
+    UpdateCustomerUsernameComponent, UpdateCustomerPasswordComponent, CustomerFactureComponent
   ]
 })
 export class FrontModule { }

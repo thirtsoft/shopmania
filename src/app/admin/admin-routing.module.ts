@@ -69,8 +69,6 @@ const routes: Routes = [
   },
 
   { path: 'accueil', component: AccueilComponent,
-    canActivate: [AuthGuardService],
-    canActivateChild: [AuthGuardService],
     children : [
 
     { path: '',   redirectTo: 'dashborad', pathMatch: 'full' }, // redirect to
