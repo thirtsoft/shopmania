@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from './../../../auth/token-storage.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
+import { TokenStorageService } from './../../../auth/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
 
 import { UtilisateurService } from './../../../services/utilisateur.service';
@@ -13,10 +13,8 @@ import { AuthService } from './../../../auth/auth.service';
 import { CommandeDto } from './../../../model/commande';
 import { CommandeService } from './../../../services/commande.service';
 
-import { LigneLigneCommandeService } from 'src/app/services/lignecommande.service';
 import { UpdateCustomerPasswordComponent } from './update-customer-password/update-customer-password.component';
 import { UpdateCustomerUsernameComponent } from './update-customer-username/update-customer-username.component';
-import { LigneCommandeDto } from './../../../model/ligne-commande';
 
 @Component({
   selector: 'app-myaccount',
@@ -66,7 +64,6 @@ export class MyaccountComponent implements OnInit {
               public toastr: ToastrService,
               public authService: AuthService,
               public userService: UtilisateurService,
-              public lcmdService: LigneLigneCommandeService,
               private router: Router,
               public matDialog: MatDialog,
               private route: ActivatedRoute,
@@ -82,8 +79,7 @@ export class MyaccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  //  this.getEmploye();
- //   this.getAllLigneCommandeByCommandeId();
+
     this.paramId = this.route.snapshot.paramMap.get('id');
      console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
@@ -118,17 +114,6 @@ export class MyaccountComponent implements OnInit {
       (response: CommandeDto[]) => {
         console.log('data--', response);
         this.listCommandeDataDTO = response;
-          for (let i = 0; i  < this.listCommandeDataDTO.length; i++) {
-            this.comId = this.listCommandeDataDTO[i].id;
-            this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCommandeDto[]) => {
-            this.lcmdService.listData = data;
-            console.log('resp--', data);
-
-        }, err => {
-      console.log(err);
-    })
-  }
-
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -137,19 +122,6 @@ export class MyaccountComponent implements OnInit {
 
   }
 
-  getAllLigneCommandeByCommandeId() {
-    for (let i = 0; i  < this.listCommandeDataDTO.length; i++) {
-      this.comId = this.listCommandeDataDTO[i].id;
-      this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCommandeDto[]) => {
-        this.lcmdService.listData = data;
-    }, err => {
-      console.log(err);
-    })
-  }
-  }
-
-  getListLigneCommandes(item: LigneCommandeDto[]) {
-  }
 
   getUtilisateurDTOById(id: number) {
     console.log('getOne');

@@ -32,6 +32,7 @@
                                       <th>Total</th>
                                       <th>Status</th>
                                       <th>Date</th>
+                                      <th>Action</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -42,6 +43,7 @@
                                       <td> {{ comDTO.total }} </td>
                                       <td> {{ comDTO.status }} </td>
                                       <td> {{ comDTO.dateCommande | date:'dd-MM-yyyy' }} </td>
+                                      <td><button class="btn">View</button></td>
                                   </tr>
 
                               </tbody>
@@ -66,20 +68,20 @@
                                         <th>Price</th>
                                         <th>Quantité</th>
                                         <th>Total</th>
-                                        <th>Status</th>
+                                       <!--  <th>Status</th>-->
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr *ngFor="let comDTO of this.lcmdService.listData | paginate: {itemsPerPage: 10, currentPage: p}; let i = index;">
-                                        <td> {{ comDTO.commandeDto.numeroCommande }} </td>
-                                        <td> {{ comDTO.productName }} </td>
-                                        <td> {{ comDTO.price  }} </td>
-                                        <td> {{ comDTO.quantity  }} </td>
-                                        <td> {{ comDTO.price  * comDTO.quantity  }} </td>
-                                        <td> {{ comDTO.commandeDto.status }} </td>
-                                        <td> {{ comDTO.commandeDto.dateCommande | date:'dd-MM-yyyy' }} </td>
+                                <tbody *ngFor="let comDTO of listCommandeDataDTO; let i = index; ">
+                                    <!-- <tr *ngFor="let comDTO of this.lcmdService.listData | paginate: {itemsPerPage: 10, currentPage: p}; let i = index;"> -->
+                                    <tr *ngFor="let lcomDTO of comDTO.lcomms | paginate: {itemsPerPage: 8, currentPage: p}; let i = index;">
+                                        <td> {{ comDTO.numeroCommande }} </td>
+                                        <td> {{ lcomDTO.productName }} </td>
+                                        <td> {{ lcomDTO.price  }} </td>
+                                        <td> {{ lcomDTO.quantity  }} </td>
+                                        <td> {{ lcomDTO.price  * lcomDTO.quantity  }} </td>
+                                        <td> {{ comDTO.dateCommande | date:'dd-MM-yyyy' }} </td>
                                         <td><button class="btn">View</button></td>
                                     </tr>
  <!--
