@@ -85,7 +85,7 @@ export class UpdateArtileComponent implements OnInit {
 
 
   goBack() {
-    this.router.navigate([`/admin/articles`]);
+    this.router.navigate([`/admin/accueil/articles`]);
   }
 
 }

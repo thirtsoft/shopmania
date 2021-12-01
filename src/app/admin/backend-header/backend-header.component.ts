@@ -71,11 +71,11 @@ export class BackendHeaderComponent implements OnInit {
   }
 
   getProfile() {
-    this.router.navigate(['/admin/profile/' + this.userId]);
+    this.router.navigate(['/admin/accueil/profile/' + this.userId]);
   }
 
   goToHistoriqueConnexion() {
-    this.router.navigateByUrl("admin/historique-Connection");
+    this.router.navigateByUrl("admin/accueil/historique-Connection");
   }
 
   getTS() {

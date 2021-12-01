@@ -78,8 +78,11 @@ export class ListCategoryComponent implements OnInit {
     .afterClosed().subscribe(res =>{
       if(res){
         this.crudApi.deleteCategoryDto(id).subscribe(data => {
-          this.toastr.warning('Categorie supprimé avec succès!');
-          this.route.navigateByUrl("admin/categories").then(() => {
+          this.toastr.error('avec succès','Categorie supprimé', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
+          this.route.navigateByUrl("admin/accueil/categories").then(() => {
             window.location.reload();
           });
         },

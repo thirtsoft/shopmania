@@ -279,6 +279,7 @@ export class ViewCommandeComponent implements OnInit {
     };
 
   }
+
   getListLigneCommandes(item: LigneCommandeDto[]) {
     return {
       table: {
@@ -322,7 +323,7 @@ export class ViewCommandeComponent implements OnInit {
   }
 
   onGoBack() {
-    this.router.navigateByUrl('admin/commandes');
+    this.router.navigateByUrl('admin/accueil/commandes');
   }
 
 }

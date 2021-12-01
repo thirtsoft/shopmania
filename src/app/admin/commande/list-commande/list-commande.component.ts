@@ -26,7 +26,6 @@ export class ListCommandeComponent implements OnInit {
 
   constructor(private comService: CommandeService,
               private router: Router,
-              private dialog: MatDialog,
               public toastr: ToastrService,
               private dialogService: DialogService
   ){}
@@ -48,7 +47,7 @@ export class ListCommandeComponent implements OnInit {
   }
 
   viewCommande(item: CommandeDto) {
-    this.router.navigateByUrl('admin/commandeView/' + item.id);
+    this.router.navigateByUrl('admin/accueil/commandeView/' + item.id);
   }
 
   onDeleteCommande(id: number){
@@ -60,7 +59,7 @@ export class ListCommandeComponent implements OnInit {
             timeOut: 1500,
             positionClass: 'toast-top-right',
           });
-          this.router.navigateByUrl("admin/listcommandes").then(() => {
+          this.router.navigateByUrl("admin/accueil/listcommandes").then(() => {
             window.location.reload();
           });
         });

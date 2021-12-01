@@ -39,8 +39,11 @@ export class UpdateCategoryComponent implements OnInit {
       (response: CategoryDto) => {
         this.dialogRef.close();
         console.log("Category Modifiée");
-        this.toastr.success("Category Modifié avec Succès");
-        this.router.navigate(['/backend/admin/categories']);
+        this.toastr.warning('avec succès','Categorie Modifié', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigate(['/admin/accueil/categories']);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

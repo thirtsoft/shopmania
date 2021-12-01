@@ -74,7 +74,7 @@ export class ListUtilisateurComponent implements OnInit {
             timeOut: 1500,
             positionClass: 'toast-top-right',
           });
-          this.router.navigateByUrl("admin/utilisateurs").then(() => {
+          this.router.navigateByUrl("admin/accueil/utilisateurs").then(() => {
             window.location.reload();
           });
         },

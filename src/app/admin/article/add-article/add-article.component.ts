@@ -176,7 +176,7 @@ export class AddArticleComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
 
-        this.router.navigateByUrl("admin/articles").then(() => {
+        this.router.navigateByUrl("admin/accueil/articles").then(() => {
           window.location.reload();
         });
       },
@@ -187,7 +187,7 @@ export class AddArticleComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate([`/admin/articles`]);
+    this.router.navigate([`/admin/accueil/articles`]);
   }
 
 

@@ -119,7 +119,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToListOfClient() {
-    this.router.navigateByUrl("admin/clients");
+    this.router.navigateByUrl("admin/accueil/clients");
   }
 
 

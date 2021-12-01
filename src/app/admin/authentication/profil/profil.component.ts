@@ -142,7 +142,7 @@ export class ProfilComponent implements OnInit {
   }
 
   goToDashboard() {
-    this.router.navigateByUrl('admin/dashborad');
+    this.router.navigateByUrl('admin/accueil/dashborad');
   }
 
   editProfil(item: UtilisateurDto) {

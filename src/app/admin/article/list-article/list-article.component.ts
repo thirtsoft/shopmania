@@ -60,7 +60,7 @@ export class ListArticleComponent implements OnInit {
   }
 
   onAddNewArticle() {
-    this.router.navigateByUrl("admin/article");
+    this.router.navigateByUrl("admin/accueil/article");
   }
 
   editPhotoProduct(item : ArticleDto) {
@@ -84,7 +84,7 @@ export class ListArticleComponent implements OnInit {
             timeOut: 1500,
             positionClass: 'toast-top-right',
           });
-          this.router.navigateByUrl("admin/articles").then(() => {
+          this.router.navigateByUrl("admin/accueil/articles").then(() => {
             window.location.reload();
           });
         },

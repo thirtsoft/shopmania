@@ -63,7 +63,7 @@ export class UpdateStatusCommandeComponent implements OnInit {
         timeOut: 1500,
         positionClass: 'toast-top-right',
       });
-      this.router.navigateByUrl("admin/commandes").then(() => {
+      this.router.navigateByUrl("admin/accueil/commandes").then(() => {
         window.location.reload();
       });
      /*  window.alert('status commande modifié avec succès');
@@ -77,11 +77,12 @@ export class UpdateStatusCommandeComponent implements OnInit {
     this.crudApi.updateStatusOfCommandeDto(this.formData.value.id,this.formData.value).
     subscribe( data => {
       this.dialogRef.close();
-      alert('status commande modifié avec succès');
-  //    this.toastr.success("Status Appro Modifier avec Succès");
-  //    this.crudApi.filter('Register click');
+      this.toastr.warning('avec succès','status Modifié', {
+        timeOut: 1500,
+        positionClass: 'toast-top-right',
+      });
       this.getListCommandeDTOs();
-      this.router.navigate(['/admin/commandes']);
+      this.router.navigate(['/admin/accueil/commandes']);
     });
   }
 

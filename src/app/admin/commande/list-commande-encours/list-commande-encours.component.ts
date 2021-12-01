@@ -64,6 +64,6 @@ export class ListCommandeEncoursComponent implements OnInit {
 
 
   viewAllCommandes() {
-    this.router.navigate(['/admin/commandes']);
+    this.router.navigate(['/admin/accueil/commandes']);
   }
 }

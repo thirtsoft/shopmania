@@ -1,96 +1,91 @@
+<div class="row">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search"
+    [(ngModel)]="searchText"
+  />
 
+  <button
+    _ngcontent-roy-c3=""
+    (click)="onAddNewArticle()"
+    class="btn-meeting"
+    type="submit"
+    style="margin-left: 5%; width: 30%"
+  >
+    <em class="fa fa-plus"> </em> Ajouter Article
+  </button>
+</div>
 
-        <div class="row">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Search"
-            [(ngModel)]="searchText"
+<div class="table-responsive">
+  <table class="table table-striped" aria-label="">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Photo</th>
+        <th>Designation</th>
+        <th>Categorie</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Promo</th>
+        <th>Selected</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let articleDTO of articleDTOList
+            | filter: searchText
+            | paginate: { itemsPerPage: 20, currentPage: p }
+        "
+      >
+        <td>
+          <img
+            height="90"
+            width="90"
+            class="img-circle"
+            alt=""
+            src="{{
+              this.catService.apiServerUrl +
+                '/articles/photoArticle/' +
+                articleDTO.id
+            }}"
           />
+        </td>
+        <td>{{ articleDTO?.designation }}</td>
+        <td>{{ articleDTO?.scategoryDto?.libelle }}</td>
+        <td>{{ articleDTO?.price }}</td>
+        <td>{{ articleDTO?.quantity }}</td>
+        <td>{{ articleDTO?.promo }}</td>
+        <td>{{ articleDTO?.selected }}</td>
+
+        <td class="text-right">
+          <button
+            class="btn btn-warning btn-sm"
+            [routerLink]="['/admin/accueil/wiewArticle', articleDTO.id]"
+          >
+            <i class="fa fa-eye" aria-hidden="true"></i></button
+          >&nbsp;
 
           <button
-            _ngcontent-roy-c3=""
-            (click)="onAddNewArticle()"
-            class="btn-meeting"
-            type="submit"
-            style="margin-left: 5%; width: 30%"
+            class="btn btn-primary btn-sm"
+            [routerLink]="['/admin/accueil/article', articleDTO.id]"
           >
-            <em class="fa fa-plus"> </em> Ajouter Article
-          </button>
-        </div>
+            <i class="fa fa-edit" aria-hidden="true"></i></button
+          >&nbsp;
 
-        <div class="table-responsive">
-          <table class="table table-striped" aria-label="">
-            <thead class="thead-inverse">
-              <tr>
-                <th>Photo</th>
-                <th>Designation</th>
-                <th>Categorie</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Promo</th>
-                <th>Selected</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
-                  let articleDTO of articleDTOList
-                    | filter: searchText
-                    | paginate: { itemsPerPage: 20, currentPage: p }
-                "
-              >
-                <td>
-                  <img
-                    height="90"
-                    width="90"
-                    class="img-circle"
-                    alt=""
-                    src="{{
-                      this.catService.apiServerUrl +
-                        '/articles/photoArticle/' +
-                        articleDTO.id
-                    }}"
-                  />
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="confirmDialog(articleDTO.id)"
+          >
+            <i class="fa fa-trash" aria-hidden="true"></i></button
+          >&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-                </td>
-                <td>{{ articleDTO?.designation }}</td>
-                <td>{{ articleDTO?.scategoryDto?.libelle }}</td>
-                <td>{{ articleDTO?.price }}</td>
-                <td>{{ articleDTO?.quantity }}</td>
-                <td>{{ articleDTO?.promo }}</td>
-                <td>{{ articleDTO?.selected }}</td>
-
-                <td class="text-right">
-                  <button
-                    class="btn btn-warning btn-sm"
-                    [routerLink]="['/admin/wiewArticle', articleDTO.id]"
-                  >
-                    <i class="fa fa-eye" aria-hidden="true"></i></button
-                  >&nbsp;
-
-                  <button
-                    class="btn btn-primary btn-sm"
-                    [routerLink]="['/admin/article', articleDTO.id]"
-                  >
-                    <i class="fa fa-edit" aria-hidden="true"></i></button
-                  >&nbsp;
-
-                  <button
-                    class="btn btn-danger btn-sm"
-                    (click)="confirmDialog(articleDTO.id)"
-                  >
-                    <i class="fa fa-trash" aria-hidden="true"></i></button
-                  >&nbsp;
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="pagination">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-          </div>
-
-        </div>
-
+  <div class="pagination">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

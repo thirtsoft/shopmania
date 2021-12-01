@@ -75,7 +75,7 @@ export class AddUtilisateurComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
 
-        this.router.navigateByUrl("admin/utilisateurs").then(() => {
+        this.router.navigateByUrl("admin/accueil/utilisateurs").then(() => {
           window.location.reload();
         });
       },
@@ -108,7 +108,7 @@ export class AddUtilisateurComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigateByUrl('admin/utilisateurs');
+    this.router.navigateByUrl('admin/accueil/utilisateurs');
   }
 
 }

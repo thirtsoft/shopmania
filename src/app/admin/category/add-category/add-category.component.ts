@@ -108,10 +108,11 @@ export class AddCategoryComponent implements OnInit {
     this.crudApi.addCategoryDto(this.crudApi.dataForm.value)
       .subscribe(response => {
         this.dialogRef.close();
-        this.toastr.success("Categorie Ajouté avec Succès");
-   //     this.getListCategories();
-  //      this.router.navigate(['/admin/categories']);
-        this.router.navigateByUrl("admin/categories").then(() => {
+        this.toastr.success('avec succès','Categorie Ajoutée', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/accueil/categories").then(() => {
           window.location.reload();
         });
       },
@@ -126,10 +127,11 @@ export class AddCategoryComponent implements OnInit {
     this.crudApi.updateCategoryDto(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value).
     subscribe( data => {
       this.dialogRef.close();
-      this.toastr.success("Categorie Modifier avec Succès");
-    /*   this.getListCategories();
-      this.router.navigate(['/admin/categories']); */
-      this.router.navigateByUrl("admin/categories").then(() => {
+      this.toastr.warning('avec succès','Categorie Modifier', {
+        timeOut: 1500,
+        positionClass: 'toast-top-right',
+      });
+      this.router.navigateByUrl("admin/accueil/categories").then(() => {
         window.location.reload();
       });
     });

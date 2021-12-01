@@ -211,7 +211,7 @@ const routes: Routes = [
     },
     {
       path:'utilisateur/:id',
-      component:AddUtilisateurComponent
+      component: AddUtilisateurComponent
     },
     {
       path: 'historique-Connection',

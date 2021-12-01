@@ -95,7 +95,7 @@ export class CreateSubCategoryComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
 
-        this.router.navigateByUrl("admin/scategories").then(() => {
+        this.router.navigateByUrl("admin/accueil/scategories").then(() => {
           window.location.reload();
         });
       },
@@ -116,7 +116,7 @@ export class CreateSubCategoryComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
 
-        this.router.navigateByUrl("admin/scategories").then(() => {
+        this.router.navigateByUrl("admin/accueil/scategories").then(() => {
           window.location.reload();
         });
       },
@@ -128,7 +128,7 @@ export class CreateSubCategoryComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigateByUrl('admin/scategories');
+    this.router.navigateByUrl('admin/accueil/scategories');
   }
 
 }

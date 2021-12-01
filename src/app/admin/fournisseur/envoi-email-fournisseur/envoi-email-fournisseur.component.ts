@@ -50,7 +50,7 @@ export class EnvoiEmailFournisseurComponent implements OnInit {
         timeOut: 1500,
         positionClass: 'toast-top-right',
       });
-      this.router.navigateByUrl("admin/fournisseurs").then(() => {
+      this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
         window.location.reload();
       });
     });

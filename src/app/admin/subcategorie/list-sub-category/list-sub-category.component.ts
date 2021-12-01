@@ -51,7 +51,7 @@ export class ListSubCategoryComponent implements OnInit {
   }
 
   onAddSubcategory() {
-    this.route.navigateByUrl('admin/scategorie');
+    this.route.navigateByUrl('admin/accueil/scategorie');
   }
 
   addEditSubcategory(id?: number) {
@@ -75,7 +75,7 @@ export class ListSubCategoryComponent implements OnInit {
             timeOut: 1500,
             positionClass: 'toast-top-right',
           });
-          this.route.navigateByUrl("admin/scategories").then(() => {
+          this.route.navigateByUrl("admin/accueil/scategories").then(() => {
             window.location.reload();
           });
         },
