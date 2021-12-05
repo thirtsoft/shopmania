@@ -1,51 +1,34 @@
+import { Newsletter, NewsletterDto } from './newsletter';
 import { Fournisseur, FournisseurDto } from './fournisseur';
 
 export class Email {
   id: number;
-  recever: string;
+  customerName: string;
+  recipient: string;
   subject: string;
   message: string;
-  toRevever: string;
+  createDate: Date;
   email: string;
 
   four: Fournisseur;
 
-  public constructor() {
-    this.id = this.id;
-    this.recever = this.four.email;
-    this.subject = this.subject;
-    this.message = this.message;
-  }
+  newsletter: Newsletter;
 
 }
 
 export class EmailDto {
   id: number;
-  recever: string;
+  customerName: string;
+  recipient: string;
   subject: string;
   message: string;
-  toRevever: string;
-  email: string;
+  createDate: Date;
 
   fournisseurDto: FournisseurDto;
 
-  public constructor() {
-    this.id = this.id;
-    this.recever = this.fournisseurDto.email;
-    this.subject = this.subject;
-    this.message = this.message;
-  }
+  newsletterDto: NewsletterDto;
 
 }
-
-export class MailDto {
-  id: number;
-	name: string;
-	email: string;
-	subject: string;
-	message: string;
-}
-
 
 
 

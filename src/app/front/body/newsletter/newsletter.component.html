@@ -6,8 +6,12 @@
             </div>
             <div class="col-md-6">
                 <div class="form">
-                    <input type="email" value="Your email here">
-                    <button>Submit</button>
+                    <input type="email"  [(ngModel)]="addEditNewsletterDTO.customerEmail"
+                    name="customerEmail"
+                    id="customerEmail"
+                    #customerEmail="ngModel"
+                    required value="Your email here">
+                    <button (click)="submit()" >Submit</button>
                 </div>
             </div>
         </div>
