@@ -1,0 +1,56 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1><i class="fa fa-angle-right"></i> List des notifications</h1>
+</div>
+<div class="row">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search"
+    [(ngModel)]="searchText"
+  />
+</div>
+
+<table class="table table-striped" aria-label="">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Code</th>
+      <th>Email Visteur</th>
+      <th>Date Inscription</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let newsletterDTO of newsletterDTOList
+          | filter: searchText
+          | paginate: { itemsPerPage: 20, currentPage: p }
+      "
+    >
+      <td>{{ newsletterDTO?.id }}</td>
+      <td>{{ newsletterDTO?.code }}</td>
+      <td>{{ newsletterDTO?.customerEmail }}</td>
+      <td>{{ newsletterDTO?.dateInscription | date: "dd-MM-yyyy" }}</td>
+
+      <td class="text-right">
+        <button
+            class="btn btn-warning btn-sm"
+            (click)="envoiEmailToCustomer(newsletterDTO)"
+          >
+            <i class="fa fa-envelope" aria-hidden="true"></i></button
+          >&nbsp;
+
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="confirmDialog(newsletterDTO.id)"
+        >
+          <i class="fa fa-trash" aria-hidden="true"></i></button
+        >&nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="pagination">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

@@ -1,30 +1,27 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
+
+import { EmailDto } from './../../../model/email';
 import { EmailService } from './../../../services/email.service';
 
-import { FournisseurService } from './../../../services/fournisseur.service';
-import { FournisseurDto } from './../../../model/fournisseur';
-
 @Component({
-  selector: 'app-envoi-email-fournisseur',
-  templateUrl: './envoi-email-fournisseur.component.html',
-  styleUrls: ['./envoi-email-fournisseur.component.css']
+  selector: 'app-response-newsletter',
+  templateUrl: './response-newsletter.component.html',
+  styleUrls: ['./response-newsletter.component.css']
 })
-export class EnvoiEmailFournisseurComponent implements OnInit {
+export class ResponseNewsletterComponent implements OnInit {
 
-  fourDTO: FournisseurDto = new FournisseurDto();
+  mailDTO: EmailDto = new EmailDto();
 
-  constructor(public crudApi: FournisseurService,
-              private mailService: EmailService,
+  constructor(public crudApi: EmailService,
               public fb: FormBuilder,
               public toastr: ToastrService,
               private router : Router,
               @Inject(MAT_DIALOG_DATA)  public data,
-              public dialogRef:MatDialogRef<EnvoiEmailFournisseurComponent>,
+              public dialogRef:MatDialogRef<ResponseNewsletterComponent>,
     ) { }
 
   ngOnInit() {
@@ -44,13 +41,13 @@ export class EnvoiEmailFournisseurComponent implements OnInit {
   }
 
   onSubmit() {
-    this.mailService.sendMailToFournisseur(this.crudApi.dataForm.value).
+    this.crudApi.sendEmailToCustomer(this.crudApi.dataForm.value).
     subscribe( data => {
       this.toastr.error('avec succès','Email envoyé', {
         timeOut: 1500,
         positionClass: 'toast-top-right',
       });
-      this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
+      this.router.navigateByUrl("admin/accueil/newsletters").then(() => {
         window.location.reload();
       });
     });

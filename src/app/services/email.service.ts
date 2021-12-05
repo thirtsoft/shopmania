@@ -23,44 +23,44 @@ export class EmailService {
 
   constructor(private http: HttpClient) { }
 
-  getAllEmailDTOs(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/emails`);
+  getAllListEmailDTOs(): Observable<EmailDto[]> {
+    return this.http.get<EmailDto[]>(`${this.baseUrl}/emails/all`);
   }
 
-  getAllListEmailDTOs(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/emails/all`);
+  getAllListEmailDTOOrderIdDesc(): Observable<EmailDto[]> {
+    return this.http.get<EmailDto[]>(`${this.baseUrl}/emails/searchAllEmailsOrderByIdDesc`);
   }
 
-  getAllListEmailDTOOrderIdDesc(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/emails/searchAllEmailssOrderByIdDesc`);
+  public getEmailById(id: number): Observable<EmailDto> {
+    return this.http.get<EmailDto>(`${this.baseUrl}/emails/findById/${id}`);
   }
 
-  public getSenderEmailById(id: number): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/emails/findById/${id}`);
+  public sendEmail(info: EmailDto): Observable<EmailDto> {
+    return this.http.post<EmailDto>(`${this.baseUrl}/emails/sendEmail`, info);
   }
 
-  public sendEmailDTO(info: Object): Observable<any> {
-    return this.http.post(`${this.baseUrl}/emails/sendEmail`, info);
+  public sendEmailDTOToManager(info: EmailDto): Observable<EmailDto> {
+    return this.http.post<EmailDto>(`${this.baseUrl}/emails/sendMailToManager`, info);
   }
 
-  public sendMailDTO(info: Object): Observable<any> {
-    return this.http.post(`${this.baseUrl}/emails/sendMail`, info);
+  public sendMailDTOToAllCustomer(info: EmailDto): Observable<EmailDto> {
+    return this.http.post<EmailDto>(`${this.baseUrl}/emails/sendMailToAllCustomers`, info);
   }
 
-  public sendEmailToManager(mail: MailDto): Observable<any> {
-    return this.http.post(`${this.baseUrl}/emails/sendMailToManager`, mail);
+  public sendEmailToCustomer(mail: EmailDto): Observable<EmailDto> {
+    return this.http.post<EmailDto>(`${this.baseUrl}/emails/sendToNewsletter`, mail);
   }
 
-  public sendMailToAllFournisseur(info: Object): Observable<any> {
-    return this.http.post(`${this.baseUrl}/sendMailToAllFournisseur`, info);
+  public sendMailToFournisseur(info: EmailDto): Observable<EmailDto> {
+    return this.http.post<EmailDto>(`${this.baseUrl}/sendToFournisseur`, info);
   }
 
-  public sendMailToCustomer(info: Object): Observable<any> {
-    return this.http.post(`${this.baseUrl}/sendMailToCustomer`, info);
+  public countNumberOfEmail(): Observable<EmailDto> {
+    return this.http.get<EmailDto>(`${this.baseUrl}/emails/countNumberOfEmail`);
   }
 
-  deleteFournisseur(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/emails/${id}`, { responseType: 'text' });
+  deleteEmail(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/emails/delete/${id}`);
   }
 
 }

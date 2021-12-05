@@ -1,3 +1,6 @@
+import { SendMailToAllCustomerComponent } from './newsletter/send-mail-to-all-customer/send-mail-to-all-customer.component';
+import { ResponseNewsletterComponent } from './newsletter/response-newsletter/response-newsletter.component';
+import { ListNewsletterComponent } from './newsletter/list-newsletter/list-newsletter.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -184,6 +187,18 @@ const routes: Routes = [
     {
       path: 'notifications',
       component: ListNoteArticleComponent
+    },
+    {
+      path : 'newsletters',
+      component : ListNewsletterComponent
+    },
+    {
+      path : 'responseNewsletter',
+      component : ResponseNewsletterComponent
+    },
+    {
+      path : 'sendMailToAllCustomer',
+      component : SendMailToAllCustomerComponent
     },
     {
       path: 'chart',

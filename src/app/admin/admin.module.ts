@@ -70,6 +70,9 @@ import { UpdatePasswordComponent } from './authentication/update-password/update
 import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
 import { UpdateUsernameComponent } from './authentication/update-username/update-username.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { ListNewsletterComponent } from './newsletter/list-newsletter/list-newsletter.component';
+import { ResponseNewsletterComponent } from './newsletter/response-newsletter/response-newsletter.component';
+import { SendMailToAllCustomerComponent } from './newsletter/send-mail-to-all-customer/send-mail-to-all-customer.component';
 
 
 
@@ -119,6 +122,9 @@ import { AccueilComponent } from './accueil/accueil.component';
     UpdateProfilComponent,
     UpdateUsernameComponent,
     AccueilComponent,
+    ListNewsletterComponent,
+    ResponseNewsletterComponent,
+    SendMailToAllCustomerComponent,
 
 
   ],
@@ -163,7 +169,9 @@ import { AccueilComponent } from './accueil/accueil.component';
     AddCategoryComponent, CreateSubCategoryComponent,
     ViewCommandeComponent, UpdateStatusCommandeComponent,
     DashboardComponent, UploadFileComponent, AddFournisseurComponent,
-    ProfilComponent, UpdateProfilComponent, UpdateUsernameComponent, UpdatePasswordComponent
+    ProfilComponent, UpdateProfilComponent, UpdateUsernameComponent,
+    UpdatePasswordComponent,
+    ResponseNewsletterComponent, SendMailToAllCustomerComponent
   ]
 
 })
