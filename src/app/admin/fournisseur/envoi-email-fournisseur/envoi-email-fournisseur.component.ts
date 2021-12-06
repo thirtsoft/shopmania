@@ -46,7 +46,7 @@ export class EnvoiEmailFournisseurComponent implements OnInit {
   onSubmit() {
     this.mailService.sendMailToFournisseur(this.crudApi.dataForm.value).
     subscribe( data => {
-      this.toastr.error('avec succès','Email envoyé', {
+      this.toastr.success('avec succès','Email envoyé', {
         timeOut: 1500,
         positionClass: 'toast-top-right',
       });

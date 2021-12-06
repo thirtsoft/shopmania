@@ -1,3 +1,4 @@
+import { EmailService } from './../../../services/email.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
@@ -20,21 +21,21 @@ import { ResponseNewsletterComponent } from './../response-newsletter/response-n
 export class ListNewsletterComponent implements OnInit {
 
   newsletterDTOList: NewsletterDto[];
+  newsletterDtoDTO : NewsletterDto = new NewsletterDto();
 
   id : number;
   p : number=1;
   searchText;
 
-  newsletterDtoDTO : NewsletterDto = new NewsletterDto();
-
   constructor(private crudApi: NewsletterService,
+              public mailService: EmailService,
               private router: Router,
               public toastr: ToastrService,
               private matDialog: MatDialog,
               private dialogService: DialogService,
               public fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef:MatDialogRef<ResponseNewsletterComponent>,
+              public dialogRef:MatDialogRef<ListNewsletterComponent>,
   ){}
 
   ngOnInit(): void {
@@ -77,11 +78,31 @@ export class ListNewsletterComponent implements OnInit {
   envoiEmailToCustomer(item: NewsletterDto) {
     this.crudApi.choixmenu = "M";
     this.crudApi.dataForm = this.fb.group(Object.assign({},item));
+    console.log(item);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
     this.matDialog.open(ResponseNewsletterComponent, dialogConfig);
+  }
+
+  sendMailToAllCustomer() {
+    for (let i = 0; i < this.newsletterDTOList.length; i++) {
+      this.newsletterDtoDTO.customerEmail = this.newsletterDTOList[i].customerEmail;
+      this.newsletterDtoDTO.subject = this.newsletterDTOList[i].subject;
+      this.newsletterDtoDTO.message = this.newsletterDTOList[i].message;
+
+    }
+    this.mailService.sendMailDTOToAllCustomer(this.newsletterDtoDTO).
+    subscribe( data => {
+      this.toastr.success('avec succès','Email envoyé', {
+        timeOut: 1500,
+        positionClass: 'toast-top-right',
+      });
+      this.router.navigateByUrl("admin/accueil/newsletters").then(() => {
+        window.location.reload();
+      });
+    });
   }
 
 

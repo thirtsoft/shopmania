@@ -39,7 +39,7 @@ export class NewsletterComponent implements OnInit {
       (response: NewsletterDto) => {
         console.log('Response--', response);
 
-        this.toastr.success('avec succès','Inscription validée', {
+        this.toastr.success('notre Newsletter avec succès','Vous etes inscris a', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
         });

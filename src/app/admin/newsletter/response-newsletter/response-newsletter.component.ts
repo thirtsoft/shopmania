@@ -1,3 +1,4 @@
+import { NewsletterService } from './../../../services/newsletter.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -16,7 +17,8 @@ export class ResponseNewsletterComponent implements OnInit {
 
   mailDTO: EmailDto = new EmailDto();
 
-  constructor(public crudApi: EmailService,
+  constructor(public crudApi: NewsletterService,
+              public mailService: EmailService,
               public fb: FormBuilder,
               public toastr: ToastrService,
               private router : Router,
@@ -33,17 +35,18 @@ export class ResponseNewsletterComponent implements OnInit {
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
       id: null,
-      email: ['', [Validators.required]],
+      customerEmail: ['', [Validators.required]],
       subject: ['', [Validators.required]],
       message: ['', [Validators.required]],
     });
 
   }
 
+
   onSubmit() {
-    this.crudApi.sendEmailToCustomer(this.crudApi.dataForm.value).
+    this.mailService.sendEmailToCustomer(this.crudApi.dataForm.value).
     subscribe( data => {
-      this.toastr.error('avec succès','Email envoyé', {
+      this.toastr.success('avec succès','Email envoyé', {
         timeOut: 1500,
         positionClass: 'toast-top-right',
       });

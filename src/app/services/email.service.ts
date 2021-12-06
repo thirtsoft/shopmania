@@ -1,9 +1,10 @@
+import { NewsletterDto } from './../model/newsletter';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
-import { EmailDto, MailDto } from './../model/email';
+import { EmailDto } from './../model/email';
 
 import { environment } from 'src/environments/environment';
 
@@ -43,16 +44,16 @@ export class EmailService {
     return this.http.post<EmailDto>(`${this.baseUrl}/emails/sendMailToManager`, info);
   }
 
-  public sendMailDTOToAllCustomer(info: EmailDto): Observable<EmailDto> {
-    return this.http.post<EmailDto>(`${this.baseUrl}/emails/sendMailToAllCustomers`, info);
+  public sendMailDTOToAllCustomer(info: NewsletterDto): Observable<NewsletterDto> {
+    return this.http.post<NewsletterDto>(`${this.baseUrl}/emails/sendMailToAllCustomers`, info);
   }
 
-  public sendEmailToCustomer(mail: EmailDto): Observable<EmailDto> {
-    return this.http.post<EmailDto>(`${this.baseUrl}/emails/sendToNewsletter`, mail);
+  public sendEmailToCustomer(mail: NewsletterDto): Observable<NewsletterDto> {
+    return this.http.post<NewsletterDto>(`${this.baseUrl}/emails/sendToNewsletter`, mail);
   }
 
   public sendMailToFournisseur(info: EmailDto): Observable<EmailDto> {
-    return this.http.post<EmailDto>(`${this.baseUrl}/sendToFournisseur`, info);
+    return this.http.post<EmailDto>(`${this.baseUrl}/emails/sendToFournisseur`, info);
   }
 
   public countNumberOfEmail(): Observable<EmailDto> {
