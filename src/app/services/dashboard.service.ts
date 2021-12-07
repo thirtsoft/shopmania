@@ -78,6 +78,9 @@ export class DashboardService {
     return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/countNumberOfNotification`);
   }
 
+  public countNumberOfNotificationByProductId(noteId: string): Observable<NotificationDto> {
+    return this.http.get<NotificationDto>(`${this.apiServerUrl}/notifications/countNumberOfNotificationByProductId/${noteId}`);
+  }
 
 
 }

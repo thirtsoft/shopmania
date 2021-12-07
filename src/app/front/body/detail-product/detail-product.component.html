@@ -7,7 +7,7 @@
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink="/home">Accueil</a></li>
             <li class="breadcrumb-item"><a href="#">Detail Produit</a></li>
-            <li class="breadcrumb-item active">{{product?.pName}}</li>
+            <li class="breadcrumb-item active" *ngIf="articleDTOs">{{articleDTOs?.designation}}</li>
         </ul>
     </div>
 </div>
@@ -51,7 +51,7 @@
                                 <div class="price">
                                     <h4>Prix : </h4>
                                     <!-- <p>$99 <span>$149</span></p> -->
-                                    <p> {{ articleDTOs?.price }}f <span>$149</span></p>
+                                    <p> {{ articleDTOs?.price }}f <span>149f</span></p>
                                 </div>
                                 <div class="quantity">
                                     <h4>Quantité:</h4>
@@ -98,7 +98,8 @@
                                 <a class="nav-link" data-toggle="pill" href="#specification">Specification</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#reviews">Reviews (1)</a>
+                              <!--   <a class="nav-link" data-toggle="pill" href="#reviews">Reviews (1)</a> -->
+                                <a class="nav-link" data-toggle="pill" href="#reviews">Reviews ({{numberOfRatingForProduct}})</a>
                             </li>
                         </ul>
 
@@ -106,25 +107,45 @@
                             <div id="description" class="container tab-pane active">
                                 <h4>Description du Produit</h4>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non.
-                                    Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque. Suspendisse sit amet neque neque. Praesent suscipit et magna eu iaculis. Donec arcu libero, commodo
-                                    ac est a, malesuada finibus dolor. Aenean in ex eu velit semper fermentum. In leo dui, aliquet sit amet eleifend sit amet, varius in turpis. Maecenas fermentum ut ligula at consectetur. Nullam et tortor leo.
+                                  {{ articleDTOs?.description }}
                                 </p>
                             </div>
                             <div id="specification" class="container tab-pane fade">
                                 <h4>specification du Produit</h4>
                                 <ul>
+                                  <p>
+                                    {{ articleDTOs?.manufactured }}
+                                  </p>
+                                   <!--  <li>Lorem ipsum dolor sit amet</li>
                                     <li>Lorem ipsum dolor sit amet</li>
                                     <li>Lorem ipsum dolor sit amet</li>
                                     <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li> -->
                                 </ul>
                             </div>
                             <div id="reviews" class="container tab-pane fade">
+                              <div class="reviews-submitted" *ngFor="let rat of notificationListDTO; let i=index;">
+
+                                <div class="reviewer">{{ rat.utilisateurDto.name }} - <span>{{ rat.createdDate | date:'dd-MM-yyyy' }}</span></div>
+                                <div class="ratting">
+                                    <ngb-rating
+
+                                    [(rate)]="rat.nbreEtoile"
+                                    [id]="'rating3'"
+                                    [readonly]="true"
+                                    [max]="maxRatingValue"
+                                  >
+                                  </ngb-rating>
+
+                                </div>
+                                <p>
+                                  {{ rat.observation }}
+                                </p>
+                              </div>
+
 
                                 <!--    start list Ratings -->
-                                <app-list-rating></app-list-rating>
+                             <!--    <app-list-rating></app-list-rating> -->
                                 <!--  End of list Ratings -->
 
                                <!--  <div class="reviews-submitted">
