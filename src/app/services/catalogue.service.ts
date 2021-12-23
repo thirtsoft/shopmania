@@ -19,7 +19,7 @@ export class CatalogueService {
   username: any;
 
 //  public host:string="http://localhost:8080";
-  public apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
+//  public apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
 
   constructor(private http: HttpClient,
               private tokenService: TokenStorageService) {
@@ -69,6 +69,10 @@ export class CatalogueService {
 
   public getPhotoArticle() {
     return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
+  }
+
+  public getPhotoArticleInContext() {
+    return this.http.get(`${this.apiServerUrl}/articles/photoArticleInContext`);
   }
 
   getCurrentUser(): Observable<any> {

@@ -39,7 +39,7 @@
             | paginate: { itemsPerPage: 20, currentPage: p }
         "
       >
-        <td>
+        <!-- <td>
           <img
             height="90"
             width="90"
@@ -48,6 +48,19 @@
             src="{{
               this.catService.apiServerUrl +
                 '/articles/photoArticle/' +
+                articleDTO.id
+            }}"
+          />
+        </td> -->
+        <td>
+          <img
+            height="90"
+            width="90"
+            class="img-circle"
+            alt=""
+            src="{{
+              this.catService.apiServerUrl +
+                '/articles/photoArticleInContext/' +
                 articleDTO.id
             }}"
           />
