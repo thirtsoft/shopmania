@@ -73,6 +73,10 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { ListNewsletterComponent } from './newsletter/list-newsletter/list-newsletter.component';
 import { ResponseNewsletterComponent } from './newsletter/response-newsletter/response-newsletter.component';
 import { SendMailToAllCustomerComponent } from './newsletter/send-mail-to-all-customer/send-mail-to-all-customer.component';
+import { AddBlogComponent } from './blog/add-blog/add-blog.component';
+import { ListBlogComponent } from './blog/list-blog/list-blog.component';
+import { UpdateBlogComponent } from './blog/update-blog/update-blog.component';
+import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blog.component';
 
 
 
@@ -125,6 +129,10 @@ import { SendMailToAllCustomerComponent } from './newsletter/send-mail-to-all-cu
     ListNewsletterComponent,
     ResponseNewsletterComponent,
     SendMailToAllCustomerComponent,
+    AddBlogComponent,
+    ListBlogComponent,
+    UpdateBlogComponent,
+    UploadFileBlogComponent,
 
 
   ],

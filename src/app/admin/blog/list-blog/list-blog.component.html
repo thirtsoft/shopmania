@@ -1,0 +1,81 @@
+<div class="row">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search"
+    [(ngModel)]="searchText"
+  />
+
+  <button
+    _ngcontent-roy-c3=""
+    (click)="onAddNewBlog()"
+    class="btn-meeting"
+    type="submit"
+    style="margin-left: 5%; width: 30%"
+  >
+    <em class="fa fa-plus"> </em> Ajouter Blog
+  </button>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped" aria-label="">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Photo</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Date Creation</th>
+        <th>Date Modification</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let blogDTO of blogDTOList
+            | filter: searchText
+            | paginate: { itemsPerPage: 20, currentPage: p }
+        "
+      >
+        <td>
+          <img
+            height="90"
+            width="90"
+            class="img-circle"
+            alt=""
+            src="{{
+              this.crudApi.apiServerUrl +
+                '/blogs/photoBlog/' +
+                blogDTO.id
+            }}"
+          />
+        </td>
+        <td>{{ blogDTO?.title }}</td>
+        <td>{{ blogDTO?.description }}</td>
+        <td>{{ blogDTO?.createDate }}</td>
+        <td>{{ blogDTO?.lastUpDated }}</td>
+
+        <td class="text-right">
+
+          <button
+            class="btn btn-primary btn-sm"
+            [routerLink]="['/admin/accueil/blog', blogDTO.id]"
+          >
+            <i class="fa fa-edit" aria-hidden="true"></i></button
+          >&nbsp;
+
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="confirmDialog(blogDTO.id)"
+          >
+            <i class="fa fa-trash" aria-hidden="true"></i></button
+          >&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

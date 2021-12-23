@@ -1,0 +1,95 @@
+<h2 *ngIf="!paramId">Nouveau Blog</h2>
+<h2 *ngIf="paramId">Modifier Blog</h2>
+<form #addArticleForm="ngForm" name="form" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Titre </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditBlogDto.title"
+          name="title"
+          id="title"
+          #title="ngModel"
+          required
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            (title.touched || addArticleForm.submitted) &&
+            title.errors?.required
+          "
+        >
+          Titre est obligatoire
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>Photo</label>
+        <img
+          height="90"
+          width="90"
+          class="img-circle"
+          alt=""
+          src="{{
+            this.crudApi.apiServerUrl + '/blogs/photoBlog/' + addEditBlogDto.id
+          }}"
+          *ngIf="paramId"
+        />
+        <span *ngIf="!editPhoto">
+          <input type="file" (change)="onSelectedFile($event)" />
+          <button class="btn btn-success btn-sm" (click)="processForm()">
+            <span class="glyphicon glyphicon-upload"></span>
+            Save Change
+          </button>
+          {{ progress }}
+        </span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          type="text "
+          class="form-control"
+          name="description "
+          id="description "
+          [(ngModel)]="addEditBlogDto.description"
+          cols="30 "
+          rows="10 "
+          #description="ngModel"
+          required
+        >
+        </textarea>
+        <span
+          class="text-danger"
+          *ngIf="
+            (description.touched || addArticleForm.submitted) &&
+            description.errors?.required
+          "
+        >
+          Description est obligatoire
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button
+      *ngIf="!paramId"
+      type="submit"
+      class="btn btn-lg btn-success"
+      (click)="onSaveBlog()"
+    >
+      <i class="fa fa-database"></i> Enregistrer</button
+    >&nbsp;
+    <button *ngIf="paramId" class="btn btn-lg btn-warning" (click)="update()">
+      <i class="fa fa-database"></i> Modifier
+    </button>
+    <button (click)="goBack()" type="button" class="btn btn-lg btn-danger ml-1">
+      <i class="fa fa-angle-right"></i> Retour
+    </button>
+  </div>
+</form>

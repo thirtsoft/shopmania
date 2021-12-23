@@ -69,6 +69,7 @@ import { SuccessEmailComponent } from './body/success-email/success-email.compon
 import { UpdateCustomerUsernameComponent } from './body/myaccount/update-customer-username/update-customer-username.component';
 import { UpdateCustomerPasswordComponent } from './body/myaccount/update-customer-password/update-customer-password.component';
 import { CustomerFactureComponent } from './body/myaccount/customer-facture/customer-facture.component';
+import { Top5BlogListComponent } from './body/top5-blog-list/top5-blog-list.component';
 
 
 @NgModule({
@@ -129,6 +130,7 @@ import { CustomerFactureComponent } from './body/myaccount/customer-facture/cust
     UpdateCustomerUsernameComponent,
     UpdateCustomerPasswordComponent,
     CustomerFactureComponent,
+    Top5BlogListComponent,
   ],
   imports: [
     CommonModule,
