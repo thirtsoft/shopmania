@@ -53,6 +53,10 @@ export class CatalogueService {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByPriceMinMax/${min}/${max}`);
   }
 
+  public countNumberOfArticleInSubCat(subCatId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiServerUrl}/articles/countNumberOfArticleInSubCat/${subCatId}`);
+  }
+
 
   public getListArticleDTOByScategoryByPageable(scatId: number, page: number, size: number): Observable<ArticleDto[]> {
     const searchUrl = (this.apiServerUrl+"/articles/searchArticleByScategoryByPageables?id="+scatId+"&page="+page+"&size="+size);
