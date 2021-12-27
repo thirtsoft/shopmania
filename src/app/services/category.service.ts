@@ -14,7 +14,8 @@ export class CategoryService {
 
 //  public apiServerUrl = environment.apiBaseUrl;
 
-  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
+
+  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   public choixmenu : string  = 'A';
 

@@ -16,13 +16,13 @@ export class DashboardService {
 
 //  public apiServerUrl = environment.apiBaseUrl;
 
-  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
+  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   //apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
 
 //  apiBaseUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1';
 
-  apiBaseUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
+  apiBaseUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
 
   constructor(private http: HttpClient

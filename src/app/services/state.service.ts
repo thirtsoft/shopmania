@@ -11,7 +11,8 @@ export class StateService {
 
 //  private apiServerUrl = environment.apiBaseUrl;
 
-  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
+
+  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   constructor(private http: HttpClient) {
   }

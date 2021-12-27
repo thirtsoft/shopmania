@@ -13,7 +13,8 @@ export class NotificationService {
 
 //  private apiServerUrl = environment.apiBaseUrl;
 
-  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
+
+  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   id: any;
   artId: any;

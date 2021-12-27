@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
 //const AUTH_API = 'https://businesse-server.herokuapp.com/shop-mania/v1/';
 //const AUTH_API = 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/';
 
-const AUTH_API = 'https://businesse-admin.herokuapp.com/shop-mania/v1/';
+const AUTH_API = "https://businesse-admin.herokuapp.com/shop-mania/v1/";
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -32,7 +32,9 @@ export class AuthService {
 
 //  public apiServerUrl = environment.apiBaseUrl;
 
-  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
+
+  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+
 
 //  public loginUrl = 'http://localhost:8081/shop-mania/v1/auth/authenticated';
 
@@ -41,7 +43,8 @@ export class AuthService {
 //  loginUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated';
 
 
-  loginUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1/auth/authenticated';
+
+  public loginUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1/auth/authenticated";
 
   //public baseUrl_1 = environment.apiBaseUrl;
 
