@@ -41,9 +41,11 @@ export class AuthService {
 //  loginUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated';
 
 
-  loginUrl: 'https://businesse-admin.herokuapp.com/v1/auth/authenticated';
+  loginUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1/auth/authenticated';
 
-  public baseUrl_1 = environment.apiBaseUrl;
+  //public baseUrl_1 = environment.apiBaseUrl;
+
+  public baseUrl_1 = 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;

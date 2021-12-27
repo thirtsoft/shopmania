@@ -14,6 +14,8 @@ export class CatalogueService {
 
   apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
+
+
   id: any;
   currentUser: any;
   username: any;
