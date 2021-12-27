@@ -10,15 +10,12 @@ import { environment } from './../../environments/environment';
 })
 export class CatalogueService {
 
-//  public apiServerUrl = environment.apiBaseUrl;
-
   public apiServerUrl = environment.apiBaseUrl;
 
   id: any;
   currentUser: any;
   username: any;
 
-//  public host:string="http://localhost:8080";
 //  public apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
 
   constructor(private http: HttpClient,
