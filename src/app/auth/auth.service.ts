@@ -14,8 +14,10 @@ import { environment } from 'src/environments/environment';
 
 //const AUTH_API = 'http://localhost:8081/shop-mania/v1/';
 
-const AUTH_API = 'https://businesse-server.herokuapp.com/shop-mania/v1/';
+//const AUTH_API = 'https://businesse-server.herokuapp.com/shop-mania/v1/';
+//const AUTH_API = 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/';
 
+const AUTH_API = 'https://businesse-admin.herokuapp.com/shop-mania/v1/';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -28,13 +30,18 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
 //  public loginUrl = 'http://localhost:8081/shop-mania/v1/auth/authenticated';
 
-  loginUrl: 'https://businesse-server.herokuapp.com/shop-mania/v1/auth/authenticated';
+//  loginUrl: 'https://businesse-server.herokuapp.com/shop-mania/v1/auth/authenticated';
 
-  private baseUrl_1 = environment.apiBaseUrl;
+//  loginUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated';
+
+
+  loginUrl: 'https://businesse-admin.herokuapp.com/v1/auth/authenticated';
+
+  public baseUrl_1 = environment.apiBaseUrl;
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
