@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 //const cors = require('cors');
-const request = require("request");
-
 
 app.use(express.static(__dirname + "/dist/shopmania"));
 
