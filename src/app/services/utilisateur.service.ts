@@ -11,7 +11,9 @@ import { environment } from './../../environments/environment';
 })
 export class UtilisateurService {
 
-  public apiServerUrl = environment.apiBaseUrl;
+//  public apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   constructor(private http: HttpClient) {
   }

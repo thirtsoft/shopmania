@@ -13,7 +13,9 @@ import { environment } from './../../environments/environment';
 })
 export class BlogService {
 
-  public apiServerUrl = environment.apiBaseUrl;
+ // public apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   choixmenu : string  = 'A';
   listData : BlogDto[];

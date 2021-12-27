@@ -12,7 +12,9 @@ import { environment } from './../../environments/environment';
 })
 export class CategoryService {
 
-  public apiServerUrl = environment.apiBaseUrl;
+//  public apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   public choixmenu : string  = 'A';
 

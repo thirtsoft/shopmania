@@ -12,7 +12,9 @@ import { environment } from './../../environments/environment';
 })
 export class CheckoutService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+//  private apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   id;
 

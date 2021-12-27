@@ -10,7 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class CountryService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+//  private apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   constructor(private http: HttpClient) {
   }

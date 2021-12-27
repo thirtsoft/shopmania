@@ -9,7 +9,9 @@ import { Injectable } from '@angular/core';
 })
 export class AddresslivraisonService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+//  private apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   constructor(private http: HttpClient) {
   }

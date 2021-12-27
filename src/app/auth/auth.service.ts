@@ -30,7 +30,9 @@ const httpOptions = {
 })
 export class AuthService {
 
-  public apiServerUrl = environment.apiBaseUrl;
+//  public apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
 //  public loginUrl = 'http://localhost:8081/shop-mania/v1/auth/authenticated';
 

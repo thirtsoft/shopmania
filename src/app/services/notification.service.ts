@@ -11,7 +11,9 @@ import { TokenStorageService } from './../auth/token-storage.service';
 })
 export class NotificationService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+//  private apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   id: any;
   artId: any;

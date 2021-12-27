@@ -14,7 +14,9 @@ import { ClientDto } from './../model/client';
 })
 export class DashboardService {
 
-  public apiServerUrl = environment.apiBaseUrl;
+//  public apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   //apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
 

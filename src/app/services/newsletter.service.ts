@@ -13,7 +13,9 @@ import { environment } from 'src/environments/environment';
 })
 export class NewsletterService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+//  private apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   choixmenu : string  = 'A';
   listData : Newsletter[];

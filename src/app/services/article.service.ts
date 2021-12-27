@@ -12,7 +12,9 @@ import { environment } from './../../environments/environment';
 })
 export class ArticleService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+//  private apiServerUrl = environment.apiBaseUrl;
+
+  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   choixmenu : string  = 'A';
   listData : ArticleDto[];
