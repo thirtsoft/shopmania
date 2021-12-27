@@ -23,7 +23,8 @@
                         <div class="col-md-5">
                             <div class="product-slider-single normal-slider">
                                 <!-- <img src="assets/customer/img/{{pImageDefault}}" alt="Product Image"> -->
-                                <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+articleDTOs.id}}" alt="Product Image">
+                              <!--   <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+articleDTOs.id}}" alt="Product Image"> -->
+                                <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+articleDTOs.id}}" alt="Product Image">
                             </div>
                             <!--  <div *ngFor="let img of pImages; let i = index;" class="product-slider-single-nav normal-slider">
                                 <div class="slider-nav-img"><img src="assets/customer/img/{{img}}" alt="Product Image"></div>

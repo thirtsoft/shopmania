@@ -20,7 +20,8 @@
                     </div>
                     <div class="product-image">
                         <a [routerLink]="['/product-detail', artDTO.reference]">
-                            <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="Product Image">
+                          <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+artDTO.id}}" alt="Product Image">
+                            <!-- <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="Product Image"> -->
                         </a>
                         <div class="product-action">
                             <a (click)="addTocart(artDTO)" style="cursor:pointer"><em class="fa fa-cart-plus"></em></a>
