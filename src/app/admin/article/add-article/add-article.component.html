@@ -192,7 +192,7 @@
 
               <div class="form-group">
                 <label>Photo</label>
-               <!--  <img
+                <img
                   height="90"
                   width="90"
                   class="img-circle"
@@ -203,8 +203,8 @@
                       addEditArticleDTO.id
                   }}"
                   *ngIf="paramId"
-                /> -->
-                <img
+                />
+               <!--  <img
                 height="90"
                 width="90"
                 class="img-circle"
@@ -215,7 +215,7 @@
                     addEditArticleDTO.id
                 }}"
                 *ngIf="paramId"
-              />
+              /> -->
                 <span *ngIf="!editPhoto">
                   <input type="file" (change)="onSelectedFile($event)" />
                   <button

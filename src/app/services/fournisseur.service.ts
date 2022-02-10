@@ -5,16 +5,16 @@ import { FormGroup } from '@angular/forms';
 
 import { Fournisseur, FournisseurDto } from './../model/fournisseur';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FournisseurService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   choixmenu : string  = 'A';
   listData : Fournisseur[];

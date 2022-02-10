@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <ul class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/">Accueil</a></li>
-      <li class="breadcrumb-item"><a routerLink="/products">Catalogues</a></li>
+      <li class="breadcrumb-item"><a routerLink="/products">Boutique</a></li>
       <li class="breadcrumb-item active">Checkout</li>
     </ul>
   </div>
@@ -121,10 +121,6 @@
                     >
                       {{ country.name }}
                     </option>
-                    <!--   <option [value]="0" selected>United State</option>
-                              <option *ngFor="let tempCountry of listCountryDto" [ngValue]="tempCountry">
-                                  {{ tempCountry.name }}
-                              </option> -->
                   </select>
                 </div>
 
@@ -211,10 +207,6 @@
                   >
                     {{ country.name }}
                   </option>
-                  <!--   <option [value]="0" selected>United State</option>
-                              <option *ngFor="let tempCountry of listCountryDto" [ngValue]="tempCountry">
-                                  {{ tempCountry.name }}
-                              </option> -->
                 </select>
               </div>
 
@@ -240,19 +232,6 @@
                 />
               </div>
 
-              <!--  <div class="col-md-12">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="newaccount">
-                            <label class="custom-control-label" for="newaccount">Create an account</label>
-                          </div>
-                        </div> -->
-
-              <!--  <div class="col-md-12">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="shipto">
-                            <label class="custom-control-label" for="shipto">Ship to different address</label>
-                          </div>
-                        </div> -->
             </div>
           </div>
         </div>
@@ -267,7 +246,7 @@
                   <img
                     [src]="
                       this.catalogueService.apiServerUrl +
-                      '/articles/photoArticleInContext/' +
+                      '/articles/photoArticle/' +
                       item.id +
                       '?ts=' +
                       getTS()

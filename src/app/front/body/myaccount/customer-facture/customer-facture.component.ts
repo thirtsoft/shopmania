@@ -38,7 +38,7 @@ export class CustomerFactureComponent implements OnInit {
     this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCommandeDto[]) => {
       this.lcmdService.listData = data;
       this.numeroCommande = this.lcmdService.listData[0].commandeDto.numeroCommande;
-      this.totalCommande = this.lcmdService.listData[0].commandeDto.total;
+      this.totalCommande = this.lcmdService.listData[0].commandeDto.totalCommande;
       this.dateCommande = this.lcmdService.listData[0].commandeDto.dateCommande;
       this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName  + ' ' + this.lcmdService.listData[0].commandeDto.clientDto.lastName;
       this.username = this.lcmdService.listData[0].commandeDto.utilisateurDto.name;
@@ -79,7 +79,7 @@ export class CustomerFactureComponent implements OnInit {
     return {
       content: [
         {
-          text: 'SOUL-BUSINESS',
+          text: 'CASAMANCE CONSTRUCTION SOLAIRE',
           fontSize: 15,
           alignment: 'center',
           color: '#0000ff',
@@ -87,21 +87,21 @@ export class CustomerFactureComponent implements OnInit {
           style: 'name',
         },
         {
-          text: 'Vente de produits cosmétiques et Habillements pour Hommes & Femmes',
-          fontSize: 11,
+          text: 'Vente de produits (électroménagers, électroniques, industriels, etc.), Installation solaire & Caméra surveillance, Electricité batiment',
+          fontSize: 10,
           bold: true,
           color: '#0000ff',
           alignment: 'center',
         },
         {
-          text: 'Au Centre Commerciale Touba Sandaga 2é Etages Boutique N° 266',
+          text: 'En Face Rond Point Cap Skiring',
           fontSize: 9.5,
           bold: true,
           color: '#0000ff',
           alignment: 'center',
         },
         {
-          text: 'Tél: +221 77 147 75 28 / Email: soulbusiness@gmail.com',
+          text: 'Tél: +221 77 715 15 14 / Email: mandiayesow@gmail.com',
           fontSize: 11,
           bold: true,
           alignment: 'center',
@@ -169,13 +169,13 @@ export class CustomerFactureComponent implements OnInit {
                 fontSize: 11,
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state}`,
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.name}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
                 fontSize: 11,
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.country}`,
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.countryDto.name}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
                 fontSize: 11,
@@ -223,7 +223,7 @@ export class CustomerFactureComponent implements OnInit {
         },
 
         {
-          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.total}`,
+          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.totalCommande}`,
           alignment: 'right',
           margin: [0, 8, 0, 8],
           bold: true,

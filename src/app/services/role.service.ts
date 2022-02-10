@@ -1,17 +1,18 @@
 import { Utilisateur } from './../model/utilisateur';
 import { Observable } from 'rxjs';
-import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
-  apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
+  //apiServerUrl: 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   constructor(private http: HttpClient) {
   }

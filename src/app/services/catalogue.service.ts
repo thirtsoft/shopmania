@@ -3,28 +3,25 @@ import { ArticleDto } from './../model/article';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogueService {
 
-//  public apiServerUrl = environment.apiBaseUrl;
-
-
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
-
+  public apiServerUrl = environment.apiBaseUrl;
 
   id: any;
   currentUser: any;
   username: any;
 
-//  public apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
+//  public host:string="http://localhost:8080";
+  public apiBaseUrl: 'http://localhost:8081/casa-solaire/v1';
 
   constructor(private http: HttpClient,
-              private tokenService: TokenStorageService) {
+            private tokenService: TokenStorageService
+  ) {
   }
 
   public getListArticleDTOBySelectedIsTrue(): Observable<ArticleDto[]> {
@@ -55,7 +52,6 @@ export class CatalogueService {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByPriceMinMax/${min}/${max}`);
   }
 
-
   public getListArticleDTOByScategoryByPageable(scatId: number, page: number, size: number): Observable<ArticleDto[]> {
     const searchUrl = (this.apiServerUrl+"/articles/searchArticleByScategoryByPageables?id="+scatId+"&page="+page+"&size="+size);
     console.log("Search Url---", searchUrl);
@@ -69,12 +65,12 @@ export class CatalogueService {
     return this.http.get<ArticleDto[]>(searchbyPriceUrl);
   }
 
-  public getPhotoArticle() {
-    return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
+  public countNumberOfProductInSubCategory(sucatId: number): Observable<ArticleDto> {
+    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/countNumberOfProductInSubCat/${sucatId}`);
   }
 
-  public getPhotoArticleInContext() {
-    return this.http.get(`${this.apiServerUrl}/articles/photoArticleInContext`);
+  public getPhotoArticle() {
+    return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
   }
 
   getCurrentUser(): Observable<any> {
@@ -94,12 +90,7 @@ export class CatalogueService {
 
   getUserId() {
     const user = this.tokenService.getUser();
-    this.id = user.id
-    /* this.authService.getUserById(this.id).subscribe(arg => {
-      this.currentUser = arg;
-      console.log(this.currentUser);
-    });
-    ; */
+    this.id = user.id;
   }
 
 

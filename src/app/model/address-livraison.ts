@@ -1,3 +1,4 @@
+import { State, StateDto } from './state';
 import { Commande, CommandeDto } from './commande';
 
 export class AddressLivraison {
@@ -12,10 +13,11 @@ export class AddressLivraison {
   street: string;
   country: string;
   city: string;
-  state: string;
+//  state: string;
   zipCode: string;
 
   commande: Commande;
+  state: State;
 
 }
 
@@ -26,7 +28,7 @@ export class AddressLivraisonDto {
   phone: string;
   city: string;
   rue: string;
-  country: string; 
+  country: string;
   street: string;*/
   rue: string;
   city: string;
@@ -35,5 +37,6 @@ export class AddressLivraisonDto {
   zipCode: string;
 
   commandeDto: CommandeDto;
+  stateDto: StateDto;
 
 }

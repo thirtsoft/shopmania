@@ -12,9 +12,9 @@ import { environment } from 'src/environments/environment';
 })
 export class HistoriqueLoginService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+   apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+   // apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
 
     public choixmenu : string  = 'A';

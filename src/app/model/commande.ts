@@ -30,6 +30,7 @@ export class CommandeDto {
   numeroCommande: string;
   totalQuantity: number;
   total: number;
+  totalCommande: number;
   dateCommande: Date;
 
   firstName: string;

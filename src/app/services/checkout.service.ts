@@ -5,16 +5,16 @@ import { TokenStorageService } from './../auth/token-storage.service';
 
 import { Purchase } from './../model/purchase';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+   apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   id;
 
