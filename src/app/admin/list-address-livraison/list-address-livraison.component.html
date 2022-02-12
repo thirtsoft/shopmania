@@ -1,56 +1,50 @@
+<h4><i class="fa fa-angle-right"></i> List des addresses de Livraisons</h4>
 
-        <h4>
-          <i class="fa fa-angle-right"></i> List des addresses de Livraisons
-        </h4>
+<input
+  type="text"
+  class="form-control"
+  placeholder="Search"
+  [(ngModel)]="searchText"
+/>
 
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search"
-          [(ngModel)]="searchText"
-        />
+<div class="table-responsive">
+  <table class="table table-striped" aria-label="">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Rue</th>
+        <th>Ville</th>
+        <th>Région</th>
+        <th>Pays</th>
+        <th>Code Zip</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let addLivraisonDTO of addressLivraisonDTOList
+            | filter: searchText
+            | paginate: { itemsPerPage: 20, currentPage: p }
+        "
+      >
+        <td>{{ addLivraisonDTO?.rue }}</td>
+        <td>{{ addLivraisonDTO?.city }}</td>
+        <td>{{ addLivraisonDTO?.state }}</td>
+        <td>{{ addLivraisonDTO?.country }}</td>
+        <td>{{ addLivraisonDTO?.zipcode }}</td>
 
-        <div class="table-responsive">
-          <table class="table table-striped" aria-label="">
-            <thead class="thead-inverse">
-              <tr>
-                <th>Rue</th>
-                <th>Ville</th>
-                <th>Région</th>
-                <th>Pays</th>
-                <th>Code Zip</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
-                  let addLivraisonDTO of addressLivraisonDTOList
-                    | filter: searchText
-                    | paginate: { itemsPerPage: 20, currentPage: p }
-                "
-              >
-                <td>{{ addLivraisonDTO?.rue }}</td>
-                <td>{{ addLivraisonDTO?.city }}</td>
-                <td>{{ addLivraisonDTO?.state }}</td>
-                <td>{{ addLivraisonDTO?.country }}</td>
-                <td>{{ addLivraisonDTO?.zipcode }}</td>
-
-                <td>
-                  <button
-                    class="btn btn-danger btn-sm"
-                    (click)="onDeleteAddressLivraison(addLivraisonDTO.id)"
-                  >
-                    <i class="fa fa-trash" aria-hidden="true"></i></button
-                  >&nbsp;
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="pagination">
-            <pagination-controls
-              (pageChange)="p = $event"
-            ></pagination-controls>
-          </div>
-        </div>
-    
+        <td>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="onDeleteAddressLivraison(addLivraisonDTO.id)"
+          >
+            <i class="fa fa-trash" aria-hidden="true"></i></button
+          >&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

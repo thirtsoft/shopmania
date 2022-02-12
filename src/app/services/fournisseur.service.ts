@@ -30,7 +30,7 @@ export class FournisseurService {
   }
 
   public getFournisseurById(fournisseurId: number): Observable<Fournisseur> {
-    return this.http.get<Fournisseur>(`${this.apiServerUrl}/fournisseurs/${fournisseurId}`);
+    return this.http.get<Fournisseur>(`${this.apiServerUrl}/fournisseurs/findById/${fournisseurId}`);
   }
 
   public addFournisseur(fournisseur: Fournisseur): Observable<Fournisseur> {
@@ -56,7 +56,7 @@ export class FournisseurService {
   }
 
   public getFournisseurDtoById(fournisseurId: number): Observable<FournisseurDto> {
-    return this.http.get<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/${fournisseurId}`);
+    return this.http.get<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/findById/${fournisseurId}`);
   }
 
   public addFournisseurDto(fournisseurDTO: FournisseurDto): Observable<FournisseurDto> {

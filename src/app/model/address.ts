@@ -1,14 +1,9 @@
 import { State, StateDto } from './state';
 import { Commande, CommandeDto } from './commande';
 
-export class AddressLivraison {
+export class Address {
   id: number;
   reference: string;
-  /* quartier: string;
-  phone: string;
-  city: string;
-  rue: string;
-  country: string; */
 
   street: string;
   country: string;
@@ -17,19 +12,13 @@ export class AddressLivraison {
   zipCode: string;
 
   commande: Commande;
+
   state: State;
 
 }
 
-export class AddressLivraisonDto {
+export class AddressDto {
   id: number;
- /*  reference: string;
-  quartier: string;
-  phone: string;
-  city: string;
-  rue: string;
-  country: string;
-  street: string;*/
   rue: string;
   city: string;
   state: string;

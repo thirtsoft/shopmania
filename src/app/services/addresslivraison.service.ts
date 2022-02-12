@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
-import { AddressLivraison, AddressLivraisonDto } from './../model/address-livraison';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+import { Address, AddressDto } from './../model/address';
 
 import { environment } from 'src/environments/environment';
 
@@ -18,50 +19,50 @@ export class AddresslivraisonService {
   constructor(private http: HttpClient) {
   }
 
-  public getAddressLivraisons(): Observable<AddressLivraison[]> {
-    return this.http.get<AddressLivraison[]>(`${this.apiServerUrl}/addresslivraisons/all`);
+  public getAddressLivraisons(): Observable<Address[]> {
+    return this.http.get<Address[]>(`${this.apiServerUrl}/addresses/all`);
   }
 
-  public getAddressLivraisonById(addressLivraisonId: number): Observable<AddressLivraison> {
-    return this.http.get<AddressLivraison>(`${this.apiServerUrl}/addresslivraisons/${addressLivraisonId}`);
+  public getAddressLivraisonById(addressLivraisonId: number): Observable<Address> {
+    return this.http.get<Address>(`${this.apiServerUrl}/addresses/${addressLivraisonId}`);
   }
 
-  public addAddressLivraison(addressLivraison: AddressLivraison): Observable<AddressLivraison> {
-    return this.http.post<AddressLivraison>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraison);
+  public addAddressLivraison(addressLivraison: Address): Observable<Address> {
+    return this.http.post<Address>(`${this.apiServerUrl}/addresses/create`, addressLivraison);
   }
 
-  public updateAddressLivraison(addressLivraison: AddressLivraison): Observable<AddressLivraison> {
-    return this.http.put<AddressLivraison>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraison);
+  public updateAddressLivraison(addressLivraison: Address): Observable<Address> {
+    return this.http.put<Address>(`${this.apiServerUrl}/addresses/create`, addressLivraison);
   }
 
   public deleteAddressLivraison(addressLivraisonId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/addresslivraisons/delete/${addressLivraisonId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/addresses/delete/${addressLivraisonId}`);
   }
 
   /******************** AddressLivraisonDTOs ****************/
 
-  public getAddressLivraisonDtos(): Observable<AddressLivraisonDto[]> {
-    return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/all`);
+  public getAddressLivraisonDtos(): Observable<AddressDto[]> {
+    return this.http.get<AddressDto[]>(`${this.apiServerUrl}/addresses/all`);
   }
 
-  public getAddressLivraisonDtosOrderByIdDesc(): Observable<AddressLivraisonDto[]> {
-    return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/searchAllAddressLivraisonsOrderByIdDesc`);
+  public getAddressLivraisonDtosOrderByIdDesc(): Observable<AddressDto[]> {
+    return this.http.get<AddressDto[]>(`${this.apiServerUrl}/addresses/searchAllAddressLivraisonsOrderByIdDesc`);
   }
 
-  public getAddressLivraisonDtoById(addressLivraisonId: number): Observable<AddressLivraisonDto> {
-    return this.http.get<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/${addressLivraisonId}`);
+  public getAddressLivraisonDtoById(addressLivraisonId: number): Observable<AddressDto> {
+    return this.http.get<AddressDto>(`${this.apiServerUrl}/addresses/${addressLivraisonId}`);
   }
 
-  public addAddressLivraisonDto(addressLivraisonDTO: AddressLivraisonDto): Observable<AddressLivraisonDto> {
-    return this.http.post<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraisonDTO);
+  public addAddressLivraisonDto(addressLivraisonDTO: AddressDto): Observable<AddressDto> {
+    return this.http.post<AddressDto>(`${this.apiServerUrl}/addresses/create`, addressLivraisonDTO);
   }
 
-  public updateAddressLivraisonDto(addressLivraisonDTO: AddressLivraisonDto): Observable<AddressLivraisonDto> {
-    return this.http.put<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraisonDTO);
+  public updateAddressLivraisonDto(addressLivraisonDTO: AddressDto): Observable<AddressDto> {
+    return this.http.put<AddressDto>(`${this.apiServerUrl}/addresses/create`, addressLivraisonDTO);
   }
 
   public deleteAddressLivraisonDto(addressLivraisonId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/addresslivraisons/delete/${addressLivraisonId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/addresses/delete/${addressLivraisonId}`);
   }
 
 

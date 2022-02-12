@@ -94,7 +94,7 @@ export class AddArticleComponent implements OnInit {
     this.currentFileUpload = file;
   } */
 
-/*   processForm() {
+  processForm() {
     this.progress = 0;
     this.currentFileUpload = this.selectedFiles.item(0)
     console.log(this.currentFileUpload);
@@ -112,8 +112,9 @@ export class AddArticleComponent implements OnInit {
       }
     );
     this.selectedFiles = undefined;
-  } */
+  }
 
+  /*
   processForm() {
     this.progress = 0;
     this.currentFileUpload = this.selectedFiles.item(0)
@@ -133,6 +134,7 @@ export class AddArticleComponent implements OnInit {
     );
     this.selectedFiles = undefined;
   }
+  */
 
   getListScategoryDTOs() {
     this.scategorieService.getScategoryDtos().subscribe(
@@ -166,8 +168,8 @@ export class AddArticleComponent implements OnInit {
           timeOut: 1500,
           positionClass: 'toast-top-right',
         });
-        this.router.navigateByUrl("admin/articles").then(() => {
-          window.location.reload();
+        this.router.navigateByUrl("admin/accueil/articles").then(() => {
+    //      window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
@@ -184,7 +186,7 @@ export class AddArticleComponent implements OnInit {
   }
 
   // Ajouter un produits avec sa photo
-  /* onSaveArticle() {
+  onSaveArticle() {
     let formData = new FormData();
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
     formData.append('photoArticle', this.articleFile);
@@ -197,15 +199,16 @@ export class AddArticleComponent implements OnInit {
         });
 
         this.router.navigateByUrl("admin/accueil/articles").then(() => {
-          window.location.reload();
+        //  window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
-  } */
+  }
 
+ /*
   onSaveArticle() {
     let formData = new FormData();
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
@@ -227,7 +230,7 @@ export class AddArticleComponent implements OnInit {
       }
     );
   }
-
+*/
 
   goBack() {
     this.router.navigate([`/admin/accueil/articles`]);

@@ -34,11 +34,11 @@ export class SScategoryService {
   }
 
   public getALLSuCategoryDtosOrderByIdDesc(): Observable<ScategoryDto[]> {
-    return this.http.get<ScategoryDto[]>(`${this.apiServerUrl}/scategories/searchAllSubCategoryOrderByIdDesc`);
+    return this.http.get<ScategoryDto[]>(`${this.apiServerUrl}/scategories/searchAllSubCategoriesOrderByIdDesc`);
   }
 
   public getScategoryDtoById(scategoryId: number): Observable<ScategoryDto> {
-    return this.http.get<ScategoryDto>(`${this.apiServerUrl}/scategories/${scategoryId}`);
+    return this.http.get<ScategoryDto>(`${this.apiServerUrl}/scategories/findById/${scategoryId}`);
   }
 
   public addScategoryDto(scategoryDTO: ScategoryDto): Observable<ScategoryDto> {

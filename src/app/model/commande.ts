@@ -1,6 +1,6 @@
 import { Utilisateur, UtilisateurDto } from './utilisateur';
 import { LigneCommande } from './ligne-commande';
-import { AddressLivraisonDto } from './address-livraison';
+import { AddressLivraisonDto } from './address';
 import { Statuscommande } from './statuscommande';
 import { Client, ClientDto } from './client';
 

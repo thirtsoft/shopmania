@@ -1,3 +1,7 @@
+import { AddCountrieComponent } from './city/add-countrie/add-countrie.component';
+import { AddStateComponent } from './city/add-state/add-state.component';
+import { ListStatesComponent } from './city/list-states/list-states.component';
+import { ListCountriesComponent } from './city/list-countries/list-countries.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -79,7 +83,6 @@ import { UpdateBlogComponent } from './blog/update-blog/update-blog.component';
 import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blog.component';
 
 
-
 @NgModule({
   declarations: [
     ListAddressLivraisonComponent,
@@ -133,6 +136,10 @@ import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blo
     ListBlogComponent,
     UpdateBlogComponent,
     UploadFileBlogComponent,
+    ListCountriesComponent,
+    ListStatesComponent,
+    AddStateComponent,
+    AddCountrieComponent,
 
 
   ],
@@ -177,6 +184,7 @@ import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blo
     AddCategoryComponent, CreateSubCategoryComponent,
     ViewCommandeComponent, UpdateStatusCommandeComponent,
     DashboardComponent, UploadFileComponent, AddFournisseurComponent,
+    AddStateComponent, AddCountrieComponent,
     ProfilComponent, UpdateProfilComponent, UpdateUsernameComponent,
     UpdatePasswordComponent,
     ResponseNewsletterComponent, SendMailToAllCustomerComponent

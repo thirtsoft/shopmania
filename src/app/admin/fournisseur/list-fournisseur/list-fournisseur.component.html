@@ -11,7 +11,7 @@
     class="btn-meeting"
     type="submit"
     style="margin-left: 5%; width: 30%"
-    routerLink="/admin/fournisseur"
+    routerLink="/admin/accueil/fournisseur"
   >
     Ajouter fournisseur
   </button>
@@ -26,8 +26,7 @@
         <th>Addresse</th>
         <th>Telephone</th>
         <th>Email</th>
-        <th>City</th>
-        <th>Country</th>
+        <th>Pays</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -41,23 +40,15 @@
       >
         <td>{{ fourDTO?.articleDto.designation }}</td>
         <td>{{ fourDTO?.firstName }} {{ fourDTO?.lastName }}</td>
-        <td>{{ fourDTO?.address }}</td>
-        <td>{{ fourDTO?.telephoneFournisseur }}</td>
+        <td>{{ fourDTO?.rue }}</td>
+        <td>{{ fourDTO?.telephone }}</td>
         <td>{{ fourDTO?.email }}</td>
         <td>{{ fourDTO?.city }}</td>
-        <td>{{ fourDTO?.country }}</td>
 
         <td class="text-right">
-         <!--  <button
-            class="btn btn-warning btn-sm"
-            (click)="envoiEmailFournisseur(fourDTO)"
-          >
-            <i class="fa fa-envelope" aria-hidden="true"></i></button
-          >&nbsp; -->
-
           <button
             class="btn btn-primary btn-sm"
-            [routerLink]="['/admin/fournisseur', fourDTO.id]"
+            [routerLink]="['/admin/accueil/fournisseur', fourDTO.id]"
           >
             <em class="fa fa-edit" aria-hidden="true"></em></button
           >&nbsp;

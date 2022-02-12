@@ -86,7 +86,7 @@ export class AddFournisseurComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
-          window.location.reload();
+  //        window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
@@ -106,8 +106,8 @@ export class AddFournisseurComponent implements OnInit {
           timeOut: 1500,
           positionClass: 'toast-top-right',
         });
-        this.router.navigateByUrl("admin/fournisseurs").then(() => {
-          window.location.reload();
+        this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
+    //      window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
@@ -119,7 +119,7 @@ export class AddFournisseurComponent implements OnInit {
 
 
   goBack() {
-    this.router.navigateByUrl("admin/fournisseurs");
+    this.router.navigateByUrl("admin/accueil/fournisseurs");
   }
 
 }

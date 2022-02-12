@@ -22,7 +22,7 @@ export class ClientService {
   }
 
   public getClientById(clientId: number): Observable<Client> {
-    return this.http.get<Client>(`${this.apiServerUrl}/clients/${clientId}`);
+    return this.http.get<Client>(`${this.apiServerUrl}/clients/findById/${clientId}`);
   }
 
   public addClient(client: Client): Observable<Client> {
@@ -48,7 +48,7 @@ export class ClientService {
   }
 
   public getClientDtoById(clientId: number): Observable<ClientDto> {
-    return this.http.get<ClientDto>(`${this.apiServerUrl}/clients/${clientId}`);
+    return this.http.get<ClientDto>(`${this.apiServerUrl}/clients/findById/${clientId}`);
   }
 
   public addClientDto(clientDTO: ClientDto): Observable<ClientDto> {

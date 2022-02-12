@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StateDto } from './../model/state';
@@ -14,6 +15,14 @@ export class StateService {
 
   //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
+  choixmenu : string  = 'A';
+
+  listData : StateDto[];
+
+  formData:  StateDto;
+
+  dataForm:  FormGroup;
+
   constructor(private http: HttpClient) {
   }
 
@@ -28,7 +37,7 @@ export class StateService {
   }
 
   public getStateDtoById(statId: number): Observable<StateDto> {
-    return this.http.get<StateDto>(`${this.apiServerUrl}/states/${statId}`);
+    return this.http.get<StateDto>(`${this.apiServerUrl}/states/findById/${statId}`);
   }
 
   public getStateDtoByDesignation(designation: string): Observable<StateDto> {

@@ -31,7 +31,7 @@ export class CategoryService {
   }
 
   public getCategoryById(categoryId: number): Observable<Category> {
-    return this.http.get<Category>(`${this.apiServerUrl}/categories/${categoryId}`);
+    return this.http.get<Category>(`${this.apiServerUrl}/categories/findById/${categoryId}`);
   }
 
   public getCategoryByDesignation(designation: string): Observable<Category> {
@@ -58,11 +58,11 @@ export class CategoryService {
   }
 
   public getCategorieDTOsOrderByIdDesc(): Observable<CategoryDto[]> {
-    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/searchAllCategorieOrderByIdDesc`);
+    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/searchAllCategoriesOrderByIdDesc`);
   }
 
   public getCategoryDtoById(categoryId: number): Observable<CategoryDto> {
-    return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/${categoryId}`);
+    return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/findById/${categoryId}`);
   }
 
   public getCategoryDtoByDesignation(designation: string): Observable<CategoryDto> {
