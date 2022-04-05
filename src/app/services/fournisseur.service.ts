@@ -5,14 +5,16 @@ import { FormGroup } from '@angular/forms';
 
 import { Fournisseur, FournisseurDto } from './../model/fournisseur';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FournisseurService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
+
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   choixmenu : string  = 'A';
   listData : Fournisseur[];
@@ -28,7 +30,7 @@ export class FournisseurService {
   }
 
   public getFournisseurById(fournisseurId: number): Observable<Fournisseur> {
-    return this.http.get<Fournisseur>(`${this.apiServerUrl}/fournisseurs/${fournisseurId}`);
+    return this.http.get<Fournisseur>(`${this.apiServerUrl}/fournisseurs/findById/${fournisseurId}`);
   }
 
   public addFournisseur(fournisseur: Fournisseur): Observable<Fournisseur> {
@@ -54,7 +56,7 @@ export class FournisseurService {
   }
 
   public getFournisseurDtoById(fournisseurId: number): Observable<FournisseurDto> {
-    return this.http.get<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/${fournisseurId}`);
+    return this.http.get<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/findById/${fournisseurId}`);
   }
 
   public addFournisseurDto(fournisseurDTO: FournisseurDto): Observable<FournisseurDto> {

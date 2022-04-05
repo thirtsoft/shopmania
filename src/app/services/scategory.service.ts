@@ -3,14 +3,16 @@ import { Scategory, ScategoryDto } from './../model/scategory';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SScategoryService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
+
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
 //  private apiServerUrl = "http://localhost:8081/shop-mania/v1/";
 
@@ -32,11 +34,11 @@ export class SScategoryService {
   }
 
   public getALLSuCategoryDtosOrderByIdDesc(): Observable<ScategoryDto[]> {
-    return this.http.get<ScategoryDto[]>(`${this.apiServerUrl}/scategories/searchAllSubCategoryOrderByIdDesc`);
+    return this.http.get<ScategoryDto[]>(`${this.apiServerUrl}/scategories/searchAllSubCategoriesOrderByIdDesc`);
   }
 
   public getScategoryDtoById(scategoryId: number): Observable<ScategoryDto> {
-    return this.http.get<ScategoryDto>(`${this.apiServerUrl}/scategories/${scategoryId}`);
+    return this.http.get<ScategoryDto>(`${this.apiServerUrl}/scategories/findById/${scategoryId}`);
   }
 
   public addScategoryDto(scategoryDTO: ScategoryDto): Observable<ScategoryDto> {

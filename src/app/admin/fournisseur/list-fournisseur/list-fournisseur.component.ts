@@ -68,7 +68,7 @@ export class ListFournisseurComponent implements OnInit {
             positionClass: 'toast-top-right',
           });
           this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
-            window.location.reload();
+        //    window.location.reload();
           });
         },
           (error: HttpErrorResponse) => {
@@ -77,16 +77,6 @@ export class ListFournisseurComponent implements OnInit {
         );
       }
     });
-  }
-
-  envoiEmailFournisseur(item: FournisseurDto) {
-    this.crudApi.choixmenu = "M";
-    this.crudApi.dataForm = this.fb.group(Object.assign({},item));
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
-    this.matDialog.open(EnvoiEmailFournisseurComponent, dialogConfig);
   }
 
 

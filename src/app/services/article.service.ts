@@ -4,15 +4,17 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Article, ArticleDto } from './../model/article';
 
-import { environment } from './../../environments/environment';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
+
+
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   choixmenu : string  = 'A';
   listData : ArticleDto[];
@@ -27,7 +29,7 @@ export class ArticleService {
   }
 
   public getArticleById(articleId: number): Observable<Article> {
-    return this.http.get<Article>(`${this.apiServerUrl}/articles/${articleId}`);
+    return this.http.get<Article>(`${this.apiServerUrl}/articles/findById/${articleId}`);
   }
 
   public getArticleByReference(reference: string): Observable<Article> {
@@ -57,7 +59,7 @@ export class ArticleService {
   }
 
   public getArticleDtoById(articleId: number): Observable<ArticleDto> {
-    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/${articleId}`);
+    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/findById/${articleId}`);
   }
 
   public getArticleDtoByReference(reference: string): Observable<ArticleDto> {
@@ -76,6 +78,14 @@ export class ArticleService {
     return this.http.request(req);
   }
 
+  public addArticleDtoWithPhotoInFolder(formData: FormData): Observable<any> {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/articles/createWithFileInFolder`, formData, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req);
+  }
+
 
   public updateArticleDto(articleId: number, articleDTO: ArticleDto): Observable<ArticleDto> {
     return this.http.put<ArticleDto>(`${this.apiServerUrl}/articles/update/${articleId}`, articleDTO);
@@ -85,6 +95,17 @@ export class ArticleService {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
     const req = new HttpRequest('POST', this.apiServerUrl+'/articles/uploadArticlePhoto/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+  }
+
+  uploadPhotoArticleDtoInFolder(file: File, id: number): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+    const req = new HttpRequest('POST', this.apiServerUrl+'/articles/uploadArticlePhotoInFolder/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });

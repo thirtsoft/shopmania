@@ -1,0 +1,9 @@
+{
+  "/api/*": {
+  "target": "http://62.171.128.8:8080/soulbusiness",
+  "secure": false,
+  "pathRewrite": {"^/api" : ""},
+  "logLevel": "debug",
+  "changeOrigin": true
+}
+}

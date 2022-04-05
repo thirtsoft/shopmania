@@ -1,15 +1,18 @@
 import { Client, ClientDto } from './../model/client';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
+
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
+
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   constructor(private http: HttpClient) {
   }
@@ -19,7 +22,7 @@ export class ClientService {
   }
 
   public getClientById(clientId: number): Observable<Client> {
-    return this.http.get<Client>(`${this.apiServerUrl}/clients/${clientId}`);
+    return this.http.get<Client>(`${this.apiServerUrl}/clients/findById/${clientId}`);
   }
 
   public addClient(client: Client): Observable<Client> {
@@ -45,7 +48,7 @@ export class ClientService {
   }
 
   public getClientDtoById(clientId: number): Observable<ClientDto> {
-    return this.http.get<ClientDto>(`${this.apiServerUrl}/clients/${clientId}`);
+    return this.http.get<ClientDto>(`${this.apiServerUrl}/clients/findById/${clientId}`);
   }
 
   public addClientDto(clientDTO: ClientDto): Observable<ClientDto> {

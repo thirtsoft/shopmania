@@ -1,21 +1,23 @@
-import { UtilisateurDto } from './../model/utilisateur';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { TokenStorageService } from './token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Register } from './register';
-import { Login } from './login';
-import { ProfilInfo, UpdatePasswordInfo, UpdateUsernameInfo, UpdateProfilInfo, UpdatePasswordUser, UpdateUsernameUser } from './profil-info';
 import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
-import { throwError, Observable } from 'rxjs';
 
+import { TokenStorageService } from './token-storage.service';
+
+import { Register } from './register';
+import { ProfilInfo, UpdatePasswordInfo, UpdateUsernameInfo, UpdateProfilInfo, UpdatePasswordUser, UpdateUsernameUser } from './profil-info';
+import { UtilisateurDto } from './../model/utilisateur';
+
+import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-//const AUTH_API = 'http://localhost:8081/shop-mania/v1/';
+const AUTH_API = 'http://localhost:8081/casa-solaire/v1/';
 
-const AUTH_API = 'https://businesse-server.herokuapp.com/shop-mania/v1/';
+//const AUTH_API = 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/';
 
+//const AUTH_API = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/";
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -28,13 +30,26 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  public apiServerUrl = environment.apiBaseUrl;
 
-//  public loginUrl = 'http://localhost:8081/shop-mania/v1/auth/authenticated';
 
-  loginUrl: 'https://businesse-server.herokuapp.com/shop-mania/v1/auth/authenticated';
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+//  apiServerUrl = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1";
 
-  private baseUrl_1 = environment.apiBaseUrl;
+
+  loginUrl = 'http://localhost:8081/casa-solaire/v1/auth/authenticated';
+
+
+//  loginUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated';
+
+//  loginUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1/auth/authenticated";
+
+//  loginUrl = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated";
+
+
+  baseUrl_1 = 'http://localhost:8081/casa-solaire/v1';
+
+  //baseUrl_1 = 'http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1';
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;
@@ -61,15 +76,6 @@ export class AuthService {
     return this.http.post<Register>(AUTH_API + 'auth/signUp', info , httpOptions);
   }
 
-/*   attemptAuth(credentials: Login): Observable<any> {
- //   return this.http.post(AUTH_API + '/auth/authenticated', {
-    return this.http.post(this.loginUrl, {
-      username: credentials.username,
-      password: credentials.password
-    }, httpOptions);
-    this.islogin = true;
-  } */
-
   attemptAuth(credentials): Observable<any> {
     const loginData = {
       username: credentials.username,
@@ -78,14 +84,6 @@ export class AuthService {
     return this.http.post(this.loginUrl, loginData, httpOptions);
     this.islogin=true;
   }
-
- /*  attemptAuth(credentials: Login): Observable<any>  {
-    return this.http.post(this.loginUrl, {
-      username: credentials.username,
-      password: credentials.password
-    }, httpOptions);
-    this.islogin = true;
-  } */
 
   getCurrentUser(){
     return this.http.get(AUTH_API + '/auth/currentUser');

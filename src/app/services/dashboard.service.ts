@@ -2,11 +2,12 @@ import { LigneCommandeDto } from './../model/ligne-commande';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { CommandeDto } from './../model/commande';
 import { FournisseurDto } from './../model/fournisseur';
 import { NotificationDto } from './../model/notification';
 import { ClientDto } from './../model/client';
+
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -14,9 +15,15 @@ import { ClientDto } from './../model/client';
 })
 export class DashboardService {
 
-  public apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
-  public apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+
+  //apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
+
+//  apiBaseUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1';
+
+
 
   constructor(private http: HttpClient
   ) {}

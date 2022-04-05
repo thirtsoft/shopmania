@@ -1,300 +1,295 @@
-
-        <h2 *ngIf="!paramId">Nouveau Article</h2>
-        <h2 *ngIf="paramId">Modifier Article</h2>
-        <form
-          #addArticleForm="ngForm"
-          name="form"
-          enctype="multipart/form-data"
+<h2 *ngIf="!paramId">Nouveau Article</h2>
+<h2 *ngIf="paramId">Modifier Article</h2>
+<form #addArticleForm="ngForm" name="form" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Reference </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditArticleDTO.reference"
+          name="reference"
+          id="reference"
+          #reference="ngModel"
+          required
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            (reference.touched || addArticleForm.submitted) &&
+            reference.errors?.required
+          "
         >
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Reference </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="addEditArticleDTO.reference"
-                  name="reference"
-                  id="reference"
-                  #reference="ngModel"
-                  required
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (reference.touched || addArticleForm.submitted) &&
-                    reference.errors?.required
-                  "
-                >
-                  Reference est obligatoire
-                </span>
-              </div>
+          Reference est obligatoire
+        </span>
+      </div>
 
-              <div class="form-group">
-                <label>Designation</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="addEditArticleDTO.designation"
-                  name="designation"
-                  id="designation"
-                  #designation="ngModel"
-                  required
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (designation.touched || addArticleForm.submitted) &&
-                    designation.errors?.required
-                  "
-                >
-                  Désignation est obligatoire
-                </span>
-              </div>
+      <div class="form-group">
+        <label>Designation</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditArticleDTO.designation"
+          name="designation"
+          id="designation"
+          #designation="ngModel"
+          required
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            (designation.touched || addArticleForm.submitted) &&
+            designation.errors?.required
+          "
+        >
+          Désignation est obligatoire
+        </span>
+      </div>
 
-              <div class="form-group">
-                <label>Categorie</label>
-                <div class="form-group">
-                  <select
-                    name="scategorie"
-                    [(ngModel)]="addEditArticleDTO.scategoryDto"
-                    class="form-control"
-                  >
-                    <option
-                      *ngFor="let scat of scategoryListDTO"
-                      [ngValue]="
-                        scat.id == addEditArticleDTO.scategoryDto?.id
-                          ? addEditArticleDTO.scategoryDto
-                          : scat
-                      "
-                    >
-                      {{ scat.libelle }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Price </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="addEditArticleDTO.price"
-                  name="price"
-                  id="price"
-                  #price="ngModel"
-                  required
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (price.touched || addArticleForm.submitted) &&
-                    price.errors?.required
-                  "
-                >
-                  Price est obligatoire
-                </span>
-              </div>
-
-              <div class="form-group">
-                <label>CurrentPrice</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="addEditArticleDTO.currentPrice"
-                  name="currentPrice"
-                  id="currentPrice"
-                  #currentPrice="ngModel"
-                  required
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (currentPrice.touched || addArticleForm.submitted) &&
-                    currentPrice.errors?.required
-                  "
-                >
-                  Désignation est obligatoire
-                </span>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Quantity </label>
-                <input
-                  type="number"
-                  class="form-control"
-                  [(ngModel)]="addEditArticleDTO.quantity"
-                  name="quantity"
-                  id="quantity"
-                  #quantity="ngModel"
-                  required
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (quantity.touched || addArticleForm.submitted) &&
-                    quantity.errors?.required
-                  "
-                >
-                  Quantity est obligatoire
-                </span>
-              </div>
-
-              <div class="row">
-                <div class="form-group">
-                  <label>Promo</label>
-                  <input
-                    required
-                    class="form-control"
-                    type="checkbox"
-                    name="promo"
-                    [(ngModel)]="addEditArticleDTO.promo"
-                    name="promo"
-                    id="promo"
-                    #promo="ngModel"
-                  />
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (promo.touched || addArticleForm.submitted) &&
-                      promo.errors?.required
-                    "
-                  >
-                    Promo est obligatoire
-                  </span>
-                </div>
-                &nbsp;&nbsp;&nbsp;
-
-                <div class="form-group">
-                  <label>Selected</label>
-                  <input
-                    type="checkbox"
-                    name="selected"
-                    [(ngModel)]="addEditArticleDTO.selected"
-                    name="selected"
-                    id="selected"
-                    #selected="ngModel"
-                    class="form-control"
-                  />
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (selected.touched || addArticleForm.submitted) &&
-                      selected.errors?.required
-                    "
-                  >
-                    Selected est obligatoire
-                  </span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Photo</label>
-                <img
-                  height="90"
-                  width="90"
-                  class="img-circle"
-                  alt=""
-                  src="{{
-                    this.catService.apiServerUrl +
-                      '/articles/photoArticle/' +
-                      addEditArticleDTO.id
-                  }}"
-                  *ngIf="paramId"
-                />
-                <span *ngIf="!editPhoto">
-                  <input type="file" (change)="onSelectedFile($event)" />
-                  <button
-                    class="btn btn-success btn-sm"
-                    (click)="processForm()"
-                  >
-                    <span class="glyphicon glyphicon-upload"></span>
-                    Save Change
-                  </button>
-                  {{ progress }}
-                </span>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Description</label>
-                <textarea
-                  type="text "
-                  class="form-control"
-                  name="description "
-                  id="description "
-                  [(ngModel)]="addEditArticleDTO.description"
-                  cols="30 "
-                  rows="10 "
-                  #description="ngModel"
-                  required
-                >
-                </textarea>
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (description.touched || addArticleForm.submitted) &&
-                    description.errors?.required
-                  "
-                >
-                  Description est obligatoire
-                </span>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Manufacturée</label>
-                <textarea
-                  type="text "
-                  class="form-control"
-                  name="manufactured"
-                  id="manufactured "
-                  [(ngModel)]="addEditArticleDTO.manufactured"
-                  cols="30 "
-                  rows="10 "
-                  #manufactured="ngModel"
-                  required
-                >
-                </textarea>
-                <span
-                  class="text-danger"
-                  *ngIf="
-                    (description.touched || addArticleForm.submitted) &&
-                    description.errors?.required
-                  "
-                >
-                  Specification est obligatoire
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <button
-              *ngIf="!paramId"
-              type="submit"
-              class="btn btn-lg btn-success"
-              (click)="onSaveArticle()"
+      <div class="form-group">
+        <label>Categorie</label>
+        <div class="form-group">
+          <select
+            name="scategorie"
+            [(ngModel)]="addEditArticleDTO.scategoryDto"
+            class="form-control"
+          >
+            <option
+              *ngFor="let scat of scategoryListDTO"
+              [ngValue]="
+                scat.id == addEditArticleDTO.scategoryDto?.id
+                  ? addEditArticleDTO.scategoryDto
+                  : scat
+              "
             >
-              <i class="fa fa-database"></i> Enregistrer</button
-            >&nbsp;
-            <button
-              *ngIf="paramId"
-              class="btn btn-lg btn-warning"
-              (click)="update()"
-            >
-              <i class="fa fa-database"></i> Modifier
-            </button>
-            <button
-              (click)="goBack()"
-              type="button"
-              class="btn btn-lg btn-danger ml-1"
-            >
-              <i class="fa fa-angle-right"></i> Retour
-            </button>
-          </div>
-        </form>
+              {{ scat.libelle }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Price </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditArticleDTO.price"
+          name="price"
+          id="price"
+          #price="ngModel"
+          required
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            (price.touched || addArticleForm.submitted) &&
+            price.errors?.required
+          "
+        >
+          Price est obligatoire
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>CurrentPrice</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="addEditArticleDTO.currentPrice"
+          name="currentPrice"
+          id="currentPrice"
+          #currentPrice="ngModel"
+          required
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            (currentPrice.touched || addArticleForm.submitted) &&
+            currentPrice.errors?.required
+          "
+        >
+          Désignation est obligatoire
+        </span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Quantity </label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="addEditArticleDTO.quantity"
+          name="quantity"
+          id="quantity"
+          #quantity="ngModel"
+          required
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            (quantity.touched || addArticleForm.submitted) &&
+            quantity.errors?.required
+          "
+        >
+          Quantity est obligatoire
+        </span>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label>Promo</label>
+          <input
+            required
+            class="form-control"
+            type="checkbox"
+            name="promo"
+            [(ngModel)]="addEditArticleDTO.promo"
+            name="promo"
+            id="promo"
+            #promo="ngModel"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (promo.touched || addArticleForm.submitted) &&
+              promo.errors?.required
+            "
+          >
+            Promo est obligatoire
+          </span>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+
+        <div class="form-group">
+          <label>Selected</label>
+          <input
+            type="checkbox"
+            name="selected"
+            [(ngModel)]="addEditArticleDTO.selected"
+            name="selected"
+            id="selected"
+            #selected="ngModel"
+            class="form-control"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              (selected.touched || addArticleForm.submitted) &&
+              selected.errors?.required
+            "
+          >
+            Selected est obligatoire
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Photo</label>
+        <img
+          height="90"
+          width="90"
+          class="img-circle"
+          alt=""
+          src="{{
+            this.catService.apiServerUrl +
+              '/articles/photoArticle/' +
+              addEditArticleDTO.id
+          }}"
+          *ngIf="paramId"
+        />
+        <!--  <img
+                height="90"
+                width="90"
+                class="img-circle"
+                alt=""
+                src="{{
+                  this.catService.apiServerUrl +
+                    '/articles/photoArticleInContext/' +
+                    addEditArticleDTO.id
+                }}"
+                *ngIf="paramId"
+              /> -->
+        <span *ngIf="!editPhoto">
+          <input type="file" (change)="onSelectedFile($event)" />
+          <button class="btn btn-success btn-sm" (click)="processForm()">
+            <span class="glyphicon glyphicon-upload"></span>
+            Save Change
+          </button>
+          {{ progress }}
+        </span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          type="text "
+          class="form-control"
+          name="description "
+          id="description "
+          [(ngModel)]="addEditArticleDTO.description"
+          cols="30 "
+          rows="10 "
+          #description="ngModel"
+          required
+        >
+        </textarea>
+        <span
+          class="text-danger"
+          *ngIf="
+            (description.touched || addArticleForm.submitted) &&
+            description.errors?.required
+          "
+        >
+          Description est obligatoire
+        </span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Manufacturée</label>
+        <textarea
+          type="text "
+          class="form-control"
+          name="manufactured"
+          id="manufactured "
+          [(ngModel)]="addEditArticleDTO.manufactured"
+          cols="30 "
+          rows="10 "
+          #manufactured="ngModel"
+          required
+        >
+        </textarea>
+        <span
+          class="text-danger"
+          *ngIf="
+            (description.touched || addArticleForm.submitted) &&
+            description.errors?.required
+          "
+        >
+          Specification est obligatoire
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button
+      *ngIf="!paramId"
+      class="btn btn-lg btn-success"
+      (click)="onSaveArticle()"
+    >
+      <i class="fa fa-database"></i> Enregistrer</button
+    >&nbsp;
+    <button *ngIf="paramId" class="btn btn-lg btn-warning" (click)="update()">
+      <i class="fa fa-database"></i> Modifier
+    </button>
+    <button (click)="goBack()" type="button" class="btn btn-lg btn-danger ml-1">
+      <i class="fa fa-angle-right"></i> Retour
+    </button>
+  </div>
+</form>

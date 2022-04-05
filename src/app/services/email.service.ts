@@ -13,7 +13,10 @@ import { environment } from 'src/environments/environment';
 })
 export class EmailService {
 
-  private baseUrl = environment.apiBaseUrl;
+  baseUrl = environment.apiBaseUrl;
+
+  //baseUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+
 
   choixmenu : string  = 'A';
   listData : EmailDto[];

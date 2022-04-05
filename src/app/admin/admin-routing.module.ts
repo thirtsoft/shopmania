@@ -37,6 +37,11 @@ import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blo
 
 import { ResponseNewsletterComponent } from './newsletter/response-newsletter/response-newsletter.component';
 
+import { AddCountrieComponent } from './city/add-countrie/add-countrie.component';
+import { ListCountriesComponent } from './city/list-countries/list-countries.component';
+import { AddStateComponent } from './city/add-state/add-state.component';
+import { ListStatesComponent } from './city/list-states/list-states.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { BarChartComponent } from './chartjs/bar-chart/bar-chart.component';
@@ -203,6 +208,33 @@ const routes: Routes = [
       path: 'notifications',
       component: ListNoteArticleComponent
     },
+
+    {
+      path: 'states',
+      component: ListStatesComponent
+    },
+    {
+      path: 'state',
+      component: AddStateComponent
+    },
+    {
+      path:'state/:id',
+      component:AddStateComponent
+    },
+
+    {
+      path: 'countries',
+      component: ListCountriesComponent
+    },
+    {
+      path: 'countrie',
+      component: AddCountrieComponent
+    },
+    {
+      path:'countrie/:id',
+      component:AddCountrieComponent
+    },
+
     {
       path : 'newsletters',
       component : ListNewsletterComponent
