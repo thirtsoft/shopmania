@@ -89,6 +89,7 @@ export class ListStatesComponent implements OnInit {
             positionClass: 'toast-top-right',
           });
           this.router.navigateByUrl("admin/accueil/states").then(() => {
+            window.location.reload();
           });
         },
           (error: HttpErrorResponse) => {

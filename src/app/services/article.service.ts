@@ -29,7 +29,7 @@ export class ArticleService {
   }
 
   public getArticleById(articleId: number): Observable<Article> {
-    return this.http.get<Article>(`${this.apiServerUrl}/articles/${articleId}`);
+    return this.http.get<Article>(`${this.apiServerUrl}/articles/findById/${articleId}`);
   }
 
   public getArticleByReference(reference: string): Observable<Article> {

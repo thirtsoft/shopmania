@@ -21,9 +21,9 @@ export class AddCountrieComponent implements OnInit {
   Errors = {status:false, msg:''};
   mySubscription: any;
 
-  constructor(private crudApi: CountryService,
-              private router: Router,
-              private toastr: ToastrService,
+  constructor(public crudApi: CountryService,
+              public router: Router,
+              public toastr: ToastrService,
               public dialog: MatDialog,
               public fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA)  public data,

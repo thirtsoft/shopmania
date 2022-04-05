@@ -67,6 +67,7 @@ export class AddStateComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/states").then(() => {
+          window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
@@ -84,8 +85,9 @@ export class AddStateComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/states").then(() => {
+          window.location.reload();
         });
-       
+
       });
 
     }

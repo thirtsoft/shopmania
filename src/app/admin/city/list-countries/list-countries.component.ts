@@ -80,6 +80,7 @@ export class ListCountriesComponent implements OnInit {
             positionClass: 'toast-top-right',
           });
           this.router.navigateByUrl("admin/accueil/countries").then(() => {
+            window.location.reload();
           });
         },
           (error: HttpErrorResponse) => {

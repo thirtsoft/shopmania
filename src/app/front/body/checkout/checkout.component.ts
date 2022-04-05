@@ -205,7 +205,7 @@ export class CheckoutComponent implements OnInit {
     const shippingCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
     console.log(shippingCountry);
     console.log(purchase.shippingAddress.country);
-    purchase.shippingAddress.state = shippingState.name;
+    purchase.shippingAddress.state.name = shippingState.name;
   //  purchase.shippingAddress.state.name = shippingState.name;
     purchase.shippingAddress.country = shippingCountry.name;
 
@@ -214,7 +214,7 @@ export class CheckoutComponent implements OnInit {
      const billingState: StateDto = JSON.parse(JSON.stringify(purchase.billingAddress.state));
      const billingCountry: CountryDto = JSON.parse(JSON.stringify(purchase.billingAddress.country));
   //   purchase.billingAddress.state.name = billingState.name;
-     purchase.billingAddress.state = billingState.name;
+     purchase.billingAddress.state.name = billingState.name;
      purchase.billingAddress.country = billingCountry.name;
 
      // populate purchase - order and orderItems

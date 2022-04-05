@@ -12,9 +12,9 @@
     <thead class="thead-inverse">
       <tr>
         <th>Rue</th>
-        <th>Ville</th>
+        <th>Quartier</th>
+        <th>Département</th>
         <th>Région</th>
-        <th>Pays</th>
         <th>Code Zip</th>
         <th>Action</th>
       </tr>
@@ -29,8 +29,8 @@
       >
         <td>{{ addLivraisonDTO?.rue }}</td>
         <td>{{ addLivraisonDTO?.city }}</td>
-        <td>{{ addLivraisonDTO?.state }}</td>
-        <td>{{ addLivraisonDTO?.country }}</td>
+        <td>{{ addLivraisonDTO?.stateDto.name }}</td>
+        <td>{{ addLivraisonDTO?.stateDto.countryDto.name }}</td>
         <td>{{ addLivraisonDTO?.zipcode }}</td>
 
         <td>

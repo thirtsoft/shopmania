@@ -24,7 +24,7 @@ export class AddArticleComponent implements OnInit {
   scategoryListDTO: ScategoryDto[];
   currentProduct;
 
-  public articleFile: any = File;
+  articleFile: any = File;
 
   data;
   paramId :any = 0;
@@ -87,12 +87,6 @@ export class AddArticleComponent implements OnInit {
   onSelectedFile(event) {
     this.selectedFiles=event.target.files;
   }
-
-  /* onSelectedFile(event) {
-    this.selectedFiles = event.target.files[0];
-    const file = event.target.files[0];
-    this.currentFileUpload = file;
-  } */
 
   processForm() {
     this.progress = 0;
@@ -169,7 +163,6 @@ export class AddArticleComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/articles").then(() => {
-    //      window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
@@ -188,8 +181,11 @@ export class AddArticleComponent implements OnInit {
   // Ajouter un produits avec sa photo
   onSaveArticle() {
     let formData = new FormData();
+    this.currentFileUpload = this.selectedFiles.item(0)
+    console.log(this.currentFileUpload);
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
-    formData.append('photoArticle', this.articleFile);
+    formData.append('photoArticle', this.currentFileUpload);
+    console.log('Product--', formData);
     this.crudApi.addArticleDtoWithPhoto(formData)
       .subscribe((response: ArticleDto)=> {
         console.log('Response--', response);
@@ -199,7 +195,6 @@ export class AddArticleComponent implements OnInit {
         });
 
         this.router.navigateByUrl("admin/accueil/articles").then(() => {
-        //  window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
@@ -208,11 +203,15 @@ export class AddArticleComponent implements OnInit {
     );
   }
 
- /*
+
+/*
   onSaveArticle() {
     let formData = new FormData();
+    console.log('Product--', this.addEditArticleDTO);
+    console.log('Photo--', this.articleFile);
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
     formData.append('photoArticle', this.articleFile);
+    console.log('Formdata--', formData);
     this.crudApi.addArticleDtoWithPhotoInFolder(formData)
       .subscribe((response: ArticleDto)=> {
         console.log('Response--', response);

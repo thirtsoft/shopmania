@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="col-md-12">
-                  <label>Ville</label>
+                  <label>Quartier</label>
                   <input
                     class="form-control"
                     formControlName="city"
@@ -108,7 +108,7 @@
                 </div>
 
                 <div class="col-md-12">
-                  <label>Pays</label>
+                  <label>Region</label>
 
                   <select
                     formControlName="country"
@@ -125,7 +125,7 @@
                 </div>
 
                 <div class="col-md-12">
-                  <label>Région</label>
+                  <label>Departement</label>
                   <select formControlName="state" id="" class="custom-select">
                     <option
                       *ngFor="let tempState of shippingAddressStates"
@@ -145,13 +145,6 @@
                     placeholder="ZIP Code"
                   />
                 </div>
-
-                <!-- <div class="col-md-12">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="newaccount">
-                            <label class="custom-control-label" for="newaccount">Create an account</label>
-                          </div>
-                        </div> -->
                 <div class="col-md-12">
                   <div class="custom-control custom-checkbox">
                     <input
@@ -184,7 +177,7 @@
               </div>
 
               <div class="col-md-12">
-                <label>Ville</label>
+                <label>Quartier</label>
                 <input
                   class="form-control"
                   formControlName="city"
@@ -194,7 +187,7 @@
               </div>
 
               <div class="col-md-12">
-                <label>Pays</label>
+                <label>Région</label>
 
                 <select
                   formControlName="country"
@@ -211,7 +204,7 @@
               </div>
 
               <div class="col-md-12">
-                <label>Région</label>
+                <label>Département</label>
                 <select formControlName="state" id="" class="custom-select">
                   <option
                     *ngFor="let tempState of billingAddressStates"
