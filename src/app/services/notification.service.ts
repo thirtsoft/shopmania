@@ -73,7 +73,7 @@ export class NotificationService {
   }
 
   public addRatingToArticle(notificationDTO: NotificationDto, reference: string, userId:number): Observable<NotificationDto> {
-    return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/createRatingToArticle?reference=${reference}&userId=${userId}`, notificationDTO);
+    return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/createRatingToArticle?reference=${reference}&id=${userId}`, notificationDTO);
   }
 
   public updateNotificationDto(notificationDTO: NotificationDto): Observable<NotificationDto> {
