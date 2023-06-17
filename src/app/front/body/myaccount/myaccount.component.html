@@ -21,7 +21,7 @@
             <div class="col-md-9">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
-                        <h4>Dashboard</h4>
+                        <h4>Tableau de bord</h4>
                         <div class="table-responsive">
                           <table class="table table-bordered" aria-label="">
                               <thead class="thead-dark">
@@ -40,7 +40,7 @@
                                       <td> {{ comDTO.numeroCommande }} </td>
                                       <td> {{ comDTO.clientDto.firstName }} {{ comDTO.clientDto.lastName }} </td>
                                       <td> {{ comDTO.clientDto.mobile }} </td>
-                                      <td> {{ comDTO.totalCommande }} </td>
+                                      <td> {{ comDTO.total }} </td>
                                       <td> {{ comDTO.status }} </td>
                                       <td> {{ comDTO.dateCommande | date:'dd-MM-yyyy' }} </td>
                                       <td>
@@ -68,7 +68,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Article</th>
-                                        <th>Price</th>
+                                        <th>Prix</th>
                                         <th>Quantité</th>
                                         <th>Total</th>
                                        <!--  <th>Status</th>-->
@@ -85,7 +85,7 @@
                                         <td> {{ lcomDTO.quantity  }} </td>
                                         <td> {{ lcomDTO.price  * lcomDTO.quantity  }} </td>
                                         <td> {{ comDTO.dateCommande | date:'dd-MM-yyyy' }} </td>
-                                        <td><button class="btn">View</button></td>
+                                        <td><button class="btn">Voir</button></td>
                                     </tr>
 
                                 </tbody>
@@ -165,7 +165,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
-                        <h4>Account Details</h4>
+                        <h4>Détails compte</h4>
                         <div class="row">
                             <div class="col-md-6">
                               <input

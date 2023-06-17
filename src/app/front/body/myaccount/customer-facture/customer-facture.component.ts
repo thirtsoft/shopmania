@@ -38,7 +38,7 @@ export class CustomerFactureComponent implements OnInit {
     this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCommandeDto[]) => {
       this.lcmdService.listData = data;
       this.numeroCommande = this.lcmdService.listData[0].commandeDto.numeroCommande;
-      this.totalCommande = this.lcmdService.listData[0].commandeDto.totalCommande;
+      this.totalCommande = this.lcmdService.listData[0].commandeDto.total;
       this.dateCommande = this.lcmdService.listData[0].commandeDto.dateCommande;
       this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName  + ' ' + this.lcmdService.listData[0].commandeDto.clientDto.lastName;
       this.username = this.lcmdService.listData[0].commandeDto.utilisateurDto.name;
@@ -79,30 +79,30 @@ export class CustomerFactureComponent implements OnInit {
     return {
       content: [
         {
-          text: 'CASAMANCE CONSTRUCTION SOLAIRE',
-          fontSize: 15,
+          text: 'Soulbusinesse',
+          fontSize: 16,
           alignment: 'center',
           color: '#0000ff',
           decoration: 'underline',
           style: 'name',
         },
         {
-          text: 'Vente de produits (électroménagers, électroniques, industriels, etc.), Installation solaire & Caméra surveillance, Electricité batiment',
-          fontSize: 10,
+          text: 'Vente habillements Hommes&Femmes, Cosmétiques, Parfum, et tout autes produits',
+          fontSize: 12,
           bold: true,
           color: '#0000ff',
           alignment: 'center',
         },
         {
-          text: 'En Face Rond Point Cap Skiring',
-          fontSize: 9.5,
-          bold: true,
-          color: '#0000ff',
-          alignment: 'center',
-        },
-        {
-          text: 'Tél: +221 77 715 15 14 / Email: mandiayesow@gmail.com',
+          text: 'Au centre commercial touba Sandaga, Dakar, Sénégal',
           fontSize: 11,
+          bold: true,
+          color: '#0000ff',
+          alignment: 'center',
+        },
+        {
+          text: 'Tél: +221 77 147 75 28 / Email: bigsoul2018@gmail.com',
+          fontSize: 9,
           bold: true,
           alignment: 'center',
           color: '#0000ff'
@@ -118,7 +118,7 @@ export class CustomerFactureComponent implements OnInit {
              [
               {
                 text: `${this.lcmdService.listData[0].commandeDto.status}`,
-                fontSize: 15,
+                fontSize: 12,
                 bold: true,
                 color: '#0000ff',
                 margin: [0, 15, 0, 15]
@@ -150,7 +150,8 @@ export class CustomerFactureComponent implements OnInit {
 
             [
               {
-                text: `Date : ${this.lcmdService.listData[0].commandeDto.dateCommande.toLocaleString()}`,
+                text: `Date : ${this.lcmdService.listData[0].commandeDto.dateCommande}`,
+                fontSize: 12,
                 alignment: 'right',
                 margin: [0, 15, 0, 15]
               },
@@ -164,21 +165,21 @@ export class CustomerFactureComponent implements OnInit {
               },
               {
                 text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.city}`,
+                fontSize: 11,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
               },
               {
                 text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.name}`,
+                fontSize: 11,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
               },
               {
                 text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.countryDto.name}`,
+                fontSize: 11,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
               },
             ],
 
@@ -205,7 +206,7 @@ export class CustomerFactureComponent implements OnInit {
 
 
         {
-          text: `Achat effectue par :  ${this.lcmdService.listData[0].commandeDto.utilisateurDto.name}`,
+          text: `Achat effectué par :  ${this.lcmdService.listData[0].commandeDto.utilisateurDto.name}`,
           bold: true,
           fontSize: 11,
           alignment: 'left',
@@ -223,7 +224,7 @@ export class CustomerFactureComponent implements OnInit {
         },
 
         {
-          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.totalCommande}`,
+          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.total}`,
           alignment: 'right',
           margin: [0, 8, 0, 8],
           bold: true,
