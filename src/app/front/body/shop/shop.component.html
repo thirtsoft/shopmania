@@ -15,18 +15,18 @@
 <div class="product-view">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-sm-8">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         <div class="product-view-top">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <!-- Start search in shop -->
                                     <app-search-in-shop></app-search-in-shop>
                                     <!-- End search in shop  -->
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-sm-6">
                                     <div class="product-short">
                                         <select id="sort-by" (change)="sort($event)" class="form-control">
                                           <option value="" selected disabled hidden class="form-control">Filtrer Par</option>
@@ -45,8 +45,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4" *ngFor="let artDTO of articleListDTOBs; let i = index">
-                        <div class=" product-item ">
+                    <div class="col-sm-4" *ngFor="let artDTO of articleListDTOBs; let i = index">
+                        <div class="product-item ">
                             <div class="product-title">
                                 <!-- <a routerLink="/product-detail/{{product.pSlug}} ">{{product.pName}}</a> -->
                                 <a routerLink="/product-detail/{{artDTO.reference}}">{{artDTO.designation}}</a>
@@ -62,7 +62,7 @@
                             <div class="product-image">
                                 <a routerLink="/product-detail/{{artDTO.reference}}">
                                     <!-- <img src="assets/customer/img/{{product.pImageDefault}} " alt="Product Image"> -->
-                                    <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="Product Image">
+                                    <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+artDTO.id}}" alt="Product Image">
                                 </a>
                                 <div class="product-action ">
                                     <a (click)="addTocart(artDTO)" style="cursor: pointer;">
@@ -84,7 +84,7 @@
                 </div>
 
                 <!-- Pagination Start -->
-                <div class="col-md-12 ">
+                <div class="col-sm-12 ">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center" *ngIf="pages">
                             <!--  <li class="page-item disabled ">
@@ -104,7 +104,7 @@
                 <!-- Pagination Start -->
             </div>
             <!-- Side Bar Start -->
-            <div class="col-lg-4 sidebar ">
+            <div class="col-sm-4 sidebar d-none d-sm-block d-xl-block">
                 <!-- <app-sidebar-cat></app-sidebar-cat>
                 <app-sidebar-slider></app-sidebar-slider>
                 <app-sidebar-brands></app-sidebar-brands>
@@ -123,4 +123,4 @@
 <!-- <app-brand></app-brand> -->
 <!-- Brand End -->
 
-<app-main-footer></app-main-footer>
+<app-main-footer style="margin-top: 15px;"></app-main-footer>

@@ -33,6 +33,7 @@ export class AuthService {
   public apiServerUrl = environment.apiBaseUrl;
 
 
+
   //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 //  apiServerUrl = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1";
 
@@ -72,8 +73,9 @@ export class AuthService {
               private router: Router) {
   }
 
-  signUp(info: Register): Observable<Register> {
-    return this.http.post<Register>(AUTH_API + 'auth/signUp', info , httpOptions);
+  signUp(info: Register): Observable<Register> { 
+  //  return this.http.post<Register>(AUTH_API + 'auth/signUp', info , httpOptions);
+    return this.http.post<Register>(this.apiServerUrl + '/auth/signUp', info , httpOptions);
   }
 
   attemptAuth(credentials): Observable<any> {
@@ -81,7 +83,8 @@ export class AuthService {
       username: credentials.username,
       password: credentials.password
     };
-    return this.http.post(this.loginUrl, loginData, httpOptions);
+  //  return this.http.post(this.loginUrl, loginData, httpOptions);
+    return this.http.post(this.apiServerUrl + '/auth/authenticated', loginData, httpOptions);
     this.islogin=true;
   }
 
