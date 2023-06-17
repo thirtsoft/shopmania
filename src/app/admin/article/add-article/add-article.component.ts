@@ -93,7 +93,7 @@ export class AddArticleComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0)
     console.log(this.currentFileUpload);
     console.log(this.paramId);
-    this.crudApi.uploadPhotoArticleDto(this.currentFileUpload, this.addEditArticleDTO.id)
+    this.crudApi.uploadPhotoArticleDtoInFolder(this.currentFileUpload, this.addEditArticleDTO.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -186,7 +186,7 @@ export class AddArticleComponent implements OnInit {
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
     formData.append('photoArticle', this.currentFileUpload);
     console.log('Product--', formData);
-    this.crudApi.addArticleDtoWithPhoto(formData)
+    this.crudApi.addArticleDtoWithPhotoInFolder(formData)
       .subscribe((response: ArticleDto)=> {
         console.log('Response--', response);
         this.toastr.success('avec succès','Article Ajoutée', {

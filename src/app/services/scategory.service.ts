@@ -34,7 +34,7 @@ export class SScategoryService {
   }
 
   public getALLSuCategoryDtosOrderByIdDesc(): Observable<ScategoryDto[]> {
-    return this.http.get<ScategoryDto[]>(`${this.apiServerUrl}/scategories/searchAllSubCategoriesOrderByIdDesc`);
+    return this.http.get<ScategoryDto[]>(`${this.apiServerUrl}/scategories/searchAllSubCategoryOrderByIdDesc`);
   }
 
   public getScategoryDtoById(scategoryId: number): Observable<ScategoryDto> {

@@ -41,7 +41,7 @@ export class ViewCommandeComponent implements OnInit {
     this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCommandeDto[]) => {
       this.lcmdService.listData = data;
       this.numeroCommande = this.lcmdService.listData[0].commandeDto.numeroCommande;
-      this.totalCommande = this.lcmdService.listData[0].commandeDto.totalCommande;
+      this.totalCommande = this.lcmdService.listData[0].commandeDto.total;
       this.dateCommande = this.lcmdService.listData[0].commandeDto.dateCommande;
       this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName  + ' ' + this.lcmdService.listData[0].commandeDto.clientDto.lastName;
       this.username = this.lcmdService.listData[0].commandeDto.utilisateurDto.name;
