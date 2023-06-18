@@ -48,7 +48,7 @@ export class ListArticleComponent implements OnInit {
   }
 
   public getListArticleDTOs(): void {
-    this.crudApi.getArticleDTOsOrderByIdDesc().subscribe(
+    this.crudApi.getAllActivesArticlesOrderByDesignation().subscribe(
       (response: ArticleDto[]) => {
         this.articleDTOList = response;
         console.log(this.articleDTOList);
@@ -79,7 +79,7 @@ export class ListArticleComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteArticleDto(id).subscribe(data => {
+        this.crudApi.deleteArticleById(id).subscribe(data => {
           this.toastr.error('avec succès','Article supprimé', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

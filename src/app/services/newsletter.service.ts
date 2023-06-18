@@ -54,5 +54,13 @@ export class NewsletterService {
     return this.http.get<NewsletterDto[]>(`${this.apiServerUrl}/newsletters/countNumberOfNewsletters`);
   }
 
+  public getAllActiveNewsletters(): Observable<NewsletterDto[]> {
+    return this.http.get<NewsletterDto[]>(`${this.apiServerUrl}/newsletters/search-all-active-newsletters`);
+  }
+
+  public deleteNewsletterById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/newsletters/delete-newsletters/${subCatId}`);
+  }
+
 
 }

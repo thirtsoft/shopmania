@@ -65,5 +65,13 @@ export class AddresslivraisonService {
     return this.http.delete<void>(`${this.apiServerUrl}/addresses/delete/${addressLivraisonId}`);
   }
 
+  public getAllActiveAddresses(): Observable<AddressDto[]> {
+    return this.http.get<AddressDto[]>(`${this.apiServerUrl}/addresses/search-all-active-addresses`);
+  }
+
+  public deleteAddressById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/addresses/delete-addresse/${subCatId}`);
+  }
+
 
 }

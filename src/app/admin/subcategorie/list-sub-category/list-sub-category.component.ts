@@ -39,7 +39,7 @@ export class ListSubCategoryComponent implements OnInit {
   }
 
   public getSListCategoryDTOs(): void {
-    this.crudApi.getALLSuCategoryDtosOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveSubCategories().subscribe(
       (response: ScategoryDto[]) => {
         this.subcategoryListDTO = response;
         console.log(this.subcategoryListDTO);
@@ -70,7 +70,7 @@ export class ListSubCategoryComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteScategoryDto(id).subscribe(data => {
+        this.crudApi.deleteSubCategoryById(id).subscribe(data => {
           this.toastr.error('avec succès','Sous-Categorie supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

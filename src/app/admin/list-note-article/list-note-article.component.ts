@@ -36,7 +36,7 @@ export class ListNoteArticleComponent implements OnInit {
   }
 
   public getNotificationDtos(): void {
-    this.noteService.getAllNotificationDtosOrderByIdDesc().subscribe(
+    this.noteService.getAllActiveNotifications().subscribe(
       (response: NotificationDto[]) => {
         this.notificationDTOList = response;
         console.log(this.notificationDTOList);
@@ -70,7 +70,7 @@ export class ListNoteArticleComponent implements OnInit {
   public onDeleteNotification(id: number): void{
     console.log('delete');
     console.log('id--', id);
-    const res = this.noteService.deleteNotificationDto(id);
+    const res = this.noteService.deleteNotificationById(id);
     if(res) {
       let _html=`
               <div class="c-green">

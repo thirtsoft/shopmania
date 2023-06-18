@@ -43,7 +43,7 @@ export class ListCategoryComponent implements OnInit {
   }
 
   public getListCategoryDTOs(): void {
-    this.crudApi.getCategorieDTOsOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveCategories().subscribe(
       (response: CategoryDto[]) => {
         this.categoryListDTO = response;
         console.log(this.categoryListDTO);
@@ -77,7 +77,7 @@ export class ListCategoryComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteCategoryDto(id).subscribe(data => {
+        this.crudApi.deleteCategoryById(id).subscribe(data => {
           this.toastr.error('avec succès','Categorie supprimé', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

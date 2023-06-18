@@ -66,4 +66,12 @@ export class StateService {
     return this.http.delete<void>(`${this.apiServerUrl}/states/delete/${statId}`);
   }
 
+  public getAllActiveStates(): Observable<StateDto[]> {
+    return this.http.get<StateDto[]>(`${this.apiServerUrl}/states/search-all-active-states`);
+  }
+
+  public deleteStateById(StateId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/states/delete-state/${StateId}`);
+  }
+
 }

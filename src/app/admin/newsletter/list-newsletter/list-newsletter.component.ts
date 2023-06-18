@@ -43,7 +43,7 @@ export class ListNewsletterComponent implements OnInit {
   }
 
   public getListNewsletterDTOs(): void {
-    this.crudApi.getNewsletterDTOOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveNewsletters().subscribe(
       (response: NewsletterDto[]) => {
         this.newsletterDTOList = response;
         console.log(this.newsletterDTOList);
@@ -58,7 +58,7 @@ export class ListNewsletterComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer ce visiteur ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteNewsletterDTO(id).subscribe(data => {
+        this.crudApi.deleteNewsletterById(id).subscribe(data => {
           this.toastr.error('avec succès','Visiteur supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

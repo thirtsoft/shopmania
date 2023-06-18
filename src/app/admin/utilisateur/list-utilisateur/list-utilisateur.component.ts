@@ -48,7 +48,7 @@ export class ListUtilisateurComponent implements OnInit {
   }
 
   public getUtilisateurDTOs(): void {
-    this.crudApi.getAllUtilisateurDtosOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveUtilisateurs().subscribe(
       (response: UtilisateurDto[]) => {
         this.utilisateurDTOList = response;
         console.log(this.utilisateurDTOList);
@@ -69,7 +69,7 @@ export class ListUtilisateurComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteUtilisateurDto(id).subscribe(data => {
+        this.crudApi.deleteUtilisateurById(id).subscribe(data => {
           this.toastr.error('avec succès','Utilisateur supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

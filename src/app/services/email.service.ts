@@ -67,4 +67,12 @@ export class EmailService {
     return this.http.delete<void>(`${this.baseUrl}/emails/delete/${id}`);
   }
 
+  public getAllActiveEmails(): Observable<EmailDto[]> {
+    return this.http.get<EmailDto[]>(`${this.baseUrl}/emails/search-all-active-emails`);
+  }
+
+  public deleteEmailById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/emails/delete-email/${subCatId}`);
+  }
+
 }

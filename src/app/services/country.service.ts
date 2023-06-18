@@ -53,4 +53,12 @@ export class CountryService {
     return this.http.delete<void>(`${this.apiServerUrl}/countries/delete/${countId}`);
   }
 
+  public getAllActiveCountries(): Observable<CountryDto[]> {
+    return this.http.get<CountryDto[]>(`${this.apiServerUrl}/countries/search-all-active-countries`);
+  }
+
+  public deleteCountryById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/countries/delete-country/${subCatId}`);
+  }
+
 }

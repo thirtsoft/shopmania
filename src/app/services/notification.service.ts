@@ -89,6 +89,14 @@ export class NotificationService {
     this.id = user.id
   }
 
+  public getAllActiveNotifications(): Observable<NotificationDto[]> {
+    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/search-all-active-notifications`);
+  }
+
+  public deleteNotificationById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete-notification/${subCatId}`);
+  }
+
 
 
 }

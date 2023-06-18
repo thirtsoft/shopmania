@@ -40,7 +40,7 @@ export class ListCountriesComponent implements OnInit {
   }
 
   public getListCountriesDTOs(): void {
-    this.crudApi.getAllCountryDTOsOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveCountries().subscribe(
       (response: CountryDto[]) => {
         this.countriesDTOList = response;
         console.log(this.countriesDTOList);
@@ -74,7 +74,7 @@ export class ListCountriesComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteCountryDto(id).subscribe(data => {
+        this.crudApi.deleteCountryById(id).subscribe(data => {
           this.toastr.error('avec succès','Countrie supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

@@ -37,7 +37,7 @@ export class ListStatesComponent implements OnInit {
   }
 
   public getListStatesDTOs(): void {
-    this.crudApi.getAllStateDTOsOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveStates().subscribe(
       (response: StateDto[]) => {
         this.crudApi.listData = response;
         console.log(this.crudApi.listData);
@@ -83,7 +83,7 @@ export class ListStatesComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteStateDto(id).subscribe(data => {
+        this.crudApi.deleteStateById(id).subscribe(data => {
           this.toastr.error('avec succès','Departement supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

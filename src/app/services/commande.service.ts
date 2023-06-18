@@ -94,4 +94,12 @@ export class CommandeService {
     return this.http.delete<void>(`${this.apiServerUrl}/commandes/delete/${commandeId}`);
   }
 
+  public getAllActiveCommandes(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/search-all-active-commandes`);
+  }
+
+  public deleteCommandeById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/commandes/delete-commande/${subCatId}`);
+  }
+
 }

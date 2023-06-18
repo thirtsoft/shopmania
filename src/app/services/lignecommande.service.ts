@@ -73,4 +73,13 @@ export class LigneLigneCommandeService {
     return this.http.delete<void>(`${this.apiServerUrl}/lignecommandes/delete/${ligneCommandeId}`);
   }
 
+  public getAllActiveLigneCommandes(): Observable<LigneCommandeDto[]> {
+    return this.http.get<LigneCommandeDto[]>(`${this.apiServerUrl}/lignecommandes/search-all-active-lignecommandes`);
+  }
+
+  public deleteLigneCommandeById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/lignecommandes/delete-lignecommande/${subCatId}`);
+  }
+
+
 }

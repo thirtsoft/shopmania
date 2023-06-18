@@ -33,7 +33,7 @@ export class ListLigneCommandeComponent implements OnInit {
   }
 
   public getLigneCommandeDtos(): void {
-    this.lcomService.getAllLigneCommandeDtosOrderByIdDesc().subscribe(
+    this.lcomService.getAllActiveLigneCommandes().subscribe(
       (response: LigneCommandeDto[]) => {
         this.ligneCommandeDTOList = response;
         console.log(this.ligneCommandeDTOList);

@@ -71,5 +71,13 @@ export class FournisseurService {
     return this.http.delete<void>(`${this.apiServerUrl}/fournisseurs/delete/${fournisseurId}`);
   }
 
+  public getAllActiveFournisseurs(): Observable<FournisseurDto[]> {
+    return this.http.get<FournisseurDto[]>(`${this.apiServerUrl}/fournisseurs/search-all-active-fournisseurs`);
+  }
+
+  public deleteFournisseurById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/fournisseurs/delete-fournisseur/${subCatId}`);
+  }
+
 
 }

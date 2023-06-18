@@ -81,4 +81,12 @@ export class CategoryService {
     return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${categoryId}`);
   }
 
+  public getAllActiveCategories(): Observable<CategoryDto[]> {
+    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/search-all-active-categories`);
+  }
+
+  public deleteCategoryById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/categories/delete-categories/${subCatId}`);
+  }
+
 }

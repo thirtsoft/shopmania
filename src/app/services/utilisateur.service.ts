@@ -80,5 +80,13 @@ export class UtilisateurService {
     return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${utilisateurId}`);
   }
 
+  public getAllActiveUtilisateurs(): Observable<UtilisateurDto[]> {
+    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/search-all-active-utilisateurs`);
+  }
+
+  public deleteUtilisateurById(utilisateurId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete-utilisateur/${utilisateurId}`);
+  }
+
 
 }

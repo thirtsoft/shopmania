@@ -51,7 +51,7 @@ export class ListAddressClientComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
-        this.addressService.deleteAddressDto(livraison.id).subscribe(data => {
+        this.addressService.getAddressDtoById(livraison.id).subscribe(data => {
           this.toastr.warning('AddressLivraison supprimé avec succès!');
           this.addressLivraisonDTOList = this.addressLivraisonDTOList.filter(u => u !== livraison);
           this.getAddressLivraisonDtos();

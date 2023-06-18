@@ -47,7 +47,7 @@ export class ListFournisseurComponent implements OnInit {
   }
 
   public getListFournisseurDTOs(): void {
-    this.crudApi.getFournisseurDTOsOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveFournisseurs().subscribe(
       (response: FournisseurDto[]) => {
         this.fournisseurDTOList = response;
         console.log(this.fournisseurDTOList);
@@ -62,7 +62,7 @@ export class ListFournisseurComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteFournisseurDto(id).subscribe(data => {
+        this.crudApi.deleteFournisseurById(id).subscribe(data => {
           this.toastr.error('avec succès','Fournisseurs supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

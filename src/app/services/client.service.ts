@@ -63,4 +63,12 @@ export class ClientService {
     return this.http.delete<void>(`${this.apiServerUrl}/clients/delete/${clientId}`);
   }
 
+  public getAllActiveClients(): Observable<ClientDto[]> {
+    return this.http.get<ClientDto[]>(`${this.apiServerUrl}/clients/search-all-active-clients`);
+  }
+
+  public deleteClientById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/clients/delete-client/${subCatId}`);
+  }
+
 }

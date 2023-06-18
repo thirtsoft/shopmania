@@ -58,6 +58,10 @@ export class ArticleService {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchAllArticleOrderByIdDesc`);
   }
 
+  public getAllActivesArticlesOrderByDesignation(): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/search-all-active-articles`);
+  }
+
   public getArticleDtoById(articleId: number): Observable<ArticleDto> {
     return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/findById/${articleId}`);
   }
@@ -119,6 +123,10 @@ export class ArticleService {
 
   public deleteArticleDto(articleId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/articles/delete/${articleId}`);
+  }
+
+  public deleteArticleById(articleId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/articles/delete-article/${articleId}`);
   }
 
 
