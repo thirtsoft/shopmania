@@ -27,9 +27,7 @@ import { MaterialModule } from '../shared/material.module';
 
 import { httpInterceptorProviders } from '../auth/auth-interceptor';
 
-
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
-import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListArticleComponent } from './article/list-article/list-article.component';
 import { AddArticleComponent } from './article/add-article/add-article.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
@@ -86,7 +84,6 @@ import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blo
 @NgModule({
   declarations: [
     ListAddressLivraisonComponent,
-    ListAddressClientComponent,
     ListArticleComponent,
     AddArticleComponent,
     ListCategoryComponent,

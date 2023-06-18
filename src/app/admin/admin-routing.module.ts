@@ -27,8 +27,6 @@ import { ViewCommandeComponent } from './commande/view-commande/view-commande.co
 import { ListLigneCommandeComponent } from './commande/list-ligne-commande/list-ligne-commande.component';
 
 import { ListClientComponent } from './list-client/list-client.component';
-
-import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
 
 import { ListBlogComponent } from './blog/list-blog/list-blog.component';
@@ -197,11 +195,7 @@ const routes: Routes = [
       component: ListLigneCommandeComponent
     },
     {
-      path: 'addresses',
-      component: ListAddressClientComponent
-    },
-    {
-      path: 'livraisons',
+      path: 'addresse-livraisons',
       component: ListAddressLivraisonComponent
     },
     {

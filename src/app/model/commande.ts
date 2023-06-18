@@ -1,6 +1,6 @@
 import { Utilisateur, UtilisateurDto } from './utilisateur';
 import { LigneCommande } from './ligne-commande';
-import { AddressDto } from './address';
+import { AddressLivraisonDto } from './address';
 import { Statuscommande } from './statuscommande';
 import { Client, ClientDto } from './client';
 
@@ -47,10 +47,15 @@ export class CommandeDto {
   clientDto: ClientDto;
 
   utilisateurDto: UtilisateurDto;
-
+/*
   billingAddressDto: AddressDto;
 
-  shippingAddressDto: AddressDto;
+  shippingAddressDto: AddressDto;*/
+
+  billingAddressDto: AddressLivraisonDto;
+
+  shippingAddressDto: AddressLivraisonDto;
+
 
   lcomms :Array<LigneCommande>=[];
 
