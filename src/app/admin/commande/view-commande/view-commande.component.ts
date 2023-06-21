@@ -172,13 +172,13 @@ export class ViewCommandeComponent implements OnInit {
                 fontSize: 11,
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.name}`,
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.name}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
                 fontSize: 11,
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.countryDto.name}`,
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.countryDto.name}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
                 fontSize: 11,

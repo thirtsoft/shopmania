@@ -170,13 +170,13 @@ export class CustomerFactureComponent implements OnInit {
                 margin: [0, 5, 0, 5],
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.name}`,
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.name}`,
                 fontSize: 11,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.countryDto.name}`,
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.countryDto.name}`,
                 fontSize: 11,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
