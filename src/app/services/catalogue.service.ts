@@ -10,10 +10,14 @@ import { environment } from './../../environments/environment';
 })
 export class CatalogueService {
 
-//  public apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
+
+ // apiServerUrl = "http://62.171.128.8:8081/shop-mania/v1";
+
+  
 
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
 
 

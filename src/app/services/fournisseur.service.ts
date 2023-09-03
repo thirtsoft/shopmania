@@ -12,9 +12,9 @@ import { environment } from './../../environments/environment';
 })
 export class FournisseurService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   choixmenu : string  = 'A';
   listData : Fournisseur[];

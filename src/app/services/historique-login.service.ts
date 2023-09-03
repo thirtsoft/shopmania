@@ -5,16 +5,16 @@ import { FormGroup } from '@angular/forms';
 
 import { HistoriqueLoginDto } from './../model/historique-login';
 
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HistoriqueLoginService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+   apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+   // apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
 
     public choixmenu : string  = 'A';

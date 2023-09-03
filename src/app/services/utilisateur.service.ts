@@ -11,10 +11,10 @@ import { environment } from './../../environments/environment';
 })
 export class UtilisateurService {
 
-//  public apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   constructor(private http: HttpClient) {
   }

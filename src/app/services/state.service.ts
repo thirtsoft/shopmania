@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
 import { StateDto } from './../model/state';
 import { Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   constructor(private http: HttpClient) {
   }

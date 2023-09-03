@@ -11,11 +11,13 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 export class CategoryService {
+  
+  apiServerUrl = environment.apiBaseUrl;
+  
+ // apiServerUrl = "http://62.171.128.8:8081/shop-mania/v1";
 
-//  public apiServerUrl = environment.apiBaseUrl;
 
-
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   public choixmenu : string  = 'A';
 

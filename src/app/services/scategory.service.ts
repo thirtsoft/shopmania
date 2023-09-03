@@ -10,9 +10,9 @@ import { environment } from './../../environments/environment';
 })
 export class SScategoryService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
 //  private apiServerUrl = "http://localhost:8081/shop-mania/v1/";
 

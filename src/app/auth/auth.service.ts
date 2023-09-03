@@ -12,12 +12,12 @@ import { throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-//const AUTH_API = 'http://localhost:8081/shop-mania/v1/';
+const AUTH_API = 'http://localhost:8081/shop-mania/v1/';
 
-//const AUTH_API = 'https://businesse-server.herokuapp.com/shop-mania/v1/';
 //const AUTH_API = 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/';
 
-const AUTH_API = "https://businesse-admin.herokuapp.com/shop-mania/v1/";
+//const AUTH_API = "https://businesse-admin.herokuapp.com/shop-mania/v1/";
+//const AUTH_API = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/";
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -29,26 +29,27 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-
-//  public apiServerUrl = environment.apiBaseUrl;
-
-
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  
+  apiServerUrl = environment.apiBaseUrl;
 
 
-//  public loginUrl = 'http://localhost:8081/shop-mania/v1/auth/authenticated';
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1";
 
-//  loginUrl: 'https://businesse-server.herokuapp.com/shop-mania/v1/auth/authenticated';
+
+   loginUrl = 'http://localhost:8081/shop-mania/v1/auth/authenticated';
+
 
 //  loginUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated';
 
+//  loginUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1/auth/authenticated";
+
+//  loginUrl = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated";
 
 
-  public loginUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1/auth/authenticated";
+//  baseUrl_1 = 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
-  //public baseUrl_1 = environment.apiBaseUrl;
-
-  public baseUrl_1 = 'https://businesse-admin.herokuapp.com/shop-mania/v1';
+  baseUrl_1 = 'http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1';
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;

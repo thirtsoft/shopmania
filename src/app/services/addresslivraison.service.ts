@@ -1,18 +1,19 @@
 import { Observable } from 'rxjs';
 import { AddressLivraison, AddressLivraisonDto } from './../model/address-livraison';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
+
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddresslivraisonService {
 
-//  private apiServerUrl = environment.apiBaseUrl;
+  apiServerUrl = environment.apiBaseUrl;
 
 
-  public apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   constructor(private http: HttpClient) {
   }
