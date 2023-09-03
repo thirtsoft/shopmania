@@ -1,3 +1,7 @@
+import { AddCountrieComponent } from './city/add-countrie/add-countrie.component';
+import { AddStateComponent } from './city/add-state/add-state.component';
+import { ListStatesComponent } from './city/list-states/list-states.component';
+import { ListCountriesComponent } from './city/list-countries/list-countries.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -23,9 +27,7 @@ import { MaterialModule } from '../shared/material.module';
 
 import { httpInterceptorProviders } from '../auth/auth-interceptor';
 
-
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
-import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListArticleComponent } from './article/list-article/list-article.component';
 import { AddArticleComponent } from './article/add-article/add-article.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
@@ -79,11 +81,9 @@ import { UpdateBlogComponent } from './blog/update-blog/update-blog.component';
 import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blog.component';
 
 
-
 @NgModule({
   declarations: [
     ListAddressLivraisonComponent,
-    ListAddressClientComponent,
     ListArticleComponent,
     AddArticleComponent,
     ListCategoryComponent,
@@ -133,6 +133,10 @@ import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blo
     ListBlogComponent,
     UpdateBlogComponent,
     UploadFileBlogComponent,
+    ListCountriesComponent,
+    ListStatesComponent,
+    AddStateComponent,
+    AddCountrieComponent,
 
 
   ],
@@ -177,6 +181,7 @@ import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blo
     AddCategoryComponent, CreateSubCategoryComponent,
     ViewCommandeComponent, UpdateStatusCommandeComponent,
     DashboardComponent, UploadFileComponent, AddFournisseurComponent,
+    AddStateComponent, AddCountrieComponent,
     ProfilComponent, UpdateProfilComponent, UpdateUsernameComponent,
     UpdatePasswordComponent,
     ResponseNewsletterComponent, SendMailToAllCustomerComponent

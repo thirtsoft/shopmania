@@ -5,7 +5,7 @@ import { TokenStorageService } from './../auth/token-storage.service';
 
 import { Purchase } from './../model/purchase';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

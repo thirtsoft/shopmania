@@ -6,7 +6,7 @@ import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 
 import { BlogDto } from './../model/blog';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

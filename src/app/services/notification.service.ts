@@ -4,7 +4,11 @@ import { Injectable } from '@angular/core';
 import { Notification, NotificationDto } from './../model/notification';
 import { ArticleService } from './article.service';
 import { TokenStorageService } from './../auth/token-storage.service';
+<<<<<<< HEAD
 import { environment } from './../../environments/environment';
+=======
+import { environment } from 'src/environments/environment';
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
 @Injectable({
   providedIn: 'root'
@@ -73,7 +77,7 @@ export class NotificationService {
   }
 
   public addRatingToArticle(notificationDTO: NotificationDto, reference: string, userId:number): Observable<NotificationDto> {
-    return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/createRatingToArticle?reference=${reference}&userId=${userId}`, notificationDTO);
+    return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/createRatingToArticle?reference=${reference}&id=${userId}`, notificationDTO);
   }
 
   public updateNotificationDto(notificationDTO: NotificationDto): Observable<NotificationDto> {
@@ -87,6 +91,14 @@ export class NotificationService {
   getUserId() {
     const user = this.tokenService.getUser();
     this.id = user.id
+  }
+
+  public getAllActiveNotifications(): Observable<NotificationDto[]> {
+    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/search-all-active-notifications`);
+  }
+
+  public deleteNotificationById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete-notification/${subCatId}`);
   }
 
 

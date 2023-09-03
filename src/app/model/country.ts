@@ -1,12 +1,13 @@
 export class Country {
-  idCountry: number;
+  id: number;
   code: string;
   name: string;
 
 }
 
 export class CountryDto {
-  idCountry: number;
+  id: number;
+  code: string;
   name: string;
 
 }

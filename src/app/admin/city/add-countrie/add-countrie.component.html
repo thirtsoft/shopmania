@@ -1,0 +1,41 @@
+
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <h2>Nouvelle Région</h2>
+    <form [formGroup]="this.crudApi.dataForm" (ngSubmit)="onSubmit()">
+       <!--  <input type="hidden"  formControlName="id" id="id"> -->
+        <div class="form-group">
+          <label>Code </label>
+          <input type="text" class="form-control" formControlName="code" id="code" placeholder="Code de la région" required />
+           <div *ngIf="f['code'].invalid && (f['code'].dirty || f['code'].touched)" class="alert alert-danger">
+            <span *ngIf="f['code'].errors.required">
+              Code obligatoire.
+           </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" class="form-control" formControlName="name" id="name"  placeholder="Nom de la région" required />
+          <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="alert alert-danger">
+            <span *ngIf="f['name'].errors.required">name obligatoire.</span>
+           <span *ngIf="f['name'].errors?.pattern">SVP, Donner une name avec des lettres de l'alphabet A-Z..</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit"
+            class="btn btn-success"
+            [disabled]="!this.crudApi.dataForm.valid"
+          ><em class="fa fa-database"></em> Enregistrer
+          </button>&nbsp;
+          <button type="button" class="btn btn-danger ml-1"
+            [mat-dialog-close]
+          ><em class="fa fa-close"></em> Fermer
+        </button>
+        </div>
+
+    </form>
+  </div>
+
+</div>

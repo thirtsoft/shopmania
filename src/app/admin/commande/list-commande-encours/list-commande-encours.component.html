@@ -34,16 +34,6 @@
           {{ commandeDTO.clientDto.lastName }}
         </td>
         <td>{{ commandeDTO.total }}</td>
-        <!-- <td>{{ commandeDTO.statusCommande }}
-                    <button
-                      type="button"
-                      class="btn-success btn-sm pull-right"
-                      [disabled]="commandeDTO.statusCommande==='PAYEE'"
-                      (click)="addEditStatusCommande(commandeDTO)"
-                      style="cursor: pointer;"
-                    >
-                    <i class="fa fa-edit" aria-hidden="true"></i>
-                  </button> -->
         <td>
           {{ commandeDTO.status }}
           <button

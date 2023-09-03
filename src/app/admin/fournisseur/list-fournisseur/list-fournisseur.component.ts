@@ -47,7 +47,7 @@ export class ListFournisseurComponent implements OnInit {
   }
 
   public getListFournisseurDTOs(): void {
-    this.crudApi.getFournisseurDTOsOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveFournisseurs().subscribe(
       (response: FournisseurDto[]) => {
         this.fournisseurDTOList = response;
         console.log(this.fournisseurDTOList);
@@ -62,13 +62,13 @@ export class ListFournisseurComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteFournisseurDto(id).subscribe(data => {
+        this.crudApi.deleteFournisseurById(id).subscribe(data => {
           this.toastr.error('avec succès','Fournisseurs supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',
           });
           this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
-            window.location.reload();
+        //    window.location.reload();
           });
         },
           (error: HttpErrorResponse) => {
@@ -77,16 +77,6 @@ export class ListFournisseurComponent implements OnInit {
         );
       }
     });
-  }
-
-  envoiEmailFournisseur(item: FournisseurDto) {
-    this.crudApi.choixmenu = "M";
-    this.crudApi.dataForm = this.fb.group(Object.assign({},item));
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
-    this.matDialog.open(EnvoiEmailFournisseurComponent, dialogConfig);
   }
 
 

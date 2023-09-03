@@ -27,8 +27,6 @@ import { ViewCommandeComponent } from './commande/view-commande/view-commande.co
 import { ListLigneCommandeComponent } from './commande/list-ligne-commande/list-ligne-commande.component';
 
 import { ListClientComponent } from './list-client/list-client.component';
-
-import { ListAddressClientComponent } from './list-address-client/list-address-client.component';
 import { ListAddressLivraisonComponent } from './list-address-livraison/list-address-livraison.component';
 
 import { ListBlogComponent } from './blog/list-blog/list-blog.component';
@@ -36,6 +34,11 @@ import { AddBlogComponent } from './blog/add-blog/add-blog.component';
 import { UploadFileBlogComponent } from './blog/upload-file-blog/upload-file-blog.component';
 
 import { ResponseNewsletterComponent } from './newsletter/response-newsletter/response-newsletter.component';
+
+import { AddCountrieComponent } from './city/add-countrie/add-countrie.component';
+import { ListCountriesComponent } from './city/list-countries/list-countries.component';
+import { AddStateComponent } from './city/add-state/add-state.component';
+import { ListStatesComponent } from './city/list-states/list-states.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -192,17 +195,40 @@ const routes: Routes = [
       component: ListLigneCommandeComponent
     },
     {
-      path: 'addresses',
-      component: ListAddressClientComponent
-    },
-    {
-      path: 'livraisons',
+      path: 'addresse-livraisons',
       component: ListAddressLivraisonComponent
     },
     {
       path: 'notifications',
       component: ListNoteArticleComponent
     },
+
+    {
+      path: 'states',
+      component: ListStatesComponent
+    },
+    {
+      path: 'state',
+      component: AddStateComponent
+    },
+    {
+      path:'state/:id',
+      component:AddStateComponent
+    },
+
+    {
+      path: 'countries',
+      component: ListCountriesComponent
+    },
+    {
+      path: 'countrie',
+      component: AddCountrieComponent
+    },
+    {
+      path:'countrie/:id',
+      component:AddCountrieComponent
+    },
+
     {
       path : 'newsletters',
       component : ListNewsletterComponent

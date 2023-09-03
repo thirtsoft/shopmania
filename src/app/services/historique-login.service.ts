@@ -54,4 +54,12 @@ export class HistoriqueLoginService {
       return this.http.delete<void>(`${this.apiServerUrl}/historiqueLogins/delete/${scategoryId}`);
     }
 
+    public getAllActiveHistoriqueLogins(): Observable<HistoriqueLoginDto[]> {
+      return this.http.get<HistoriqueLoginDto[]>(`${this.apiServerUrl}/historiqueLogins/search-all-active-historiqueLogins`);
+    }
+  
+    public deleteHistoriqueLoginById(subCatId: number): Observable<void> {
+      return this.http.delete<void>(`${this.apiServerUrl}/historiqueLogins/delete-historiqueLogin/${subCatId}`);
+    }
+
 }

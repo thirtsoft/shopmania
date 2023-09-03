@@ -100,13 +100,9 @@ export class CheckoutComponent implements OnInit {
   initForm() {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-  //      firstName: ['', [Validators.required]],
         firstName: [''],
         lastName: [''],
         mobile: [''],
-
-  //      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]]
-
         email: ['']
       }),
 
@@ -127,11 +123,7 @@ export class CheckoutComponent implements OnInit {
       }),
 
       id: this.catalogueService.id
-
     });
-
-
-
   }
 
   cartDetails() {
@@ -148,7 +140,6 @@ export class CheckoutComponent implements OnInit {
     this.shippingCost = this.cartService.shippingCost;
 
     this.cartService.calculateTotalPrice();
-
   }
 
   getListCountryDTOs() {
@@ -161,7 +152,6 @@ export class CheckoutComponent implements OnInit {
         alert(error.message);
       }
     );
-
   }
 
   getListStateDTOs() {
@@ -178,13 +168,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-
     console.log(this.checkoutFormGroup.get('customer').value);
     console.log("Emial is", this.checkoutFormGroup.get('customer').value.email);
-    console.log("Checkout ShippingAddress", this.checkoutFormGroup.get('shippingAddress').value);
-    console.log("Checkout BillingAddress", this.checkoutFormGroup.get('billingAddress').value);
+  //  console.log("Checkout ShippingAddress", this.checkoutFormGroup.get('shippingAddress').value);
+  //  console.log("Checkout BillingAddress", this.checkoutFormGroup.get('billingAddress').value);
     console.log("Checkout Value are", this.checkoutFormGroup.value);
-
 
     let commande = new Commande();
     commande.totalCommande = this.totalPrice;
@@ -208,22 +196,25 @@ export class CheckoutComponent implements OnInit {
     // populate purchase - customer
     purchase.client = this.checkoutFormGroup.get('customer').value;
 
-    // populate purchase - customer
-  //  purchase.utilisateur = this.checkoutFormGroup.get('customer').value;
-
-
     // populate purchase - shippingAddress
     purchase.shippingAddress = this.checkoutFormGroup.get('shippingAddress').value;
     const shippingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
+    console.log(shippingState);
+  //  console.log(purchase.shippingAddress.state.name);
+    console.log(purchase.shippingAddress.state);
     const shippingCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
-    purchase.shippingAddress.state = shippingState.name;
+    console.log(shippingCountry);
+    console.log(purchase.shippingAddress.country);
+    purchase.shippingAddress.state.name = shippingState.name;
+  //  purchase.shippingAddress.state.name = shippingState.name;
     purchase.shippingAddress.country = shippingCountry.name;
 
      // populate purchase - billingAddress
      purchase.billingAddress = this.checkoutFormGroup.controls['billingAddress'].value;
      const billingState: StateDto = JSON.parse(JSON.stringify(purchase.billingAddress.state));
      const billingCountry: CountryDto = JSON.parse(JSON.stringify(purchase.billingAddress.country));
-     purchase.billingAddress.state = billingState.name;
+  //   purchase.billingAddress.state.name = billingState.name;
+     purchase.billingAddress.state.name = billingState.name;
      purchase.billingAddress.country = billingCountry.name;
 
      // populate purchase - order and orderItems

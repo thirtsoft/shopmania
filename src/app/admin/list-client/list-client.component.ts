@@ -37,7 +37,7 @@ export class ListClientComponent implements OnInit {
   }
 
   public getListClientDtos(): void {
-    this.clientService.getClientDTOsOrderByIdDesc().subscribe(
+    this.clientService.getAllActiveClients().subscribe(
       (response: ClientDto[]) => {
         this.clientDTOList = response;
         console.log(this.clientDTOList);
@@ -71,7 +71,7 @@ export class ListClientComponent implements OnInit {
   public onDeleteClient(id: number): void{
     console.log('delete');
     console.log('id--', id);
-    this.clientService.deleteClientDto(id).subscribe(data => {
+    this.clientService.deleteClientById(id).subscribe(data => {
       let _html=`
               <div class="c-green">
                 <div class="material-icons">task_alt</div>

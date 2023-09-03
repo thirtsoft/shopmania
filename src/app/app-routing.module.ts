@@ -25,7 +25,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
+<<<<<<< HEAD
   imports: [RouterModule.forRoot(routes, {useHash : true})],
+=======
+ // imports: [RouterModule.forRoot(routes, {useHash : true})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' },{useHash : true},)],
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

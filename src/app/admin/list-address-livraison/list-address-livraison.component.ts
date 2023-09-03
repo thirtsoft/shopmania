@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AddressLivraisonDto } from '../../model/address-livraison';
-import { AddresslivraisonService } from '../../services/addresslivraison.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { DialogService } from '../../services/dialog.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+
+import { DialogService } from '../../services/dialog.service';
+import { AddresslivraisonService } from '../../services/addresslivraison.service';
+import { AddressLivraisonDto } from 'src/app/model/address';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class ListAddressLivraisonComponent implements OnInit {
   p : number=1;
   searchText;
 
-  constructor(private addLivraisonService: AddresslivraisonService,
+  constructor(private addressService: AddresslivraisonService,
               private router: Router,
               private dialog: MatDialog,
               public toastr: ToastrService,
@@ -34,7 +35,7 @@ export class ListAddressLivraisonComponent implements OnInit {
   }
 
   public getAddressLivraisonDtos(): void {
-    this.addLivraisonService.getAddressLivraisonDtosOrderByIdDesc().subscribe(
+    this.addressService.getAllActiveAddresses().subscribe(
       (response: AddressLivraisonDto[]) => {
         this.addressLivraisonDTOList = response;
         console.log(this.addressLivraisonDTOList);
@@ -44,13 +45,12 @@ export class ListAddressLivraisonComponent implements OnInit {
       }
     );
   }
-  onDeleteAddressLivraison(item) {}
 
-/*   public onDeleteAddressLivraison(livraison: AddressLivraisonDto): void{
+  public onDeleteAddressLivraison(livraison: AddressLivraisonDto): void{
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
     .afterClosed().subscribe((response: any) =>{
       if(response){
-        this.addLivraisonService.deleteAddressLivraisonDto(livraison.id).subscribe(data => {
+        this.addressService.deleteAddressById(livraison.id).subscribe(data => {
           this.toastr.warning('AddressLivraison supprimé avec succès!');
           this.addressLivraisonDTOList = this.addressLivraisonDTOList.filter(u => u !== livraison);
           this.getAddressLivraisonDtos();
@@ -61,7 +61,7 @@ export class ListAddressLivraisonComponent implements OnInit {
       alert(error.message);
     }
     );
-  } */
+  }
 
 
 }

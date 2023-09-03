@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Utilisateur, UtilisateurDto } from './../model/utilisateur';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +78,14 @@ export class UtilisateurService {
 
   public deleteUtilisateurDto(utilisateurId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${utilisateurId}`);
+  }
+
+  public getAllActiveUtilisateurs(): Observable<UtilisateurDto[]> {
+    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/search-all-active-utilisateurs`);
+  }
+
+  public deleteUtilisateurById(utilisateurId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete-utilisateur/${utilisateurId}`);
   }
 
 

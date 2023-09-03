@@ -1,7 +1,7 @@
 <div class="reviews-submit" *ngIf="this.isLoggedIn">
     <h4>Donner votre Avis:</h4>
 
-    <form [formGroup]="this.formData" (ngSubmit)="onSubmit()">
+    <form [formGroup]="this.formData">
 
         <div class="ratting">
 
@@ -52,7 +52,7 @@
             </div>
 
             <div class="col-sm-12">
-                <button type="submit" [disabled]="!this.formData.valid">Envoyer</button>
+                <button type="submit" [disabled]="!this.formData.valid" (click)="onSubmit()">Envoyer</button>
             </div>
         </div>
     </form>

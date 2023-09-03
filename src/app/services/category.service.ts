@@ -5,16 +5,21 @@ import { FormGroup } from '@angular/forms';
 
 import { Category, CategoryDto } from './../model/category';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
+<<<<<<< HEAD
   
   apiServerUrl = environment.apiBaseUrl;
   
  // apiServerUrl = "http://62.171.128.8:8081/shop-mania/v1";
+=======
+
+   apiServerUrl = environment.apiBaseUrl;
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
 
   //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
@@ -33,7 +38,7 @@ export class CategoryService {
   }
 
   public getCategoryById(categoryId: number): Observable<Category> {
-    return this.http.get<Category>(`${this.apiServerUrl}/categories/${categoryId}`);
+    return this.http.get<Category>(`${this.apiServerUrl}/categories/findById/${categoryId}`);
   }
 
   public getCategoryByDesignation(designation: string): Observable<Category> {
@@ -64,7 +69,7 @@ export class CategoryService {
   }
 
   public getCategoryDtoById(categoryId: number): Observable<CategoryDto> {
-    return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/${categoryId}`);
+    return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/findById/${categoryId}`);
   }
 
   public getCategoryDtoByDesignation(designation: string): Observable<CategoryDto> {
@@ -81,6 +86,14 @@ export class CategoryService {
 
   public deleteCategoryDto(categoryId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${categoryId}`);
+  }
+
+  public getAllActiveCategories(): Observable<CategoryDto[]> {
+    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/search-all-active-categories`);
+  }
+
+  public deleteCategoryById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/categories/delete-categories/${subCatId}`);
   }
 
 }

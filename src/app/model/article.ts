@@ -1,5 +1,4 @@
 import { Scategory, ScategoryDto } from './scategory';
-
 export class Article {
   id: number;
   reference: string;
@@ -18,7 +17,6 @@ export class Article {
 
 export class ArticleDto {
   id: number;
-//  id: string;
   reference: string;
   designation: string;
   quantity: number;

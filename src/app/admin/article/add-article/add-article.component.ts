@@ -24,7 +24,7 @@ export class AddArticleComponent implements OnInit {
   scategoryListDTO: ScategoryDto[];
   currentProduct;
 
-  public articleFile: any = File;
+  articleFile: any = File;
 
   data;
   paramId :any = 0;
@@ -88,32 +88,6 @@ export class AddArticleComponent implements OnInit {
     this.selectedFiles=event.target.files;
   }
 
-  /* onSelectedFile(event) {
-    this.selectedFiles = event.target.files[0];
-    const file = event.target.files[0];
-    this.currentFileUpload = file;
-  } */
-
-/*   processForm() {
-    this.progress = 0;
-    this.currentFileUpload = this.selectedFiles.item(0)
-    console.log(this.currentFileUpload);
-    console.log(this.paramId);
-    this.crudApi.uploadPhotoArticleDto(this.currentFileUpload, this.addEditArticleDTO.id)
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progress = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          this.editPhoto=false;
-          this.currentTime = Date.now();
-        }
-      }, err => {
-        this.toastr.warning("Problème de chargment de la photo");
-      }
-    );
-    this.selectedFiles = undefined;
-  } */
-
   processForm() {
     this.progress = 0;
     this.currentFileUpload = this.selectedFiles.item(0)
@@ -133,6 +107,28 @@ export class AddArticleComponent implements OnInit {
     );
     this.selectedFiles = undefined;
   }
+
+  /*
+  processForm() {
+    this.progress = 0;
+    this.currentFileUpload = this.selectedFiles.item(0)
+    console.log(this.currentFileUpload);
+    console.log(this.paramId);
+    this.crudApi.uploadPhotoArticleDtoInFolder(this.currentFileUpload, this.addEditArticleDTO.id)
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.editPhoto=false;
+          this.currentTime = Date.now();
+        }
+      }, err => {
+        this.toastr.warning("Problème de chargment de la photo");
+      }
+    );
+    this.selectedFiles = undefined;
+  }
+  */
 
   getListScategoryDTOs() {
     this.scategorieService.getScategoryDtos().subscribe(
@@ -166,8 +162,7 @@ export class AddArticleComponent implements OnInit {
           timeOut: 1500,
           positionClass: 'toast-top-right',
         });
-        this.router.navigateByUrl("admin/articles").then(() => {
-          window.location.reload();
+        this.router.navigateByUrl("admin/accueil/articles").then(() => {
         });
       },
       (error: HttpErrorResponse) => {
@@ -184,11 +179,14 @@ export class AddArticleComponent implements OnInit {
   }
 
   // Ajouter un produits avec sa photo
-  /* onSaveArticle() {
+  onSaveArticle() {
     let formData = new FormData();
+    this.currentFileUpload = this.selectedFiles.item(0)
+    console.log(this.currentFileUpload);
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
-    formData.append('photoArticle', this.articleFile);
-    this.crudApi.addArticleDtoWithPhoto(formData)
+    formData.append('photoArticle', this.currentFileUpload);
+    console.log('Product--', formData);
+    this.crudApi.addArticleDtoWithPhotoInFolder(formData)
       .subscribe((response: ArticleDto)=> {
         console.log('Response--', response);
         this.toastr.success('avec succès','Article Ajoutée', {
@@ -197,19 +195,23 @@ export class AddArticleComponent implements OnInit {
         });
 
         this.router.navigateByUrl("admin/accueil/articles").then(() => {
-          window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
-  } */
+  }
 
+
+/*
   onSaveArticle() {
     let formData = new FormData();
+    console.log('Product--', this.addEditArticleDTO);
+    console.log('Photo--', this.articleFile);
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
     formData.append('photoArticle', this.articleFile);
+    console.log('Formdata--', formData);
     this.crudApi.addArticleDtoWithPhotoInFolder(formData)
       .subscribe((response: ArticleDto)=> {
         console.log('Response--', response);
@@ -227,7 +229,7 @@ export class AddArticleComponent implements OnInit {
       }
     );
   }
-
+*/
 
   goBack() {
     this.router.navigate([`/admin/accueil/articles`]);

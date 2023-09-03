@@ -28,7 +28,8 @@ export class TokenStorageService {
   }
 
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+    const token = sessionStorage.getItem(TOKEN_KEY);
+    return token;
   }
 
   public saveUser(user) {
@@ -41,8 +42,13 @@ export class TokenStorageService {
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   } */
 
-  public getUser() {
-    return JSON.parse(sessionStorage.getItem(USER_KEY));
+  public getUser(): any {
+    const user = window.sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user);
+    }
+
+    return {};
   }
 
  /*  public getUser(): any {

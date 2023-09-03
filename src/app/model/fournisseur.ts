@@ -5,11 +5,11 @@ export class Fournisseur {
   reference: string;
   firstName: string;
   lastName: string;
-  address: string;
   email: string;
-  telephoneFournisseur: string;
+  telephone: string;
+  rue: string;
+  town: string;
   city: string;
-  country: string;
 
   article: Article;
 
@@ -20,11 +20,11 @@ export class FournisseurDto {
   reference: string;
   firstName: string;
   lastName: string;
-  address: string;
   email: string;
-  telephoneFournisseur: string;
+  telephone: string;
+  rue: string;
+  town: string;
   city: string;
-  country: string;
 
   articleDto: ArticleDto;
 

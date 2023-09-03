@@ -1,8 +1,13 @@
+import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StateDto } from './../model/state';
 import { Observable } from 'rxjs';
+<<<<<<< HEAD
 import { environment } from './../../environments/environment';
+=======
+import { environment } from 'src/environments/environment';
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +18,17 @@ export class StateService {
 
 
   //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+<<<<<<< HEAD
+=======
+
+  choixmenu : string  = 'A';
+
+  listData : StateDto[];
+
+  formData:  StateDto;
+
+  dataForm:  FormGroup;
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
   constructor(private http: HttpClient) {
   }
@@ -28,7 +44,7 @@ export class StateService {
   }
 
   public getStateDtoById(statId: number): Observable<StateDto> {
-    return this.http.get<StateDto>(`${this.apiServerUrl}/states/${statId}`);
+    return this.http.get<StateDto>(`${this.apiServerUrl}/states/findById/${statId}`);
   }
 
   public getStateDtoByDesignation(designation: string): Observable<StateDto> {
@@ -55,6 +71,14 @@ export class StateService {
 
   public deleteStateDto(statId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/states/delete/${statId}`);
+  }
+
+  public getAllActiveStates(): Observable<StateDto[]> {
+    return this.http.get<StateDto[]>(`${this.apiServerUrl}/states/search-all-active-states`);
+  }
+
+  public deleteStateById(StateId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/states/delete-state/${StateId}`);
   }
 
 }

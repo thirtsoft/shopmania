@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Statuscommande } from './../model/statuscommande';
 import { Commande, CommandeDto } from './../model/commande';
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -92,6 +92,14 @@ export class CommandeService {
 
   public deleteCommandeDto(commandeId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/commandes/delete/${commandeId}`);
+  }
+
+  public getAllActiveCommandes(): Observable<CommandeDto[]> {
+    return this.http.get<CommandeDto[]>(`${this.apiServerUrl}/commandes/search-all-active-commandes`);
+  }
+
+  public deleteCommandeById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/commandes/delete-commande/${subCatId}`);
   }
 
 }

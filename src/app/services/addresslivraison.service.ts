@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 import { Observable } from 'rxjs';
 import { AddressLivraison, AddressLivraisonDto } from './../model/address-livraison';
 import { HttpClient } from '@angular/common/http';
+=======
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+import { AddressLivraisonDto } from './../model/address';
+
+import { environment } from 'src/environments/environment';
 
 import { environment } from './../../environments/environment';
 
@@ -11,34 +20,15 @@ import { environment } from './../../environments/environment';
 export class AddresslivraisonService {
 
   apiServerUrl = environment.apiBaseUrl;
+<<<<<<< HEAD
 
 
   //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
+=======
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
   constructor(private http: HttpClient) {
   }
-
-  public getAddressLivraisons(): Observable<AddressLivraison[]> {
-    return this.http.get<AddressLivraison[]>(`${this.apiServerUrl}/addresslivraisons/all`);
-  }
-
-  public getAddressLivraisonById(addressLivraisonId: number): Observable<AddressLivraison> {
-    return this.http.get<AddressLivraison>(`${this.apiServerUrl}/addresslivraisons/${addressLivraisonId}`);
-  }
-
-  public addAddressLivraison(addressLivraison: AddressLivraison): Observable<AddressLivraison> {
-    return this.http.post<AddressLivraison>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraison);
-  }
-
-  public updateAddressLivraison(addressLivraison: AddressLivraison): Observable<AddressLivraison> {
-    return this.http.put<AddressLivraison>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraison);
-  }
-
-  public deleteAddressLivraison(addressLivraisonId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/addresslivraisons/delete/${addressLivraisonId}`);
-  }
-
-  /******************** AddressLivraisonDTOs ****************/
 
   public getAddressLivraisonDtos(): Observable<AddressLivraisonDto[]> {
     return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/all`);
@@ -56,13 +46,20 @@ export class AddresslivraisonService {
     return this.http.post<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraisonDTO);
   }
 
-  public updateAddressLivraisonDto(addressLivraisonDTO: AddressLivraisonDto): Observable<AddressLivraisonDto> {
-    return this.http.put<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraisonDTO);
+  public updateAddressLivraisonDto(addressLivraisonId: number, addressLivraisonDTO: AddressLivraisonDto): Observable<AddressLivraisonDto> {
+    return this.http.put<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/update/${addressLivraisonId}`, addressLivraisonDTO);
   }
 
   public deleteAddressLivraisonDto(addressLivraisonId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/addresslivraisons/delete/${addressLivraisonId}`);
   }
 
+  public getAllActiveAddresses(): Observable<AddressLivraisonDto[]> {
+    return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/search-all-active-addresslivraisons`);
+  }
+
+  public deleteAddressById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/addresslivraisons/delete-addresslivraisons/${subCatId}`);
+  }
 
 }

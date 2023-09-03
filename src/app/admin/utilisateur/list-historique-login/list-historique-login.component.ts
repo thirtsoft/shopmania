@@ -32,7 +32,7 @@ export class ListHistoriqueLoginComponent implements OnInit {
   }
 
   public getHistoriqueLoginsDTOs(): void {
-    this.crudApi.getALLHistoriqueLoginDtosOrderByIdDesc().subscribe(
+    this.crudApi.getAllActiveHistoriqueLogins().subscribe(
       (response: HistoriqueLoginDto[]) => {
         this.historiqueLoginListDTO = response;
         console.log(this.historiqueLoginListDTO);
@@ -48,7 +48,7 @@ export class ListHistoriqueLoginComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteHistoriqueLoginDto(id).subscribe(data => {
+        this.crudApi.deleteHistoriqueLoginById(id).subscribe(data => {
           this.toastr.error('avec succès','Sous-Categorie supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

@@ -2,7 +2,11 @@ import { LigneCommande, LigneCommandeDto } from './../model/ligne-commande';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { environment } from './../../environments/environment';
+=======
+import { environment } from 'src/environments/environment';
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +76,14 @@ export class LigneLigneCommandeService {
   public deleteLigneCommandeDto(ligneCommandeId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/lignecommandes/delete/${ligneCommandeId}`);
   }
+
+  public getAllActiveLigneCommandes(): Observable<LigneCommandeDto[]> {
+    return this.http.get<LigneCommandeDto[]>(`${this.apiServerUrl}/lignecommandes/search-all-active-lignecommandes`);
+  }
+
+  public deleteLigneCommandeById(subCatId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/lignecommandes/delete-lignecommande/${subCatId}`);
+  }
+
 
 }

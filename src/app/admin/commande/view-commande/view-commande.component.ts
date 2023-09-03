@@ -82,7 +82,7 @@ export class ViewCommandeComponent implements OnInit {
     return {
       content: [
         {
-          text: 'SOUL-BUSINESS',
+          text: 'CASAMANCE CONSTRUCTION SOLAIRE',
           fontSize: 15,
           alignment: 'center',
           color: '#0000ff',
@@ -90,21 +90,21 @@ export class ViewCommandeComponent implements OnInit {
           style: 'name',
         },
         {
-          text: 'Vente de produits cosmétiques et Habillements pour Hommes & Femmes',
+          text: 'Vente (électroménagers, électronique, équipement solaire) et Installation solaire & Caméra surveillances',
           fontSize: 11,
           bold: true,
           color: '#0000ff',
           alignment: 'center',
         },
         {
-          text: 'Au Centre Commerciale Touba Sandaga 2é Etages Boutique N° 266',
+          text: 'En Face Rond Poind Cap Skiring',
           fontSize: 9.5,
           bold: true,
           color: '#0000ff',
           alignment: 'center',
         },
         {
-          text: 'Tél: +221 77 147 75 28 / Email: soulbusiness@gmail.com',
+          text: 'Tél: +221 77 715 15 14 / Email: mandiayesow@gmail.com',
           fontSize: 11,
           bold: true,
           alignment: 'center',
@@ -172,13 +172,13 @@ export class ViewCommandeComponent implements OnInit {
                 fontSize: 11,
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state}`,
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.name}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
                 fontSize: 11,
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.country}`,
+                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.countryDto.name}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
                 fontSize: 11,
@@ -226,7 +226,7 @@ export class ViewCommandeComponent implements OnInit {
         },
 
         {
-          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.total}`,
+          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.totalCommande}`,
           alignment: 'right',
           margin: [0, 8, 0, 8],
           bold: true,

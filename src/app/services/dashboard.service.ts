@@ -7,7 +7,11 @@ import { FournisseurDto } from './../model/fournisseur';
 import { NotificationDto } from './../model/notification';
 import { ClientDto } from './../model/client';
 
+<<<<<<< HEAD
 import { environment } from './../../environments/environment';
+=======
+import { environment } from 'src/environments/environment';
+>>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
 
 @Injectable({

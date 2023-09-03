@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Article, ArticleDto } from './../model/article';
 
-import { environment } from './../../environments/environment';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,7 @@ export class ArticleService {
   }
 
   public getArticleById(articleId: number): Observable<Article> {
-    return this.http.get<Article>(`${this.apiServerUrl}/articles/${articleId}`);
+    return this.http.get<Article>(`${this.apiServerUrl}/articles/findById/${articleId}`);
   }
 
   public getArticleByReference(reference: string): Observable<Article> {
@@ -58,6 +57,10 @@ export class ArticleService {
 
   public getArticleDTOsOrderByIdDesc(): Observable<ArticleDto[]> {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchAllArticleOrderByIdDesc`);
+  }
+
+  public getAllActivesArticlesOrderByDesignation(): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/search-all-active-articles`);
   }
 
   public getArticleDtoById(articleId: number): Observable<ArticleDto> {
@@ -121,6 +124,10 @@ export class ArticleService {
 
   public deleteArticleDto(articleId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/articles/delete/${articleId}`);
+  }
+
+  public deleteArticleById(articleId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/articles/delete-article/${articleId}`);
   }
 
 
