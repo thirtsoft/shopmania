@@ -13,10 +13,6 @@ export class ArticleService {
 
   apiServerUrl = environment.apiBaseUrl;
 
- // apiServerUrl = "http://62.171.128.8:8081/shop-mania/v1";
-
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
   choixmenu : string  = 'A';
   listData : ArticleDto[];
 
@@ -48,8 +44,6 @@ export class ArticleService {
   public deleteArticle(articleId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/articles/delete/${articleId}`);
   }
-
-  /************   ArticleDTO  ***************/
 
   public getArticleDTOs(): Observable<ArticleDto[]> {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/all`);

@@ -14,9 +14,6 @@ export class HistoriqueLoginService {
 
    apiServerUrl = environment.apiBaseUrl;
 
-   // apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
-
     public choixmenu : string  = 'A';
 
     public dataForm:  FormGroup;

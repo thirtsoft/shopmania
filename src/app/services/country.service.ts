@@ -1,18 +1,11 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { CountryDto } from './../model/country';
 import { Observable } from 'rxjs';
-
-import { environment } from './../../environments/environment';
-=======
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { CountryDto } from './../model/country';
-import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
 @Injectable({
   providedIn: 'root'
@@ -21,19 +14,12 @@ export class CountryService {
 
   apiServerUrl = environment.apiBaseUrl;
 
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-<<<<<<< HEAD
-=======
-
   public choixmenu : string  = 'A';
 
   public dataForm:  FormGroup;
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
   constructor(private http: HttpClient) {
   }
-
-  /***************************** CountryDTO    *************/
 
   public getCountryDTOs(): Observable<CountryDto[]> {
     return this.http.get<CountryDto[]>(`${this.apiServerUrl}/countries/all`);

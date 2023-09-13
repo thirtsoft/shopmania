@@ -15,9 +15,6 @@ export class EmailService {
 
   baseUrl = environment.apiBaseUrl;
 
-  //baseUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
-
   choixmenu : string  = 'A';
   listData : EmailDto[];
   formData : EmailDto;

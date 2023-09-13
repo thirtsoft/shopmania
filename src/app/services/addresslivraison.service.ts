@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import { Observable } from 'rxjs';
-import { AddressLivraison, AddressLivraisonDto } from './../model/address-livraison';
-import { HttpClient } from '@angular/common/http';
-=======
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -12,20 +6,12 @@ import { AddressLivraisonDto } from './../model/address';
 
 import { environment } from 'src/environments/environment';
 
-import { environment } from './../../environments/environment';
-
 @Injectable({
   providedIn: 'root'
 })
 export class AddresslivraisonService {
 
   apiServerUrl = environment.apiBaseUrl;
-<<<<<<< HEAD
-
-
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-=======
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
   constructor(private http: HttpClient) {
   }

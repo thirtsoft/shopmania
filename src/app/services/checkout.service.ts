@@ -14,8 +14,6 @@ export class CheckoutService {
 
    apiServerUrl = environment.apiBaseUrl;
 
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
   id;
 
   constructor(private http: HttpClient,

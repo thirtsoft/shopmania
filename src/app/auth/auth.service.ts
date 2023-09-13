@@ -14,18 +14,13 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Login } from './login';
 
-<<<<<<< HEAD
 const AUTH_API = 'http://localhost:8081/shop-mania/v1/';
 
 //const AUTH_API = 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/';
 
-//const AUTH_API = "https://businesse-admin.herokuapp.com/shop-mania/v1/";
-=======
-const AUTH_API = 'http://localhost:8081/casa-solaire/v1/';
 
 //const AUTH_API = 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/';
 
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 //const AUTH_API = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/";
 
 const TOKEN_KEY = 'AuthToken';
@@ -38,11 +33,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-<<<<<<< HEAD
-  
   apiServerUrl = environment.apiBaseUrl;
-
-
   //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
   //apiServerUrl = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1";
 
@@ -50,32 +41,14 @@ export class AuthService {
    loginUrl = 'http://localhost:8081/shop-mania/v1/auth/authenticated';
 
 
-//  loginUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated';
-=======
-
-  public apiServerUrl = environment.apiBaseUrl;
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
-
 //  loginUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1/auth/authenticated";
 
 //  loginUrl = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1/auth/authenticated";
 
 
-<<<<<<< HEAD
-//  baseUrl_1 = 'https://businesse-admin.herokuapp.com/shop-mania/v1';
 
   baseUrl_1 = 'http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1';
-=======
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-//  apiServerUrl = "http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1";
 
-
-  loginUrl = 'http://localhost:8081/casa-solaire/v1/auth/authenticated';
-
-  baseUrl_1 = 'http://localhost:8081/casa-solaire/v1';
-
-  //baseUrl_1 = 'http://62.171.128.8:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1';
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
   choixmenu : string  = 'A';
   dataForm:  FormGroup;

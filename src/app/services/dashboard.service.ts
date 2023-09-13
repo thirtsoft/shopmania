@@ -7,11 +7,8 @@ import { FournisseurDto } from './../model/fournisseur';
 import { NotificationDto } from './../model/notification';
 import { ClientDto } from './../model/client';
 
-<<<<<<< HEAD
 import { environment } from './../../environments/environment';
-=======
-import { environment } from 'src/environments/environment';
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
+
 
 
 @Injectable({
@@ -20,14 +17,6 @@ import { environment } from 'src/environments/environment';
 export class DashboardService {
 
   apiServerUrl = environment.apiBaseUrl;
-
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
-  //apiBaseUrl: 'http://localhost:8081/shop-mania/v1';
-
-//  apiBaseUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1';
-
-
 
   constructor(private http: HttpClient
   ) {}

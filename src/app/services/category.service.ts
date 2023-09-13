@@ -11,18 +11,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CategoryService {
-<<<<<<< HEAD
-  
-  apiServerUrl = environment.apiBaseUrl;
-  
- // apiServerUrl = "http://62.171.128.8:8081/shop-mania/v1";
-=======
 
    apiServerUrl = environment.apiBaseUrl;
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
-
-
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   public choixmenu : string  = 'A';
 
@@ -56,9 +46,6 @@ export class CategoryService {
   public deleteCategory(categoryId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${categoryId}`);
   }
-
-
-  /***************************** CategoryDTO    *************/
 
   public getCategorieDTOs(): Observable<CategoryDto[]> {
     return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/all`);

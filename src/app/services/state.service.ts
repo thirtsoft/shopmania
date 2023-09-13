@@ -3,11 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StateDto } from './../model/state';
 import { Observable } from 'rxjs';
-<<<<<<< HEAD
 import { environment } from './../../environments/environment';
-=======
-import { environment } from 'src/environments/environment';
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +12,6 @@ export class StateService {
 
   apiServerUrl = environment.apiBaseUrl;
 
-
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-<<<<<<< HEAD
-=======
-
   choixmenu : string  = 'A';
 
   listData : StateDto[];
@@ -28,12 +19,9 @@ export class StateService {
   formData:  StateDto;
 
   dataForm:  FormGroup;
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
   constructor(private http: HttpClient) {
   }
-
-  /***************************** StateDTO    *************/
 
   public getStateDTOs(): Observable<StateDto[]> {
     return this.http.get<StateDto[]>(`${this.apiServerUrl}/states/all`);

@@ -10,27 +10,12 @@ import { environment } from 'src/environments/environment';
 })
 export class CatalogueService {
 
-<<<<<<< HEAD
   apiServerUrl = environment.apiBaseUrl;
-
- // apiServerUrl = "http://62.171.128.8:8081/shop-mania/v1";
-
-  
-
-
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
-
-=======
-  public apiServerUrl = environment.apiBaseUrl;
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
 
   id: any;
   currentUser: any;
   username: any;
 
-//  public host:string="http://localhost:8080";
-  public apiBaseUrl: 'http://localhost:8081/casa-solaire/v1';
 
   constructor(private http: HttpClient,
             private tokenService: TokenStorageService

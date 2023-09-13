@@ -4,11 +4,8 @@ import { Injectable } from '@angular/core';
 import { Notification, NotificationDto } from './../model/notification';
 import { ArticleService } from './article.service';
 import { TokenStorageService } from './../auth/token-storage.service';
-<<<<<<< HEAD
 import { environment } from './../../environments/environment';
-=======
-import { environment } from 'src/environments/environment';
->>>>>>> 4231753cd853621d39b3224c77bfa079433fa590
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +13,6 @@ import { environment } from 'src/environments/environment';
 export class NotificationService {
 
   apiServerUrl = environment.apiBaseUrl;
-
-
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
 
   id: any;
   artId: any;

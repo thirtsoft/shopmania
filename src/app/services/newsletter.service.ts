@@ -15,9 +15,6 @@ export class NewsletterService {
 
   apiServerUrl = environment.apiBaseUrl;
 
-
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
   choixmenu : string  = 'A';
   listData : Newsletter[];
   formData:  Newsletter;
@@ -26,8 +23,6 @@ export class NewsletterService {
 
   constructor(private http: HttpClient) {
   }
-
-  /************************ NewsletterDto *******************/
 
   public getNewsletterDTOs(): Observable<NewsletterDto[]> {
     return this.http.get<NewsletterDto[]>(`${this.apiServerUrl}/newsletters/all`);

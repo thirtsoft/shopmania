@@ -12,10 +12,6 @@ export class SScategoryService {
 
   apiServerUrl = environment.apiBaseUrl;
 
-  //apiServerUrl = "https://businesse-admin.herokuapp.com/shop-mania/v1";
-
-//  private apiServerUrl = "http://localhost:8081/shop-mania/v1/";
-
   public choixmenu : string  = 'A';
 
   public dataForm:  FormGroup;
