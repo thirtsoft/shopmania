@@ -23,8 +23,6 @@ export class UpdateStatusCommandeComponent implements OnInit {
 
   formData:  FormGroup;
 
-
-
   constructor(public crudApi: CommandeService,
               public toastr: ToastrService,
               public fb: FormBuilder,
@@ -35,7 +33,6 @@ export class UpdateStatusCommandeComponent implements OnInit {
 
   ngOnInit() {
     this.infoForm()
-
   }
 
   infoForm() {
@@ -66,10 +63,6 @@ export class UpdateStatusCommandeComponent implements OnInit {
       this.router.navigateByUrl("admin/accueil/commandes").then(() => {
         window.location.reload();
       });
-     /*  window.alert('status commande modifié avec succès');
-      this.toastr.success("Status Appro Modifier avec Succès");
-      this.getListCommandeDTOs();
-      this.router.navigate(['/admin/commandes']); */
     });
   }
 
@@ -85,6 +78,5 @@ export class UpdateStatusCommandeComponent implements OnInit {
       this.router.navigate(['/admin/accueil/commandes']);
     });
   }
-
 
 }

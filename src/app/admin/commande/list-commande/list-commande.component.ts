@@ -38,10 +38,9 @@ export class ListCommandeComponent implements OnInit {
     this.comService.getAllActiveCommandes().subscribe(
       (response: CommandeDto[]) => {
         this.commandeDTOList = response;
-        console.log(this.commandeDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -66,5 +65,4 @@ export class ListCommandeComponent implements OnInit {
       }
     });
   }
-
 }

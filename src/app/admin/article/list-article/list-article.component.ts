@@ -51,10 +51,9 @@ export class ListArticleComponent implements OnInit {
     this.crudApi.getAllActivesArticlesOrderByDesignation().subscribe(
       (response: ArticleDto[]) => {
         this.articleDTOList = response;
-        console.log(this.articleDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -71,7 +70,6 @@ export class ListArticleComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
     this.matDialog.open(UploadFileComponent, dialogConfig);
-
   }
 
 
@@ -95,6 +93,5 @@ export class ListArticleComponent implements OnInit {
       }
     });
   }
-
 
 }

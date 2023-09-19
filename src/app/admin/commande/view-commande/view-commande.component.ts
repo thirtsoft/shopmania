@@ -37,7 +37,6 @@ export class ViewCommandeComponent implements OnInit {
 
   ngOnInit(): void {
     this.comId = this.route.snapshot.params.id;
-    console.log(this.comId);
     this.lcmdService.getLigneCommandeDtosByCommandeId(this.comId).subscribe((data: LigneCommandeDto[]) => {
       this.lcmdService.listData = data;
       this.numeroCommande = this.lcmdService.listData[0].commandeDto.numeroCommande;
@@ -45,7 +44,6 @@ export class ViewCommandeComponent implements OnInit {
       this.dateCommande = this.lcmdService.listData[0].commandeDto.dateCommande;
       this.client = this.lcmdService.listData[0].commandeDto.clientDto.firstName  + ' ' + this.lcmdService.listData[0].commandeDto.clientDto.lastName;
       this.username = this.lcmdService.listData[0].commandeDto.utilisateurDto.name;
-      console.log("Username: " +this.username);
     }, err => {
       console.log(err);
     })
@@ -60,7 +58,6 @@ export class ViewCommandeComponent implements OnInit {
         this.listData = response;
       }
     );
-
   }
 
   OpenPdf() {
@@ -114,7 +111,6 @@ export class ViewCommandeComponent implements OnInit {
 
         },
 
-
         {
           columns: [
 
@@ -158,7 +154,7 @@ export class ViewCommandeComponent implements OnInit {
                 margin: [0, 15, 0, 15]
               },
               {
-                text: ' Addresse Livraison : ',
+                text: ' Adresse Livraison : ',
                 fontSize: 11,
                 color: '#0000ff',
                 bold: true,

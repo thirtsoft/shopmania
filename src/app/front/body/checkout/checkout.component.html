@@ -85,7 +85,7 @@
           <!-- Shipping info -->
           <div class="checkout-inner">
             <div class="billing-address">
-              <h2>Addresse Achat</h2>
+              <h2>Adresse Achat</h2>
               <div class="row" formGroupName="shippingAddress">
                 <div class="col-md-12">
                   <label>Rue</label>
@@ -154,7 +154,7 @@
                       id="shipto"
                     />
                     <label class="custom-control-label" for="shipto"
-                      >Choisir la meme addresse</label
+                      >Choisir la meme adresse</label
                     >
                   </div>
                 </div>
@@ -164,7 +164,7 @@
 
           <!-- Shipping info -->
           <div class="billing-address">
-            <h2>Addresse Livraison</h2>
+            <h2>Adresse Livraison</h2>
             <div class="row" formGroupName="billingAddress">
               <div class="col-md-12">
                 <label>Rue</label>
@@ -234,9 +234,9 @@
           <div class="checkout-inner">
             <div class="checkout-summary">
               <h1>Total Panier</h1>
-              <div *ngFor="let item of cartItems; let i = index">
+              <div *ngFor="let item of cartItems; let i = index"> 
                 <p>
-                  <img
+                 <!--  <img
                     [src]="
                       this.catalogueService.apiServerUrl +
                       '/articles/photoArticleInContext/' +
@@ -246,7 +246,18 @@
                     "
                     style="width: 40px; height: 40px"
                     alt="Product Image"
-                  />
+                  /> -->
+                  <img
+                  [src]="
+                    this.catalogueService.apiServerUrl +
+                    '/articles/photoArticle/' +
+                    item.id +
+                    '?ts=' +
+                    getTS()
+                  "
+                  style="width: 40px; height: 40px"
+                  alt="{{ item.name }}"
+                />
                   {{ item.name }}
                   <span style="text-align: right">{{ item.unitPrice }}f</span>
                 </p>

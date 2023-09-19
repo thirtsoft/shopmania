@@ -68,7 +68,7 @@ export class FeatureProductComponent implements OnInit {
         console.log(this.articleListDTOBySelected);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
@@ -99,11 +99,7 @@ export class FeatureProductComponent implements OnInit {
   async getProducts() {
     try {
       const response = await  axios.get('assets/data/products.json');
-      console.log("response data", response.data);
-      console.log("response status", response.status);
-
       this.products = response.data;
-
     } catch (e) {
       console.log(e);
     }
@@ -125,15 +121,5 @@ export class FeatureProductComponent implements OnInit {
   }
   recentClick(item) {
   }
-
-
-  /*
-  recentClick(slug){
-    const recent = this.productService.recentClick(slug);
-    if(recent){
-      console.log('recent-', recent);
-    }
-  }
-*/
 
 }

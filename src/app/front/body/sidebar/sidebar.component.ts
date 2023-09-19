@@ -23,10 +23,9 @@ export class SidebarComponent implements OnInit {
     this.scatService.getScategoryDtos().subscribe(
       (response: ScategoryDto[]) => {
         this.scategoryListDTOs = response;
-        console.log(this.scategoryListDTOs);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 

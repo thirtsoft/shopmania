@@ -51,7 +51,6 @@ export class AddBlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.paramId = this.actRoute.snapshot.paramMap.get('id');
-    console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getBlogDtoById(this.paramId);
     }
@@ -77,8 +76,6 @@ export class AddBlogComponent implements OnInit {
   processForm() {
     this.progress = 0;
     this.currentFileUpload = this.selectedFiles.item(0)
-    console.log(this.currentFileUpload);
-    console.log(this.paramId);
     this.crudApi.uploadPhotoBlogDto(this.currentFileUpload, this.addEditBlogDto.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
@@ -95,21 +92,18 @@ export class AddBlogComponent implements OnInit {
   }
 
   getBlogDtoById(id: number) {
-    console.log('getOne');
     this.crudApi.getBlogDtoById(id).subscribe(
       (response: BlogDto) => {
-        console.log('data--', response);
         this.addEditBlogDto = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
   }
 
   update() {
-    console.log('Data send--', this.addEditBlogDto);
     this.crudApi.updateBlogDto(this.addEditBlogDto.id, this.addEditBlogDto).subscribe(
       (response: BlogDto) => {
         this.toastr.warning('avec succès','Blog Modifié', {
@@ -121,14 +115,13 @@ export class AddBlogComponent implements OnInit {
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
 
     );
   }
 
   onSelectFile(event) {
-   // selectionner une image et la garder
     const file = event.target.files[0];
     this.blogFile = file;
   }
@@ -140,7 +133,6 @@ export class AddBlogComponent implements OnInit {
     formData.append('photoBlog', this.blogFile);
     this.crudApi.addBlogDtoWithPhoto(formData)
       .subscribe((response: BlogDto)=> {
-        console.log('Response--', response);
         this.toastr.success('avec succès','Blog Ajoutée', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
@@ -151,7 +143,7 @@ export class AddBlogComponent implements OnInit {
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }

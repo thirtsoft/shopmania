@@ -48,31 +48,21 @@ export class ShopComponent implements OnInit {
               private toastr: ToastrService,
               private route: ActivatedRoute,
               private router: Router,
-  //            private productService:ProductService,
   ){ }
 
   ngOnInit() {
-  //  this.dataService.currentCart.subscribe(editCart => (this.cart = editCart));
-  this.route.paramMap.subscribe(()=> {
-    this.getListArticleDTOs();
-  });
-
-
-  // get from data using axios
- //   this.getProducts();
-
-  //  this.getArticleListDTOs();
-
+    this.route.paramMap.subscribe(()=> {
+      this.getListArticleDTOs();
+    });
   }
 
   public getArticleListDTOs() {
     this.artService.getArticleDTOs().subscribe(
       (response: ArticleDto[]) => {
         this.articleListDTOBs = response;
-        console.log(this.articleListDTOBs);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
@@ -86,25 +76,21 @@ export class ShopComponent implements OnInit {
     }
      else  {
       this.handlerListArticleDTOs();
-    //  this.getArticleListDTOsBySamePriceByPageable();
     }
 
   }
 
   handlerListArticleDTOs() {
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
-
     if (hasCategoryId) {
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id');
     }else {
       this.currentCategoryId = 1;
     }
-
     if(this.previousCategoryId != this.currentCategoryId) {
       this.currentPage = 1;
     }
     this.previousCategoryId = this.currentCategoryId;
-
     this.catalogueService.getListArticleDTOByScategoryByPageable(
           this.currentCategoryId,
           this.currentPage - 1,
@@ -120,7 +106,6 @@ export class ShopComponent implements OnInit {
         this.priceSearch,
         this.currentPage - 1,
           this.size).subscribe(this.processResult());
-
   }
 
   processResult() {
@@ -132,14 +117,12 @@ export class ShopComponent implements OnInit {
 
   }
 
-   // Liste des produits par page
    getArticleDTOByPageable() {
     this.catalogueService.getListArticleDTOByPageable(this.currentPage, this.size)
       .subscribe(data=> {
         this.totalPages = data['totalPages'];
         this.pages = new Array(data['totalPages']);
         this.articleListDTOBs = data['content'];
-        console.log(data);
       },err=> {
         console.log(err);
       });
@@ -166,9 +149,7 @@ export class ShopComponent implements OnInit {
       data  => {
         this.articleListDTOBs = data;
       }
-
     )
-
   }
 
   addTocart(articleDTO: ArticleDto) {
@@ -199,13 +180,11 @@ export class ShopComponent implements OnInit {
           this.articleListDTOBs = this.articleListDTOBs.sort((low, high) => low.price - high.price);
           break;
         }
-
       case "High":
         {
           this.articleListDTOBs = this.articleListDTOBs.sort((low, high) => high.price - low.price);
           break;
         }
-
       case "Name":
         {
           this.articleListDTOBs = this.articleListDTOBs.sort(function (low, high) {
@@ -229,16 +208,9 @@ export class ShopComponent implements OnInit {
 
     }
     return this.articleListDTOBs;
-
-
-
   }
-
-
 
   bynow() {
     this.router.navigate(["cart"]);
   }
-
-
 }

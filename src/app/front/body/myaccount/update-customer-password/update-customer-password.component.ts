@@ -52,7 +52,6 @@ export class UpdateCustomerPasswordComponent implements OnInit {
         positionClass: 'toast-top-right',
       });
       this.logout();
-      console.log(data);
     });
 
   }

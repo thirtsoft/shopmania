@@ -45,12 +45,10 @@ export class AddFournisseurComponent implements OnInit {
 
   ngOnInit(): void {
     this.paramId = this.actRoute.snapshot.paramMap.get('id');
-    console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getFournisseurDTOById(this.paramId);
     }
     this.getListArticleDTOs();
-
   }
 
   public getListArticleDTOs(): void {
@@ -58,27 +56,24 @@ export class AddFournisseurComponent implements OnInit {
       (response: ArticleDto[]) => {
         this.ListArticleDTO = response;
       }, (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     )
   }
 
   getFournisseurDTOById(id: number) {
-    console.log('getOne');
     this.fournisseurService.getFournisseurDtoById(id).subscribe(
       (response: FournisseurDto) => {
-        console.log('data--', response);
         this.formDataFournisseurDTO = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
   }
 
   submit() {
-    console.log('Data send--', this.formDataFournisseurDTO);
     this.fournisseurService.addFournisseurDto(this.formDataFournisseurDTO).subscribe(
       (response: FournisseurDto) => {
         this.toastr.success('avec succès','Fournisseurs Ajouté', {
@@ -90,15 +85,12 @@ export class AddFournisseurComponent implements OnInit {
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
-
     );
-
   }
 
   update() {
-    console.log('Data send--', this.formDataFournisseurDTO);
     this.fournisseurService.updateFournisseurDto(this.formDataFournisseurDTO.id, this.formDataFournisseurDTO).subscribe(
       (response: FournisseurDto) => {
         console.log('Response--', response);

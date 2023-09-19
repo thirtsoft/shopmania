@@ -55,7 +55,6 @@ export class AddCountrieComponent implements OnInit {
     }else{
         this.updateCountrie();
     }
-
   }
 
   saveCountry() {
@@ -74,7 +73,6 @@ export class AddCountrieComponent implements OnInit {
           this.toastr.error("Cette Région exist déjà, veuillez changez de code");
         }
       );
-
   }
 
   updateCountrie(){
@@ -90,8 +88,6 @@ export class AddCountrieComponent implements OnInit {
       });
     });
   }
-
-
 
   goBack() {
     this.router.navigateByUrl("admin/accueil/countries");

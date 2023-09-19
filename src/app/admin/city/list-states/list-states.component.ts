@@ -40,10 +40,9 @@ export class ListStatesComponent implements OnInit {
     this.crudApi.getAllActiveStates().subscribe(
       (response: StateDto[]) => {
         this.crudApi.listData = response;
-        console.log(this.crudApi.listData);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -66,7 +65,6 @@ export class ListStatesComponent implements OnInit {
       id
     };
     this.matDialog.open(AddStateComponent, dialogConfig);
-
   }
 
   selectData(item : StateDto) {
@@ -99,6 +97,4 @@ export class ListStatesComponent implements OnInit {
       }
     });
   }
-
-
 }

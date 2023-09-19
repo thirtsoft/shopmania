@@ -40,20 +40,14 @@ export class SuccessOrderComponent implements OnInit {
 
   cartDetails() {
     this.cartItems = this.cartService.cartItems;
-
     this.cartService.totalPrice.subscribe(
       data => this.totalPrice = data
     )
-
     this.cartService.totalQuantity.subscribe(
       data => this.totalQuantity = data
     );
-
     this.shippingCost = this.cartService.shippingCost;
-
     this.cartService.calculateTotalPrice();
-
-
   }
 
    // increment quantity
@@ -64,7 +58,6 @@ export class SuccessOrderComponent implements OnInit {
       timeOut: 1500,
       positionClass: 'toast-top-right',
     });
-
   }
 
   // decrement quantity
@@ -84,8 +77,6 @@ export class SuccessOrderComponent implements OnInit {
 
   cartList(items) {
     this.cartItem = [];
-    console.log('Item---', items.products);
-
     items.products.forEach((item, index) => {
       if (index<=0) {
         //--first loop
@@ -162,9 +153,6 @@ export class SuccessOrderComponent implements OnInit {
       }
     }
     this.dataService.updateCart(this.cart);
-
-    console.log('this.cart--', this.cart);
-
   }
 
   removeCarts(pId) {
@@ -180,6 +168,4 @@ export class SuccessOrderComponent implements OnInit {
       }
     });
   }
-
-
 }

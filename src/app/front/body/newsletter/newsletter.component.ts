@@ -37,19 +37,16 @@ export class NewsletterComponent implements OnInit {
     console.log('Data send--', this.addEditNewsletterDTO);
     this.crudApi.addNewsletterDTO(this.addEditNewsletterDTO).subscribe(
       (response: NewsletterDto) => {
-        console.log('Response--', response);
-
         this.toastr.success('notre Newsletter avec succès','Vous etes inscris a', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
         });
-
         this.router.navigateByUrl("home").then(() => {
           window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
 
     );

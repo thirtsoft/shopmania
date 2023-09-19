@@ -44,22 +44,14 @@ export class NavComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenService.getUser();
       this.roles = user.roles;
-
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showVendeurBoard = this.roles.includes("ROLE_VENDEUR");
       this.showUserBoard = this.roles.includes('ROLE_USER');
-
       this.username = user.username;
       this.userId = user.id;
       this.photo = user.photo;
-
       this.currentUser = this.autService.getCurrentUser();
-
-      console.log(this.autService.getCurrentUser());
-
       const loginUser = this.autService.getCurrentLogginUser();
-      console.log("Current user " + loginUser);
-
     }
 
   }
@@ -92,8 +84,8 @@ export class NavComponent implements OnInit {
       dialogRef.close();
     }, 2000);
   }
+
   logout2(){
-  //  sessionStorage.removeItem("user-data");
     let _html=`
       <div class="c-red">
         <div class="material-icons">task_alt</div>

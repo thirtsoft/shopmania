@@ -34,6 +34,4 @@ export class BottomBarComponent implements OnInit {
     )
 
   }
-
-
 }

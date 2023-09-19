@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
         console.log(this.articleDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }

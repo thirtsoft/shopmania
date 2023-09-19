@@ -79,31 +79,20 @@ export class MyaccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.paramId = this.route.snapshot.paramMap.get('id');
-     console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getCommandeDTOByUserId(this.paramId);
-
       this.getUtilisateurDTOById(this.paramId);
-
     }
 
     this.isLoggedIn = !!this.tokenService.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenService.getUser();
       this.roles = user.roles;
-
       this.username = user.username;
       this.userId = user.id;
-
       this.currentUser = this.authService.getCurrentUser();
-
-      console.log(this.authService.getCurrentUser());
-
       const loginUser = this.authService.getCurrentLogginUser();
-      console.log("Current user " + loginUser);
-
     }
 
   }
@@ -112,11 +101,10 @@ export class MyaccountComponent implements OnInit {
   getCommandeDTOByUserId(id: number) {
     this.crudApi.getCommandeDtoByUserIdOrderDesc(id).subscribe(
       (response: CommandeDto[]) => {
-        console.log('data--', response);
         this.listCommandeDataDTO = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
@@ -127,11 +115,10 @@ export class MyaccountComponent implements OnInit {
     console.log('getOne');
     this.userService.getUtilisateurDtoById(id).subscribe(
       (response: UtilisateurDto) => {
-        console.log('data--', response);
         this.listDataProfil = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
@@ -148,9 +135,6 @@ export class MyaccountComponent implements OnInit {
         this.customerUsername = this.listDataProfil.username;
         this.customerEmail = this.listDataProfil.email;
         this.customerMobile = this.listDataProfil.mobile;
-        console.log(this.listDataProfil.name);
-        console.log(this.listDataProfil.username);
-        console.log(this.listDataProfil.email);
       }
     );
   }
@@ -176,7 +160,6 @@ export class MyaccountComponent implements OnInit {
   }
 
   update() {
-    console.log('Data send--', this.listDataProfil);
     this.userService.updateUtilisateurDto(this.listDataProfil.id, this.listDataProfil).subscribe(
       (response: UtilisateurDto) => {
         this.toastr.warning('avec succès','Utulisateur Modifiée', {
@@ -189,7 +172,7 @@ export class MyaccountComponent implements OnInit {
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
 
     );
@@ -198,8 +181,6 @@ export class MyaccountComponent implements OnInit {
   viewCommande(item: CommandeDto) {
     this.router.navigateByUrl('facture/' + item.id);
   }
-
-
 
   logout(){
     this.tokenService.signOut();

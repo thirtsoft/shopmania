@@ -33,12 +33,10 @@ export class LoginComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
-      console.log("Login start : " + this.roles);
     }
   }
 
   onSubmit() {
-    console.log(this.form);
     this.loginInfo = new Login(
       this.form.username,
       this.form.password,

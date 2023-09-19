@@ -46,10 +46,9 @@ export class ListCategoryComponent implements OnInit {
     this.crudApi.getAllActiveCategories().subscribe(
       (response: CategoryDto[]) => {
         this.categoryListDTO = response;
-        console.log(this.categoryListDTO);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -93,8 +92,5 @@ export class ListCategoryComponent implements OnInit {
       }
     });
   }
-
-
-
 
 }

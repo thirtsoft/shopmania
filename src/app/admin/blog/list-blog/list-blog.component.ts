@@ -46,10 +46,9 @@ export class ListBlogComponent implements OnInit {
     this.crudApi.getBlogDtosOrderByIdDesc().subscribe(
       (response: BlogDto[]) => {
         this.blogDTOList = response;
-        console.log(this.blogDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -66,9 +65,7 @@ export class ListBlogComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
     this.matDialog.open(UploadFileComponent, dialogConfig);
-
   }
-
 
   confirmDialog(id: number){
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')

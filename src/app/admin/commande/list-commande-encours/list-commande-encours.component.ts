@@ -43,10 +43,9 @@ export class ListCommandeEncoursComponent implements OnInit {
     this.crudApi.getCommandeDtosByStatusPending().subscribe(
       (response: CommandeDto[]) => {
         this.commandeDTOList = response;
-        console.log(this.commandeDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -59,9 +58,7 @@ export class ListCommandeEncoursComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
     this.matDialog.open(UpdateStatusCommandeComponent, dialogConfig);
-
   }
-
 
   viewAllCommandes() {
     this.router.navigate(['/admin/accueil/commandes']);

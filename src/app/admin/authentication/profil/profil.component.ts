@@ -58,29 +58,23 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmploye();
-
     const user = this.tokenService.getUser();
     this.id = user.id
-
     this.username = user.username;
     this.email = user.email;
     this.password = user.password;
     this.name = user.name;
-
     if (this.userService.getUserAvatar(this.userId) === null)
     this.img = false;
     else this.img =true;
-
   }
 
   getEmploye() {
     const user = this.tokenService.getUser();
-    console.log(user.id);
     this.userService.getUtilisateurDtoById(user.id).subscribe(
-    response => {
-    console.log(response);
-    this.listDataProfil = response;
-    }
+      response => {
+        this.listDataProfil = response;
+      }
     );
   }
 
@@ -100,8 +94,6 @@ export class ProfilComponent implements OnInit {
   processForm() {
     this.progress = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-    console.log(this.currentFileUpload);
-    console.log(this.id);
     this.userService.uploadPhotoUtilisateur(this.currentFileUpload, this.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
@@ -126,7 +118,6 @@ export class ProfilComponent implements OnInit {
   }
 
   addEditPassword(item: UtilisateurDto) {
-    console.log(item);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
@@ -146,14 +137,12 @@ export class ProfilComponent implements OnInit {
   }
 
   editProfil(item: UtilisateurDto) {
-    console.log(item);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width = "50%";
     this.authService.listData = Object.assign({}, item)
     this.matDialog.open(UpdateProfilComponent, dialogConfig);
-
   }
 
 

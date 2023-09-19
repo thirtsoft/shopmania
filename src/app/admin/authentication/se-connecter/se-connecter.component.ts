@@ -29,7 +29,6 @@ export class SeConnecterComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
-      console.log("Login start : " + this.roles);
     }
   }
 
@@ -44,13 +43,10 @@ export class SeConnecterComponent implements OnInit {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
         this.tokenStorage.saveUsername(data.username);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        console.log("Login Success");
         this.router.navigateByUrl("admin/accueil");
-
       },
       error => {
         console.log(error);

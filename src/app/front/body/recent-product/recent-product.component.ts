@@ -48,10 +48,9 @@ export class RecentProductComponent implements OnInit {
     this.catalogueService.getTop12ArticleDTOOrderByCreatedDateDesc().subscribe(
       (response: ArticleDto[]) => {
         this.articleTop12OrderByCreatedDateDesc = response;
-        console.log(this.articleTop12OrderByCreatedDateDesc);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 

@@ -67,19 +67,6 @@ export class UploadFileComponent implements OnInit {
   processForm() {
     this.progress = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-    console.log(this.currentFileUpload);
-    console.log(this.id);
-   /*  this.crudApi.uploadPhotoArticleDto(this.currentFileUpload, this.id)
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progress = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          this.currentTime = Date.now();
-        }
-      }, err => {
-        this.toastr.warning("Problème de chargment de la photo");
-      }
-      ); */
     this.selectedFiles = undefined;
   }
 
@@ -97,6 +84,5 @@ export class UploadFileComponent implements OnInit {
         });
     });
   }
-
 
 }

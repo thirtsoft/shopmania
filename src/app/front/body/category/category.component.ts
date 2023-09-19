@@ -25,9 +25,6 @@ export class CategoryComponent implements OnInit {
   async getCategories() {
     try {
       const response = await  axios.get('assets/data/categories');
-      console.log("response data", response.data);
-      console.log("response status", response.status);
-
       this.categories = response.data;
 
     } catch (e) {

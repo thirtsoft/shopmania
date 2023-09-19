@@ -1,7 +1,5 @@
 <app-main-top></app-main-top>
 
-<!-- Breadcrumb Start -->
-<!-- <app-breadcrumb></app-breadcrumb> -->
 <div class="breadcrumb-wrap">
   <div class="container-fluid">
       <ul class="breadcrumb">
@@ -10,10 +8,6 @@
       </ul>
   </div>
 </div>
-<!-- Breadcrumb End -->
-
-
-<!-- Login Start -->
 <div class="login">
     <div class="container-fluid">
         <div class="row">
@@ -24,8 +18,7 @@
 
                         <div class="col-md-6">
                             <label>Nom&Prénom</label>
-                          <!--   <input class="form-control" type="text" placeholder="Prénom"> -->
-                            <input name="name" id="name" formControlName="name" required required="" class="form-control" placeholder="Votre Nom" type="text">
+                            <input name="name" id="name" formControlName="name" required class="form-control" placeholder="Votre nom et prénom" type="text">
                             <div class="alert alert-danger" *ngIf="registrationForm.get('name').invalid
                                 && registrationForm.get('name').touched">
                               <div *ngIf="registrationForm.get('name').errors.required">Votre nom est obligatoire</div>
@@ -49,11 +42,6 @@
                               <div *ngIf="registrationForm.get('email').errors.required">Votre mot de email est obligatoire</div>
                           </div>
                         </div>
-
-                       <!--  <div class="col-md-6">
-                            <label>Nom Utilisateur</label>
-                            <input class="form-control" type="text" placeholder="Nom Utilisateur">
-                        </div> -->
                         <div class="col-md-6">
                           <label>Password</label>
                           <input name="password" required="" class="form-control" placeholder="Votre mot de Password" id="password" formControlName="password" type="password">
@@ -62,17 +50,9 @@
                               <div *ngIf="registrationForm.get('password').errors.required">Votre mot de passe est obligatoire</div>
                           </div>
                         </div>
-                        <!-- <div class="col-md-6">
-                            <label>Retype Password</label>
-                            <input class="form-control" type="text" placeholder="Password">
-                        </div> -->
                         <div class="col-md-12">
                             <button class="btn btn-block">Créer compte</button>
                         </div>
-                        <!-- <div class="col-md-12">
-                          <p>Vous avez un compte alors connectez-vous : <a routerLink="/login">Ici</a></p>
-                       </div> -->
-
                        <div class="mt-4">
                         <div class="d-flex justify-content-center links">
                             Vous avez Déjà un compte alors ? <a routerLink="/login" class="ml-2">Se-Connecter</a>
@@ -84,30 +64,6 @@
                 </div>
               </form>
             </div>
-
-           <!--  <div class="col-lg-6">
-                <div class="login-form">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>E-mail / Username</label>
-                            <input class="form-control" type="text" placeholder="E-mail / Username">
-                        </div>
-                        <div class="col-md-6">
-                            <label>Password</label>
-                            <input class="form-control" type="text" placeholder="Password">
-                        </div>
-                        <div class="col-md-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="newaccount">
-                                <label class="custom-control-label" for="newaccount">Keep me signed in</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="btn">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

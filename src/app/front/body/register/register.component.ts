@@ -45,7 +45,6 @@ export class RegisterComponent implements OnInit {
     const arr = rolesList.map(role => {
       return new FormControl(role.selected)
     });
-    console.log("CreateRole:" +arr);
     return new FormArray(arr);
   }
 
@@ -67,9 +66,6 @@ export class RegisterComponent implements OnInit {
       console.log(response);
       this.isRegistered = true;
       this.isSignUpFailed = false;
-      console.log("User register Succeffuly");
-      window.alert("User register Succeffuly");
-//      this.toastr.warning("User register Succeffuly");
       this.router.navigateByUrl("success-register");
     },
     error => {

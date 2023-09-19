@@ -22,57 +22,10 @@ export class VenteByMonthBarChartComponent implements OnInit {
   constructor(private statService: DashboardService) { }
 
   ngOnInit() {
-   /*  this.statService.SumTotaleOfCommandeByMonth().subscribe((result: CommandeDto[]) => {
-      this.listAnnes = result;
-      const n = 1;
-      const m = 0;
-      console.log(this.listAnnes);
-      for (let i=0; i<this.listAnnes.length; i++) {
-        this.ChiffreAffaireMois.push(this.listAnnes[i][n]);
-        this.VenteOfMonth.push(this.listAnnes[i][m]);
-      }
-
-      this.Barchart = new Chart('barChartVenteByMonth', {
-        type: 'bar',
-        data: {
-          labels: this.VenteOfMonth,
-
-          datasets: [
-            {
-              data: this.ChiffreAffaireMois,
-              borderColor: '#3cb371',
-              backgroundColor: "#5F9EA0",
-
-            }
-          ]
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [{
-              display: true,
-              ticks: {
-                beginAtZero: true
-              }
-            }],
-            yAxes: [{
-              display: true,
-              ticks: {
-                beginAtZero: true
-              }
-            }],
-          }
-        }
-      });
-    }); */
-
     this.statService.SumTotaleOfCommandeByMonth().subscribe((result: CommandeDto[]) => {
       this.listAnnes = result;
       const n = 1;
       const m = 0;
-      console.log(this.listAnnes);
       for (let i=0; i<this.listAnnes.length; i++) {
         this.ChiffreAffaireMois.push(this.listAnnes[i][n]);
         this.VenteOfMonth.push(this.listAnnes[i][m]);
@@ -82,7 +35,6 @@ export class VenteByMonthBarChartComponent implements OnInit {
         type: 'line',
         data: {
           labels: this.VenteOfMonth,
-
           datasets: [
             {
               data: this.ChiffreAffaireMois,

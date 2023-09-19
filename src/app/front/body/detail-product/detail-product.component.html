@@ -1,42 +1,31 @@
 <app-main-top></app-main-top>
-
-<!-- Breadcrumb Start -->
-<!-- <app-breadcrumb></app-breadcrumb> -->
 <div class="breadcrumb-wrap">
     <div class="container-fluid">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink="/home">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="#">Detail Produit</a></li>
+            <li class="breadcrumb-item"><a href="#">Detail Article</a></li>
             <li class="breadcrumb-item active" *ngIf="articleDTOs">{{articleDTOs?.designation}}</li>
         </ul>
     </div>
 </div>
-<!-- Breadcrumb End -->
-
-<!-- Product Detail Start -->
 <div class="product-detail">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
                 <div class="product-detail-top">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center"> 
                         <div class="col-md-5">
                             <div class="product-slider-single normal-slider">
-                                <!-- <img src="assets/customer/img/{{pImageDefault}}" alt="Product Image"> -->
-                              <!--   <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+articleDTOs.id}}" alt="Product Image"> -->
-                                <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+articleDTOs.id}}" alt="Product Image">
+                               <!--  <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+articleDTOs.id}}" alt="Product Image"> -->
+                                <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+articleDTOs.id}}" alt="{{articleDTOs?.designation}}">
                             </div>
-                
                         </div>
                         <div class="col-md-7">
                             <div class="product-content">
                                 <div class="title">
-                                    <!-- <h2>{{product?.pName}}</h2> -->
                                     <h2>{{articleDTOs?.designation}}</h2>
                                 </div>
                                 <div class="ratting">
-
-
                                     <ngb-rating
                                         [max]="5"
                                         [(rate)]="currentRating"
@@ -45,7 +34,6 @@
                                 </div>
                                 <div class="price">
                                     <h4>Prix : </h4>
-                                    <!-- <p>$99 <span>$149</span></p> -->
                                     <p> FCFA {{ articleDTOs?.price }} <!-- <span>149f</span --></p>
                                 </div>
                                 <div class="quantity">
@@ -82,13 +70,13 @@
 
                         <div class="tab-content">
                             <div id="description" class="container tab-pane active">
-                                <h4>Description du Produit</h4>
+                                <h4>Description de l'article</h4>
                                 <p>
                                   {{ articleDTOs?.description }}
                                 </p>
                             </div>
                             <div id="specification" class="container tab-pane fade">
-                                <h4>specification du Produit</h4>
+                                <h4>specification de l'article</h4>
                                 <ul>
                                   <p>
                                     {{ articleDTOs?.manufactured }}
@@ -98,7 +86,6 @@
                             </div>
                             <div id="reviews" class="container tab-pane fade">
                               <div class="reviews-submitted" *ngFor="let rat of notificationListDTO; let i=index;">
-
                                 <div class="reviewer">{{ rat.utilisateurDto.name }} - <span>{{ rat.createdDate | date:'dd-MM-yyyy' }}</span></div>
                                 <div class="ratting">
                                     <ngb-rating
@@ -109,13 +96,11 @@
                                     [max]="maxRatingValue"
                                   >
                                   </ngb-rating>
-
                                 </div>
                                 <p>
                                   {{ rat.observation }}
                                 </p>
                               </div>
-
                                 <!--  Start of create Rating -->
                                 <app-rating></app-rating>
                                <!--  End of create Rating -->
@@ -125,8 +110,6 @@
                     </div>
                 </div>
             </div>
-
-            
             <div class="col-lg-4 sidebar">
                <!--  <app-sidebar></app-sidebar> -->
             </div>
@@ -134,10 +117,4 @@
         </div>
     </div>
 </div>
-<!-- Product Detail End -->
-
-<!-- Brand Start -->
-<!-- <app-brand></app-brand> -->
-<!-- Brand End -->
-
 <app-main-footer></app-main-footer>

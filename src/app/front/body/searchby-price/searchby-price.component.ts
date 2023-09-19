@@ -28,20 +28,11 @@ export class SearchbyPriceComponent implements OnInit {
     this.artService.getArticleDTOs().subscribe(
       (response: ArticleDto[]) => {
         this.articleListDTOBs = response;
-        console.log("List ArticleDTO Price", this.articleListDTOBs);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
   }
-/*
-  searchArticleByPrice(price: number) {
-    console.log("price+++", price);
-    this.router.navigateByUrl('/searchbyPrice/'+price);
-
-  }
-  */
-
 }

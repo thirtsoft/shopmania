@@ -44,7 +44,6 @@ export class SignUpComponent implements OnInit {
     const arr = rolesList.map(role => {
       return new FormControl(role.selected)
     });
-    console.log("CreateRole:" +arr);
     return new FormArray(arr);
   }
 
@@ -54,17 +53,13 @@ export class SignUpComponent implements OnInit {
     this.user.username = this.registrationForm.value.username;
     this.user.email = this.registrationForm.value.email;
     this.user.password = this.registrationForm.value.password;
-    console.log("SelectedRole: " +this.getSelectedRoles());
     this.user.roles = this.getSelectedRoles();
     this.registerUser();
   }
 
   registerUser() {
-    console.log(this.user);
-
     this.authService.signUp(this.user)
     .subscribe(response=> {
-      console.log(response);
       this.isRegistered = true;
       this.isSignUpFailed = false;
       this.toastr.success('avec succès','Utilisateur crée', {
@@ -83,7 +78,6 @@ export class SignUpComponent implements OnInit {
 
   getSelectedRoles():string[]  {
     this.selectedRoles = this.registrationForm.value.roleSelection.map((selected:any, i) => {
-      console.log("IsSelected: " +selected);
       if(selected){
         return this.roles[i].name;
       }else {

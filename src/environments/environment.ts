@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-//  apiBaseUrl: 'http://localhost:8081/shop-mania/v1',
+//  apiBaseUrl: 'http//localhost:1987/shop-mania/v1',
   apiBaseUrl: 'http://soulbusinessapi.soulbusinesse.com/shop-mania/v1'
 //  apiBaseUrl: 'http://localhost:8080/dpshop-backend-0.0.1-SNAPSHOT/shop-mania/v1'
 

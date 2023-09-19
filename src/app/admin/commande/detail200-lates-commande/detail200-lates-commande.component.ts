@@ -11,7 +11,6 @@ import { Component, OnInit } from '@angular/core';
 export class Detail200LatesCommandeComponent implements OnInit {
 
   ligneCommandeDTOList: LigneCommandeDto[];
-
   p : number=1;
   searchText;
 
@@ -19,17 +18,15 @@ export class Detail200LatesCommandeComponent implements OnInit {
 
   ngOnInit() {
     this.getTop200LigneCommandeOrdrByIdDesc();
-
   }
 
   getTop200LigneCommandeOrdrByIdDesc(): void {
     this.crupdApi.getTop200LigneCommandeOrderByIdDesc().subscribe(
       (response: LigneCommandeDto[]) => {
         this.ligneCommandeDTOList = response;
-        console.log(this.ligneCommandeDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }

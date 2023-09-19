@@ -62,7 +62,6 @@ export class DashboardComponent implements OnInit {
   getNumberOfClients(): void {
     this.crupdApi.countNumberOfClient().subscribe(data => {
       this.numberOfClients = data;
-      console.log(data);
     });
   }
 
@@ -93,7 +92,6 @@ export class DashboardComponent implements OnInit {
   getSumOfOdersInDay(): void {
     this.crupdApi.sumTotaleOfCommandeInDay()
       .subscribe(response => {
-        console.log("Day order :" +response);
         this.sumOfCommandeInDay = response;
     });
   }
@@ -121,6 +119,5 @@ export class DashboardComponent implements OnInit {
   goToListOfClient() {
     this.router.navigateByUrl("admin/accueil/clients");
   }
-
 
 }

@@ -1,6 +1,4 @@
 <app-main-top></app-main-top>
-<!-- Breadcrumb Start -->
-<!-- <app-breadcrumb></app-breadcrumb> -->
 <div class="breadcrumb-wrap">
     <div class="container-fluid">
         <ul class="breadcrumb">
@@ -9,9 +7,6 @@
         </ul>
     </div>
 </div>
-<!-- Breadcrumb End -->
-
-<!-- Product List Start -->
 <div class="product-view">
     <div class="container-fluid">
         <div class="row">
@@ -31,8 +26,8 @@
                                         <select id="sort-by" (change)="sort($event)" class="form-control">
                                           <option value="" selected disabled hidden class="form-control">Filtrer Par</option>
                                           <option value="Name" class="form-control">Ordre de A à Z</option>
-                                          <option value="Low" class="form-control">Produits les moins chers</option>
-                                          <option value="High" class="form-control">Produits les plus chers</option>
+                                          <option value="Low" class="form-control">Articles les moins chers</option>
+                                          <option value="High" class="form-control">Articles les plus chers</option>
                                         </select>
 
                                     </div>
@@ -42,13 +37,12 @@
 
                                 </div> -->
                             </div>
-                        </div>
+                        </div> 
                     </div>
 
                     <div class="col-sm-4" *ngFor="let artDTO of articleListDTOBs; let i = index">
                         <div class="product-item ">
                             <div class="product-title">
-                                <!-- <a routerLink="/product-detail/{{product.pSlug}} ">{{product.pName}}</a> -->
                                 <a routerLink="/product-detail/{{artDTO.reference}}">{{artDTO.designation}}</a>
                                 <div class="ratting ">
 
@@ -61,14 +55,13 @@
                             </div>
                             <div class="product-image">
                                 <a routerLink="/product-detail/{{artDTO.reference}}">
-                                    <!-- <img src="assets/customer/img/{{product.pImageDefault}} " alt="Product Image"> -->
-                                    <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+artDTO.id}}" alt="Product Image">
+                           <!--          <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+artDTO.id}}" alt="Product Image"> -->
+                                    <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="{{artDTO.designation}}">
                                 </a>
                                 <div class="product-action ">
                                     <a (click)="addTocart(artDTO)" style="cursor: pointer;">
                                         <em class="fa fa-cart-plus"></em>
                                     </a>
-                                   <!--  <a href="#"><i class="fa fa-heart"></i></a> -->
                                     <a routerLink="/product-detail/{{artDTO.reference}}" style="cursor: pointer;">
                                         <em class="fa fa-search"></em>
                                     </a>
@@ -76,14 +69,10 @@
                             </div>
                             <div class="product-price ">
                                 <h3><span></span>FCFA {{ artDTO.price }}</h3>
-                               <!--  <a class="btn" (click)="[addTocart(artDTO), bynow()]">
-                                    <i class="fa fa-shopping-cart "></i>Buy Now</a> -->
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Pagination Start -->
                 <div class="col-sm-12 ">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center" *ngIf="pages">
@@ -113,14 +102,7 @@
                 <app-sidebar></app-sidebar>
 
             </div>
-            <!-- Side Bar End -->
         </div>
     </div>
 </div>
-<!-- Product List End -->
-
-<!-- Brand Start -->
-<!-- <app-brand></app-brand> -->
-<!-- Brand End -->
-
 <app-main-footer style="margin-top: 15px;"></app-main-footer>

@@ -40,23 +40,14 @@ export class RatingComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.infoForm();
-
     this.getSingleArticleDTO();
-
-
     this.isLoggedIn = !!this.tokenService.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenService.getUser();
-
       this.ratingService.getUserId();
-
       this.username = user.username;
-
     }
-
-
   }
 
   infoForm() {
@@ -64,11 +55,9 @@ export class RatingComponent implements OnInit {
       nbreEtoile: [this.currentRating, Validators.required],
       observation: ['', Validators.required],
     });
-
   }
 
   onRateChange(event :number) {
-    console.log("The selected rate change ", event);
     this.currentRating = event;
   }
 
@@ -77,37 +66,29 @@ export class RatingComponent implements OnInit {
     this.artService.getArticleDtoByReference(this.ref).subscribe(
       response => {
         this.articleDTOs = response;
-        console.log(this.articleDTOs);
         }
         ,(error: HttpErrorResponse) => {
-      alert(error.message);
+          console.log(error.message);
     });
 
   }
 
   onSubmit() {
-    console.log(this.formData.value);
-    console.log(this.formData.value, this.ref, this.ratingService.id);
     this.ratingService.addRatingToArticle(this.formData.value, this.ref, this.ratingService.id)
       .subscribe(
       (response: NotificationDto) => {
         alert("Note Attribué avec succès");
-        console.log('Response--', response);
-
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
 
     );
-
   }
 
-
   onSelectFile(event) {
-   // selectionner une image et la garder
     const file = event.target.files[0];
-  //  this.articleFile = file;
+
   }
 
 

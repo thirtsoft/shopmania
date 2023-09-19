@@ -14,7 +14,7 @@ export class ListRatingComponent implements OnInit {
 
   notificationListDTO: NotificationDto[];
 
-  public currentTime: number = 0;
+  currentTime: number = 0;
 
   searchMode: boolean = false;
 
@@ -38,10 +38,9 @@ export class ListRatingComponent implements OnInit {
       .subscribe(
       (response: NotificationDto[]) => {
         this.notificationListDTO = response;
-        console.log(this.notificationListDTO);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 

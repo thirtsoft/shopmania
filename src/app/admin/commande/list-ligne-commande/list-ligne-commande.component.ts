@@ -36,32 +36,13 @@ export class ListLigneCommandeComponent implements OnInit {
     this.lcomService.getAllActiveLigneCommandes().subscribe(
       (response: LigneCommandeDto[]) => {
         this.ligneCommandeDTOList = response;
-        console.log(this.ligneCommandeDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
 
   onDeleteligneCommande(item) {}
-
- /*  public onDeleteligneCommande(lcom: LigneCommandeDto): void{
-    this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cet donnée ?')
-    .afterClosed().subscribe((response: any) =>{
-      if(response){
-        this.lcomService.deleteLigneCommandeDto(lcom.id).subscribe(data => {
-          this.toastr.warning('LigneCommande supprimé avec succès!');
-          this.ligneCommandeDTOList = this.ligneCommandeDTOList.filter(u => u !== lcom);
-          this.getLigneCommandeDtos();
-        });
-      }
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-    );
-  }
- */
 
 }

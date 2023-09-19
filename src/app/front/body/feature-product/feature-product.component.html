@@ -1,15 +1,12 @@
 <div class="featured-product product">
     <div class="container-fluid">
         <div class="section-header">
-            <h1>Nos Produits</h1>
+            <h1>Nos Articles</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
-
-            <!-- <div class="col-lg-3" *ngFor="let product of products; let i = index"> -->
             <div class="col-lg-3" *ngFor="let artDTO of articleListDTOBySelected; let i = index">
                 <div class="product-item">
                     <div class="product-title">
-                        <!--  <a routerLink="/product-detail/{{product.pSlug}}" (click)="recentClick(product.pSlug)">{{product.pName}}</a> -->
                         <a [routerLink]="['/product-detail', artDTO.reference]">{{artDTO.designation}}</a>
                         <div class="ratting">
                           <!--   <i class="fa fa-star"></i>
@@ -17,31 +14,25 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i> -->
-
                             <ngb-rating
                                 [max]="5"
                                 [(rate)]="currentRating"
                                 [readonly]="true">
                             </ngb-rating>
-
-
-                        </div>
+                        </div> 
                     </div>
                     <div class="product-image">
                         <a [routerLink]="['/product-detail', artDTO.reference]">
-                          <!--   <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="Product Image"> -->
-                            <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+artDTO.id}}" alt="Product Image">
-                            <!-- <img src="assets/customer/img/{{product.pImageDefault}}" alt="Product Image"> -->
+         <!--                    <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticleInContext/'+artDTO.id}}" alt="Product Image"> -->
+                            <img src="{{this.catalogueService.apiServerUrl+'/articles/photoArticle/'+artDTO.id}}" alt="{{artDTO.designation}}">
                         </a>
                         <div class="product-action">
                             <a (click)="addTocart(artDTO)" style="cursor:pointer"><em class="fa fa-cart-plus"></em></a>
-                            <!-- <a href="#"><i class="fa fa-heart"></i></a> -->
                             <a [routerLink]="['/product-detail', artDTO.reference]"><em class="fa fa-search"></em></a>
                         </div>
                     </div>
                     <div class="product-price">
                         <h3><span></span>FCFA {{ artDTO.price }}</h3>
-                       <!--  <a class="btn" (click)="[add2cart(1,artDTO), buynow()]"><i class="fa fa-shopping-cart"></i>Buy Now</a> -->
                     </div>
                 </div>
             </div>

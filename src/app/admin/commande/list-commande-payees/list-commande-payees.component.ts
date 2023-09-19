@@ -30,10 +30,9 @@ export class ListCommandePayeesComponent implements OnInit {
     this.crudApi.getCommandeDtosByStatusPurchased().subscribe(
       (response: CommandeDto[]) => {
         this.commandeDTOList = response;
-        console.log(this.commandeDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }

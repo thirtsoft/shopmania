@@ -43,10 +43,9 @@ export class ListCountriesComponent implements OnInit {
     this.crudApi.getAllActiveCountries().subscribe(
       (response: CountryDto[]) => {
         this.countriesDTOList = response;
-        console.log(this.countriesDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -90,5 +89,4 @@ export class ListCountriesComponent implements OnInit {
       }
     });
   }
-
 }

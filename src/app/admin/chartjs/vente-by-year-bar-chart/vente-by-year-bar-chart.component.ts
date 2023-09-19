@@ -24,7 +24,6 @@ export class VenteByYearBarChartComponent implements OnInit {
       this.listAnnes = result;
       const n = 1;
       const m = 0;
-      console.log(this.listAnnes);
       for (let i=0; i<this.listAnnes.length; i++) {
         this.ChiffreAffaireParAnnees.push(this.listAnnes[i][n]);
         this.Year.push(this.listAnnes[i][m]);
@@ -40,7 +39,6 @@ export class VenteByYearBarChartComponent implements OnInit {
               data: this.ChiffreAffaireParAnnees,
               borderColor: '#3cb371',
               backgroundColor: "#5F9EA0",
-
             }
           ]
         },
@@ -66,5 +64,4 @@ export class VenteByYearBarChartComponent implements OnInit {
       });
     });
   }
-
 }

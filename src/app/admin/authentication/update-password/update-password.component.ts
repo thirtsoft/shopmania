@@ -45,7 +45,6 @@ export class UpdatePasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formDataProfile);
     this.crudApi.updatePassword(this.formDataProfile).
     subscribe( data => {
       this.dialogRef.close();
@@ -54,7 +53,6 @@ export class UpdatePasswordComponent implements OnInit {
         positionClass: 'toast-top-right',
       });
       this.logout();
-      console.log(data);
     });
 
   }

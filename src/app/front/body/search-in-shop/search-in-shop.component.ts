@@ -14,7 +14,6 @@ export class SearchInShopComponent implements OnInit {
   ngOnInit(): void {
   }
   searchArticleInShop(keyword: string) {
-    console.log("keyword+++", keyword);
     this.router.navigateByUrl('/searchInshop/'+keyword);
 
   }

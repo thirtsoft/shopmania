@@ -35,7 +35,6 @@ export class AddStateComponent implements OnInit {
   ngOnInit() {
     this.getListCountrieDTOs();
     if (!isNullOrUndefined(this.data.id)) {
-      console.log(this.crudApi.listData[this.data.id]);
       this.formDataStateDTO = Object.assign({},this.crudApi.listData[this.data.id])
     }
   }
@@ -87,11 +86,8 @@ export class AddStateComponent implements OnInit {
         this.router.navigateByUrl("admin/accueil/states").then(() => {
           window.location.reload();
         });
-
       });
-
     }
-
   }
 
   saveState() {
@@ -123,6 +119,4 @@ export class AddStateComponent implements OnInit {
       });
     }
   }
-
-
 }

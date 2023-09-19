@@ -21,7 +21,7 @@ export class UpdateArtileComponent implements OnInit {
   deleteArticleDTO: ArticleDto;
   scategoryListDTO: ScategoryDto[];
 
-  public articleFile: any = File;
+  articleFile: any = File;
 
   data;
   paramId :any = 0;
@@ -49,13 +49,10 @@ export class UpdateArtileComponent implements OnInit {
 
   ngOnInit(): void {
     this.paramId = this.actRoute.snapshot.paramMap.get('id');
-    console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getArticleDTOById(this.paramId);
     }
-
     this.getListScategoryDTOs();
-
   }
 
   getListScategoryDTOs() {
@@ -63,26 +60,22 @@ export class UpdateArtileComponent implements OnInit {
       (response: ScategoryDto[]) => {
         this.scategoryListDTO = response;
       }, (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     )
   }
 
   getArticleDTOById(id: number) {
-    console.log('getOne');
     this.articleService.getArticleDtoById(id).subscribe(
       (response: ArticleDto) => {
-        console.log('data--', response);
         this.addEditArticleDTO = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
   }
-
-
 
   goBack() {
     this.router.navigate([`/admin/accueil/articles`]);
