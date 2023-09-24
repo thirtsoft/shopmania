@@ -17,6 +17,7 @@ import { AddressLivraisonDto } from 'src/app/model/address';
 export class ListAddressLivraisonComponent implements OnInit {
 
   addressLivraisonDTOList: AddressLivraisonDto[];
+  addresseListResult: AddressLivraisonDto[];
   deleteAddressLivraisonDTO: AddressLivraisonDto;
 
   id : number;
@@ -35,13 +36,12 @@ export class ListAddressLivraisonComponent implements OnInit {
   }
 
   public getAddressLivraisonDtos(): void {
-    this.addressService.getAllActiveAddresses().subscribe(
+    this.addressService.getAddressLivraisonDtosOrderByIdDesc().subscribe(
       (response: AddressLivraisonDto[]) => {
         this.addressLivraisonDTOList = response;
-        console.log(this.addressLivraisonDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -58,7 +58,7 @@ export class ListAddressLivraisonComponent implements OnInit {
       }
     },
     (error: HttpErrorResponse) => {
-      alert(error.message);
+      this.toastr.error('AddressLivraison n\'est pas supprimé, veuillez ressayer !');
     }
     );
   }

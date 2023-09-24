@@ -64,38 +64,22 @@ export class CheckoutComponent implements OnInit {
 //  get f() { return this.checkoutFormGroup.controls; }
 
   ngOnInit(): void {
-
     this.initForm();
-
     this.cartDetails();
-
     this.getListCountryDTOs();
-
     this.getListStateDTOs();
-
     this.checkoutService.getUserId();
-
     this.isLoggedIn = !!this.tokenService.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenService.getUser();
-
       this.catalogueService.getUserId();
-
       this.idUser = this.catalogueService.id
-
       this.catalogueService.getLogginUser();
-
       this.catalogueService.getUsername();
-
       this.username = this.catalogueService.username;
-
       this.userId = this.catalogueService.id;
-
     }
-
-
   }
-
 
   initForm() {
     this.checkoutFormGroup = this.formBuilder.group({
@@ -105,7 +89,7 @@ export class CheckoutComponent implements OnInit {
         mobile: [''],
         email: ['']
       }),
-
+      
       shippingAddress: this.formBuilder.group({
         rue: [''],
         city: [''],
@@ -121,24 +105,19 @@ export class CheckoutComponent implements OnInit {
         country: [''],
         zipcode: ['']
       }),
-
       id: this.catalogueService.id
     });
   }
 
   cartDetails() {
     this.cartItems = this.cartService.cartItems;
-
     this.cartService.totalPrice.subscribe(
       data => this.totalPrice = data
     )
-
     this.cartService.totalQuantity.subscribe(
       data => this.totalQuantity = data
     );
-
     this.shippingCost = this.cartService.shippingCost;
-
     this.cartService.calculateTotalPrice();
   }
 
@@ -160,75 +139,37 @@ export class CheckoutComponent implements OnInit {
         this.listStateDto = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
   }
 
   onSubmit() {
-    console.log(this.checkoutFormGroup.get('customer').value);
-    console.log("Emial is", this.checkoutFormGroup.get('customer').value.email);
-  //  console.log("Checkout ShippingAddress", this.checkoutFormGroup.get('shippingAddress').value);
-  //  console.log("Checkout BillingAddress", this.checkoutFormGroup.get('billingAddress').value);
-    console.log("Checkout Value are", this.checkoutFormGroup.value);
-
     let commande = new Commande();
     commande.totalCommande = this.totalPrice;
     commande.totalQuantity = this.totalQuantity;
-
-    console.log("User " + this.catalogueService.id);
-
-    console.log("Username " + this.catalogueService.username);
-
-    console.log("Current User " + this.catalogueService.currentUser);
-
-    console.log(commande.totalCommande);
-
-    console.log(commande.totalQuantity);
-
     let lcomms: LigneCommande[] = this.cartItems.map(tempCartItem => new LigneCommande(tempCartItem));
-
-    // setup purchase
     let purchase = new Purchase();
-
-    // populate purchase - customer
     purchase.client = this.checkoutFormGroup.get('customer').value;
 
-    // populate purchase - shippingAddress
+    //  purchase.shippingAddress.state.name = shippingState.name;
     purchase.shippingAddress = this.checkoutFormGroup.get('shippingAddress').value;
     const shippingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
-    console.log(shippingState);
-  //  console.log(purchase.shippingAddress.state.name);
-    console.log(purchase.shippingAddress.state);
     const shippingCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
-    console.log(shippingCountry);
-    console.log(purchase.shippingAddress.country);
     purchase.shippingAddress.state.name = shippingState.name;
-  //  purchase.shippingAddress.state.name = shippingState.name;
     purchase.shippingAddress.country = shippingCountry.name;
 
      // populate purchase - billingAddress
-     purchase.billingAddress = this.checkoutFormGroup.controls['billingAddress'].value;
+   //  purchase.billingAddress = this.checkoutFormGroup.controls['billingAddress'].value;
+     purchase.billingAddress = this.checkoutFormGroup.get('billingAddress').value;
      const billingState: StateDto = JSON.parse(JSON.stringify(purchase.billingAddress.state));
      const billingCountry: CountryDto = JSON.parse(JSON.stringify(purchase.billingAddress.country));
-  //   purchase.billingAddress.state.name = billingState.name;
      purchase.billingAddress.state.name = billingState.name;
      purchase.billingAddress.country = billingCountry.name;
 
-     // populate purchase - order and orderItems
-
     purchase.commande = commande;
     purchase.lcomms = lcomms;
-
-    console.log("Purchase is", purchase);
-
-      // call REST API via checkoutService
-
-    console.log("Conected user is", this.checkoutService.id);
-
-
-  //  this.checkoutService.placeToOrder(purchase).subscribe(
 
     this.checkoutService.placeToOrderWithUser(purchase, this.checkoutService.id).subscribe(
       data =>{
@@ -242,7 +183,6 @@ export class CheckoutComponent implements OnInit {
         alert(`there was a error: ${error.message}`);
       }
     )
-
 
   }
 
@@ -259,13 +199,8 @@ export class CheckoutComponent implements OnInit {
 
   getStates(formGroupName: string) {
     const formGroup = this.checkoutFormGroup.get(formGroupName);
-
     const countryCode = formGroup.value.country.code;
     const countryName = formGroup.value.country.name;
-
-    console.log(`{formGroupName} country code: ${countryCode}`);
-    console.log(`{formGroupName} country name: ${countryName}`);
-
     this.statService.getStates(countryCode).subscribe(
       data => {
 
@@ -275,8 +210,6 @@ export class CheckoutComponent implements OnInit {
         else {
           this.billingAddressStates = data;
         }
-
-        // select first item by default
         formGroup.get('state').setValue(data[0]);
       }
     );
@@ -284,15 +217,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   resetCart() {
-    // reset cart data
     this.cartService.cartItems = [];
     this.cartService.totalPrice.next(0);
     this.cartService.totalQuantity.next(0);
-
-    // reset the form
     this.checkoutFormGroup.reset();
-
-    // navigate back to the products page
     this.router.navigateByUrl('/products');
   }
 
