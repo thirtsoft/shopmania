@@ -20,12 +20,15 @@ export class FournisseurDto {
   reference: string;
   firstName: string;
   lastName: string;
+  address: string;
   email: string;
-  telephone: string;
+  telephoneFournisseur: string;
   rue: string;
   town: string;
   city: string;
+  country: string;
 
   articleDto: ArticleDto;
 
 }
+

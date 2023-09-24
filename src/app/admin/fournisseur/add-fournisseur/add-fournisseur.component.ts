@@ -81,7 +81,6 @@ export class AddFournisseurComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
-  //        window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
@@ -99,16 +98,14 @@ export class AddFournisseurComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
-    //      window.location.reload();
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
 
     );
   }
-
 
   goBack() {
     this.router.navigateByUrl("admin/accueil/fournisseurs");

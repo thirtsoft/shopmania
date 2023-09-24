@@ -50,10 +50,9 @@ export class ListFournisseurComponent implements OnInit {
     this.crudApi.getAllActiveFournisseurs().subscribe(
       (response: FournisseurDto[]) => {
         this.fournisseurDTOList = response;
-        console.log(this.fournisseurDTOList);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -68,7 +67,6 @@ export class ListFournisseurComponent implements OnInit {
             positionClass: 'toast-top-right',
           });
           this.router.navigateByUrl("admin/accueil/fournisseurs").then(() => {
-        //    window.location.reload();
           });
         },
           (error: HttpErrorResponse) => {

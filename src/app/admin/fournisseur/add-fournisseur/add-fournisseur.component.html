@@ -96,21 +96,21 @@
     <div class="col-md-6">
 
       <div class="form-group">
-        <label>Address</label>
+        <label>Adresse</label>
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="formDataFournisseurDTO.rue"
-          name="rue"
-          id="rue"
-          #rue="ngModel"
+          [(ngModel)]="formDataFournisseurDTO.address"
+          name="address"
+          id="address"
+          #address="ngModel"
           required
         />
         <span
           class="text-danger"
           *ngIf="
-            (rue.touched || addFournisseurForm.submitted) &&
-            rue.errors?.required
+            (address.touched || addFournisseurForm.submitted) &&
+            address.errors?.required
           "
         >
           Address est obligatoire
@@ -122,17 +122,17 @@
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="formDataFournisseurDTO.telephone"
-          name="telephone"
-          id="telephone"
-          #telephone="ngModel"
+          [(ngModel)]="formDataFournisseurDTO.telephoneFournisseur"
+          name="telephoneFournisseur"
+          id="telephoneFournisseur"
+          #telephoneFournisseur="ngModel"
           required
         />
         <span
           class="text-danger"
           *ngIf="
-            (telephone.touched || addFournisseurForm.submitted) &&
-            telephone.errors?.required
+            (telephoneFournisseur.touched || addFournisseurForm.submitted) &&
+            telephoneFournisseur.errors?.required
           "
         >
           Téléphone est obligatoire

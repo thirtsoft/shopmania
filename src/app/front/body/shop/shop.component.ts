@@ -22,7 +22,7 @@ export class ShopComponent implements OnInit {
   products: any;
   articleListDTOBs: ArticleDto[];
 
-  size: number = 15;
+  size: number = 9;
   currentPage: number = 1;
   totalPages: number;
   pages: Array<number>;
