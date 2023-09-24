@@ -2,17 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-
 import { TokenStorageService } from './../../../auth/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
-
 import { UtilisateurService } from './../../../services/utilisateur.service';
 import { UtilisateurDto } from './../../../model/utilisateur';
 import { AuthService } from './../../../auth/auth.service';
-
 import { CommandeDto } from './../../../model/commande';
 import { CommandeService } from './../../../services/commande.service';
-
 import { UpdateCustomerPasswordComponent } from './update-customer-password/update-customer-password.component';
 import { UpdateCustomerUsernameComponent } from './update-customer-username/update-customer-username.component';
 
