@@ -75,7 +75,6 @@ export class AddStateComponent implements OnInit {
       );
 
     }else {
-      console.log(this.formDataStateDTO.id, this.formDataStateDTO);
       this.crudApi.updateStateDto(this.formDataStateDTO.id, this.formDataStateDTO).
       subscribe( data => {
         this.dialogRef.close();
