@@ -28,31 +28,62 @@
                   <label>Prénom *</label>
                   <input
                     type="text"
-                    class="form-control"
                     formControlName="firstName"
+                    class="form-control"
                     placeholder="Votre prénom"
                     required
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        checkoutFormGroup.get('customer')?.get('firstName')
+                          ?.errors
+                    }"
                   />
-                  <div *ngIf="submitted && f.firstName?.errors" class="alert alert-danger">
-                    <div *ngIf="f.get('firstName').errors?.required">Le prénom est obligatoire</div>
-                    <div *ngIf="f.get('firstName').errors?.minlength">Le prénom doit avoir au moins 3 lettre</div>
-                  </div>
+                  <p
+                    class="alert alert-danger"
+                    *ngIf="
+                      checkoutFormGroup
+                        .get('customer')
+                        ?.get('firstName')
+                        ?.hasError('required') &&
+                      (checkoutFormGroup.get('customer')?.get('firstName')
+                        ?.dirty ||
+                        submitted)
+                    "
+                  >
+                    Le prénom est obligatoire
+                  </p>
                 </div>
 
                 <div class="col-md-6">
                   <label>Nom *</label>
                   <input
-                    class="form-control"
-                    formControlName="lastName"
                     type="text"
-                    placeholder="Votre prénom"
+                    formControlName="lastName"
+                    class="form-control"
+                    placeholder="Votre nom"
                     required
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        checkoutFormGroup.get('customer')?.get('lastName')
+                          ?.errors
+                    }"
                   />
-  
-                  <div *ngIf="submitted && f.firstName?.errors" class="alert alert-danger">
-                    <div *ngIf="f.get('lastName').errors?.required">Le nom est obligatoire</div>
-                  </div>
-
+                  <p
+                    class="alert alert-danger"
+                    *ngIf="
+                      checkoutFormGroup
+                        .get('customer')
+                        ?.get('lastName')
+                        ?.hasError('required') &&
+                      (checkoutFormGroup.get('customer')?.get('lastName')
+                        ?.dirty ||
+                        submitted)
+                    "
+                  >
+                    Le nom est obligatoire
+                  </p>
                 </div>
 
                 <div class="col-md-6">
@@ -68,18 +99,47 @@
                 <div class="col-md-6">
                   <label>Numéro téléphone *</label>
                   <input
-                    class="form-control"
-                    formControlName="mobile"
                     type="text"
-                    placeholder="Mobile No"
+                    formControlName="mobile"
+                    class="form-control"
+                    placeholder="77 456 78 90"
                     required
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        checkoutFormGroup.get('customer')?.get('mobile')?.errors
+                    }"
                   />
-                  
-                  <div *ngIf="submitted && f.mobile?.errors" class="alert alert-danger">
-                    <div *ngIf="f.get('mobile').errors?.required">Le nom est obligatoire</div>
-                    <div *ngIf="f.get('mobile').errors?.pattern">Svp, le numéro de téléphone doit contenir 9 chiffres.</div> 
-                  </div>
-
+                  <p
+                    class="alert alert-danger"
+                    *ngIf="
+                      checkoutFormGroup
+                        .get('customer')
+                        ?.get('mobile')
+                        ?.hasError('required') &&
+                      (checkoutFormGroup.get('customer')?.get('mobile')
+                        ?.dirty ||
+                        submitted)
+                    "
+                  >
+                    Le numéro de téléphone du récepteur de la commande est
+                    obligatoire
+                  </p>
+                  <p
+                    class="alert alert-danger"
+                    *ngIf="
+                      checkoutFormGroup
+                        .get('customer')
+                        ?.get('mobile')
+                        ?.hasError('pattern') &&
+                      (checkoutFormGroup.get('customer')?.get('mobile')
+                        ?.dirty ||
+                        submitted)
+                    "
+                  >
+                    Le numéro de téléphone du récepteur de la commande doit
+                    avoir 9 chiffres
+                  </p>
                 </div>
               </div>
             </div>
@@ -101,17 +161,32 @@
                 <div class="col-md-12">
                   <label>Quartier *</label>
                   <input
-                    class="form-control"
-                    formControlName="city"
                     type="text"
-                    placeholder="le nom du quartier"
+                    formControlName="city"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        checkoutFormGroup.get('shippingAddress')?.get('city')
+                          ?.errors
+                    }"
+                    class="form-control"
+                    placeholder="Quartier"
                     required
                   />
-                  
-                  <div *ngIf="submitted && f.city?.errors" class="alert alert-danger">
-                    <div *ngIf="f.get('city').errors?.required">Le quartier est obligatoire</div>
-                  </div>
-
+                  <p
+                    class="alert alert-danger"
+                    *ngIf="
+                      checkoutFormGroup
+                        .get('shippingAddress')
+                        ?.get('city')
+                        ?.hasError('required') &&
+                      (checkoutFormGroup.get('shippingAddress')?.get('city')
+                        ?.dirty ||
+                        submitted)
+                    "
+                  >
+                    Le nom du quartier est obligatoire
+                  </p>
                 </div>
 
                 <div class="col-md-12">
@@ -121,6 +196,12 @@
                     (change)="getStates('shippingAddress')"
                     class="custom-select"
                     required
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        checkoutFormGroup.get('shippingAddress')?.get('country')
+                          ?.errors
+                    }"
                   >
                     <option
                       *ngFor="let country of listCountryDto"
@@ -128,28 +209,61 @@
                     >
                       {{ country.name }}
                     </option>
-                    
-                    <div *ngIf="submitted && f.country?.errors" class="alert alert-danger">
-                      <div *ngIf="f.get('country').errors?.required">La région est obligatoire</div>
-                    </div>
 
+                    <p
+                      class="alert alert-danger"
+                      *ngIf="
+                        checkoutFormGroup
+                          .get('shippingAddress')
+                          ?.get('country')
+                          ?.hasError('required') &&
+                        (checkoutFormGroup
+                          .get('shippingAddress')
+                          ?.get('country')?.dirty ||
+                          submitted)
+                      "
+                    >
+                      La région est obligatoire
+                    </p>
                   </select>
                 </div>
 
                 <div class="col-md-12">
                   <label>Département *</label>
-                  <select formControlName="state" id="" class="custom-select" required>
+                  <select
+                    formControlName="state"
+                    id=""
+                    class="custom-select"
+                    required
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        (checkoutFormGroup
+                          .get('shippingAddress')
+                          ?.get('state'))!.errors
+                    }"
+                  >
                     <option
                       *ngFor="let tempState of shippingAddressStates"
                       [ngValue]="tempState"
                     >
                       {{ tempState.name }}
                     </option>
-                    
-                    <div *ngIf="submitted && f.state?.errors" class="alert alert-danger">
-                      <div *ngIf="f.get('state').errors?.required">Le département est obligatoire</div>
-                    </div>
 
+                    <p
+                      class="alert alert-danger"
+                      *ngIf="
+                        checkoutFormGroup
+                          .get('shippingAddress')
+                          ?.get('state')
+                          ?.hasError('required') &&
+                        (checkoutFormGroup.get('shippingAddress')?.get('state')
+                          ?.dirty ||
+                          submitted)
+                      "
+                    >
+                      Le département est obligatoire
+                    </p>
                   </select>
                 </div>
 
@@ -196,16 +310,32 @@
               <div class="col-md-12">
                 <label>Quartier *</label>
                 <input
-                  class="form-control"
-                  formControlName="city"
                   type="text"
-                  placeholder="le nom du quartier"
+                  formControlName="city"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      checkoutFormGroup.get('billingAddress')?.get('city')
+                        ?.errors
+                  }"
+                  class="form-control"
+                  placeholder="Quartier"
                   required
                 />
-                <div *ngIf="submitted && f.city?.errors" class="alert alert-danger">
-                  <div *ngIf="f.get('city').errors?.required">Le quartier est obligatoire</div>
-                </div>
-
+                <p
+                  class="alert alert-danger"
+                  *ngIf="
+                    checkoutFormGroup
+                      .get('billingAddress')
+                      ?.get('city')
+                      ?.hasError('required') &&
+                    (checkoutFormGroup.get('billingAddress')?.get('city')
+                      ?.dirty ||
+                      submitted)
+                  "
+                >
+                  Le nom du quartier est obligatoire
+                </p>
               </div>
 
               <div class="col-md-12">
@@ -215,6 +345,12 @@
                   (change)="getStates('billingAddress')"
                   class="custom-select"
                   required
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      checkoutFormGroup.get('billingAddress')?.get('country')
+                        ?.errors
+                  }"
                 >
                   <option
                     *ngFor="let country of listCountryDto"
@@ -222,24 +358,57 @@
                   >
                     {{ country.name }}
                   </option>
-                  <div *ngIf="submitted && f.country?.errors" class="alert alert-danger">
-                    <div *ngIf="f.get('country').errors?.required">La région est obligatoire</div>
-                  </div>
+                  <p
+                    class="alert alert-danger"
+                    *ngIf="
+                      checkoutFormGroup
+                        .get('billingAddress')
+                        ?.get('country')
+                        ?.hasError('required') &&
+                      (checkoutFormGroup.get('billingAddress')?.get('country')
+                        ?.dirty ||
+                        submitted)
+                    "
+                  >
+                    La région est obligatoire
+                  </p>
                 </select>
               </div>
 
               <div class="col-md-12">
                 <label>Département *</label>
-                <select formControlName="state" id="" class="custom-select" required>
+                <select
+                  formControlName="state"
+                  id=""
+                  class="custom-select"
+                  required
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      checkoutFormGroup.get('billingAddress')?.get('state')
+                        ?.errors
+                  }"
+                >
                   <option
                     *ngFor="let tempState of billingAddressStates"
                     [ngValue]="tempState"
                   >
                     {{ tempState.name }}
                   </option>
-                  <div *ngIf="submitted && f.state?.errors" class="alert alert-danger">
-                    <div *ngIf="f.get('state').errors?.required">Le département est obligatoire</div>
-                  </div>
+                  <p
+                    class="alert alert-danger"
+                    *ngIf="
+                      checkoutFormGroup
+                        .get('billingAddress')
+                        ?.get('state')
+                        ?.hasError('required') &&
+                      (checkoutFormGroup.get('billingAddress')?.get('state')
+                        ?.dirty ||
+                        submitted)
+                    "
+                  >
+                    Le département est obligatoire
+                  </p>
                 </select>
               </div>
 
@@ -252,7 +421,6 @@
                   placeholder="ZIP Code"
                 />
               </div>
-
             </div>
           </div>
         </div>
@@ -262,19 +430,19 @@
           <div class="checkout-inner">
             <div class="checkout-summary">
               <h1>Total Panier</h1>
-              <div *ngFor="let item of cartItems; let i = index"> 
+              <div *ngFor="let item of cartItems; let i = index">
                 <p>
                   <img
-                  [src]="
-                    this.catalogueService.apiServerUrl +
-                    '/articles/photoArticle/' +
-                    item.id +
-                    '?ts=' +
-                    getTS()
-                  "
-                  style="width: 40px; height: 40px"
-                  alt="{{ item.name }}"
-                />
+                    [src]="
+                      this.catalogueService.apiServerUrl +
+                      '/articles/photoArticle/' +
+                      item.id +
+                      '?ts=' +
+                      getTS()
+                    "
+                    style="width: 40px; height: 40px"
+                    alt="{{ item.name }}"
+                  />
                   {{ item.name }}
                   <span style="text-align: right">{{ item.unitPrice }}f</span>
                 </p>
