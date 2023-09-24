@@ -64,8 +64,6 @@ export class CheckoutComponent implements OnInit {
               private formBuilder: FormBuilder
   ) { }
 
-  get f() { return this.checkoutFormGroup.controls; }
-
   ngOnInit(): void {
     this.initForm();
     this.cartDetails();
@@ -87,7 +85,7 @@ export class CheckoutComponent implements OnInit {
   initForm() {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: ['', Validators.required,Validators.minLength(3)],
+        firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         mobile: ['', Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")],
         email: ['']
