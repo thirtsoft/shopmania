@@ -12,7 +12,7 @@ export class AddressLivraisonDto {
 
  // commandeDto: CommandeDto;
   stateDto: StateDto;
- // state: StateDto;
+  state: StateDto;
 
 
 }

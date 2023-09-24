@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorageService } from './../../../auth/token-storage.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Purchase } from './../../../model/purchase';
 import { CatalogueService } from './../../../services/catalogue.service';
@@ -17,6 +17,7 @@ import { CountryService } from './../../../services/country.service';
 import { CountryDto, Country } from './../../../model/country';
 import { LigneCommande } from './../../../model/ligne-commande';
 import { Commande } from './../../../model/commande';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -50,6 +51,7 @@ export class CheckoutComponent implements OnInit {
   isLoggedIn = false;
   username: any;
   userId: any;
+  submitted = false;
 
   constructor(public catalogueService: CatalogueService,
               private cartService: CartService,
@@ -57,11 +59,12 @@ export class CheckoutComponent implements OnInit {
               private countService: CountryService,
               private checkoutService: CheckoutService,
               private statService: StateService,
+              public toastr: ToastrService,
               private router: Router,
               private formBuilder: FormBuilder
   ) { }
 
-//  get f() { return this.checkoutFormGroup.controls; }
+  get f() { return this.checkoutFormGroup.controls; }
 
   ngOnInit(): void {
     this.initForm();
@@ -84,25 +87,25 @@ export class CheckoutComponent implements OnInit {
   initForm() {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: [''],
-        lastName: [''],
-        mobile: [''],
+        firstName: ['', Validators.required,Validators.minLength(3)],
+        lastName: ['', Validators.required],
+        mobile: ['', Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")],
         email: ['']
       }),
       
       shippingAddress: this.formBuilder.group({
         rue: [''],
-        city: [''],
-        state: [''],
-        country: [''],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        country: ['', Validators.required],
         zipcode: ['']
       }),
 
       billingAddress: this.formBuilder.group({
         rue: [''],
-        city: [''],
-        state: [''],
-        country: [''],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        country: ['', Validators.required],
         zipcode: ['']
       }),
       id: this.catalogueService.id
@@ -146,43 +149,47 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    let commande = new Commande();
-    commande.totalCommande = this.totalPrice;
-    commande.totalQuantity = this.totalQuantity;
-    let lcomms: LigneCommande[] = this.cartItems.map(tempCartItem => new LigneCommande(tempCartItem));
-    let purchase = new Purchase();
-    purchase.client = this.checkoutFormGroup.get('customer').value;
+    this.submitted = true;
+    if (this.checkoutFormGroup.invalid) {
+      this.toastr.error('Veuillez remplir tous les champs obligatoire, pour valider votre commande !');
+    }else {
+      let commande = new Commande();
+      commande.totalCommande = this.totalPrice;
+      commande.totalQuantity = this.totalQuantity;
+      let lcomms: LigneCommande[] = this.cartItems.map(tempCartItem => new LigneCommande(tempCartItem));
+      let purchase = new Purchase();
+      purchase.client = this.checkoutFormGroup.get('customer').value;
 
-    //  purchase.shippingAddress.state.name = shippingState.name;
-    purchase.shippingAddress = this.checkoutFormGroup.get('shippingAddress').value;
-    const shippingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
-    const shippingCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
-    purchase.shippingAddress.state.name = shippingState.name;
-    purchase.shippingAddress.country = shippingCountry.name;
+      //  purchase.shippingAddress.state.name = shippingState.name;
+      purchase.shippingAddress = this.checkoutFormGroup.get('shippingAddress').value;
+      const shippingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
+      const shippingCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
+      purchase.shippingAddress.state.name = shippingState.name;
+      purchase.shippingAddress.country = shippingCountry.name;
 
-     // populate purchase - billingAddress
-   //  purchase.billingAddress = this.checkoutFormGroup.controls['billingAddress'].value;
-     purchase.billingAddress = this.checkoutFormGroup.get('billingAddress').value;
-     const billingState: StateDto = JSON.parse(JSON.stringify(purchase.billingAddress.state));
-     const billingCountry: CountryDto = JSON.parse(JSON.stringify(purchase.billingAddress.country));
-     purchase.billingAddress.state.name = billingState.name;
-     purchase.billingAddress.country = billingCountry.name;
+      // populate purchase - billingAddress
+    //  purchase.billingAddress = this.checkoutFormGroup.controls['billingAddress'].value;
+      purchase.billingAddress = this.checkoutFormGroup.get('billingAddress').value;
+      const billingState: StateDto = JSON.parse(JSON.stringify(purchase.billingAddress.state));
+      const billingCountry: CountryDto = JSON.parse(JSON.stringify(purchase.billingAddress.country));
+      purchase.billingAddress.state.name = billingState.name;
+      purchase.billingAddress.country = billingCountry.name;
 
-    purchase.commande = commande;
-    purchase.lcomms = lcomms;
-
-    this.checkoutService.placeToOrderWithUser(purchase, this.checkoutService.id).subscribe(
-      data =>{
-         alert(`Nous avons bien reçu votre commande.\n order tracking number: ${data.orderTrackingNumber}`);
-      //    reset checkout form
-         this.resetCart();
-         console.log("Response is", data);
-         this.router.navigateByUrl("success-order");
-      },
-      error=>{
-        alert(`there was a error: ${error.message}`);
-      }
-    )
+      purchase.commande = commande;
+      purchase.lcomms = lcomms;
+      
+      this.checkoutService.placeToOrderWithUser(purchase, this.checkoutService.id).subscribe(
+        data =>{
+          alert(`Nous avons bien reçu votre commande.\n order tracking number: ${data.orderTrackingNumber}`);
+          this.resetCart();
+          console.log("Response is", data);
+          this.router.navigateByUrl("success-order");
+        },
+        error=>{
+          this.toastr.error('Votre commande n\'est pas validée, veuillez réessayer !');
+        }
+      )
+    }
 
   }
 
@@ -217,6 +224,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   resetCart() {
+    this.submitted = false;
     this.cartService.cartItems = [];
     this.cartService.totalPrice.next(0);
     this.cartService.totalQuantity.next(0);
