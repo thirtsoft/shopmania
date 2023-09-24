@@ -1,12 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-
-
 import { LigneLigneCommandeService } from './../../../services/lignecommande.service';
 import { CommandeService } from './../../../services/commande.service';
 import { CommandeDto } from './../../../model/commande';
 import { LigneCommandeDto } from './../../../model/ligne-commande';
+import { CatalogueService } from 'src/app/services/catalogue.service';
+
+import * as moment from 'moment';
 
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -29,6 +30,7 @@ export class ViewCommandeComponent implements OnInit {
 
   constructor(public crudApi: CommandeService,
               public lcmdService: LigneLigneCommandeService,
+              public catService: CatalogueService,
               private router : Router,
               public route: ActivatedRoute,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -72,14 +74,14 @@ export class ViewCommandeComponent implements OnInit {
 
   DownloadPdf() {
     const document = this.getDocument();
-    pdfMake.createPdf(document).download();
+    pdfMake.createPdf(document).download('"FACTURE_"'+this.lcmdService.listData[0].commandeDto.numeroCommande+'.pdf');
   }
 
   getDocument() {
     return {
       content: [
         {
-          text: 'CASAMANCE CONSTRUCTION SOLAIRE',
+          text: 'Soulbusiness',
           fontSize: 15,
           alignment: 'center',
           color: '#0000ff',
@@ -87,22 +89,22 @@ export class ViewCommandeComponent implements OnInit {
           style: 'name',
         },
         {
-          text: 'Vente (électroménagers, électronique, équipement solaire) et Installation solaire & Caméra surveillances',
+          text: 'Vente habillements Hommes&Femmes, Cosmétiques, Parfum, et tout autes produits',
           fontSize: 11,
           bold: true,
           color: '#0000ff',
           alignment: 'center',
         },
         {
-          text: 'En Face Rond Poind Cap Skiring',
-          fontSize: 9.5,
+          text: 'Au centre commerciale Touba sandaga Dakar boutique N° 239',
+          fontSize: 9,
           bold: true,
           color: '#0000ff',
           alignment: 'center',
         },
         {
-          text: 'Tél: +221 77 715 15 14 / Email: mandiayesow@gmail.com',
-          fontSize: 11,
+          text: 'Tél: +221 77 147 75 28 / Email: bigsoul2018@gmail.com',
+          fontSize: 8,
           bold: true,
           alignment: 'center',
           color: '#0000ff'
@@ -117,14 +119,14 @@ export class ViewCommandeComponent implements OnInit {
              [
               {
                 text: `${this.lcmdService.listData[0].commandeDto.status}`,
-                fontSize: 15,
+                fontSize: 8,
                 bold: true,
                 color: '#0000ff',
                 margin: [0, 15, 0, 15]
               },
               {
                 text: ' Facturé à : ',
-                fontSize: 11,
+                fontSize: 8,
                 color: '#0000ff',
                 bold: true,
                 margin: [0, 7, 0, 7]
@@ -132,55 +134,62 @@ export class ViewCommandeComponent implements OnInit {
               {
                 text: `${ this.lcmdService.listData[0].commandeDto.clientDto.firstName + ' ' + this.lcmdService.listData[0].commandeDto.clientDto.lastName }`,
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
               },
               {
                 text: `Tél: ${this.lcmdService.listData[0].commandeDto.clientDto.mobile}`,
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
               },
               {
                 text: `Email: ${this.lcmdService.listData[0].commandeDto.clientDto.email}`,
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
               },
 
             ],
 
             [
               {
-                text: `Date : ${this.lcmdService.listData[0].commandeDto.dateCommande.toLocaleString()}`,
+                text:'Date : ' + moment(this.lcmdService.listData[0].commandeDto.dateCommande).format("DD/MM/YYYY"),
                 alignment: 'right',
-                margin: [0, 15, 0, 15]
+                margin: [0, 15, 0, 15],
+                fontSize: 8,
               },
               {
                 text: ' Adresse Livraison : ',
-                fontSize: 11,
+                fontSize: 8,
                 color: '#0000ff',
                 bold: true,
                 alignment: 'right',
-                margin: [0, 7, 0, 7]
+                margin: [0, 7, 0, 7],
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.city}`,
+                text: `rue :  ${this.lcmdService.listData[0].commandeDto.billingAddressDto.rue}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.name}`,
+                text: ` quartier : ${this.lcmdService.listData[0].commandeDto.billingAddressDto.city}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
+              },
+
+              {
+                text: ` département : ${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.name}`,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+                fontSize: 8,
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.countryDto.name}`,
+                text: ` région : ${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.countryDto.name}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
               },
             ],
-
 
           ]
         },
@@ -188,7 +197,7 @@ export class ViewCommandeComponent implements OnInit {
         {
           text: ' FACTURE ',
           alignment: 'center',
-          fontSize: 12,
+          fontSize: 8,
           color: '#0000ff',
           bold: true,
           margin: [0, 5, 0, 5]
@@ -196,7 +205,7 @@ export class ViewCommandeComponent implements OnInit {
         {
           text: `N° : ${this.lcmdService.listData[0].commandeDto.numeroCommande}`,
           bold: true,
-          fontSize: 12,
+          fontSize: 8,
           alignment: 'center',
           color: '#0000ff',
           margin: [0, 8, 0, 8]
@@ -206,7 +215,7 @@ export class ViewCommandeComponent implements OnInit {
         {
           text: `Achat effectue par :  ${this.lcmdService.listData[0].commandeDto.utilisateurDto.name}`,
           bold: true,
-          fontSize: 11,
+          fontSize: 8,
           alignment: 'left',
           margin: [0, 8, 0, 8]
         },
@@ -222,11 +231,11 @@ export class ViewCommandeComponent implements OnInit {
         },
 
         {
-          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.totalCommande}`,
+          text: `Total F CFA : ${this.lcmdService.listData[0].commandeDto.total}`,
           alignment: 'right',
           margin: [0, 8, 0, 8],
           bold: true,
-          fontSize: 12,
+          fontSize: 8,
         },
 
         {
@@ -241,22 +250,22 @@ export class ViewCommandeComponent implements OnInit {
 
       styles: {
         header: {
-          fontSize: 14,
+          fontSize: 8,
           bold: true,
           margin: [0, 20, 0, 10],
           decoration: 'underline'
         },
         name: {
-          fontSize: 14,
+          fontSize: 8,
           bold: true
         },
         total: {
-          fontSize: 12,
+          fontSize: 8,
           bold: true,
           italics: true
         },
         ligne: {
-          fontSize: 12,
+          fontSize: 8,
           bold: true,
           italics: true
         },
@@ -284,11 +293,11 @@ export class ViewCommandeComponent implements OnInit {
           [
             {
               text: 'Quantité',
-              style: 'tableHeader'
+              style: 'tableHeader',
             },
             {
               text: 'Désignation',
-              style: 'tableHeader'
+              style: 'tableHeader',
             },
             {
               text: 'P.Unitaire',

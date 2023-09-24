@@ -96,22 +96,34 @@
     datatable
     aria-label=""
   >
-    <thead>
+    <thead class="text-center">
       <tr>
         <th>Désignation</th>
         <th>Quantite</th>
-        <th>P.Unitaire</th>
-        <th>P.Total</th>
+        <th>Prix Unitaire</th>
+        <th>Prix Total</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of this.lcmdService.listData">
-        <td>{{ item.productName }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.price }}</td>
-        <td>{{ item.price * item.quantity }}</td>
+        <td>
+          <img
+            height="70"
+            width="70"
+            class="img-circle"
+            alt=""
+            src="{{
+              this.catService.apiServerUrl +
+                '/articles/photoArticle/' +
+                item.productId
+            }}"
+          />
+          <span style="margin-left: 20px;">{{ item.productName }}</span>
+        </td>
+        <td class="text-right">{{ item.quantity }}</td>
+        <td class="text-right">{{ item.price }}</td>
+        <td class="text-right">{{ item.price * item.quantity }}</td>
       </tr>
     </tbody>
   </table>
-  <!-- Fin  Ligne de commandes -->
 </div>

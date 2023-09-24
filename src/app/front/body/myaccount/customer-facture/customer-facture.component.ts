@@ -1,14 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LigneLigneCommandeService } from './../../../../services/lignecommande.service';
 import { CommandeService } from './../../../../services/commande.service';
 import { CommandeDto } from './../../../../model/commande';
 import { LigneCommandeDto } from './../../../../model/ligne-commande';
-
+import * as moment from 'moment';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { CatalogueService } from 'src/app/services/catalogue.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -28,6 +28,7 @@ export class CustomerFactureComponent implements OnInit {
 
   constructor(public crudApi: CommandeService,
               public lcmdService: LigneLigneCommandeService,
+              public catService: CatalogueService,
               private router : Router,
               public route: ActivatedRoute
   ) { }
@@ -70,7 +71,7 @@ export class CustomerFactureComponent implements OnInit {
 
   DownloadPdf() {
     const document = this.getDocument();
-    pdfMake.createPdf(document).download();
+    pdfMake.createPdf(document).download('"FACTURE_"'+this.lcmdService.listData[0].commandeDto.numeroCommande+'.pdf');
   }
 
   getDocument() {
@@ -78,7 +79,7 @@ export class CustomerFactureComponent implements OnInit {
       content: [
         {
           text: 'Soulbusinesse',
-          fontSize: 16,
+          fontSize: 15,
           alignment: 'center',
           color: '#0000ff',
           decoration: 'underline',
@@ -86,21 +87,21 @@ export class CustomerFactureComponent implements OnInit {
         },
         {
           text: 'Vente habillements Hommes&Femmes, Cosmétiques, Parfum, et tout autes produits',
-          fontSize: 12,
-          bold: true,
-          color: '#0000ff',
-          alignment: 'center',
-        },
-        {
-          text: 'Au centre commercial touba Sandaga, Dakar, Sénégal',
           fontSize: 11,
           bold: true,
           color: '#0000ff',
           alignment: 'center',
         },
         {
-          text: 'Tél: +221 77 147 75 28 / Email: bigsoul2018@gmail.com',
+          text: 'Au centre commerciale Touba sandaga Dakar boutique N° 239',
           fontSize: 9,
+          bold: true,
+          color: '#0000ff',
+          alignment: 'center',
+        },
+        {
+          text: 'Tél: +221 77 147 75 28 / Email: bigsoul2018@gmail.com',
+          fontSize: 8,
           bold: true,
           alignment: 'center',
           color: '#0000ff'
@@ -109,21 +110,20 @@ export class CustomerFactureComponent implements OnInit {
 
         },
 
-
         {
           columns: [
 
              [
               {
                 text: `${this.lcmdService.listData[0].commandeDto.status}`,
-                fontSize: 12,
+                fontSize: 8,
                 bold: true,
                 color: '#0000ff',
                 margin: [0, 15, 0, 15]
               },
               {
                 text: ' Facturé à : ',
-                fontSize: 11,
+                fontSize: 8,
                 color: '#0000ff',
                 bold: true,
                 margin: [0, 7, 0, 7]
@@ -131,56 +131,61 @@ export class CustomerFactureComponent implements OnInit {
               {
                 text: `${ this.lcmdService.listData[0].commandeDto.clientDto.firstName + ' ' + this.lcmdService.listData[0].commandeDto.clientDto.lastName }`,
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
               },
               {
                 text: `Tél: ${this.lcmdService.listData[0].commandeDto.clientDto.mobile}`,
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
               },
               {
                 text: `Email: ${this.lcmdService.listData[0].commandeDto.clientDto.email}`,
                 margin: [0, 5, 0, 5],
-                fontSize: 11,
+                fontSize: 8,
               },
 
             ],
 
             [
               {
-                text: `Date : ${this.lcmdService.listData[0].commandeDto.dateCommande}`,
-                fontSize: 12,
+                text:'Date : ' + moment(this.lcmdService.listData[0].commandeDto.dateCommande).format("DD/MM/YYYY"),
+                fontSize: 8,
                 alignment: 'right',
                 margin: [0, 15, 0, 15]
               },
               {
                 text: ' Addresse Livraison : ',
-                fontSize: 11,
+                fontSize: 8,
                 color: '#0000ff',
                 bold: true,
                 alignment: 'right',
                 margin: [0, 7, 0, 7]
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.city}`,
-                fontSize: 11,
+                text: `rue :  ${this.lcmdService.listData[0].commandeDto.billingAddressDto.rue}`,
+                fontSize: 8,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.name}`,
-                fontSize: 11,
+                text: ` quartier : ${this.lcmdService.listData[0].commandeDto.billingAddressDto.city}`,
+                fontSize: 8,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
               },
               {
-                text: `${this.lcmdService.listData[0].commandeDto.billingAddressDto.state.countryDto.name}`,
-                fontSize: 11,
+                text: ` département : ${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.name}`,
                 alignment: 'right',
                 margin: [0, 5, 0, 5],
+                fontSize: 8,
+              },
+              {
+                text: ` région : ${this.lcmdService.listData[0].commandeDto.billingAddressDto.stateDto.countryDto.name}`,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+                fontSize: 8,
               },
             ],
-
 
           ]
         },
@@ -188,7 +193,7 @@ export class CustomerFactureComponent implements OnInit {
         {
           text: ' FACTURE ',
           alignment: 'center',
-          fontSize: 12,
+          fontSize: 8,
           color: '#0000ff',
           bold: true,
           margin: [0, 5, 0, 5]
@@ -196,21 +201,19 @@ export class CustomerFactureComponent implements OnInit {
         {
           text: `N° : ${this.lcmdService.listData[0].commandeDto.numeroCommande}`,
           bold: true,
-          fontSize: 12,
+          fontSize: 8,
           alignment: 'center',
           color: '#0000ff',
           margin: [0, 8, 0, 8]
         },
 
-
         {
           text: `Achat effectué par :  ${this.lcmdService.listData[0].commandeDto.utilisateurDto.name}`,
           bold: true,
-          fontSize: 11,
+          fontSize: 8,
           alignment: 'left',
           margin: [0, 8, 0, 8]
         },
-
 
         {
 
@@ -226,7 +229,7 @@ export class CustomerFactureComponent implements OnInit {
           alignment: 'right',
           margin: [0, 8, 0, 8],
           bold: true,
-          fontSize: 12,
+          fontSize: 8,
         },
 
         {
@@ -241,22 +244,22 @@ export class CustomerFactureComponent implements OnInit {
 
       styles: {
         header: {
-          fontSize: 14,
+          fontSize: 8,
           bold: true,
           margin: [0, 20, 0, 10],
           decoration: 'underline'
         },
         name: {
-          fontSize: 14,
+          fontSize: 8,
           bold: true
         },
         total: {
-          fontSize: 12,
+          fontSize: 8,
           bold: true,
           italics: true
         },
         ligne: {
-          fontSize: 12,
+          fontSize: 8,
           bold: true,
           italics: true
         },
@@ -267,7 +270,7 @@ export class CustomerFactureComponent implements OnInit {
         },
         tableHeader: {
           bold: true,
-          fontSize: 14,
+          fontSize: 8,
           alignment: 'center'
         },
 

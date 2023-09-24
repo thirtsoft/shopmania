@@ -11,8 +11,8 @@ export class AddressLivraisonDto {
   phone: string;
 
  // commandeDto: CommandeDto;
- // stateDto: StateDto;
-  state: StateDto;
+  stateDto: StateDto;
+ // state: StateDto;
 
 
 }
