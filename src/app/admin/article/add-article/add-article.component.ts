@@ -88,10 +88,16 @@ export class AddArticleComponent implements OnInit {
   processForm() {
     this.progress = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.crudApi.uploadPhotoArticleDtoInFolder(this.currentFileUpload, this.addEditArticleDTO.id)
+    this.crudApi.uploadPhotoArticleDto(this.currentFileUpload, this.addEditArticleDTO.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
+          this.toastr.warning('avec succès','Photo article Modifié', {
+            timeOut: 1500,
+            positionClass: 'toast-top-right',
+          });
+          this.router.navigateByUrl("admin/accueil/articles").then(() => {
+          });
         } else if (event instanceof HttpResponse) {
           this.editPhoto=false;
           this.currentTime = Date.now();
@@ -114,10 +120,8 @@ export class AddArticleComponent implements OnInit {
   }
 
   getArticleDTOById(id: number) {
-    console.log('getOne');
     this.crudApi.getArticleDtoById(id).subscribe(
       (response: ArticleDto) => {
-        console.log('data--', response);
         this.addEditArticleDTO = response;
       },
       (error: HttpErrorResponse) => {
@@ -148,13 +152,12 @@ export class AddArticleComponent implements OnInit {
     this.articleFile = file;
   }
 
-  // Ajouter un produits avec sa photo
   onSaveArticle() {
     let formData = new FormData();
     this.currentFileUpload = this.selectedFiles.item(0);
     formData.append('article', JSON.stringify(this.addEditArticleDTO));
     formData.append('photoArticle', this.currentFileUpload);
-    this.crudApi.addArticleDtoWithPhotoInFolder(formData)
+    this.crudApi.addArticleDtoWithPhoto(formData)
       .subscribe((response: ArticleDto)=> {
         this.toastr.success('avec succès','Article Ajoutée', {
           timeOut: 1500,

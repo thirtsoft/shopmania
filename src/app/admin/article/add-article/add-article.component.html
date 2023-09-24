@@ -70,7 +70,7 @@
       </div>
 
       <div class="form-group">
-        <label>Price </label>
+        <label>Prix unitaire </label>
         <input
           type="text"
           class="form-control"
@@ -92,7 +92,7 @@
       </div>
 
       <div class="form-group">
-        <label>CurrentPrice</label>
+        <label>Prix courant</label>
         <input
           type="text"
           class="form-control"
@@ -109,14 +109,14 @@
             currentPrice.errors?.required
           "
         >
-          Désignation est obligatoire
+          prix courant est obligatoire
         </span>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="form-group">
-        <label>Quantity </label>
+        <label>Quantité </label>
         <input
           type="number"
           class="form-control"
@@ -124,22 +124,12 @@
           name="quantity"
           id="quantity"
           #quantity="ngModel"
-          required
         />
-        <span
-          class="text-danger"
-          *ngIf="
-            (quantity.touched || addArticleForm.submitted) &&
-            quantity.errors?.required
-          "
-        >
-          Quantity est obligatoire
-        </span>
       </div>
 
       <div class="row">
         <div class="form-group">
-          <label>Promo</label>
+          <label>En promo</label>
           <input
             required
             class="form-control"
@@ -150,20 +140,11 @@
             id="promo"
             #promo="ngModel"
           />
-          <span
-            class="text-danger"
-            *ngIf="
-              (promo.touched || addArticleForm.submitted) &&
-              promo.errors?.required
-            "
-          >
-            Promo est obligatoire
-          </span>
         </div>
         &nbsp;&nbsp;&nbsp;
 
         <div class="form-group">
-          <label>Selected</label>
+          <label>Selectionné</label>
           <input
             type="checkbox"
             name="selected"
@@ -173,15 +154,6 @@
             #selected="ngModel"
             class="form-control"
           />
-          <span
-            class="text-danger"
-            *ngIf="
-              (selected.touched || addArticleForm.submitted) &&
-              selected.errors?.required
-            "
-          >
-            Selected est obligatoire
-          </span>
         </div>
       </div>
 
@@ -194,28 +166,16 @@
           alt=""
           src="{{
             this.catService.apiServerUrl +
-              '/articles/photoArticleInContext/' +
+              '/articles/photoArticle/' +
               addEditArticleDTO.id
           }}"
           *ngIf="paramId"
         />
-        <!--  <img
-                height="90"
-                width="90"
-                class="img-circle"
-                alt=""
-                src="{{
-                  this.catService.apiServerUrl +
-                    '/articles/photoArticleInContext/' +
-                    addEditArticleDTO.id
-                }}"
-                *ngIf="paramId"
-              /> -->
         <span *ngIf="!editPhoto">
           <input type="file" (change)="onSelectedFile($event)" />
           <button class="btn btn-success btn-sm" (click)="processForm()">
             <span class="glyphicon glyphicon-upload"></span>
-            Save Change
+            Enregistrer
           </button>
           {{ progress }}
         </span>
@@ -234,18 +194,8 @@
           cols="30 "
           rows="10 "
           #description="ngModel"
-          required
         >
         </textarea>
-        <span
-          class="text-danger"
-          *ngIf="
-            (description.touched || addArticleForm.submitted) &&
-            description.errors?.required
-          "
-        >
-          Description est obligatoire
-        </span>
       </div>
     </div>
 
@@ -261,18 +211,8 @@
           cols="30 "
           rows="10 "
           #manufactured="ngModel"
-          required
         >
         </textarea>
-        <span
-          class="text-danger"
-          *ngIf="
-            (description.touched || addArticleForm.submitted) &&
-            description.errors?.required
-          "
-        >
-          Specification est obligatoire
-        </span>
       </div>
     </div>
   </div>
