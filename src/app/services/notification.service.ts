@@ -23,44 +23,17 @@ export class NotificationService {
   ) {
   }
 
-  public getNotifications(): Observable<Notification[]> {
-    return this.http.get<Notification[]>(`${this.apiServerUrl}/notifications/all`);
-  }
-
-  public getNotificationById(notificationId: number): Observable<Notification> {
-    return this.http.get<Notification>(`${this.apiServerUrl}/notifications/${notificationId}`);
-  }
-
-  public addNotification(notification: Notification): Observable<Notification> {
-    return this.http.post<Notification>(`${this.apiServerUrl}/notifications/create`, notification);
-  }
-
-  public updateNotification(notification: Notification): Observable<Notification> {
-    return this.http.put<Notification>(`${this.apiServerUrl}/notifications/create`, notification);
-  }
-
-  public deleteNotification(notificationId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete/${notificationId}`);
-  }
-
-  /***************************** NotificationDTO */
-
-  public getNotificationDtos(): Observable<NotificationDto[]> {
-    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/all`);
-  }
-
-  public getAllNotificationDtosOrderByIdDesc(): Observable<NotificationDto[]> {
-    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/searchAllNotificationsOrderByIdDesc`);
-  }
-
   public getTop3RatingOrderByCreatedDateDesc(): Observable<NotificationDto[]> {
-    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/searchTop3RatingOrderByCreatedDateDesc`);
+    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/search-top3-rating-order-by-createdDateDesc`);
   }
 
   public getTop4RatingOrderByCreatedDateDescByProduct(noteId: string): Observable<NotificationDto[]> {
-    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/searchTop4RatingOrderByCreatedDateDescByProductId/${noteId}`);
+    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/search-top4-rating-order-by-createdDateDesc-by-productId/${noteId}`);
   }
 
+  public getAllActiveNotifications(): Observable<NotificationDto[]> {
+    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/search-all-active-notifications`);
+  }
 
   public getNotificationDtoById(notificationId: number): Observable<NotificationDto> {
     return this.http.get<NotificationDto>(`${this.apiServerUrl}/notifications/findById/${notificationId}`);
@@ -71,15 +44,7 @@ export class NotificationService {
   }
 
   public addRatingToArticle(notificationDTO: NotificationDto, reference: string, userId:number): Observable<NotificationDto> {
-    return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/createRatingToArticle?reference=${reference}&id=${userId}`, notificationDTO);
-  }
-
-  public updateNotificationDto(notificationDTO: NotificationDto): Observable<NotificationDto> {
-    return this.http.put<NotificationDto>(`${this.apiServerUrl}/notifications/create`, notificationDTO);
-  }
-
-  public deleteNotificationDto(notificationId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete/${notificationId}`);
+    return this.http.post<NotificationDto>(`${this.apiServerUrl}/notifications/create-rating-to-article?reference=${reference}&id=${userId}`, notificationDTO);
   }
 
   getUserId() {
@@ -87,12 +52,8 @@ export class NotificationService {
     this.id = user.id
   }
 
-  public getAllActiveNotifications(): Observable<NotificationDto[]> {
-    return this.http.get<NotificationDto[]>(`${this.apiServerUrl}/notifications/search-all-active-notifications`);
-  }
-
-  public deleteNotificationById(subCatId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete-notification/${subCatId}`);
+  public deleteNotificationById(ratingId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/notifications/delete-notification/${ratingId}`);
   }
 
 

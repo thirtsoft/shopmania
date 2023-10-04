@@ -16,28 +16,8 @@ export class AddresslivraisonService {
   constructor(private http: HttpClient) {
   }
 
-  public getAddressLivraisonDtos(): Observable<AddressLivraisonDto[]> {
-    return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/all`);
-  }
-
-  public getAddressLivraisonDtosOrderByIdDesc(): Observable<AddressLivraisonDto[]> {
-    return this.http.get<AddressLivraisonDto[]>(`${this.apiServerUrl}/addresslivraisons/searchAllAddressLivraisonsOrderByIdDesc`);
-  }
-
   public getAddressLivraisonDtoById(addressLivraisonId: number): Observable<AddressLivraisonDto> {
     return this.http.get<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/${addressLivraisonId}`);
-  }
-
-  public addAddressLivraisonDto(addressLivraisonDTO: AddressLivraisonDto): Observable<AddressLivraisonDto> {
-    return this.http.post<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/create`, addressLivraisonDTO);
-  }
-
-  public updateAddressLivraisonDto(addressLivraisonId: number, addressLivraisonDTO: AddressLivraisonDto): Observable<AddressLivraisonDto> {
-    return this.http.put<AddressLivraisonDto>(`${this.apiServerUrl}/addresslivraisons/update/${addressLivraisonId}`, addressLivraisonDTO);
-  }
-
-  public deleteAddressLivraisonDto(addressLivraisonId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/addresslivraisons/delete/${addressLivraisonId}`);
   }
 
   public getAllActiveAddresses(): Observable<AddressLivraisonDto[]> {

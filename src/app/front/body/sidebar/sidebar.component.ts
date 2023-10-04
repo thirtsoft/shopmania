@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit {
     this.getScategoryListDTOs();
   }
   public getScategoryListDTOs() {
-    this.scatService.getScategoryDtos().subscribe(
+    this.scatService.getAllActiveSubCategories().subscribe(
       (response: ScategoryDto[]) => {
         this.scategoryListDTOs = response;
       },

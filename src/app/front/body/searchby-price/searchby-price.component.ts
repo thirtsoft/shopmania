@@ -25,7 +25,7 @@ export class SearchbyPriceComponent implements OnInit {
   }
 
   public getArticleListDTOs() {
-    this.artService.getArticleDTOs().subscribe(
+    this.artService.getAllActivesArticles().subscribe(
       (response: ArticleDto[]) => {
         this.articleListDTOBs = response;
       },

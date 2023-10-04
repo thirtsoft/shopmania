@@ -21,20 +21,8 @@ export class CountryService {
   constructor(private http: HttpClient) {
   }
 
-  public getCountryDTOs(): Observable<CountryDto[]> {
-    return this.http.get<CountryDto[]>(`${this.apiServerUrl}/countries/all`);
-  }
-
-  public getAllCountryDTOsOrderByIdDesc(): Observable<CountryDto[]> {
-    return this.http.get<CountryDto[]>(`${this.apiServerUrl}/countries/searchAllCountryOrderByIdDesc`);
-  }
-
   public getCountryDtoById(countId: number): Observable<CountryDto> {
     return this.http.get<CountryDto>(`${this.apiServerUrl}/countries/findById/${countId}`);
-  }
-
-  public getCountryDtoByDesignation(designation: string): Observable<CountryDto> {
-    return this.http.get<CountryDto>(`${this.apiServerUrl}/countries/${designation}`);
   }
 
   public addCountryDto(countryDto: CountryDto): Observable<CountryDto> {
@@ -45,16 +33,12 @@ export class CountryService {
     return this.http.put<CountryDto>(`${this.apiServerUrl}/countries/update/${categoryId}`, countryDto);
   }
 
-  public deleteCountryDto(countId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/countries/delete/${countId}`);
-  }
-
   public getAllActiveCountries(): Observable<CountryDto[]> {
     return this.http.get<CountryDto[]>(`${this.apiServerUrl}/countries/search-all-active-countries`);
   }
 
-  public deleteCountryById(subCatId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/countries/delete-country/${subCatId}`);
+  public deleteCountry(countryId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/countries/delete-country/${countryId}`);
   }
 
 }

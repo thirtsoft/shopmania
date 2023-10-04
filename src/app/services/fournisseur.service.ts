@@ -23,35 +23,6 @@ export class FournisseurService {
   constructor(private http: HttpClient) {
   }
 
-  public getFournisseurs(): Observable<Fournisseur[]> {
-    return this.http.get<Fournisseur[]>(`${this.apiServerUrl}/fournisseurs/all`);
-  }
-
-  public getFournisseurById(fournisseurId: number): Observable<Fournisseur> {
-    return this.http.get<Fournisseur>(`${this.apiServerUrl}/fournisseurs/findById/${fournisseurId}`);
-  }
-
-  public addFournisseur(fournisseur: Fournisseur): Observable<Fournisseur> {
-    return this.http.post<Fournisseur>(`${this.apiServerUrl}/fournisseurs/create`, fournisseur);
-  }
-
-  public updateFournisseur(fournisseur: Fournisseur): Observable<Fournisseur> {
-    return this.http.put<Fournisseur>(`${this.apiServerUrl}/fournisseurs/create`, fournisseur);
-  }
-
-  public deleteFournisseur(fournisseurId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/fournisseurs/delete/${fournisseurId}`);
-  }
-
-  /**************** FournisseurDTO  *******/
-
-  public getFournisseurDTOs(): Observable<FournisseurDto[]> {
-    return this.http.get<FournisseurDto[]>(`${this.apiServerUrl}/fournisseurs/all`);
-  }
-
-  public getFournisseurDTOsOrderByIdDesc(): Observable<FournisseurDto[]> {
-    return this.http.get<FournisseurDto[]>(`${this.apiServerUrl}/fournisseurs/searchAllFournisseursOrderByIdDesc`);
-  }
 
   public getFournisseurDtoById(fournisseurId: number): Observable<FournisseurDto> {
     return this.http.get<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/findById/${fournisseurId}`);
@@ -65,9 +36,6 @@ export class FournisseurService {
     return this.http.put<FournisseurDto>(`${this.apiServerUrl}/fournisseurs/update/${fournisseurId}`, fournisseurDTO);
   }
 
-  public deleteFournisseurDto(fournisseurId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/fournisseurs/delete/${fournisseurId}`);
-  }
 
   public getAllActiveFournisseurs(): Observable<FournisseurDto[]> {
     return this.http.get<FournisseurDto[]>(`${this.apiServerUrl}/fournisseurs/search-all-active-fournisseurs`);

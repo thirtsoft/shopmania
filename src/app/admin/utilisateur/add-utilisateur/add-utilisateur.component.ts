@@ -64,28 +64,7 @@ export class AddUtilisateurComponent implements OnInit {
    // this.crudApi.dataForm.reset();
   }
 
-  submit() {
-    console.log('Data send--', this.addEditUtilisateurDTO);
-    this.crudApi.addUtilisateurDto(this.addEditUtilisateurDTO).subscribe(
-      (response: UtilisateurDto) => {
-        console.log('Response--', response);
-
-        this.toastr.success('avec succès','Utilisateurs Ajoutée', {
-          timeOut: 1500,
-          positionClass: 'toast-top-right',
-        });
-
-        this.router.navigateByUrl("admin/accueil/utilisateurs").then(() => {
-          window.location.reload();
-        });
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-
-    );
-
-  }
+  submit() {}
 
   update() {
     console.log('Data send--', this.addEditUtilisateurDTO);

@@ -110,7 +110,7 @@ export class AddArticleComponent implements OnInit {
   }
 
   getListScategoryDTOs() {
-    this.scategorieService.getScategoryDtos().subscribe(
+    this.scategorieService.getAllActiveSubCategories().subscribe(
       (response: ScategoryDto[]) => {
         this.scategoryListDTO = response;
       }, (error: HttpErrorResponse) => {

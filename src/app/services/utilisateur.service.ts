@@ -16,42 +16,12 @@ export class UtilisateurService {
   constructor(private http: HttpClient) {
   }
 
-  public getUtilisateurs(): Observable<Utilisateur[]> {
-    return this.http.get<Utilisateur[]>(`${this.apiServerUrl}/utilisateurs/all`);
-  }
-
-  public getUtilisateurById(userId: number): Observable<Utilisateur> {
-    return this.http.get<Utilisateur>(`${this.apiServerUrl}/utilisateurs/findById/${userId}`);
-  }
-
-  public addUtilisateur(utilisateur: Utilisateur): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.apiServerUrl}/utilisateurs/create`, utilisateur);
-  }
-
-  public updateUtilisateur(utilisateur: Utilisateur): Observable<Utilisateur> {
-    return this.http.put<Utilisateur>(`${this.apiServerUrl}/utilisateurs/create`, utilisateur);
-  }
-
-  public deleteUtilisateur(utilisateurId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${utilisateurId}`);
-  }
-
-  /*********************** UtilisateurDTO ********************/
-
-  public getUtilisateurDtos(): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/all`);
-  }
-
-  public getAllUtilisateurDtosOrderByIdDesc(): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAllUtilisateurOrderByIdDesc`);
-  }
-
   public getUtilisateurDtoById(userId: number): Observable<UtilisateurDto> {
     return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/findById/${userId}`);
   }
 
-  public addUtilisateurDto(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
-    return this.http.post<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
+  public getAllActiveUtilisateurs(): Observable<UtilisateurDto[]> {
+    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/search-all-active-utilisateurs`);
   }
 
   public updateUtilisateurDto(utilisateurId: number, utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
@@ -65,20 +35,12 @@ export class UtilisateurService {
   uploadPhotoUtilisateur(file: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', this.apiServerUrl+'/utilisateurs/uploadUserPhoto/' + id, formdata, {
+    const req = new HttpRequest('POST', this.apiServerUrl+'/utilisateurs/upload-photo-to-user/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
 
     return this.http.request(req);
-  }
-
-  public deleteUtilisateurDto(utilisateurId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${utilisateurId}`);
-  }
-
-  public getAllActiveUtilisateurs(): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/search-all-active-utilisateurs`);
   }
 
   public deleteUtilisateurById(utilisateurId: number): Observable<void> {

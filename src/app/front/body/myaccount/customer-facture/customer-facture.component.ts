@@ -50,7 +50,7 @@ export class CustomerFactureComponent implements OnInit {
 
 
   getListCommandeClients() {
-    this.crudApi.getCommandeDtos()
+    this.crudApi.getAllActiveCommandes()
     .subscribe(
       response =>{
         this.listData = response;

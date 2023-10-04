@@ -40,7 +40,7 @@ export class AddStateComponent implements OnInit {
   }
 
   getListCountrieDTOs() {
-    this.countryService.getCountryDTOs().subscribe((response) => {
+    this.countryService.getAllActiveCountries().subscribe((response) => {
       this.listCountriesDTO = response as CountryDto[];});
   }
 

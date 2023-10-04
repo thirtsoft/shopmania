@@ -48,7 +48,7 @@ export class ListArticleComponent implements OnInit {
   }
 
   public getListArticleDTOs(): void {
-    this.crudApi.getAllActivesArticlesOrderByDesignation().subscribe(
+    this.crudApi.getAllActivesArticles().subscribe(
       (response: ArticleDto[]) => {
         this.articleDTOList = response;
       },

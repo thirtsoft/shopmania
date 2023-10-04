@@ -21,39 +21,7 @@ export class ArticleService {
   constructor(private http: HttpClient) {
   }
 
-  public getArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>(`${this.apiServerUrl}/articles/all`);
-  }
-
-  public getArticleById(articleId: number): Observable<Article> {
-    return this.http.get<Article>(`${this.apiServerUrl}/articles/findById/${articleId}`);
-  }
-
-  public getArticleByReference(reference: string): Observable<Article> {
-    return this.http.get<Article>(`${this.apiServerUrl}/articles/${reference}`);
-  }
-
-  public addArticle(article: Article): Observable<Article> {
-    return this.http.post<Article>(`${this.apiServerUrl}/articles/create`, article);
-  }
-
-  public updateArticle(article: Article): Observable<Article> {
-    return this.http.put<Article>(`${this.apiServerUrl}/articles/create`, article);
-  }
-
-  public deleteArticle(articleId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/articles/delete/${articleId}`);
-  }
-
-  public getArticleDTOs(): Observable<ArticleDto[]> {
-    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/all`);
-  }
-
-  public getArticleDTOsOrderByIdDesc(): Observable<ArticleDto[]> {
-    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchAllArticleOrderByIdDesc`);
-  }
-
-  public getAllActivesArticlesOrderByDesignation(): Observable<ArticleDto[]> {
+  public getAllActivesArticles(): Observable<ArticleDto[]> {
     return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/search-all-active-articles`);
   }
 
@@ -62,7 +30,7 @@ export class ArticleService {
   }
 
   public getArticleDtoByReference(reference: string): Observable<ArticleDto> {
-    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/searchbyReference/${reference}`);
+    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/search-by-reference/${reference}`);
   }
 
   public addArticleDto(articleDTO: ArticleDto): Observable<ArticleDto> {
@@ -70,7 +38,7 @@ export class ArticleService {
   }
 
   public addArticleDtoWithPhoto(formData: FormData): Observable<any> {
-    const req = new HttpRequest('POST', `${this.apiServerUrl}/articles/createWithFile`, formData, {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/articles/create-with-file`, formData, {
       reportProgress: true,
       responseType: 'text'
     });
@@ -78,13 +46,12 @@ export class ArticleService {
   }
 
   public addArticleDtoWithPhotoInFolder(formData: FormData): Observable<any> {
-    const req = new HttpRequest('POST', `${this.apiServerUrl}/articles/createWithFileInFolder`, formData, {
+    const req = new HttpRequest('POST', `${this.apiServerUrl}/articles/create-with-file-in-folder`, formData, {
       reportProgress: true,
       responseType: 'text'
     });
     return this.http.request(req);
   }
-
 
   public updateArticleDto(articleId: number, articleDTO: ArticleDto): Observable<ArticleDto> {
     return this.http.put<ArticleDto>(`${this.apiServerUrl}/articles/update/${articleId}`, articleDTO);
@@ -93,37 +60,31 @@ export class ArticleService {
   uploadPhotoArticleDto(file: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', this.apiServerUrl+'/articles/uploadArticlePhoto/' + id, formdata, {
+    const req = new HttpRequest('POST', this.apiServerUrl+'/articles/upload-photo-article/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
-
     return this.http.request(req);
   }
 
   uploadPhotoArticleDtoInFolder(file: File, id: number): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', this.apiServerUrl+'/articles/uploadArticlePhotoInFolder/' + id, formdata, {
+    const req = new HttpRequest('POST', this.apiServerUrl+'/articles/upload-photo-article-in-folder/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
-
     return this.http.request(req);
   }
 
+ 
   public getPhotoArticle() {
-    return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
-  }
-
-  public deleteArticleDto(articleId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/articles/delete/${articleId}`);
+    return this.http.get(`${this.apiServerUrl}/articles/photo-article`);
   }
 
   public deleteArticleById(articleId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/articles/delete-article/${articleId}`);
   }
-
 
   incrementQuantityArticleDTO(articleDTO: ArticleDto) {
     articleDTO.quantite++;
@@ -134,7 +95,4 @@ export class ArticleService {
     articleDTO.quantite--;
 
   }
-
-
-
 }

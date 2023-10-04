@@ -19,46 +19,8 @@ import { ArticleDto } from '../../../model/article';
 })
 export class HomeComponent implements OnInit {
 
-  articleDTOList: ArticleDto[];
-  editArticle: ArticleDto;
-  deleteArticle: ArticleDto;
+  constructor(){}
 
-  id : number;
-  p : number=1;
-  searchText;
-  private currentTime: number=0;
-
-  constructor(private articleService: ArticleService,
-              public catService: CatalogueService,
-              private dialog: MatDialog,
-              private router: Router,
-              public toastr: ToastrService,
-              private dialogService: DialogService
-  ){}
-
-  ngOnInit(): void {
-  //  this.getListArticleDTOs();
-  }
-
-  public getListArticleDTOs(): void {
-    this.articleService.getArticleDTOs().subscribe(
-      (response: ArticleDto[]) => {
-        this.articleDTOList = response;
-        console.log(this.articleDTOList);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.message);
-      }
-    );
-  }
-
-  getTS() {
-    return this.currentTime;
-  }
-
-  public onGetDetails(artilce: ArticleDto) {
-
-  }
-
-
+  ngOnInit(): void {}
+  
 }

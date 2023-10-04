@@ -43,7 +43,7 @@ export class UpdateStatusCommandeComponent implements OnInit {
   }
 
   getListCommandeDTOs() {
-    this.crudApi.getCommandeDtos().subscribe(
+    this.crudApi.getAllActiveCommandes().subscribe(
       response =>{this.commandeDTOList = response;}
     );
   }

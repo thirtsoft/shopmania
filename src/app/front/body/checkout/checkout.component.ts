@@ -123,7 +123,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   getListCountryDTOs() {
-    this.countService.getCountryDTOs().subscribe(
+    this.countService.getAllActiveCountries().subscribe(
       (response: CountryDto[]) => {
         this.listCountryDto = response;
         console.log(this.listCountryDto);
@@ -135,7 +135,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   getListStateDTOs() {
-    this.statService.getStateDTOs().subscribe(
+    this.statService.getAllActiveStates().subscribe(
       (response: StateDto[]) => {
         this.listStateDto = response;
       },

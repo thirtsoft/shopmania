@@ -21,6 +21,7 @@ export class CreateSubCategoryComponent implements OnInit {
 
   addEditScategoryDTO: ScategoryDto = new ScategoryDto();
   categoryListDTO: CategoryDto[];
+  subcategoryListDTO: ScategoryDto[];
 
   data;
   paramId :any = 0;
@@ -45,24 +46,19 @@ export class CreateSubCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.paramId = this.actRoute.snapshot.paramMap.get('id');
-    console.log('Param--', this.paramId);
     if(this.paramId  && this.paramId  > 0){
       this.getScategoryDTOById(this.paramId);
     }
-
     this.getListCategoryDTOs();
-
   }
 
   getScategoryDTOById(id: number) {
-    console.log('getOne');
     this.crudApi.getScategoryDtoById(id).subscribe(
       (response: ScategoryDto) => {
-        console.log('data--', response);
         this.addEditScategoryDTO = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastr.error("Erreur lors de la récupération de la sous-catégorie");
       }
     );
 
@@ -70,11 +66,21 @@ export class CreateSubCategoryComponent implements OnInit {
 
 
   getListCategoryDTOs() {
-    this.catService.getCategorieDTOs().subscribe(
+    this.catService.getAllActiveCategories().subscribe(
       (response: CategoryDto[]) => {
         this.categoryListDTO = response;
       }, (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastr.error("Erreur lors de la récupération de la liste des categories");
+      }
+    )
+  }
+
+  getListSuCategories() {
+    this.crudApi.getAllActiveSubCategories().subscribe(
+      (response: ScategoryDto[]) => {
+        this.subcategoryListDTO = response;
+      }, (error: HttpErrorResponse) => {
+        this.toastr.error("Erreur lors de la récupération de la liste des sous-categories");
       }
     )
   }
@@ -88,19 +94,16 @@ export class CreateSubCategoryComponent implements OnInit {
     console.log('Data send--', this.addEditScategoryDTO);
     this.crudApi.addScategoryDto(this.addEditScategoryDTO).subscribe(
       (response: ScategoryDto) => {
-        console.log('Response--', response);
-
         this.toastr.success('avec succès','Sous-Categorie Ajoutée', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
         });
-
         this.router.navigateByUrl("admin/accueil/scategories").then(() => {
-          window.location.reload();
+          this.getListSuCategories();
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastr.error("Erreur, la sous-categorie n\'est pas crée");
       }
 
     );
@@ -117,11 +120,11 @@ export class CreateSubCategoryComponent implements OnInit {
         });
 
         this.router.navigateByUrl("admin/accueil/scategories").then(() => {
-          window.location.reload();
+          this.getListSuCategories();
         });
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastr.error("Erreur lors de la modification de la sous-categorie");
       }
 
     );

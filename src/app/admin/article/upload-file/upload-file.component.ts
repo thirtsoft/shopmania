@@ -46,7 +46,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   getListOfArticledDTOs() {
-    this.crudApi.getArticleDTOs().subscribe(
+    this.crudApi.getAllActivesArticles().subscribe(
       response =>{
         this.listData = response;}
     );

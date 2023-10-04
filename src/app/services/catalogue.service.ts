@@ -23,23 +23,23 @@ export class CatalogueService {
   }
 
   public getListArticleDTOBySelectedIsTrue(): Observable<ArticleDto[]> {
-    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByselectedIsTrue`);
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/search-articles-by-selected-is-true`);
   }
 
   public getTop12ArticleDTOOrderByCreatedDateDesc(): Observable<ArticleDto[]> {
-    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchTop12ArticleOrderByCreatedDateDesc`);
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/search-top12-article-order-by-createdDate-desc`);
   }
 
   public getListArticleDTOByCategoryId(scatId: number): Observable<ArticleDto[]> {
-    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/articlesByScategories/${scatId}`);
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/articles-by-subcategories/${scatId}`);
   }
 
   public getListArticleDTOByPageable(page: number, size: number): Observable<ArticleDto[]> {
-    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByPageables?page=`+page+"&size="+size);
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/search-article-by-pageable?page=`+page+"&size="+size);
   }
 
   public getListArticleDTOByKeyword(keyword: string): Observable<ArticleDto[]> {
-    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByKeyword?keyword=`+keyword);
+    return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/search-article-by-keyword?keyword=`+keyword);
   }
 
   public getListArticleDTOBySamePrice(price: number): Observable<ArticleDto[]> {
@@ -51,10 +51,9 @@ export class CatalogueService {
   }
 
   public getListArticleDTOByScategoryByPageable(scatId: number, page: number, size: number): Observable<ArticleDto[]> {
-    const searchUrl = (this.apiServerUrl+"/articles/searchArticleByScategoryByPageables?id="+scatId+"&page="+page+"&size="+size);
+    const searchUrl = (this.apiServerUrl+"/articles/search-article-by-subcategory-by-pageable?id="+scatId+"&page="+page+"&size="+size);
     console.log("Search Url---", searchUrl);
     return this.http.get<ArticleDto[]>(searchUrl);
- //   return this.http.get<ArticleDto[]>(`${this.apiServerUrl}/articles/searchArticleByScategoryByPageables/${scatId}?&page=`+page+"&size="+size);
   }
 
   public getListArticleDTOBySamePriceByPageable(price: number, page: number, size: number): Observable<ArticleDto[]> {
@@ -64,11 +63,11 @@ export class CatalogueService {
   }
 
   public countNumberOfProductInSubCategory(sucatId: number): Observable<ArticleDto> {
-    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/countNumberOfProductInSubCat/${sucatId}`);
+    return this.http.get<ArticleDto>(`${this.apiServerUrl}/articles/count-number-of-article-in-subcategory/${sucatId}`);
   }
 
   public getPhotoArticle() {
-    return this.http.get(`${this.apiServerUrl}/articles/photoArticle`);
+    return this.http.get(`${this.apiServerUrl}/articles/photo-article`);
   }
 
   getCurrentUser(): Observable<any> {

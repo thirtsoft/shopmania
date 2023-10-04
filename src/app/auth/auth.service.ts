@@ -74,18 +74,20 @@ export class AuthService {
   }
 
   getUserByUsername(username: string): Observable<any> {
-    return this.http.get<any>(this.apiServerUrl + `/getUserByUsername/${username}`);
+    return this.http.get<any>(this.apiServerUrl + `/search-utilisateur-by-usernam/${username}`);
   }
+
   getUserById(id: any) {
-    return this.http.get(`${this.apiServerUrl}/utilisateurs/${id}`);
+    return this.http.get(`${this.apiServerUrl}/utilisateurs/findById/${id}`);
   }
 
   public updateProfil(userId: number, userDTO: UpdateProfilInfo): Observable<UpdateProfilInfo> {
     return this.http.put<UpdateProfilInfo>(`${this.apiServerUrl}/utilisateurs/update/${userId}`, userDTO);
   }
 
+
   updateCustomerProfil(item: UpdateProfilInfo): Observable<UpdateProfilInfo> {
-    const urlUpdateUserProfile = (`${this.apiServerUrl}/utilisateurs/updateCustomerProfileByUsername/`);
+    const urlUpdateUserProfile = (`${this.apiServerUrl}/utilisateurs/update-customer-profile-by-username/`);
     return this.http.patch<UpdateProfilInfo>(urlUpdateUserProfile, {
       id: item.id,
       oldUsername: item.oldUsername,
@@ -98,7 +100,7 @@ export class AuthService {
   }
 
   updateUsername(item: UpdateUsernameInfo): Observable<UpdateUsernameInfo> {
-    const urlUpdateUsername = (`${this.apiServerUrl}/utilisateurs/updateUsernameOfUserByUsername`);
+    const urlUpdateUsername = (`${this.apiServerUrl}/utilisateurs/update-username-of-user-by-username`);
     return this.http.patch<UpdateUsernameInfo>(urlUpdateUsername, {
       username: item.username,
       newUsername: item.newUsername
@@ -107,7 +109,7 @@ export class AuthService {
   }
 
   updateUsernameByUserId(item: UpdateUsernameUser): Observable<UpdateUsernameUser> {
-    const urlUpdateUsername = (`${this.apiServerUrl}/utilisateurs/updateUsernameOfUserById`);
+    const urlUpdateUsername = (`${this.apiServerUrl}/utilisateurs/update-username-of-user-byId`);
     return this.http.patch<UpdateUsernameUser>(urlUpdateUsername, {
       id: item.id,
       newUsername: item.newUsername
@@ -116,7 +118,7 @@ export class AuthService {
   }
 
   updatePassword(item: UpdatePasswordInfo): Observable<UpdatePasswordInfo> {
-    const urlUpdatePassword = (`${this.apiServerUrl}/utilisateurs/updatePasswordByUsername`);
+    const urlUpdatePassword = (`${this.apiServerUrl}/utilisateurs/update-password-by-username`);
     return this.http.patch<UpdatePasswordInfo>(urlUpdatePassword, {
       username: item.username,
       oldPassword: item.oldPassword,
@@ -125,7 +127,7 @@ export class AuthService {
   }
 
   updatePasswordByUserId(item: UpdatePasswordUser): Observable<UpdatePasswordUser> {
-    const urlUpdatePassword = (`${this.apiServerUrl}/utilisateurs/updatePasswordByUserId`);
+    const urlUpdatePassword = (`${this.apiServerUrl}/utilisateurs/update-password-by-userId`);
     return this.http.patch<UpdatePasswordUser>(urlUpdatePassword, {
       userId: item.id,
       oldPassword: item.oldPassword,

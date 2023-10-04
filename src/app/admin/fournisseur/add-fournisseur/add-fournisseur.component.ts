@@ -52,7 +52,7 @@ export class AddFournisseurComponent implements OnInit {
   }
 
   public getListArticleDTOs(): void {
-    this.articleService.getArticleDTOs().subscribe(
+    this.articleService.getAllActivesArticles().subscribe(
       (response: ArticleDto[]) => {
         this.ListArticleDTO = response;
       }, (error: HttpErrorResponse) => {

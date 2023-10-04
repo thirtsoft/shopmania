@@ -73,7 +73,7 @@ export class ListCountriesComponent implements OnInit {
     this.dialogService.openConfirmDialog('Etes-vous sur de vouloir Supprimer cette donnée ?')
     .afterClosed().subscribe(res =>{
       if(res){
-        this.crudApi.deleteCountryById(id).subscribe(data => {
+        this.crudApi.deleteCountry(id).subscribe(data => {
           this.toastr.error('avec succès','Countrie supprimée', {
             timeOut: 1500,
             positionClass: 'toast-top-right',

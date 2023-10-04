@@ -23,33 +23,25 @@ export class CheckoutService {
 
   placeOrder(purchase: Purchase): Observable<any> {
     return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/purchase`, purchase);
-    // .pipe(
-    //   map(response=> response.orderTrackingNumber) checkout/purchase
-    // )
   }
 
   placeToOrder(purchase: Purchase): Observable<any> {
-    return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/placeToOrder`, purchase);
+    return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/place-to-order`, purchase);
   }
 
   placeToOrderWithUser(purchase: Purchase, id: number): Observable<any> {
-    return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/placeToOrderWithUser?id=`+id, purchase);
+    return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/place-to-order-with-user?id=`+id, purchase);
   }
 
 
   place2Order(purchase: Purchase, id: number): Observable<any> {
-    return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/placeToOrder?id=${id}`, purchase);
+    return this.http.post<GetResponsePurchase>(`${this.apiServerUrl}/checkout/place-to-order?id=${id}`, purchase);
 
   }
 
   getUserId() {
     const user = this.tokenService.getUser();
-    this.id = user.id
-    /* this.authService.getUserById(this.id).subscribe(arg => {
-      this.currentUser = arg;
-      console.log(this.currentUser);
-    });
-    ; */
+    this.id = user.id;
   }
 
 

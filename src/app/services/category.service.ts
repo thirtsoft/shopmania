@@ -23,44 +23,12 @@ export class CategoryService {
   constructor(private http: HttpClient) {
   }
 
-  public getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiServerUrl}/categories/all`);
-  }
-
-  public getCategoryById(categoryId: number): Observable<Category> {
-    return this.http.get<Category>(`${this.apiServerUrl}/categories/findById/${categoryId}`);
-  }
-
-  public getCategoryByDesignation(designation: string): Observable<Category> {
-    return this.http.get<Category>(`${this.apiServerUrl}/categories/${designation}`);
-  }
-
-  public addCategory(category: Category): Observable<Category> {
-    return this.http.post<Category>(`${this.apiServerUrl}/categories/create`, category);
-  }
-
-  public updateCategory(category: Category): Observable<Category> {
-    return this.http.put<Category>(`${this.apiServerUrl}/categories/create`, category);
-  }
-
-  public deleteCategory(categoryId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${categoryId}`);
-  }
-
-  public getCategorieDTOs(): Observable<CategoryDto[]> {
-    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/all`);
-  }
-
-  public getCategorieDTOsOrderByIdDesc(): Observable<CategoryDto[]> {
-    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/searchAllCategorieOrderByIdDesc`);
+  public getAllActiveCategories(): Observable<CategoryDto[]> {
+    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/search-all-active-categories`);
   }
 
   public getCategoryDtoById(categoryId: number): Observable<CategoryDto> {
     return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/findById/${categoryId}`);
-  }
-
-  public getCategoryDtoByDesignation(designation: string): Observable<CategoryDto> {
-    return this.http.get<CategoryDto>(`${this.apiServerUrl}/categories/${designation}`);
   }
 
   public addCategoryDto(categoryDTO: CategoryDto): Observable<CategoryDto> {
@@ -71,16 +39,8 @@ export class CategoryService {
     return this.http.put<CategoryDto>(`${this.apiServerUrl}/categories/update/${categoryId}`, categoryDTO);
   }
 
-  public deleteCategoryDto(categoryId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/categories/delete/${categoryId}`);
-  }
-
-  public getAllActiveCategories(): Observable<CategoryDto[]> {
-    return this.http.get<CategoryDto[]>(`${this.apiServerUrl}/categories/search-all-active-categories`);
-  }
-
   public deleteCategoryById(subCatId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/categories/delete-categories/${subCatId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/categories/delete-category/${subCatId}`);
   }
 
 }

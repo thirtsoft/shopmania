@@ -61,7 +61,7 @@ export class AddCategoryComponent implements OnInit {
   }
 
   getListCategories() {
-    this.crudApi.getCategorieDTOs().subscribe(
+    this.crudApi.getAllActiveCategories().subscribe(
       response =>{
         this.listData = response;
       },
@@ -74,7 +74,6 @@ export class AddCategoryComponent implements OnInit {
   onSubmit() {
     if (this.crudApi.choixmenu == "A"){
       this.saveCategorie();
-      this.dialogRef.close();
     }else{
         this.updateCategorie();
     }
@@ -83,11 +82,11 @@ export class AddCategoryComponent implements OnInit {
   saveCategorie() {
     this.crudApi.addCategoryDto(this.crudApi.dataForm.value)
       .subscribe(response => {
-        this.dialogRef.close();
         this.toastr.success('avec succès','Categorie Ajoutée', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
         });
+        this.dialogRef.close();
         this.router.navigateByUrl("admin/accueil/categories").then(() => {
           window.location.reload();
         });
