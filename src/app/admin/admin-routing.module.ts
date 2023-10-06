@@ -42,6 +42,7 @@ import { AddUtilisateurComponent } from './utilisateur/add-utilisateur/add-utili
 import { UpdatePasswordComponent } from './authentication/update-password/update-password.component';
 import { UpdateProfilComponent } from './authentication/update-profil/update-profil.component';
 import { ListHistoriqueLoginComponent } from './utilisateur/list-historique-login/list-historique-login.component';
+import { DetailFournisseurComponent } from './fournisseur/detail-fournisseur/detail-fournisseur.component';
 
 
 const routes: Routes = [
@@ -152,6 +153,10 @@ const routes: Routes = [
     {
       path:'fournisseur/:id',
       component:AddFournisseurComponent
+    },
+    {
+      path:'fournisseur/detail/:id',
+      component:DetailFournisseurComponent
     },
     {
       path: 'clients',
